@@ -1,0 +1,21 @@
+{
+    "name": "laravie/canvas",
+    "description": "Code Generators for Laravel",
+    "type": "library",
+    "require": {
+        "symfony/console": "^4.2 || ^5.0",
+        "symfony/yaml": "^4.2 || ^5.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^6.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com"
+        }
+    ],
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}
