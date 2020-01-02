@@ -9,7 +9,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class Command extends \Symfony\Component\Console\Command\Command
 {
-    use Concerns\Interaction;
+    use Concerns\CallOtherCommands,
+        Concerns\InteractionsWithIO;
 
     /**
      * Canvas preset.
