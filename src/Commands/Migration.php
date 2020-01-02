@@ -39,6 +39,7 @@ class Migration extends Generator
         $this->setName('migration')
                 ->setDescription('Create a new migration file.')
                 ->addArgument('name', InputArgument::REQUIRED)
+                ->addOption('create', null, InputOption::VALUE_OPTIONAL, 'The table be created')
                 ->addOption('table', null, InputOption::VALUE_OPTIONAL, 'The table to migrate')
                 ->addOption('path', null, InputOption::VALUE_OPTIONAL, 'The location where the migration file should be created')
                 ->addOption('realpath', null, InputOption::VALUE_NONE, 'Indicate any provided migration file paths are pre-resolved absolute paths')
