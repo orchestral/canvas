@@ -26,6 +26,7 @@ $preset = Laravie\Canvas\Canvas::preset(
 
 $app = new Symfony\Component\Console\Application('Canvas for Laravel', '0.1.0');
 $app->add(new Laravie\Canvas\Commands\Channel($preset));
+$app->add(new Laravie\Canvas\Commands\Console($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Factory($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Migration($preset));
 $app->add(new Laravie\Canvas\Commands\Testing($preset));

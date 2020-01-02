@@ -24,6 +24,13 @@ abstract class Generator extends Command
     protected $type;
 
     /**
+     * The type of file being generated.
+     *
+     * @var string
+     */
+    protected $fileType = 'class';
+
+    /**
      * Construct a new generator command.
      */
     public function __construct(Preset $preset)
@@ -44,7 +51,7 @@ abstract class Generator extends Command
 
         $this->setName($this->name)
                 ->setDescription($this->description)
-                ->addArgument('name', InputArgument::REQUIRED, 'The name of the class');
+                ->addArgument('name', InputArgument::REQUIRED, "The name of the {$this->fileType}");
     }
 
     /**
