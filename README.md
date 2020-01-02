@@ -112,7 +112,7 @@ testing:
   namespace: PackageName\Tests
 ```
 
-> You need to change `PackageName` to the root directory for your package.
+> You need to change `PackageName` to the root namespace for your package.
 
 
 You can run the following command to create the file:
