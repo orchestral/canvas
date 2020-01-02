@@ -30,7 +30,7 @@ abstract class Preset
     /**
      * Construct a new preset.
      */
-    public function __construct(array $config, string $basePath, Filesystem $filess)
+    public function __construct(array $config, string $basePath, Filesystem $files)
     {
         $this->config = $config;
         $this->basePath = $basePath;
