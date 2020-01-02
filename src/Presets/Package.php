@@ -34,5 +34,7 @@ class Package extends Preset
         if (\is_null($namespace)) {
             throw new InvalidArgumentException('Please configure namespace configuration under canvas.yaml');
         }
+
+        return $namespace;
     }
 }
