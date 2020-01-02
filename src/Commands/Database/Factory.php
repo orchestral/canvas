@@ -3,7 +3,6 @@
 namespace Laravie\Canvas\Commands\Database;
 
 use Laravie\Canvas\Commands\Generator;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class Factory extends Generator

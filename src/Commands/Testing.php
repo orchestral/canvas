@@ -32,7 +32,7 @@ class Testing extends Generator
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         $directory = __DIR__.'/../../../storage/testing';
 
@@ -45,11 +45,8 @@ class Testing extends Generator
 
     /**
      * Get the destination class path.
-     *
-     * @param  string  $name
-     * @return string
      */
-    protected function getPath($name)
+    protected function getPath(string $name): string
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
@@ -62,9 +59,6 @@ class Testing extends Generator
 
     /**
      * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     * @return string
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {
@@ -77,8 +71,6 @@ class Testing extends Generator
 
     /**
      * Get the root namespace for the class.
-     *
-     * @return string
      */
     protected function rootNamespace(): string
     {
