@@ -18,7 +18,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Laravie\\Canvas\\": "src/"
+            "Orchestra\\Canvas\\": "src/"
         }
     },
     "require": {
