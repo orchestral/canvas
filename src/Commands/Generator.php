@@ -2,6 +2,7 @@
 
 namespace Laravie\Canvas\Commands;
 
+use Illuminate\Support\Str;
 use Laravie\Canvas\Presets\Preset;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
