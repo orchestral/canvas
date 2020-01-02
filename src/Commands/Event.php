@@ -27,10 +27,6 @@ class Event extends Generator
 
     /**
      * Determine if the class already exists.
-     *
-     * @param  string  $rawName
-     *
-     * @return bool
      */
     protected function alreadyExists(string $rawName): bool
     {
@@ -39,8 +35,6 @@ class Event extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
     protected function getStub(): string
     {
@@ -49,10 +43,6 @@ class Event extends Generator
 
     /**
      * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     *
-     * @return string
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {

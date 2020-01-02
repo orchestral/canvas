@@ -76,10 +76,6 @@ class Listener extends Generator
 
     /**
      * Determine if the class already exists.
-     *
-     * @param  string  $rawName
-     *
-     * @return bool
      */
     protected function alreadyExists(string $rawName): bool
     {

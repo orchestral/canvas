@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Eloquent;
+namespace Laravie\Canvas\Commands\Database;
 
 use Illuminate\Support\Str;
 use Laravie\Canvas\Commands\Generator;
@@ -40,7 +40,7 @@ class Eloquent extends Generator
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (parent::execute($input, $output) === 1 && ! $this->option('force')) {
+        if (parent::execute($input, $output) !== 0 && ! $this->option('force')) {
             return 1;
         }
 
@@ -73,8 +73,6 @@ class Eloquent extends Generator
 
     /**
      * Create a model factory for the model.
-     *
-     * @return void
      */
     protected function createFactory(): void
     {
@@ -88,8 +86,6 @@ class Eloquent extends Generator
 
     /**
      * Create a migration file for the model.
-     *
-     * @return void
      */
     protected function createMigration(): void
     {
@@ -107,8 +103,6 @@ class Eloquent extends Generator
 
     /**
      * Create a seeder file for the model.
-     *
-     * @return void
      */
     protected function createSeeder(): void
     {
@@ -121,8 +115,6 @@ class Eloquent extends Generator
 
     /**
      * Create a controller for the model.
-     *
-     * @return void
      */
     protected function createController(): void
     {
@@ -138,8 +130,6 @@ class Eloquent extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
     protected function getStub(): string
     {

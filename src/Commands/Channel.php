@@ -27,10 +27,6 @@ class Channel extends Generator
 
     /**
      * Build the class with the given name.
-     *
-     * @param  string  $name
-     *
-     * @return string
      */
     protected function buildClass(string $name): string
     {
@@ -43,8 +39,6 @@ class Channel extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
     protected function getStub(): string
     {
@@ -53,10 +47,6 @@ class Channel extends Generator
 
     /**
      * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     *
-     * @return string
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {

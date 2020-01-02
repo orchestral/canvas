@@ -29,8 +29,6 @@ class Job extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
     protected function getStub(): string
     {
@@ -43,10 +41,6 @@ class Job extends Generator
 
     /**
      * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     *
-     * @return string
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {

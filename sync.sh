@@ -6,6 +6,7 @@ cp -rf vendor/laravel/framework/src/Illuminate/Database/Migrations/stubs/*.stub 
 
 # Foundation
 cp -rf vendor/laravel/framework/src/Illuminate/Foundation/Console/stubs/*.stub storage/laravel/
+rm -rf storage/laravel/routes.stub
 
 ## Eloquent
 rm -rf storage/database/eloquent/*.stub
@@ -43,6 +44,11 @@ mv storage/laravel/listener.stub storage/listener/listener.stub
 rm -rf storage/policy/*.stub
 mv storage/laravel/policy.stub storage/policy/policy.stub
 mv storage/laravel/policy.plain.stub storage/policy/plain.stub
+
+## Resource
+rm -rf storage/resource/*.stub
+mv storage/laravel/resource-collection.stub storage/resource/collection.stub
+mv storage/laravel/resource.stub storage/resource/resource.stub
 
 ## Testing
 rm -rf storage/testing/*.stub

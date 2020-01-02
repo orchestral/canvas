@@ -36,11 +36,6 @@ class Console extends Generator
 
     /**
      * Replace the class name for the given stub.
-     *
-     * @param  string  $stub
-     * @param  string  $name
-     *
-     * @return string
      */
     protected function replaceClass(string $stub, string $name): string
     {
@@ -51,8 +46,6 @@ class Console extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
     protected function getStub(): string
     {

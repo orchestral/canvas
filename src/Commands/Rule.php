@@ -2,35 +2,35 @@
 
 namespace Laravie\Canvas\Commands;
 
-class Provider extends Generator
+class Rule extends Generator
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:provider';
+    protected $name = 'make:rule';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new service provider class';
+    protected $description = 'Create a new validation rule';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Provider';
+    protected $type = 'Rule';
 
     /**
      * Get the stub file for the generator.
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../../../storage/laravel/provider.stub';
+        return __DIR__.'/../../../storage/laravel/rule.stub';
     }
 
     /**
@@ -38,6 +38,6 @@ class Provider extends Generator
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {
-        return $this->preset->providerNamespace();
+        return $rootNamespace.'\Rules';
     }
 }

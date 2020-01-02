@@ -25,6 +25,7 @@ $preset = Laravie\Canvas\Canvas::preset(
 );
 
 $app = new Symfony\Component\Console\Application('Canvas for Laravel', '0.1.0');
+
 $app->add(new Laravie\Canvas\Commands\Channel($preset));
 $app->add(new Laravie\Canvas\Commands\Console($preset));
 $app->add(new Laravie\Canvas\Commands\Event($preset));
@@ -32,18 +33,18 @@ $app->add(new Laravie\Canvas\Commands\Exception($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Eloquent($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Factory($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Migration($preset));
+$app->add(new Laravie\Canvas\Commands\Database\Observer($preset));
 $app->add(new Laravie\Canvas\Commands\Job($preset));
 $app->add(new Laravie\Canvas\Commands\Listener($preset));
 // mail
 // notification
-// observer
 // policy
 $app->add(new Laravie\Canvas\Commands\Provider($preset));
-// request
-// resource
+$app->add(new Laravie\Canvas\Commands\Request($preset));
+$app->add(new Laravie\Canvas\Commands\Resource($preset));
 // routing/controller
 // routing/middleware
-// rule
+$app->add(new Laravie\Canvas\Commands\Rule($preset));
 $app->add(new Laravie\Canvas\Commands\Testing($preset));
 
 $app->run();

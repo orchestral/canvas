@@ -113,10 +113,6 @@ abstract class Generator extends Command
 
     /**
      * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     *
-     * @return string
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {
@@ -143,10 +139,6 @@ abstract class Generator extends Command
 
     /**
      * Build the directory for the class if necessary.
-     *
-     * @param  string  $path
-     *
-     * @return string
      */
     protected function makeDirectory(string $path): string
     {
@@ -160,11 +152,7 @@ abstract class Generator extends Command
     /**
      * Build the class with the given name.
      *
-     * @param  string  $name
-     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
-     * @return string
      */
     protected function buildClass(string $name): string
     {
@@ -199,11 +187,6 @@ abstract class Generator extends Command
 
     /**
      * Replace the class name for the given stub.
-     *
-     * @param  string  $stub
-     * @param  string  $name
-     *
-     * @return string
      */
     protected function replaceClass(string $stub, string $name): string
     {
