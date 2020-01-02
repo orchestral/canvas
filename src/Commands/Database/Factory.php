@@ -58,7 +58,7 @@ class Factory extends Generator
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../../storage/database/factories/factory.stub';
+        return __DIR__.'/../../../storage/database/factories/factory.stub';
     }
 
     /**
