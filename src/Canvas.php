@@ -18,15 +18,15 @@ class Canvas
 
         switch ($config['preset']) {
             case 'package':
-                return new Presets\Package($configuration, $basePath);
+                return new Presets\Package($configuration, $basePath, $files);
             case 'laravel':
-                return new Presets\Laravel($configuration, $basePath);
+                return new Presets\Laravel($configuration, $basePath, $files);
             default:
                 if (\class_exists($config['preset'])) {
-                    return new $config['preset']($configuration, $basePath);
+                    return new $config['preset']($configuration, $basePath, $files);
                 }
 
-                return new Presets\Laravel($configuration, $basePath);
+                return new Presets\Laravel($configuration, $basePath, $files);
         }
     }
 }
