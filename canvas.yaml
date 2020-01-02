@@ -1,5 +1,8 @@
 preset: laravel
 
-migrations:
+namespace: App
+user-model: App\User
+
+migration:
   path: database/migrations
   prefix: ''

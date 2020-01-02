@@ -20,7 +20,7 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      */
     public function __construct(Preset $preset)
     {
-        $this->files = $preset->getFilesystem();
+        $this->files = $preset->filesystem();
         $this->preset = $preset;
     }
 

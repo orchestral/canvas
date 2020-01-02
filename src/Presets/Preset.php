@@ -57,7 +57,7 @@ abstract class Preset
     /**
      * Get the filesystem instance.
      */
-    public function getFilesystem(): Filesystem
+    public function filesystem(): Filesystem
     {
         return $this->files;
     }
@@ -65,7 +65,7 @@ abstract class Preset
     /**
      * Get the path to the base working directory.
      */
-    public function getBasePath(): string
+    public function basePath(): string
     {
         return $this->basePath;
     }
@@ -73,7 +73,19 @@ abstract class Preset
     /**
      * Get the path to the migration directory.
      */
-    public function getMigrationPath(): string
+    public function factoryPath(): string
+    {
+        return \sprintf(
+            '%s/%s',
+            $this->getBasePath(),
+            $this->config['factory']['path'] ?? 'database/factories'
+        );
+    }
+
+    /**
+     * Get the path to the migration directory.
+     */
+    public function migrationPath(): string
     {
         return \sprintf(
             '%s/%s',
@@ -85,5 +97,15 @@ abstract class Preset
     /**
      * Preset name.
      */
-    abstract public function getName(): string;
+    abstract public function name(): string;
+
+    /**
+     * Get the path to the source directory.
+     */
+    abstract public function sourcePath(): string;
+
+    /**
+     * Preset namespace.
+     */
+    abstract public function rootNamespace(): string;
 }

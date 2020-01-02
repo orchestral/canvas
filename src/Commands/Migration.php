@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Migration extends Generator
+class Migration extends Command
 {
     /**
      * The migration creator instance.
@@ -38,7 +38,7 @@ class Migration extends Generator
 
         $this->setName('migration')
                 ->setDescription('Create a new migration file.')
-                ->addArgument('name', InputArgument::REQUIRED)
+                ->addArgument('name', InputArgument::REQUIRED, 'The name of the migration')
                 ->addOption('create', null, InputOption::VALUE_OPTIONAL, 'The table be created')
                 ->addOption('table', null, InputOption::VALUE_OPTIONAL, 'The table to migrate')
                 ->addOption('path', null, InputOption::VALUE_OPTIONAL, 'The location where the migration file should be created')
@@ -47,7 +47,7 @@ class Migration extends Generator
 
         $this->creator = new MigrationCreator($this->preset);
 
-        $this->composer = new Composer($this->preset->getFilesystem(), $this->preset->getBasePath());
+        $this->composer = new Composer($this->preset->filesystem(), $this->preset->basePath());
     }
 
     /**
@@ -89,6 +89,8 @@ class Migration extends Generator
         $this->composer->dumpAutoloads();
 
         $output->writeln("<info>Created Migration:</info> {$file}");
+
+        return 0;
     }
 
     /**
@@ -118,7 +120,7 @@ class Migration extends Generator
                             : $targetPath;
         }
 
-        return $this->preset->getMigrationPath();
+        return $this->preset->migrationPath();
     }
 
     /**
