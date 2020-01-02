@@ -31,12 +31,8 @@ class Factory extends Generator
 
     /**
      * Build the class with the given name.
-     *
-     * @param  string  $name
-     *
-     * @return string
      */
-    protected function buildClass($name)
+    protected function buildClass(string $name): string
     {
         $namespaceModel = $this->option('model')
                         ? $this->qualifyClass($this->option('model'))
@@ -59,22 +55,16 @@ class Factory extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__.'/../../storage/database/factories/factory.stub';
     }
 
     /**
      * Get the destination class path.
-     *
-     * @param  string  $name
-     *
-     * @return string
      */
-    protected function getPath($name)
+    protected function getPath(string $name): string
     {
         $name = \str_replace(
             ['\\', '/'], '', $this->argument('name')
