@@ -90,9 +90,11 @@ class Mail extends Generator
      */
     protected function getStub()
     {
+        $directory = __DIR__.'/../../../storage/mail';
+
         return $this->option('markdown')
-            ? __DIR__.'/stubs/markdown-mail.stub'
-            : __DIR__.'/stubs/mail.stub';
+            ? "{$directory}/markdown.stub"
+            : "{$directory}/mail.stub";
     }
 
     /**

@@ -36,9 +36,9 @@ mv storage/laravel/job.stub storage/job/job.stub
 
 ## Listener
 rm -rf storage/listener/*.stub
-mv storage/laravel/listener-duck.stub storage/listener/duck.stub
 mv storage/laravel/listener-queued-duck.stub storage/listener/queued-duck.stub
 mv storage/laravel/listener-queued.stub storage/listener/queued.stub
+mv storage/laravel/listener-duck.stub storage/listener/listener-duck.stub
 mv storage/laravel/listener.stub storage/listener/listener.stub
 
 ## Mail

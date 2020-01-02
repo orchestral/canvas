@@ -63,15 +63,17 @@ class Listener extends Generator
      */
     protected function getStub()
     {
+        $directory = __DIR__.'/../../../storage/listener';
+
         if ($this->option('queued')) {
             return $this->option('event')
-                        ? __DIR__.'/stubs/listener-queued.stub'
-                        : __DIR__.'/stubs/listener-queued-duck.stub';
+                ? "{$directory}/queued.stub"
+                : "{$directory}/queued-duck.stub";
         }
 
         return $this->option('event')
-                    ? __DIR__.'/stubs/listener.stub'
-                    : __DIR__.'/stubs/listener-duck.stub';
+            ? "{$directory}/listener.stub"
+            : "{$directory}/listener-duck.stub";
     }
 
     /**
