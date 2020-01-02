@@ -39,6 +39,10 @@ class Testing extends Generator
             return "{$directory}/unit.stub";
         }
 
+        if ($this->preset->name() === 'package') {
+            return "{$directory}/feature.package.stub";
+        }
+
         return "{$directory}/feature.stub";
     }
 
