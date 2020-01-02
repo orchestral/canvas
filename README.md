@@ -72,6 +72,12 @@ To get started you can first create `canvas.yaml` in the root directory of your 
 
 #### Laravel preset
 
+You can run the following command to create the file:
+
+    ./vendor/bin/canvas preset laravel
+
+Which will output the following as `canvas.yaml`:
+
 ```yaml
 preset: laravel
 
@@ -79,11 +85,13 @@ namespace: App
 user-auth-provider: App\User
 ```
 
+#### Package preset
+
 You can run the following command to create the file:
 
     ./vendor/bin/canvas preset laravel
 
-#### Package preset
+Which will output the following as `canvas.yaml`:
 
 ```yaml
 preset: package
@@ -115,6 +123,33 @@ testing:
 > You need to change `PackageName` to the root namespace for your package.
 
 
-You can run the following command to create the file:
+Alternatively, you can set `--namespace` option to ensure the namespace is used in the file:
 
-    ./vendor/bin/canvas preset package
+    ./vendor/bin/canvas preset package --namespace="Foo\Bar"
+
+```yaml
+preset: package
+
+namespace: Foo\Bar
+user-auth-provider: App\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: Foo\Bar\Console
+
+provider:
+  namespace: Foo\Bar
+
+testing:
+  namespace: Foo\Bar\Tests
+```
