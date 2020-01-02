@@ -26,6 +26,10 @@ $preset = Orchestra\Canvas\Canvas::preset(
 
 $app = new Symfony\Component\Console\Application('Canvas for Laravel', '0.1.0');
 
+if (! file_exists("{$workingPath}/canvas.yaml")) {
+    $app->add(new Orchestra\Canvas\Commands\Preset($preset));
+}
+
 $app->add(new Orchestra\Canvas\Commands\Channel($preset));
 $app->add(new Orchestra\Canvas\Commands\Console($preset));
 $app->add(new Orchestra\Canvas\Commands\Event($preset));

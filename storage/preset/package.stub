@@ -1,0 +1,24 @@
+preset: package
+
+namespace: PackageName
+user-auth-provider: App\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: PackageName\Console
+
+provider:
+  namespace: PackageName
+
+testing:
+  namespace: PackageName\Tests

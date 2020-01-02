@@ -1,0 +1,4 @@
+preset: laravel
+
+namespace: App
+user-auth-provider: App\User
