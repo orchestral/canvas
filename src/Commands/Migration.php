@@ -100,7 +100,7 @@ class Migration extends Generator
             $name, $this->getMigrationPath($input), $table, $create
         );
 
-        if (! $this->option('fullpath')) {
+        if (! $this->usingFullPath($input)) {
             $file = \pathinfo($file, PATHINFO_FILENAME);
         }
 
@@ -127,5 +127,13 @@ class Migration extends Generator
     protected function usingRealPath(InputInterface $input): bool
     {
         return $input->hasOption('realpath') && $input->getOption('realpath');
+    }
+
+    /**
+     * Determine if the given path(s) are pre-resolved "real" paths.
+     */
+    protected function usingFullPath(InputInterface $input): bool
+    {
+        return $input->hasOption('fullpath') && $input->getOption('fullpath');
     }
 }
