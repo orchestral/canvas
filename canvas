@@ -20,32 +20,32 @@ if (file_exists("{$workingPath}/canvas.yaml")) {
 
 $config = Symfony\Component\Yaml\Yaml::parseFile($configFile);
 
-$preset = Laravie\Canvas\Canvas::preset(
+$preset = Orchestra\Canvas\Canvas::preset(
     $config, $workingPath, new Illuminate\Filesystem\Filesystem()
 );
 
 $app = new Symfony\Component\Console\Application('Canvas for Laravel', '0.1.0');
 
-$app->add(new Laravie\Canvas\Commands\Channel($preset));
-$app->add(new Laravie\Canvas\Commands\Console($preset));
-$app->add(new Laravie\Canvas\Commands\Event($preset));
-$app->add(new Laravie\Canvas\Commands\Exception($preset));
-$app->add(new Laravie\Canvas\Commands\Database\Eloquent($preset));
-$app->add(new Laravie\Canvas\Commands\Database\Factory($preset));
-$app->add(new Laravie\Canvas\Commands\Database\Migration($preset));
-$app->add(new Laravie\Canvas\Commands\Database\Observer($preset));
-$app->add(new Laravie\Canvas\Commands\Database\Seeder($preset));
-$app->add(new Laravie\Canvas\Commands\Job($preset));
-$app->add(new Laravie\Canvas\Commands\Listener($preset));
-$app->add(new Laravie\Canvas\Commands\Mail($preset));
-$app->add(new Laravie\Canvas\Commands\Notification($preset));
-$app->add(new Laravie\Canvas\Commands\Policy($preset));
-$app->add(new Laravie\Canvas\Commands\Provider($preset));
-$app->add(new Laravie\Canvas\Commands\Request($preset));
-$app->add(new Laravie\Canvas\Commands\Resource($preset));
-$app->add(new Laravie\Canvas\Commands\Routing\Controller($preset));
-$app->add(new Laravie\Canvas\Commands\Routing\Middleware($preset));
-$app->add(new Laravie\Canvas\Commands\Rule($preset));
-$app->add(new Laravie\Canvas\Commands\Testing($preset));
+$app->add(new Orchestra\Canvas\Commands\Channel($preset));
+$app->add(new Orchestra\Canvas\Commands\Console($preset));
+$app->add(new Orchestra\Canvas\Commands\Event($preset));
+$app->add(new Orchestra\Canvas\Commands\Exception($preset));
+$app->add(new Orchestra\Canvas\Commands\Database\Eloquent($preset));
+$app->add(new Orchestra\Canvas\Commands\Database\Factory($preset));
+$app->add(new Orchestra\Canvas\Commands\Database\Migration($preset));
+$app->add(new Orchestra\Canvas\Commands\Database\Observer($preset));
+$app->add(new Orchestra\Canvas\Commands\Database\Seeder($preset));
+$app->add(new Orchestra\Canvas\Commands\Job($preset));
+$app->add(new Orchestra\Canvas\Commands\Listener($preset));
+$app->add(new Orchestra\Canvas\Commands\Mail($preset));
+$app->add(new Orchestra\Canvas\Commands\Notification($preset));
+$app->add(new Orchestra\Canvas\Commands\Policy($preset));
+$app->add(new Orchestra\Canvas\Commands\Provider($preset));
+$app->add(new Orchestra\Canvas\Commands\Request($preset));
+$app->add(new Orchestra\Canvas\Commands\Resource($preset));
+$app->add(new Orchestra\Canvas\Commands\Routing\Controller($preset));
+$app->add(new Orchestra\Canvas\Commands\Routing\Middleware($preset));
+$app->add(new Orchestra\Canvas\Commands\Rule($preset));
+$app->add(new Orchestra\Canvas\Commands\Testing($preset));
 
 $app->run();

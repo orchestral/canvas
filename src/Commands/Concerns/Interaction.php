@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Concerns;
+namespace Orchestra\Canvas\Commands\Concerns;
 
 use Illuminate\Console\OutputStyle;
 use Illuminate\Contracts\Support\Arrayable;

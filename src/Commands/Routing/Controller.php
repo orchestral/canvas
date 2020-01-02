@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Routing;
+namespace Orchestra\Canvas\Commands\Routing;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;

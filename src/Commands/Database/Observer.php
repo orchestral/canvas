@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Database;
+namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Str;
-use Laravie\Canvas\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
 class Observer extends Generator

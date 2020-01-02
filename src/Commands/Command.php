@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravie\Canvas\Commands;
+namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Console\OutputStyle;
-use Laravie\Canvas\Presets\Preset;
+use Orchestra\Canvas\Presets\Preset;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -14,7 +14,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
     /**
      * Canvas preset.
      *
-     * @var \Laravie\Canvas\Presets\Preset
+     * @var \Orchestra\Canvas\Presets\Preset
      */
     protected $preset;
 

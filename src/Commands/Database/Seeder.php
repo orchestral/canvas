@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Database;
+namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Composer;
-use Laravie\Canvas\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
 
 class Seeder extends Generator
 {

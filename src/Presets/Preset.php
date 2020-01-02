@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravie\Canvas\Presets;
+namespace Orchestra\Canvas\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;

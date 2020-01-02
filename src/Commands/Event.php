@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravie\Canvas\Commands;
+namespace Orchestra\Canvas\Commands;
 
 class Event extends Generator
 {

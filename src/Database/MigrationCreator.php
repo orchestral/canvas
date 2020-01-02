@@ -1,17 +1,17 @@
 <?php
 
-namespace Laravie\Canvas\Database;
+namespace Orchestra\Canvas\Database;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Laravie\Canvas\Presets\Preset;
+use Orchestra\Canvas\Presets\Preset;
 
 class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
 {
     /**
      * Canvas preset.
      *
-     * @var \Laravie\Canvas\Presets\Preset
+     * @var \Orchestra\Canvas\Presets\Preset
      */
     protected $preset;
 

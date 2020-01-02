@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravie\Canvas;
+namespace Orchestra\Canvas;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
@@ -10,7 +10,7 @@ class Canvas
     /**
      * Make Preset from configuration.
      *
-     * @return \Laravie\Canvas\Presets\Preset
+     * @return \Orchestra\Canvas\Presets\Preset
      */
     public static function preset(array $config, string $basePath, Filesystem $files): Presets\Preset
     {

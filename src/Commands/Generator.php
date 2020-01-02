@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravie\Canvas\Commands;
+namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
-use Laravie\Canvas\Presets\Preset;
+use Orchestra\Canvas\Presets\Preset;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

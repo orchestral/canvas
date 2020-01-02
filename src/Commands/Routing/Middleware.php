@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Routing;
+namespace Orchestra\Canvas\Commands\Routing;
 
-use Laravie\Canvas\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
 
 class Middleware extends Generator
 {

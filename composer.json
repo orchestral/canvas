@@ -1,5 +1,5 @@
 {
-    "name": "laravie/canvas",
+    "name": "orchestra/canvas",
     "description": "Code Generators for Laravel",
     "type": "library",
     "license": "MIT",

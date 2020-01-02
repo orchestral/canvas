@@ -1,12 +1,12 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Database;
+namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
-use Laravie\Canvas\Commands\Command;
-use Laravie\Canvas\Database\MigrationCreator;
+use Orchestra\Canvas\Commands\Command;
+use Orchestra\Canvas\Database\MigrationCreator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -17,7 +17,7 @@ class Migration extends Command
     /**
      * The migration creator instance.
      *
-     * @var \Laravie\Canvas\Database\MigrationCreator
+     * @var \Orchestra\Canvas\Database\MigrationCreator
      */
     protected $creator;
 

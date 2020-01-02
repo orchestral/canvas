@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravie\Canvas\Commands;
+namespace Orchestra\Canvas\Commands;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravie\Canvas\Commands\Database;
+namespace Orchestra\Canvas\Commands\Database;
 
-use Laravie\Canvas\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
 class Factory extends Generator
