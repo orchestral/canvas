@@ -4,8 +4,7 @@ namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Composer;
 use Orchestra\Canvas\Commands\Generator;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Orchestra\Canvas\Processors\GeneratesSeederCode;
 
 class Seeder extends Generator
 {
@@ -31,6 +30,13 @@ class Seeder extends Generator
     protected $type = 'Seeder';
 
     /**
+     * Generator processor.
+     *
+     * @var string
+     */
+    protected $processor = GeneratesSeederCode::class;
+
+    /**
      * The Composer instance.
      *
      * @var \Illuminate\Support\Composer
@@ -50,15 +56,11 @@ class Seeder extends Generator
     }
 
     /**
-     * Execute the command.
-     *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
-     * @return int 0 if everything went fine, or an exit code
+     * Code successfully generated.
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function codeHasBeenGenerated(string $className): int
     {
-        $exitCode = parent::execute($input, $output);
+        $exitCode = parent::codeHasBeenGenerated($className);
 
         $this->composer->dumpAutoloads();
 
@@ -68,24 +70,8 @@ class Seeder extends Generator
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         return __DIR__.'/../../../storage/database/seeds/seeder.stub';
-    }
-
-    /**
-     * Get the destination class path.
-     */
-    protected function getPath(string $name): string
-    {
-        return $this->preset->seederPath().'/seeds/'.$name.'.php';
-    }
-
-    /**
-     * Parse the class name and format according to the root namespace.
-     */
-    protected function qualifyClass(string $name): string
-    {
-        return $name;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Processors\GeneratesEventCode;
+
 class Event extends Generator
 {
     /**
@@ -26,17 +28,16 @@ class Event extends Generator
     protected $type = 'Event';
 
     /**
-     * Determine if the class already exists.
+     * Generator processor.
+     *
+     * @var string
      */
-    protected function alreadyExists(string $rawName): bool
-    {
-        return \class_exists($rawName);
-    }
+    protected $processor = GeneratesEventCode::class;
 
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         return __DIR__.'/../../storage/event/event.stub';
     }
@@ -44,7 +45,7 @@ class Event extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Events';
     }

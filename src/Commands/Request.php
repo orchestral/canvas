@@ -28,7 +28,7 @@ class Request extends Generator
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         return __DIR__.'/../../storage/laravel/request.stub';
     }
@@ -36,7 +36,7 @@ class Request extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Http\Requests';
     }

@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Illuminate\Support\Str;
+use Orchestra\Canvas\Processors\GeneratesPolicyCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Policy extends Generator
@@ -29,77 +29,16 @@ class Policy extends Generator
     protected $type = 'Policy';
 
     /**
-     * Build the class with the given name.
+     * Generator processor.
+     *
+     * @var string
      */
-    protected function buildClass(string $name): string
-    {
-        $stub = $this->replaceUserNamespace(
-            parent::buildClass($name)
-        );
-
-        $model = $this->option('model');
-
-        return $model ? $this->replaceModel($stub, $model) : $stub;
-    }
-
-    /**
-     * Replace the User model namespace.
-     */
-    protected function replaceUserNamespace(string $stub): string
-    {
-        $model = $this->userProviderModel();
-
-        if (! $model) {
-            return $stub;
-        }
-
-        return \str_replace(
-            $this->rootNamespace().'User',
-            $model,
-            $stub
-        );
-    }
-
-    /**
-     * Replace the model for the given stub.
-     */
-    protected function replaceModel(string $stub, string $model): string
-    {
-        $model = \str_replace('/', '\\', $model);
-
-        $namespaceModel = $this->preset->roortNamespace().$model;
-
-        if (Str::startsWith($model, '\\')) {
-            $stub = \str_replace('NamespacedDummyModel', trim($model, '\\'), $stub);
-        } else {
-            $stub = \str_replace('NamespacedDummyModel', $namespaceModel, $stub);
-        }
-
-        $stub = \str_replace(
-            "use {$namespaceModel};\nuse {$namespaceModel};", "use {$namespaceModel};", $stub
-        );
-
-        $model = \class_basename(trim($model, '\\'));
-
-        $dummyUser = \class_basename($this->userProviderModel());
-
-        $dummyModel = Str::camel($model) === 'user' ? 'model' : $model;
-
-        $stub = \str_replace('DocDummyModel', Str::snake($dummyModel, ' '), $stub);
-
-        $stub = \str_replace('DummyModel', $model, $stub);
-
-        $stub = \str_replace('dummyModel', Str::camel($dummyModel), $stub);
-
-        $stub = \str_replace('DummyUser', $dummyUser, $stub);
-
-        return \str_replace('DocDummyPluralModel', Str::snake(Str::pluralStudly($dummyModel), ' '), $stub);
-    }
+    protected $processor = GeneratesPolicyCode::class;
 
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../storage/policy';
 
@@ -111,7 +50,7 @@ class Policy extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Policies';
     }

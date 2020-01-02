@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Processors\GeneratesCommandCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Console extends Generator
@@ -35,19 +36,16 @@ class Console extends Generator
     protected $fileType = 'command';
 
     /**
-     * Replace the class name for the given stub.
+     * Generator processor.
+     *
+     * @var string
      */
-    protected function replaceClass(string $stub, string $name): string
-    {
-        $stub = parent::replaceClass($stub, $name);
-
-        return \str_replace('dummy:command', $this->option('command'), $stub);
-    }
+    protected $processor = GeneratesCommandCode::class;
 
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         return __DIR__.'/../../storage/laravel/console.stub';
     }
@@ -55,9 +53,19 @@ class Console extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $this->preset->config('console.namespace', $rootNamespace.'\Console\Commands');
+    }
+
+    /**
+     * Generator options.
+     */
+    public function generatorOptions(): array
+    {
+        return [
+            'command' => $this->option('command'),
+        ];
     }
 
     /**

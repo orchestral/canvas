@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
+use Orchestra\Canvas\Processors\GeneratesPresetConfiguration;
 use Symfony\Component\Console\Input\InputOption;
 
 class Preset extends Generator
@@ -29,9 +30,16 @@ class Preset extends Generator
     protected $type = 'Preset';
 
     /**
+     * Generator processor.
+     *
+     * @var string
+     */
+    protected $processor = GeneratesPresetConfiguration::class;
+
+    /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $name = $this->getNameInput();
 
@@ -45,11 +53,13 @@ class Preset extends Generator
     }
 
     /**
-     * Get the destination class path.
+     * Generator options.
      */
-    protected function getPath(string $name): string
+    public function generatorOptions(): array
     {
-        return $this->preset->basePath().'/canvas.yaml';
+        return [
+            'namespace' => $this->option('namespace'),
+        ];
     }
 
     /**
@@ -58,26 +68,6 @@ class Preset extends Generator
     protected function getNameInput(): string
     {
         return Str::lower(\trim($this->argument('name')));
-    }
-
-    /**
-     * Get the root namespace for the class.
-     */
-    protected function rootNamespace(): string
-    {
-        $namespace = \trim($this->option('namespace'));
-
-        if (! empty($namespace)) {
-            return $namespace;
-        }
-
-        switch ($this->getNameInput()) {
-            case 'package':
-                return 'PackageName';
-            case 'laravel':
-            default:
-                return 'App';
-        }
     }
 
     /**

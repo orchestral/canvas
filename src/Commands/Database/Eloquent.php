@@ -4,9 +4,8 @@ namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Commands\Generator;
-use Symfony\Component\Console\Input\InputInterface;
+use Orchestra\Canvas\Processors\GeneratesEloquentCode;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class Eloquent extends Generator
 {
@@ -32,19 +31,18 @@ class Eloquent extends Generator
     protected $type = 'Model';
 
     /**
-     * Execute the command.
+     * Generator processor.
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
-     * @return int 0 if everything went fine, or an exit code
+     * @var string
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $exitCode = parent::execute($input, $output);
+    protected $processor = GeneratesEloquentCode::class;
 
-        if ($exitCode !== 0 && ! $this->option('force')) {
-            return $exitCode;
-        }
+    /**
+     * Code successfully generated.
+     */
+    public function codeHasBeenGenerated(string $className): int
+    {
+        $exitCode = parent::codeHasBeenGenerated($className);
 
         if ($this->option('all')) {
             $this->input->setOption('factory', true);
@@ -55,41 +53,41 @@ class Eloquent extends Generator
         }
 
         if ($this->option('factory')) {
-            $this->createFactory();
+            $this->createFactory($className);
         }
 
         if ($this->option('migration')) {
-            $this->createMigration();
+            $this->createMigration($className);
         }
 
         if ($this->option('seed')) {
-            $this->createSeeder();
+            $this->createSeeder($className);
         }
 
         if ($this->option('controller') || $this->option('resource')) {
-            $this->createController();
+            $this->createController($className);
         }
 
-        return 0;
+        return $exitCode;
     }
 
     /**
      * Create a model factory for the model.
      */
-    protected function createFactory(): void
+    protected function createFactory(string $eloquentClassName): void
     {
         $factory = Str::studly(\class_basename($this->argument('name')));
 
         $this->call('make:factory', [
             'name' => "{$factory}Factory",
-            '--model' => $this->qualifyClass($this->getNameInput()),
+            '--model' => $eloquentClassName,
         ]);
     }
 
     /**
      * Create a migration file for the model.
      */
-    protected function createMigration(): void
+    protected function createMigration(string $eloquentClassName): void
     {
         $table = Str::snake(Str::pluralStudly(\class_basename($this->argument('name'))));
 
@@ -106,7 +104,7 @@ class Eloquent extends Generator
     /**
      * Create a seeder file for the model.
      */
-    protected function createSeeder(): void
+    protected function createSeeder(string $eloquentClassName): void
     {
         $seeder = Str::studly(\class_basename($this->argument('name')));
 
@@ -118,22 +116,20 @@ class Eloquent extends Generator
     /**
      * Create a controller for the model.
      */
-    protected function createController(): void
+    protected function createController(string $eloquentClassName): void
     {
         $controller = Str::studly(\class_basename($this->argument('name')));
 
-        $modelName = $this->qualifyClass($this->getNameInput());
-
         $this->call('make:controller', [
             'name' => "{$controller}Controller",
-            '--model' => $this->option('resource') ? $modelName : null,
+            '--model' => $this->option('resource') ? $eloquentClassName : null,
         ]);
     }
 
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../../storage/database/eloquent';
 

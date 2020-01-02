@@ -2,8 +2,8 @@
 
 namespace Orchestra\Canvas\Commands\Database;
 
-use Illuminate\Support\Str;
 use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Processors\GeneratesObserverCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Observer extends Generator
@@ -30,21 +30,16 @@ class Observer extends Generator
     protected $type = 'Observer';
 
     /**
-     * Build the class with the given name.
+     * Generator processor.
+     *
+     * @var string
      */
-    protected function buildClass(string $name): string
-    {
-        $stub = parent::buildClass($name);
-
-        $model = $this->option('model');
-
-        return $model ? $this->replaceModel($stub, $model) : $stub;
-    }
+    protected $processor = GeneratesObserverCode::class;
 
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../../storage/database/eloquent';
 
@@ -54,39 +49,21 @@ class Observer extends Generator
     }
 
     /**
-     * Replace the model for the given stub.
+     * Get the default namespace for the class.
      */
-    protected function replaceModel(string $stub, string $model): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
-        $model = \str_replace('/', '\\', $model);
-
-        $namespaceModel = $this->preset->rootNamespace().'\\'.$model;
-
-        if (Str::startsWith($model, '\\')) {
-            $stub = \str_replace('NamespacedDummyModel', trim($model, '\\'), $stub);
-        } else {
-            $stub = \str_replace('NamespacedDummyModel', $namespaceModel, $stub);
-        }
-
-        $stub = \str_replace(
-            "use {$namespaceModel};\nuse {$namespaceModel};", "use {$namespaceModel};", $stub
-        );
-
-        $model = \class_basename(\trim($model, '\\'));
-
-        $stub = \str_replace('DocDummyModel', Str::snake($model, ' '), $stub);
-
-        $stub = \str_replace('DummyModel', $model, $stub);
-
-        return \str_replace('dummyModel', Str::camel($model), $stub);
+        return $rootNamespace.'\Observers';
     }
 
     /**
-     * Get the default namespace for the class.
+     * Generator options.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function generatorOptions(): array
     {
-        return $rootNamespace.'\Observers';
+        return [
+            'model' => $this->option('model'),
+        ];
     }
 
     /**

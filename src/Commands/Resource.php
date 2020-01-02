@@ -49,13 +49,21 @@ class Resource extends Generator
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../../storage/resource';
 
         return $this->collection()
             ? "{$directory}/collection.stub"
             : "{$directory}/resource.stub";
+    }
+
+    /**
+     * Get the default namespace for the class.
+     */
+    public function getDefaultNamespace(string $rootNamespace): string
+    {
+        return $rootNamespace.'\Http\Resources';
     }
 
     /**
@@ -67,14 +75,6 @@ class Resource extends Generator
     {
         return $this->option('collection') ||
             Str::endsWith($this->argument('name'), 'Collection');
-    }
-
-    /**
-     * Get the default namespace for the class.
-     */
-    protected function getDefaultNamespace(string $rootNamespace): string
-    {
-        return $rootNamespace.'\Http\Resources';
     }
 
     /**

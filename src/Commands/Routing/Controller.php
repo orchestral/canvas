@@ -33,7 +33,7 @@ class Controller extends Generator
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $stub = null;
         $directory = __DIR__.'/../../../storage/routing';
@@ -62,7 +62,7 @@ class Controller extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Http\Controllers';
     }

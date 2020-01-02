@@ -2,9 +2,8 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Symfony\Component\Console\Input\InputInterface;
+use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class Notification extends Generator
 {
@@ -30,25 +29,54 @@ class Notification extends Generator
     protected $type = 'Notification';
 
     /**
-     * Execute the command.
+     * Generator processor.
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
-     * @return int 0 if everything went fine, or an exit code
+     * @var string
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $exitCode = parent::execute($input, $output);
+    protected $processor = GeneratesCodeWithMarkdown::class;
 
-        if ($exitCode !== 0 && ! $this->option('force')) {
-            return $exitCode;
-        }
+    /**
+     * Code successfully generated.
+     */
+    public function codeHasBeenGenerated(string $className): int
+    {
+        $exitCode = parent::codeHasBeenGenerated($className);
 
         if ($this->option('markdown')) {
             $this->writeMarkdownTemplate();
         }
 
-        return 0;
+        return $exitCode;
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getStubFile(): string
+    {
+        $directory = __DIR__.'/../../storage/notification';
+
+        return $this->option('markdown')
+                ? "{$directory}/markdown.stub"
+                : "{$directory}/notification.stub";
+    }
+
+    /**
+     * Get the default namespace for the class.
+     */
+    public function getDefaultNamespace(string $rootNamespace): string
+    {
+        return $rootNamespace.'\Notifications';
+    }
+
+    /**
+     * Generator options.
+     */
+    public function generatorOptions(): array
+    {
+        return [
+            'markdown' => $this->option('markdown') ?? null,
+        ];
     }
 
     /**
@@ -63,40 +91,6 @@ class Notification extends Generator
         }
 
         $this->files->put($path, \file_get_contents(__DIR__.'/../../storage/laravel/markdown.stub'));
-    }
-
-    /**
-     * Build the class with the given name.
-     */
-    protected function buildClass(string $name): string
-    {
-        $class = parent::buildClass($name);
-
-        if ($this->option('markdown')) {
-            $class = \str_replace('DummyView', $this->option('markdown'), $class);
-        }
-
-        return $class;
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    protected function getStub(): string
-    {
-        $directory = __DIR__.'/../../storage/notification';
-
-        return $this->option('markdown')
-                ? "{$directory}/markdown.stub"
-                : "{$directory}/notification.stub";
-    }
-
-    /**
-     * Get the default namespace for the class.
-     */
-    protected function getDefaultNamespace(string $rootNamespace): string
-    {
-        return $rootNamespace.'\Notifications';
     }
 
     /**

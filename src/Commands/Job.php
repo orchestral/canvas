@@ -30,7 +30,7 @@ class Job extends Generator
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../storage/job';
 
@@ -42,7 +42,7 @@ class Job extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Jobs';
     }

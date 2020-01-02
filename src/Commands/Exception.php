@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Processors\GeneratesExceptionCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Exception extends Generator
@@ -28,9 +29,16 @@ class Exception extends Generator
     protected $type = 'Exception';
 
     /**
+     * Generator processor.
+     *
+     * @var string
+     */
+    protected $processor = GeneratesExceptionCode::class;
+
+    /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../storage/exception';
 
@@ -46,17 +54,9 @@ class Exception extends Generator
     }
 
     /**
-     * Determine if the class already exists.
-     */
-    protected function alreadyExists(string $rawName): bool
-    {
-        return \class_exists($this->getDefaultNamespace($this->rootNamespace()).'\\'.$rawName);
-    }
-
-    /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Exceptions';
     }

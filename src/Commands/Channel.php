@@ -26,21 +26,9 @@ class Channel extends Generator
     protected $type = 'Channel';
 
     /**
-     * Build the class with the given name.
-     */
-    protected function buildClass(string $name): string
-    {
-        return \str_replace(
-            'DummyUser',
-            \class_basename($this->userProviderModel()),
-            parent::buildClass($name)
-        );
-    }
-
-    /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         return __DIR__.'/../../storage/laravel/channel.stub';
     }
@@ -48,7 +36,7 @@ class Channel extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Broadcasting';
     }

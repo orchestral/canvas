@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Illuminate\Support\Str;
+use Orchestra\Canvas\Processors\GeneratesListenerCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Listener extends Generator
@@ -29,33 +29,16 @@ class Listener extends Generator
     protected $type = 'Listener';
 
     /**
-     * Build the class with the given name.
+     * Generator processor.
+     *
+     * @var string
      */
-    protected function buildClass(string $name): string
-    {
-        $event = $this->option('event');
-
-        if (! Str::startsWith($event, [
-            $this->preset->rootNamespace(),
-            'Illuminate',
-            '\\',
-        ])) {
-            $event = $this->preset->rootNamespace().'Events\\'.$event;
-        }
-
-        $stub = \str_replace(
-            'DummyEvent', \class_basename($event), parent::buildClass($name)
-        );
-
-        return \str_replace(
-            'DummyFullEvent', \trim($event, '\\'), $stub
-        );
-    }
+    protected $processor = GeneratesListenerCode::class;
 
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../storage/listener';
 
@@ -71,19 +54,21 @@ class Listener extends Generator
     }
 
     /**
-     * Determine if the class already exists.
+     * Get the default namespace for the class.
      */
-    protected function alreadyExists(string $rawName): bool
+    public function getDefaultNamespace(string $rootNamespace): string
     {
-        return \class_exists($rawName);
+        return $rootNamespace.'\Listeners';
     }
 
     /**
-     * Get the default namespace for the class.
+     * Generator options.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function generatorOptions(): array
     {
-        return $rootNamespace.'\Listeners';
+        return [
+            'event' => $this->option('events'),
+        ];
     }
 
     /**

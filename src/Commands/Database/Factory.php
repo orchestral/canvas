@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Processors\GeneratesFactoryCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Factory extends Generator
@@ -29,47 +30,28 @@ class Factory extends Generator
     protected $type = 'Factory';
 
     /**
-     * Build the class with the given name.
+     * Generator processor.
+     *
+     * @var string
      */
-    protected function buildClass(string $name): string
-    {
-        $namespaceModel = $this->option('model')
-                        ? $this->qualifyClass($this->option('model'))
-                        : \trim($this->rootNamespace(), '\\').'\\Model';
-
-        $model = \class_basename($namespaceModel);
-
-        return \str_replace(
-            [
-                'NamespacedDummyModel',
-                'DummyModel',
-            ],
-            [
-                $namespaceModel,
-                $model,
-            ],
-            parent::buildClass($name)
-        );
-    }
+    protected $processor = GeneratesFactoryCode::class;
 
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         return __DIR__.'/../../../storage/database/factories/factory.stub';
     }
 
     /**
-     * Get the destination class path.
+     * Generator options.
      */
-    protected function getPath(string $name): string
+    public function generatorOptions(): array
     {
-        $name = \str_replace(
-            ['\\', '/'], '', $this->argument('name')
-        );
-
-        return $this->preset->factoryPath()."/{$name}.php";
+        return [
+            'model' => $this->option('model'),
+        ];
     }
 
     /**

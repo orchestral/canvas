@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Illuminate\Support\Str;
+use Orchestra\Canvas\Processors\GeneratesTestingCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Testing extends Generator
@@ -29,9 +29,16 @@ class Testing extends Generator
     protected $type = 'Test';
 
     /**
+     * Generator processor.
+     *
+     * @var string
+     */
+    protected $processor = GeneratesTestingCode::class;
+
+    /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         $directory = __DIR__.'/../../storage/testing';
 
@@ -47,37 +54,15 @@ class Testing extends Generator
     }
 
     /**
-     * Get the destination class path.
-     */
-    protected function getPath(string $name): string
-    {
-        $name = Str::replaceFirst($this->rootNamespace(), '', $name);
-
-        return \sprintf(
-            '%s/tests/%s',
-            $this->preset->basePath(),
-            \str_replace('\\', '/', $name).'.php'
-        );
-    }
-
-    /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         if ($this->option('unit')) {
             return $rootNamespace.'\Unit';
         }
 
         return $rootNamespace.'\Feature';
-    }
-
-    /**
-     * Get the root namespace for the class.
-     */
-    protected function rootNamespace(): string
-    {
-        return $this->preset->config('testing.namespace', 'Tests');
     }
 
     /**

@@ -30,7 +30,7 @@ class Middleware extends Generator
     /**
      * Get the stub file for the generator.
      */
-    protected function getStub(): string
+    public function getStubFile(): string
     {
         return __DIR__.'/../../../storage/routing/middleware.stub';
     }
@@ -38,7 +38,7 @@ class Middleware extends Generator
     /**
      * Get the default namespace for the class.
      */
-    protected function getDefaultNamespace(string $rootNamespace): string
+    public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Http\Middleware';
     }
