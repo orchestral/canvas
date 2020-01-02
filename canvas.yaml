@@ -3,6 +3,21 @@ preset: laravel
 namespace: App
 user-model: App\User
 
+channel:
+  namespace: App\Broadcasting
+
+console:
+  namespace: App\Console\Commands
+
+event:
+  namespace: App\Events
+
+exception:
+  namespace: App\Exceptions
+
 migration:
   path: database/migrations
   prefix: ''
+
+testing:
+  namespace: Tests

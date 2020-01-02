@@ -2,7 +2,6 @@
 
 namespace Laravie\Canvas\Commands;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class Console extends Generator
@@ -40,6 +39,7 @@ class Console extends Generator
      *
      * @param  string  $stub
      * @param  string  $name
+     *
      * @return string
      */
     protected function replaceClass(string $stub, string $name): string

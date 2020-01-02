@@ -2,43 +2,39 @@
 
 namespace Laravie\Canvas\Commands;
 
-class Channel extends Generator
+class Event extends Generator
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'channel';
+    protected $name = 'event';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new channel class';
+    protected $description = 'Create a new event class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Channel';
+    protected $type = 'Event';
 
     /**
-     * Build the class with the given name.
+     * Determine if the class already exists.
      *
-     * @param  string  $name
+     * @param  string  $rawName
      *
-     * @return string
+     * @return bool
      */
-    protected function buildClass(string $name): string
+    protected function alreadyExists(string $rawName): bool
     {
-        return \str_replace(
-            'DummyUser',
-            \class_basename($this->userProviderModel()),
-            parent::buildClass($name)
-        );
+        return \class_exists($rawName);
     }
 
     /**
@@ -48,7 +44,7 @@ class Channel extends Generator
      */
     protected function getStub(): string
     {
-        return  __DIR__.'/../../../storage/laravel/channel.stub';
+        return __DIR__.'/../../storage/event/event.stub';
     }
 
     /**
@@ -60,6 +56,6 @@ class Channel extends Generator
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {
-        return $this->preset->config('channel.namespace', $rootNamespace.'\Broadcasting');
+        return $this->preset->config('event.namespace', $rootNamespace.'\Events');
     }
 }
