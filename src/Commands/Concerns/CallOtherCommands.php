@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Commands\Concerns;
+namespace Orchestra\Canvas\Commands\Concerns;
 
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
