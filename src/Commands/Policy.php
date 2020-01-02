@@ -101,7 +101,7 @@ class Policy extends Generator
      */
     protected function getStub(): string
     {
-        $directory = __DIR__.'/../../../storage/policy';
+        $directory = __DIR__.'/../../storage/policy';
 
         return $this->option('model')
             ? "{$directory}/policy.stub"

@@ -49,7 +49,7 @@ class Console extends Generator
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../../../storage/laravel/console.stub';
+        return __DIR__.'/../../storage/laravel/console.stub';
     }
 
     /**

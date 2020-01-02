@@ -32,7 +32,7 @@ class Job extends Generator
      */
     protected function getStub(): string
     {
-        $directory = __DIR__.'/../../../storage/job';
+        $directory = __DIR__.'/../../storage/job';
 
         return $this->option('sync')
             ? "{$directory}/job.stub"

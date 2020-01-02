@@ -32,7 +32,7 @@ class Exception extends Generator
      */
     protected function getStub(): string
     {
-        $directory = __DIR__.'/../../../storage/exception';
+        $directory = __DIR__.'/../../storage/exception';
 
         if ($this->option('render')) {
             return $this->option('report')

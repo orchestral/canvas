@@ -30,7 +30,7 @@ class Provider extends Generator
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../../../storage/laravel/provider.stub';
+        return __DIR__.'/../../storage/laravel/provider.stub';
     }
 
     /**

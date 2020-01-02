@@ -30,7 +30,7 @@ class Request extends Generator
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../../../storage/laravel/request.stub';
+        return __DIR__.'/../../storage/laravel/request.stub';
     }
 
     /**

@@ -57,7 +57,7 @@ class Listener extends Generator
      */
     protected function getStub(): string
     {
-        $directory = __DIR__.'/../../../storage/listener';
+        $directory = __DIR__.'/../../storage/listener';
 
         if ($this->option('queued')) {
             return $this->option('event')

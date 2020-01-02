@@ -42,7 +42,7 @@ class Channel extends Generator
      */
     protected function getStub(): string
     {
-        return  __DIR__.'/../../../storage/laravel/channel.stub';
+        return __DIR__.'/../../storage/laravel/channel.stub';
     }
 
     /**

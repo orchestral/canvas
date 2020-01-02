@@ -62,7 +62,7 @@ class Mail extends Generator
             $this->files->makeDirectory(\dirname($path), 0755, true);
         }
 
-        $this->files->put($path, \file_get_contents(__DIR__.'/../../../storage/laravel/markdown.stub'));
+        $this->files->put($path, \file_get_contents(__DIR__.'/../../storage/laravel/markdown.stub'));
     }
 
     /**
@@ -84,7 +84,7 @@ class Mail extends Generator
      */
     protected function getStub(): string
     {
-        $directory = __DIR__.'/../../../storage/mail';
+        $directory = __DIR__.'/../../storage/mail';
 
         return $this->option('markdown')
             ? "{$directory}/markdown.stub"

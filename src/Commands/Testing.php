@@ -33,7 +33,7 @@ class Testing extends Generator
      */
     protected function getStub(): string
     {
-        $directory = __DIR__.'/../../../storage/testing';
+        $directory = __DIR__.'/../../storage/testing';
 
         if ($this->option('unit')) {
             return "{$directory}/unit.stub";

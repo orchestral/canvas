@@ -30,7 +30,7 @@ class Rule extends Generator
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../../../storage/laravel/rule.stub';
+        return __DIR__.'/../../storage/laravel/rule.stub';
     }
 
     /**
