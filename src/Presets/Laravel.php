@@ -20,7 +20,19 @@ class Laravel extends Preset
         return \sprintf(
             '%s/%s',
             $this->basePath(),
-            $this->config['src'] ?? 'app'
+            $this->config('paths.src', 'app')
+        );
+    }
+
+    /**
+     * Get the path to the resource directory.
+     */
+    public function resourcePath(): string
+    {
+        return \sprintf(
+            '%s/%s',
+            $this->basePath(),
+            $this->config('paths.resource', 'resources')
         );
     }
 

@@ -20,7 +20,19 @@ class Package extends Preset
         return \sprintf(
             '%s/%s',
             $this->basePath(),
-            $this->config['src'] ?? 'src'
+            $this->config('paths.src', 'src')
+        );
+    }
+
+    /**
+     * Get the path to the resource directory.
+     */
+    public function resourcePath(): string
+    {
+        return \sprintf(
+            '%s/%s',
+            $this->basePath(),
+            $this->config('paths.resource', 'resources')
         );
     }
 

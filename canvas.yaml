@@ -1,7 +1,11 @@
 preset: laravel
 
 namespace: App
-user-model: App\User
+user-auth-provider: App\User
+
+paths:
+  src: app
+  resource: resources
 
 migration:
   path: database/migrations

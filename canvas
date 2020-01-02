@@ -37,7 +37,7 @@ $app->add(new Laravie\Canvas\Commands\Database\Observer($preset));
 $app->add(new Laravie\Canvas\Commands\Job($preset));
 $app->add(new Laravie\Canvas\Commands\Listener($preset));
 // mail
-// notification
+$app->add(new Laravie\Canvas\Commands\Notification($preset));
 // policy
 $app->add(new Laravie\Canvas\Commands\Provider($preset));
 $app->add(new Laravie\Canvas\Commands\Request($preset));

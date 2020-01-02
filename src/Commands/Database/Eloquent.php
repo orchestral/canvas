@@ -40,8 +40,10 @@ class Eloquent extends Generator
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (parent::execute($input, $output) !== 0 && ! $this->option('force')) {
-            return 1;
+        $exitCode = parent::execute($input, $output);
+
+        if ($exitCode !== 0 && ! $this->option('force')) {
+            return $exitCode;
         }
 
         if ($this->option('all')) {

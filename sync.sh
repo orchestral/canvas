@@ -40,6 +40,16 @@ mv storage/laravel/listener-queued-duck.stub storage/listener/queued-duck.stub
 mv storage/laravel/listener-queued.stub storage/listener/queued.stub
 mv storage/laravel/listener.stub storage/listener/listener.stub
 
+## Mail
+rm -rf storage/mail/*.stub
+mv storage/laravel/markdown-mail.stub storage/mail/markdown.stub
+mv storage/laravel/mail.stub storage/mail/mail.stub
+
+## Notification
+rm -rf storage/notification/*.stub
+mv storage/laravel/markdown-notification.stub storage/notification/markdown.stub
+mv storage/laravel/notification.stub storage/notification/notification.stub
+
 ## Policy
 rm -rf storage/policy/*.stub
 mv storage/laravel/policy.stub storage/policy/policy.stub

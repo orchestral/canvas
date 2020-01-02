@@ -232,7 +232,7 @@ abstract class Generator extends Command
      */
     protected function userProviderModel(): ?string
     {
-        return $this->preset->config('user-model');
+        return $this->preset->config('user-auth-provider');
     }
 
     /**
