@@ -19,7 +19,7 @@ class Laravel extends Preset
     {
         return \sprintf(
             '%s/%s',
-            $this->getBasePath(),
+            $this->basePath(),
             $this->config['src'] ?? 'app'
         );
     }

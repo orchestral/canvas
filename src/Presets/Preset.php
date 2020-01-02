@@ -77,7 +77,7 @@ abstract class Preset
     {
         return \sprintf(
             '%s/%s',
-            $this->getBasePath(),
+            $this->basePath(),
             $this->config['factory']['path'] ?? 'database/factories'
         );
     }
@@ -89,7 +89,7 @@ abstract class Preset
     {
         return \sprintf(
             '%s/%s',
-            $this->getBasePath(),
+            $this->basePath(),
             $this->config['migration']['path'] ?? 'database/migrations'
         );
     }

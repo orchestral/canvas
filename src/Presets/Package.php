@@ -19,7 +19,7 @@ class Package extends Preset
     {
         return \sprintf(
             '%s/%s',
-            $this->getBasePath(),
+            $this->basePath(),
             $this->config['src'] ?? 'src'
         );
     }
