@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands\Concerns;
 
+use Illuminate\Support\Collection;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
@@ -57,5 +58,23 @@ trait CallOtherCommands
                 $input->setInteractive(false);
             }
         });
+    }
+
+    /**
+     * Get all of the context passed to the command.
+     *
+     * @return array
+     */
+    protected function context()
+    {
+        return Collection::make($this->option())->only([
+            'ansi',
+            'no-ansi',
+            'no-interaction',
+            'quiet',
+            'verbose',
+        ])->filter()->mapWithKeys(function ($value, $key) {
+            return ["--{$key}" => $value];
+        })->all();
     }
 }
