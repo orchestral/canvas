@@ -1,6 +1,6 @@
 {
     "name": "orchestra/canvas",
-    "description": "Code Generators for Laravel",
+    "description": "Code Generators for Laravel Applications and Packages",
     "type": "library",
     "license": "MIT",
     "authors": [

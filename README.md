@@ -1,4 +1,4 @@
-Code Generators for PHP
+Code Generators for Laravel Applications and Packages
 ==============
 
 **Canvas** replicates of all the `make` artisan commands available in your basic Laravel application and allows for everyone to use it outside of Laravel installation such as when building Laravel packages.
