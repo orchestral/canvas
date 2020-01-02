@@ -1,6 +1,6 @@
 preset: package
 
-namespace: PackageName
+namespace: DummyNamespace
 user-auth-provider: App\User
 
 paths:
@@ -15,10 +15,10 @@ migration:
   prefix: ''
 
 console:
-  namespace: PackageName\Console
+  namespace: DummyNamespace\Console
 
 provider:
-  namespace: PackageName
+  namespace: DummyNamespace
 
 testing:
-  namespace: PackageName\Tests
+  namespace: DummyNamespace\Tests
