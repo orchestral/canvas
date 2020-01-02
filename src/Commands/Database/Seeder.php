@@ -4,6 +4,8 @@ namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Composer;
 use Orchestra\Canvas\Commands\Generator;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Seeder extends Generator
 {

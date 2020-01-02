@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Presets\Preset;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
