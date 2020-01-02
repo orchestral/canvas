@@ -2,6 +2,7 @@
 
 namespace Laravie\Canvas\Database;
 
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Laravie\Canvas\Presets\Preset;
 
@@ -37,6 +38,8 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      */
     public function create($name, $path, $table = null, $create = false)
     {
+        $name = \trim(\implode('_', [Str::slug($this->preset->config('migration.prefix', ''), '_'), $name]), '_');
+
         if (! $this->files->isDirectory($path)) {
             throw new InvalidArgumentException("Path {$path} doesn't exists.");
         }

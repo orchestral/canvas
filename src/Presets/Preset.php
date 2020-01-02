@@ -3,6 +3,7 @@
 namespace Laravie\Canvas\Presets;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
 
 abstract class Preset
 {
@@ -38,6 +39,22 @@ abstract class Preset
     }
 
     /**
+     * Get configuration.
+     *
+     * @param  mixed|null  $default
+     *
+     * @return mixed
+     */
+    public function config(?string $key = null, $default = null)
+    {
+        if (\is_null($key)) {
+            return $this->config;
+        }
+
+        return Arr::get($this->config, $key, $default);
+    }
+
+    /**
      * Get the filesystem instance.
      */
     public function getFilesystem(): Filesystem
@@ -58,7 +75,11 @@ abstract class Preset
      */
     public function getMigrationPath(): string
     {
-        return \sprintf('%s/database/migrations', $this->getBasePath());
+        return \sprintf(
+            '%s/%s',
+            $this->getBasePath(),
+            $this->config['migration']['path'] ?? 'database/migrations'
+        );
     }
 
     /**
