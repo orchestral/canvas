@@ -39,7 +39,7 @@ $app->add(new Laravie\Canvas\Commands\Job($preset));
 $app->add(new Laravie\Canvas\Commands\Listener($preset));
 $app->add(new Laravie\Canvas\Commands\Mail($preset));
 $app->add(new Laravie\Canvas\Commands\Notification($preset));
-// policy
+$app->add(new Laravie\Canvas\Commands\Policy($preset));
 $app->add(new Laravie\Canvas\Commands\Provider($preset));
 $app->add(new Laravie\Canvas\Commands\Request($preset));
 $app->add(new Laravie\Canvas\Commands\Resource($preset));

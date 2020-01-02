@@ -66,9 +66,9 @@ class Eloquent extends Generator
             $this->createSeeder();
         }
 
-        // if ($this->option('controller') || $this->option('resource')) {
-        //     $this->createController();
-        // }
+        if ($this->option('controller') || $this->option('resource')) {
+            $this->createController();
+        }
 
         return 0;
     }
