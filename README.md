@@ -58,11 +58,63 @@ As a Laravel developer, you should be familiar with the following commands:
 | make:seeder       | Create a new seeder class
 | make:test         | Create a new test class
 
-Instead of running:
+Which can be execute via:
 
     php artisan make:migration CreatePostsTable --create
 
-With **Canvas**, you can running the equivalent command via:
+With **Canvas**, you can run the equivalent command via:
 
     ./vendor/bin/canvas make:migration CreatePostsTable --create
 
+### `canvas.yaml` Preset file
+
+To get started you can first create `canvas.yaml` in the root directory of your Laravel project or package.
+
+#### Laravel preset
+
+```yaml
+preset: laravel
+
+namespace: App
+user-auth-provider: App\User
+```
+
+You can run the following command to create the file:
+
+    ./vendor/bin/canvas preset laravel
+
+#### Package preset
+
+```yaml
+preset: package
+
+namespace: PackageName
+user-auth-provider: App\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: PackageName\Console
+
+provider:
+  namespace: PackageName
+
+testing:
+  namespace: PackageName\Tests
+```
+
+> You need to change `PackageName` to the root directory for your package.
+
+
+You can run the following command to create the file:
+
+    ./vendor/bin/canvas preset package
