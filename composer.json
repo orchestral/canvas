@@ -5,6 +5,10 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        },
+        {
             "name": "Mior Muhammad Zaki",
             "email": "crynobone@gmail.com"
         }
