@@ -1,4 +1,4 @@
 preset: laravel
 
-namespace: App
-user-auth-provider: App\User
+namespace: DummyNamespace
+user-auth-provider: DummyNamespace\User

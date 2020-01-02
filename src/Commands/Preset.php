@@ -66,4 +66,37 @@ class Preset extends Generator
     {
         return Str::lower(\trim($this->argument('name')));
     }
+
+    /**
+     * Get the root namespace for the class.
+     */
+    protected function rootNamespace(): string
+    {
+        $namespace = \trim($this->option('namespace'));
+
+        if (! empty($namespace)) {
+            return $namespace;
+        }
+
+        switch ($this->getNameInput()) {
+            case 'package':
+                return 'PackageName';
+            case 'laravel':
+            default:
+                return 'App';
+        }
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['namespace', null, InputOption::VALUE_OPTIONAL, 'Root namespace'],
+        ];
+    }
+    }
 }

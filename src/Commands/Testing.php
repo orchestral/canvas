@@ -88,7 +88,7 @@ class Testing extends Generator
     protected function getOptions()
     {
         return [
-            ['unit', null, InputOption::VALUE_OPTIONAL, 'Create a unit test'],
+            ['unit', null, InputOption::VALUE_NONE, 'Create a unit test'],
         ];
     }
 }
