@@ -20,7 +20,9 @@ if (file_exists("{$workingPath}/canvas.yaml")) {
 
 $config = Symfony\Component\Yaml\Yaml::parseFile($configFile);
 
-$preset = Laravie\Canvas\Presets\Preset::make($config);
+$preset = Laravie\Canvas\Canvas::preset(
+    $config, $workingPath, new Illuminate\Filesystem\Filesystem()
+);
 
 $app = new Symfony\Component\Console\Application('Canvas for Laravel', '0.1.0');
 

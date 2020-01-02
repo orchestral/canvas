@@ -3,7 +3,6 @@
 namespace Laravie\Canvas\Commands;
 
 use Illuminate\Database\Console\Migrations\TableGuesser;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
 use Laravie\Canvas\Database\MigrationCreator;
@@ -45,11 +44,9 @@ class Migration extends Generator
                 ->addOption('realpath', null, InputOption::VALUE_NONE, 'Indicate any provided migration file paths are pre-resolved absolute paths')
                 ->addOption('fullpath', null, InputOption::VALUE_NONE, 'Output the full path of the migration');
 
-        $filesystem = new Filesystem();
+        $this->creator = new MigrationCreator($this->preset);
 
-        $this->creator = new MigrationCreator($filesystem, $this->preset);
-
-        $this->composer = new Composer($filesystem, $this->preset->getBasePath());
+        $this->composer = new Composer($this->preset->getFilesystem(), $this->preset->getBasePath());
     }
 
     /**

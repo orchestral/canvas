@@ -2,7 +2,7 @@
 
 namespace Laravie\Canvas\Presets;
 
-use Illuminate\Support\Arr;
+use Illuminate\Filesystem\Filesystem;
 
 abstract class Preset
 {
@@ -21,35 +21,28 @@ abstract class Preset
     protected $basePath;
 
     /**
+     * The filesystem instance.
+     *
+     * @var \Illuminate\Filesystem\Filesystem
+     */
+    protected $files;
+
+    /**
      * Construct a new preset.
      */
-    public function __construct(array $config, string $basePath)
+    public function __construct(array $config, string $basePath, Filesystem $filess)
     {
         $this->config = $config;
         $this->basePath = $basePath;
+        $this->files = $files;
     }
 
     /**
-     * Make Preset from configuration.
-     *
-     * @return static
+     * Get the filesystem instance.
      */
-    public static function make(array $config, string $basePath)
+    public function getFilesystem(): Filesystem
     {
-        $configuration = Arr::except($config, 'preset');
-
-        switch ($config['preset']) {
-            case 'package':
-                return new Package($configuration, $basePath);
-            case 'laravel':
-                return new Laravel($configuration, $basePath);
-            default:
-                if (\class_exists($config['preset'])) {
-                    return new $config['preset']($configuration, $basePath);
-                }
-
-                return new Laravel($configuration, $basePath);
-        }
+        return $this->files;
     }
 
     /**
@@ -63,7 +56,7 @@ abstract class Preset
     /**
      * Get the path to the migration directory.
      */
-    public function getMigrationPath(): string;
+    public function getMigrationPath(): string
     {
         return \sprintf('%s/database/migrations', $this->getBasePath());
     }

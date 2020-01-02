@@ -2,7 +2,6 @@
 
 namespace Laravie\Canvas\Database;
 
-use Illuminate\Filesystem\Filesystem;
 use Laravie\Canvas\Presets\Preset;
 
 class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
@@ -17,9 +16,9 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
     /**
      * Create a new migration creator instance.
      */
-    public function __construct(Filesystem $files, Preset $preset)
+    public function __construct(Preset $preset)
     {
-        $this->files = $files;
+        $this->files = $preset->getFilesystem();
         $this->preset = $preset;
     }
 
