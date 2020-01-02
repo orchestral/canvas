@@ -11,7 +11,7 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 } else {
     // Installation environment.
     require __DIR__.'/../../autoload.php';
-    $configFile = __DIR__.'/../../laravie/canvas/canvas.yaml';
+    $configFile = __DIR__.'/../../orchestra/canvas/canvas.yaml';
 }
 
 if (file_exists("{$workingPath}/canvas.yaml")) {
