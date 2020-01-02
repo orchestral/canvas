@@ -39,7 +39,6 @@ As a Laravel developer, you should be familiar with the following commands:
 | `make:controller` | Create a new controller class
 | `make:event` | Create a new event class
 | `make:exception` | Create a new custom exception class
-| `make:export` | Create a new export class
 | `make:factory` | Create a new model factory
 | `make:import` | Create a new import class
 | `make:job` | Create a new job class
