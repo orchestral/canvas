@@ -40,7 +40,6 @@ As a Laravel developer, you should be familiar with the following commands:
 | `make:event` | Create a new event class
 | `make:exception` | Create a new custom exception class
 | `make:factory` | Create a new model factory
-| `make:import` | Create a new import class
 | `make:job` | Create a new job class
 | `make:listener` | Create a new event listener class
 | `make:mail` | Create a new email class
