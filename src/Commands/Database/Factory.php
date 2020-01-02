@@ -1,7 +1,8 @@
 <?php
 
-namespace Laravie\Canvas\Commands;
+namespace Laravie\Canvas\Commands\Database;
 
+use Laravie\Canvas\Commands\Generator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

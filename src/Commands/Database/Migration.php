@@ -1,10 +1,11 @@
 <?php
 
-namespace Laravie\Canvas\Commands;
+namespace Laravie\Canvas\Commands\Database;
 
 use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
+use Laravie\Canvas\Commands\Command;
 use Laravie\Canvas\Database\MigrationCreator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
