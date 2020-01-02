@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputOption;
 
 class Testing extends Generator
 {
