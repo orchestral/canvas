@@ -2,13 +2,6 @@
     "name": "laravie/canvas",
     "description": "Code Generators for Laravel",
     "type": "library",
-    "require": {
-        "symfony/console": "^4.2 || ^5.0",
-        "symfony/yaml": "^4.2 || ^5.0"
-    },
-    "require-dev": {
-        "laravel/framework": "^6.0"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -16,6 +9,31 @@
             "email": "crynobone@gmail.com"
         }
     ],
+    "bin": [
+        "canvas"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Laravie\\Canvas\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/database": "^6.0",
+        "illuminate/support": "^6.0",
+        "symfony/console": "^4.2 || ^5.0",
+        "symfony/yaml": "^4.2 || ^5.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^6.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2-dev"
+        }
+    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }

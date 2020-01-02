@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+
+$workingPath = getcwd();
+$configFile = null;
+
+if (file_exists(__DIR__.'/vendor/autoload.php')) {
+    // Development environment.
+    require __DIR__.'/vendor/autoload.php';
+    $configFile = __DIR__.'/canvas.yaml';
+} else {
+    // Installation environment.
+    require __DIR__.'/../../autoload.php';
+    $configFile = __DIR__.'/../../laravie/canvas/canvas.yaml';
+}
+
+if (file_exists("{$workingPath}/canvas.yaml")) {
+    $configFile = "{$workingPath}/canvas.yaml";
+}
+
+$config = Symfony\Component\Yaml\Yaml::parseFile($configFile);
+
+$preset = Laravie\Canvas\Presets\Preset::make($config);
+
+$app = new Symfony\Component\Console\Application('Canvas for Laravel', '0.1.0');
+
+$app->run();
