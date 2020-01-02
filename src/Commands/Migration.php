@@ -130,7 +130,7 @@ class Migration extends Generator
     }
 
     /**
-     * Determine if the given path(s) are pre-resolved "real" paths.
+     * Determine if the given path(s) are pre-resolved "full" paths.
      */
     protected function usingFullPath(InputInterface $input): bool
     {
