@@ -2,44 +2,28 @@
 
 namespace Laravie\Canvas\Commands;
 
-class Channel extends Generator
+class Provider extends Generator
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:channel';
+    protected $name = 'make:provider';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new channel class';
+    protected $description = 'Create a new service provider class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Channel';
-
-    /**
-     * Build the class with the given name.
-     *
-     * @param  string  $name
-     *
-     * @return string
-     */
-    protected function buildClass(string $name): string
-    {
-        return \str_replace(
-            'DummyUser',
-            \class_basename($this->userProviderModel()),
-            parent::buildClass($name)
-        );
-    }
+    protected $type = 'Provider';
 
     /**
      * Get the stub file for the generator.
@@ -48,7 +32,7 @@ class Channel extends Generator
      */
     protected function getStub(): string
     {
-        return  __DIR__.'/../../../storage/laravel/channel.stub';
+        return __DIR__.'/../../../storage/laravel/provider.stub';
     }
 
     /**
@@ -60,6 +44,6 @@ class Channel extends Generator
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {
-        return $rootNamespace.'\Broadcasting';
+        return $this->preset->providerNamespace();
     }
 }

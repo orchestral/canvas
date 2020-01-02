@@ -9,7 +9,7 @@ class Event extends Generator
      *
      * @var string
      */
-    protected $name = 'event';
+    protected $name = 'make:event';
 
     /**
      * The console command description.
@@ -56,6 +56,6 @@ class Event extends Generator
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {
-        return $this->preset->config('event.namespace', $rootNamespace.'\Events');
+        return $rootNamespace.'\Events';
     }
 }

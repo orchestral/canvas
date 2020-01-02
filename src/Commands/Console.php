@@ -11,7 +11,7 @@ class Console extends Generator
      *
      * @var string
      */
-    protected $name = 'console';
+    protected $name = 'make:command';
 
     /**
      * The console command description.

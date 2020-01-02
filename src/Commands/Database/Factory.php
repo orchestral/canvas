@@ -12,7 +12,7 @@ class Factory extends Generator
      *
      * @var string
      */
-    protected $name = 'factory';
+    protected $name = 'make:factory';
 
     /**
      * The console command description.

@@ -31,4 +31,12 @@ class Laravel extends Preset
     {
         return $this->config['namespace'] ?? 'App';
     }
+
+    /**
+     * Provider namespace.
+     */
+    public function providerNamespace(): string
+    {
+        return $this->config('provider.namespace', $this->rootNamespace().'\Providers');
+    }
 }

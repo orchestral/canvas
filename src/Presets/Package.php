@@ -37,4 +37,12 @@ class Package extends Preset
 
         return $namespace;
     }
+
+    /**
+     * Provider namespace.
+     */
+    public function providerNamespace(): string
+    {
+        return $this->config('provider.namespace', $this->rootNamespace());
+    }
 }

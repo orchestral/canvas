@@ -108,4 +108,9 @@ abstract class Preset
      * Preset namespace.
      */
     abstract public function rootNamespace(): string;
+
+    /**
+     * Provider namespace.
+     */
+    abstract public function providerNamespace(): string;
 }

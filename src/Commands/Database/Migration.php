@@ -37,7 +37,7 @@ class Migration extends Command
     {
         $this->ignoreValidationErrors();
 
-        $this->setName('migration')
+        $this->setName('make:migration')
                 ->setDescription('Create a new migration file.')
                 ->addArgument('name', InputArgument::REQUIRED, 'The name of the migration')
                 ->addOption('create', null, InputOption::VALUE_OPTIONAL, 'The table be created')

@@ -11,7 +11,7 @@ class Testing extends Generator
      *
      * @var string
      */
-    protected $name = 'test';
+    protected $name = 'make:test';
 
     /**
      * The console command description.

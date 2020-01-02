@@ -60,7 +60,7 @@ class Exception extends Generator
      */
     protected function getDefaultNamespace(string $rootNamespace): string
     {
-        return $this->preset->config('exception.namespace', $rootNamespace.'\Exceptions');
+        return $rootNamespace.'\Exceptions';
     }
 
     /**
