@@ -85,11 +85,11 @@ class Migration extends Command
         // Now we are ready to write the migration out to disk. Once we've written
         // the migration out, we will dump-autoload for the entire framework to
         // make sure that the migrations are registered by the class loaders.
-        $file = $this->writeMigration($input, $name, $table, $create);
+        $file = $this->writeMigration($name, $table, $create);
 
         $this->composer->dumpAutoloads();
 
-        $output->writeln("<info>Created Migration:</info> {$file}");
+        $this->line("<info>Created Migration:</info> {$file}");
 
         return 0;
     }
@@ -97,13 +97,13 @@ class Migration extends Command
     /**
      * Write the migration file to disk.
      */
-    protected function writeMigration(InputInterface $input, string $name, string $table, bool $create): string
+    protected function writeMigration(string $name, string $table, bool $create): string
     {
         $file = $this->creator->create(
-            $name, $this->getMigrationPath($input), $table, $create
+            $name, $this->getMigrationPath(), $table, $create
         );
 
-        if (! $this->usingFullPath($input)) {
+        if (! $this->usingFullPath()) {
             $file = \pathinfo($file, PATHINFO_FILENAME);
         }
 
@@ -113,10 +113,10 @@ class Migration extends Command
     /**
      * Get migration path (either specified by '--path' option or default location).
      */
-    protected function getMigrationPath(InputInterface $input): string
+    protected function getMigrationPath(): string
     {
-        if (! \is_null($targetPath = $input->getOption('path'))) {
-            return ! $this->usingRealPath($input)
+        if (! \is_null($targetPath = $this->input->getOption('path'))) {
+            return ! $this->usingRealPath()
                             ? $this->preset->basePath().'/'.$targetPath
                             : $targetPath;
         }
@@ -127,16 +127,16 @@ class Migration extends Command
     /**
      * Determine if the given path(s) are pre-resolved "real" paths.
      */
-    protected function usingRealPath(InputInterface $input): bool
+    protected function usingRealPath(): bool
     {
-        return $input->hasOption('realpath') && $input->getOption('realpath');
+        return $this->input->hasOption('realpath') && $this->input->getOption('realpath');
     }
 
     /**
      * Determine if the given path(s) are pre-resolved "full" paths.
      */
-    protected function usingFullPath(InputInterface $input): bool
+    protected function usingFullPath(): bool
     {
-        return $input->hasOption('fullpath') && $input->getOption('fullpath');
+        return $this->input->hasOption('fullpath') && $this->input->getOption('fullpath');
     }
 }
