@@ -34,6 +34,20 @@ abstract class Generator extends Command
     }
 
     /**
+     * Configure the command options.
+     *
+     * @return void
+     */
+    protected function configure()
+    {
+        $this->ignoreValidationErrors();
+
+        $this->setName($this->name)
+                ->setDescription($this->description)
+                ->addArgument('name', InputArgument::REQUIRED, 'The name of the class');
+    }
+
+    /**
      * Execute the command.
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException

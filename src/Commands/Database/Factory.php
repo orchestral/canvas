@@ -9,26 +9,25 @@ use Symfony\Component\Console\Input\InputOption;
 class Factory extends Generator
 {
     /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'factory';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Create a new model factory';
+
+    /**
      * The type of class being generated.
      *
      * @var string
      */
     protected $type = 'Factory';
-
-    /**
-     * Configure the command options.
-     *
-     * @return void
-     */
-    protected function configure()
-    {
-        $this->ignoreValidationErrors();
-
-        $this->setName('factory')
-                ->setDescription('Create a new model factory.')
-                ->addArgument('name', InputArgument::REQUIRED, 'The name of the class')
-                ->addOption('model', 'm', InputOption::VALUE_OPTIONAL, 'The name of the model');
-    }
 
     /**
      * Build the class with the given name.
@@ -72,5 +71,17 @@ class Factory extends Generator
         );
 
         return $this->preset->factoryPath()."/{$name}.php";
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['model', 'm', InputOption::VALUE_OPTIONAL, 'The name of the model'],
+        ];
     }
 }
