@@ -78,7 +78,7 @@ abstract class Preset
         return \sprintf(
             '%s/%s',
             $this->basePath(),
-            $this->config['factory']['path'] ?? 'database/factories'
+            $this->config('factory.path', 'database/factories')
         );
     }
 
@@ -90,7 +90,19 @@ abstract class Preset
         return \sprintf(
             '%s/%s',
             $this->basePath(),
-            $this->config['migration']['path'] ?? 'database/migrations'
+            $this->config('migration.path', 'database/migrations')
+        );
+    }
+
+    /**
+     * Get the path to the seeder directory.
+     */
+    public function seederPath(): string
+    {
+        return \sprintf(
+            '%s/%s',
+            $this->basePath(),
+            $this->config('seeder.path', 'database/seeds')
         );
     }
 

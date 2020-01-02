@@ -7,9 +7,15 @@ paths:
   src: app
   resource: resources
 
+factory:
+  path: database/factories
+
 migration:
   path: database/migrations
   prefix: ''
+
+seeder:
+  path: database/seeds
 
 console:
   namespace: App\Console\Commands

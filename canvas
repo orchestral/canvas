@@ -34,16 +34,17 @@ $app->add(new Laravie\Canvas\Commands\Database\Eloquent($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Factory($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Migration($preset));
 $app->add(new Laravie\Canvas\Commands\Database\Observer($preset));
+$app->add(new Laravie\Canvas\Commands\Database\Seeder($preset));
 $app->add(new Laravie\Canvas\Commands\Job($preset));
 $app->add(new Laravie\Canvas\Commands\Listener($preset));
-// mail
+$app->add(new Laravie\Canvas\Commands\Mail($preset));
 $app->add(new Laravie\Canvas\Commands\Notification($preset));
 // policy
 $app->add(new Laravie\Canvas\Commands\Provider($preset));
 $app->add(new Laravie\Canvas\Commands\Request($preset));
 $app->add(new Laravie\Canvas\Commands\Resource($preset));
-// routing/controller
-// routing/middleware
+$app->add(new Laravie\Canvas\Commands\Routing\Controller($preset));
+$app->add(new Laravie\Canvas\Commands\Routing\Middleware($preset));
 $app->add(new Laravie\Canvas\Commands\Rule($preset));
 $app->add(new Laravie\Canvas\Commands\Testing($preset));
 

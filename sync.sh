@@ -3,6 +3,7 @@
 # Database
 cp -rf vendor/laravel/framework/src/Illuminate/Database/Console/Factories/stubs/*.stub storage/database/factories/
 cp -rf vendor/laravel/framework/src/Illuminate/Database/Migrations/stubs/*.stub storage/database/migrations/
+cp -rf vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/stubs/*.stub storage/database/seeds/
 
 # Foundation
 cp -rf vendor/laravel/framework/src/Illuminate/Foundation/Console/stubs/*.stub storage/laravel/

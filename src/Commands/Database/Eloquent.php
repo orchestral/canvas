@@ -62,9 +62,9 @@ class Eloquent extends Generator
             $this->createMigration();
         }
 
-        // if ($this->option('seed')) {
-        //     $this->createSeeder();
-        // }
+        if ($this->option('seed')) {
+            $this->createSeeder();
+        }
 
         // if ($this->option('controller') || $this->option('resource')) {
         //     $this->createController();
