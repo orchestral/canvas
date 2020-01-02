@@ -28,6 +28,26 @@ trait Interaction
     protected $output;
 
     /**
+     * The default verbosity of output commands.
+     *
+     * @var int
+     */
+    protected $verbosity = OutputInterface::VERBOSITY_NORMAL;
+
+    /**
+     * The mapping between human readable verbosity levels and Symfony's OutputInterface.
+     *
+     * @var array
+     */
+    protected $verbosityMap = [
+        'v' => OutputInterface::VERBOSITY_VERBOSE,
+        'vv' => OutputInterface::VERBOSITY_VERY_VERBOSE,
+        'vvv' => OutputInterface::VERBOSITY_DEBUG,
+        'quiet' => OutputInterface::VERBOSITY_QUIET,
+        'normal' => OutputInterface::VERBOSITY_NORMAL,
+    ];
+
+    /**
      * Determine if the given argument is present.
      *
      * @param  string|int  $name
