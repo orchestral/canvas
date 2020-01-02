@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputOption;
 
 class Preset extends Generator
 {
@@ -52,14 +53,6 @@ class Preset extends Generator
     }
 
     /**
-     * Parse the class name and format according to the root namespace.
-     */
-    protected function qualifyClass(string $name): string
-    {
-        return $name;
-    }
-
-    /**
      * Get the desired class name from the input.
      */
     protected function getNameInput(): string
@@ -97,6 +90,5 @@ class Preset extends Generator
         return [
             ['namespace', null, InputOption::VALUE_OPTIONAL, 'Root namespace'],
         ];
-    }
     }
 }
