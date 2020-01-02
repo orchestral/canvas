@@ -67,22 +67,16 @@ class Seeder extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__.'/../../../storage/database/seeds/seeder.stub';
     }
 
     /**
      * Get the destination class path.
-     *
-     * @param  string  $name
-     *
-     * @return string
      */
-    protected function getPath($name)
+    protected function getPath(string $name): string
     {
         return $this->preset->seederPath().'/seeds/'.$name.'.php';
     }

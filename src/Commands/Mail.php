@@ -67,12 +67,8 @@ class Mail extends Generator
 
     /**
      * Build the class with the given name.
-     *
-     * @param  string  $name
-     *
-     * @return string
      */
-    protected function buildClass($name)
+    protected function buildClass(string $name): string
     {
         $class = parent::buildClass($name);
 
@@ -85,10 +81,8 @@ class Mail extends Generator
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         $directory = __DIR__.'/../../../storage/mail';
 

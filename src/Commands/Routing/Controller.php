@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Commands\Routing;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Orchestra\Canvas\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
 class Controller extends Generator
@@ -70,12 +71,8 @@ class Controller extends Generator
      * Build the class with the given name.
      *
      * Remove the base controller import if we are already in base namespace.
-     *
-     * @param  string  $name
-     *
-     * @return string
      */
-    protected function buildClass($name)
+    protected function buildClass(string $name): string
     {
         $controllerNamespace = $this->getNamespace($name);
 
