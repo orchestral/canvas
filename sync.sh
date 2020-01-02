@@ -8,11 +8,11 @@ cp -rf vendor/laravel/framework/src/Illuminate/Database/Migrations/stubs/*.stub 
 cp -rf vendor/laravel/framework/src/Illuminate/Foundation/Console/stubs/*.stub storage/laravel/
 
 ## Eloquent
-rm -rf storage/eloquent/*.stub
-mv storage/laravel/model.stub storage/eloquent/model.stub
-mv storage/laravel/observer.plain.stub storage/eloquent/observer.plain.stub
-mv storage/laravel/observer.stub storage/eloquent/observer.stub
-mv storage/laravel/pivot.model.stub storage/eloquent/pivot.model.stub
+rm -rf storage/database/eloquent/*.stub
+mv storage/laravel/model.stub storage/database/eloquent/model.stub
+mv storage/laravel/observer.plain.stub storage/database/eloquent/observer.plain.stub
+mv storage/laravel/observer.stub storage/database/eloquent/observer.stub
+mv storage/laravel/pivot.model.stub storage/database/eloquent/pivot.model.stub
 
 ## Event
 rm -rf storage/event/*.stub
