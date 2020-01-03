@@ -33,6 +33,14 @@ class Laravel extends Preset
     }
 
     /**
+     * Model namespace.
+     */
+    public function modelNamespace(): string
+    {
+        return $this->config('model.namespace', $this->rootNamespace());
+    }
+
+    /**
      * Provider namespace.
      */
     public function providerNamespace(): string

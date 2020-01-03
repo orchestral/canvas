@@ -25,7 +25,7 @@ class GeneratesObserverCode extends GeneratesCode
     {
         $model = \str_replace('/', '\\', $model);
 
-        $namespaceModel = $this->preset->rootNamespace().'\\'.$model;
+        $namespaceModel = $this->preset->modelNamespace().'\\'.$model;
 
         if (Str::startsWith($model, '\\')) {
             $stub = \str_replace('NamespacedDummyModel', trim($model, '\\'), $stub);

@@ -18,6 +18,7 @@ class LaravelTest extends TestCase
         $this->assertSame($directory, $preset->basePath());
 
         $this->assertSame('App', $preset->rootNamespace());
+        $this->assertSame('App', $preset->modelNamespace());
         $this->assertSame('App\Providers', $preset->providerNamespace());
 
         $this->assertSame("{$directory}/app", $preset->sourcePath());
@@ -25,5 +26,29 @@ class LaravelTest extends TestCase
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
         $this->assertSame("{$directory}/database/seeds", $preset->seederPath());
+    }
+
+
+    /** @test */
+    public function it_can_configure_model_namespace()
+    {
+        $directory = __DIR__;
+        $preset = new Laravel(['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $directory, new Filesystem());
+
+        $this->assertSame('App', $preset->rootNamespace());
+        $this->assertSame('App\Model', $preset->modelNamespace());
+        $this->assertSame('App\Providers', $preset->providerNamespace());
+    }
+
+
+    /** @test */
+    public function it_can_configure_provider_namespace()
+    {
+        $directory = __DIR__;
+        $preset = new Laravel(['namespace' => 'App', 'provider' => ['namespace' => 'App']], $directory, new Filesystem());
+
+        $this->assertSame('App', $preset->rootNamespace());
+        $this->assertSame('App', $preset->modelNamespace());
+        $this->assertSame('App', $preset->providerNamespace());
     }
 }

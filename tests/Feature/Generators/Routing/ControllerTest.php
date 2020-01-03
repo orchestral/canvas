@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators\Routing;
 
+use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class ControllerTest extends TestCase
@@ -70,6 +71,53 @@ class ControllerTest extends TestCase
             'namespace App\Http\Controllers;',
             'use App\Bar;',
             'use App\Foo;',
+            'public function index(Foo $foo)',
+            'public function create(Foo $foo)',
+            'public function store(Request $request, Foo $foo)',
+            'public function show(Foo $foo, Bar $bar)',
+            'public function edit(Foo $foo, Bar $bar)',
+            'public function update(Request $request, Foo $foo, Bar $bar)',
+            'public function destroy(Foo $foo, Bar $bar)',
+        ], 'app/Http/Controllers/FooController.php');
+    }
+
+    /** @test */
+    public function it_can_generate_controller_with_model_options_file_with_custom_model_namespace()
+    {
+        $this->instance('orchestra.canvas', new Laravel(
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath(), $this->filesystem
+        ));
+
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use App\Model\Foo;',
+            'public function index()',
+            'public function create()',
+            'public function store(Request $request)',
+            'public function show(Foo $foo)',
+            'public function edit(Foo $foo)',
+            'public function update(Request $request, Foo $foo)',
+            'public function destroy(Foo $foo)',
+        ], 'app/Http/Controllers/FooController.php');
+    }
+
+    /** @test */
+    public function it_can_generate_controller_with_model_with_parent_options_file_with_custom_model_namespace()
+    {
+        $this->instance('orchestra.canvas', new Laravel(
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath(), $this->filesystem
+        ));
+
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use App\Model\Bar;',
+            'use App\Model\Foo;',
             'public function index(Foo $foo)',
             'public function create(Foo $foo)',
             'public function store(Request $request, Foo $foo)',

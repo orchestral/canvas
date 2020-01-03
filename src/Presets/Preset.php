@@ -134,6 +134,11 @@ abstract class Preset
     abstract public function rootNamespace(): string;
 
     /**
+     * Model namespace.
+     */
+    abstract public function modelNamespace(): string;
+
+    /**
      * Provider namespace.
      */
     abstract public function providerNamespace(): string;

@@ -83,7 +83,7 @@ class GeneratesControllerCode extends GeneratesCode
 
         $model = \trim(\str_replace('/', '\\', $model), '\\');
 
-        if (! Str::startsWith($model, $rootNamespace = $this->preset->rootNamespace())) {
+        if (! Str::startsWith($model, $rootNamespace = $this->preset->modelNamespace())) {
             $model = $rootNamespace.'\\'.$model;
         }
 
