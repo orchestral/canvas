@@ -41,7 +41,7 @@ class ObserverTest extends TestCase
         ], 'app/Observers/FooObserver.php');
     }
 
-     /** @test */
+    /** @test */
     public function it_can_generate_observer_with_model_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(

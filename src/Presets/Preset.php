@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
+use Symfony\Component\Console\Application;
 
 abstract class Preset
 {
@@ -116,6 +117,16 @@ abstract class Preset
             $this->basePath(),
             $this->config('seeder.path', 'database/seeds')
         );
+    }
+
+    /**
+     * Sync commands to preset.
+     */
+    public function addAdditionalCommands(Application $app): void
+    {
+        foreach ($this->config('generators', []) as $generator) {
+            $app->add(new $generator($this));
+        }
     }
 
     /**

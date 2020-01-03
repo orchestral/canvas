@@ -48,4 +48,6 @@ $app->add(new Orchestra\Canvas\Commands\Routing\Middleware($preset));
 $app->add(new Orchestra\Canvas\Commands\Rule($preset));
 $app->add(new Orchestra\Canvas\Commands\Testing($preset));
 
+$preset->addAdditionalCommands($app);
+
 $app->run();

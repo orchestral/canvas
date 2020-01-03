@@ -39,7 +39,6 @@ class PackageTest extends TestCase
         $this->assertSame('FooBar', $preset->providerNamespace());
     }
 
-
     /** @test */
     public function it_can_configure_provider_namespace()
     {
