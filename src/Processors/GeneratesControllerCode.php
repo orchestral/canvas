@@ -58,6 +58,7 @@ class GeneratesControllerCode extends GeneratesCode
     {
         $modelClass = $this->parseModel($this->options['model']);
 
+
         if (! \class_exists($modelClass) && \method_exists($this->listener, 'createModel')) {
             $this->listener->createModel($modelClass);
         }
@@ -83,7 +84,7 @@ class GeneratesControllerCode extends GeneratesCode
         $model = \trim(\str_replace('/', '\\', $model), '\\');
 
         if (! Str::startsWith($model, $rootNamespace = $this->preset->rootNamespace())) {
-            $model = $rootNamespace.$model;
+            $model = $rootNamespace.'\\'.$model;
         }
 
         return $model;
