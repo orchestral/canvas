@@ -9,7 +9,7 @@ class GeneratesSeederCode extends GeneratesCode
      */
     protected function getPath(string $name): string
     {
-        return $this->preset->seederPath().'/seeds/'.$name.'.php';
+        return $this->preset->seederPath().'/'.$name.'.php';
     }
 
     /**
