@@ -81,6 +81,9 @@ preset: laravel
 
 namespace: App
 user-auth-provider: App\User
+
+model:
+  namespace: App
 ```
 
 #### Package preset
@@ -110,6 +113,9 @@ migration:
 
 console:
   namespace: PackageName\Console
+
+model:
+  namespace: PackageName
 
 provider:
   namespace: PackageName
@@ -145,6 +151,9 @@ migration:
 console:
   namespace: Foo\Bar\Console
 
+model:
+  namespace: Foo\Bar
+  
 provider:
   namespace: Foo\Bar
 

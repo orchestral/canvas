@@ -17,8 +17,11 @@ migration:
 console:
   namespace: DummyNamespace\Console
 
-provider:
+model:
   namespace: DummyNamespace
+
+provider:
+  namespace: DummyNamespace\Providers
 
 testing:
   namespace: DummyNamespace\Tests
