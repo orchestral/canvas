@@ -2,13 +2,19 @@
 
 namespace Orchestra\Canvas;
 
-use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    /**
+     * Register services.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->app->singleton('orchestra.canvas', function (Application $app) {
@@ -24,34 +30,38 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         });
     }
 
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
+        Artisan::starting(function ($artisan) {
             $preset = $this->app->make('orchestra.canvas');
-            $kernel = $this->app->make(ConsoleKernel::class);
 
-            $kernel->add(new Commands\Channel($preset));
-            $kernel->add(new Commands\Console($preset));
-            $kernel->add(new Commands\Event($preset));
-            $kernel->add(new Commands\Exception($preset));
-            $kernel->add(new Commands\Database\Eloquent($preset));
-            $kernel->add(new Commands\Database\Factory($preset));
-            $kernel->add(new Commands\Database\Migration($preset));
-            $kernel->add(new Commands\Database\Observer($preset));
-            $kernel->add(new Commands\Database\Seeder($preset));
-            $kernel->add(new Commands\Job($preset));
-            $kernel->add(new Commands\Listener($preset));
-            $kernel->add(new Commands\Mail($preset));
-            $kernel->add(new Commands\Notification($preset));
-            $kernel->add(new Commands\Policy($preset));
-            $kernel->add(new Commands\Provider($preset));
-            $kernel->add(new Commands\Request($preset));
-            $kernel->add(new Commands\Resource($preset));
-            $kernel->add(new Commands\Routing\Controller($preset));
-            $kernel->add(new Commands\Routing\Middleware($preset));
-            $kernel->add(new Commands\Rule($preset));
-            $kernel->add(new Commands\Testing($preset));
-        }
+            $artisan->registerCommand(new Commands\Channel($preset));
+            $artisan->registerCommand(new Commands\Console($preset));
+            $artisan->registerCommand(new Commands\Event($preset));
+            $artisan->registerCommand(new Commands\Exception($preset));
+            $artisan->registerCommand(new Commands\Database\Eloquent($preset));
+            $artisan->registerCommand(new Commands\Database\Factory($preset));
+            $artisan->registerCommand(new Commands\Database\Migration($preset));
+            $artisan->registerCommand(new Commands\Database\Observer($preset));
+            $artisan->registerCommand(new Commands\Database\Seeder($preset));
+            $artisan->registerCommand(new Commands\Job($preset));
+            $artisan->registerCommand(new Commands\Listener($preset));
+            $artisan->registerCommand(new Commands\Mail($preset));
+            $artisan->registerCommand(new Commands\Notification($preset));
+            $artisan->registerCommand(new Commands\Policy($preset));
+            $artisan->registerCommand(new Commands\Provider($preset));
+            $artisan->registerCommand(new Commands\Request($preset));
+            $artisan->registerCommand(new Commands\Resource($preset));
+            $artisan->registerCommand(new Commands\Routing\Controller($preset));
+            $artisan->registerCommand(new Commands\Routing\Middleware($preset));
+            $artisan->registerCommand(new Commands\Rule($preset));
+            $artisan->registerCommand(new Commands\Testing($preset));
+        });
     }
 
     /**
