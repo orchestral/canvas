@@ -162,3 +162,7 @@ provider:
 testing:
   namespace: Foo\Bar\Tests
 ```
+
+### Integration with Laravel
+
+By default, you can always use `./vendor/bin/canvas` for Laravel and Packages environment. However, with the Package Discovery `Orchestra\Canvas\LaravelServiceProvider` will be installed automatically and override all default `make` command available via artisan so you can use it without changing anything.
