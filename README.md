@@ -3,10 +3,13 @@ Code Generators for Laravel Applications and Packages
 
 **Canvas** replicates of all the `make` artisan commands available in your basic Laravel application and allows for everyone to use it outside of Laravel installation such as when building Laravel packages.
 
+[![Build Status](https://travis-ci.org/orchestral/canvas.svg?branch=master)](https://travis-ci.org/orchestral/canvas)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/canvas/v/stable)](https://packagist.org/packages/orchestra/canvas)
 [![Total Downloads](https://poser.pugx.org/orchestra/canvas/downloads)](https://packagist.org/packages/orchestra/canvas)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/canvas/v/unstable)](https://packagist.org/packages/orchestra/canvas)
 [![License](https://poser.pugx.org/orchestra/canvas/license)](https://packagist.org/packages/orchestra/canvas)
+[![Coverage Status](https://coveralls.io/repos/github/orchestral/canvas/badge.svg?branch=master)](https://coveralls.io/github/orchestral/canvas?branch=master)
+
 
 ## Installation
 
