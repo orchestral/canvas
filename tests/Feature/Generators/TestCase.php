@@ -63,7 +63,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function assertFileContains(array $contains, string $file, string $message = ''): void
     {
-        $this->assertFilenameExists($file, "Unable to find asserted file {$file}");
+        $this->assertFilenameExists($file);
 
         $haystack = $this->filesystem->get(
             $this->app->basePath($file)
@@ -76,7 +76,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function assertFileNotContains(array $contains, string $file, string $message = ''): void
     {
-        $this->assertFilenameExists($file, "Unable to find asserted file {$file}");
+        $this->assertFilenameExists($file);
 
         $haystack = $this->filesystem->get(
             $this->app->basePath($file)
@@ -87,12 +87,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
         }
     }
 
-    protected function assertFilenameExists(string $file, string $message = ''): void
+    protected function assertFilenameExists(string $file): void
     {
         $appFile = $this->app->basePath($file);
 
         if (! $this->filesystem->exists($appFile)) {
-            $this->assertFilenameExists($appFile, $message);
+            $this->assertFalse($appFile, "Unable to find asserted file {$file}");
         }
     }
 

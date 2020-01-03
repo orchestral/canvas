@@ -20,7 +20,7 @@ class GeneratesListenerCode extends GeneratesCode
             'Illuminate',
             '\\',
         ])) {
-            $event = $this->preset->rootNamespace().'Events\\'.$event;
+            $event = $this->preset->rootNamespace().'\\Events\\'.$event;
         }
 
         $stub = \str_replace(
