@@ -101,4 +101,47 @@ class ControllerTest extends TestCase
             'public function edit($id)',
         ], 'app/Http/Controllers/FooController.php');
     }
+
+    /** @test */
+    public function it_can_generate_controller_file_can_handle_invokable_options_ignores_api()
+    {
+        $this->artisan('make:controller', ['name' => 'FooController', '--api' => true, '--invokable' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use Illuminate\Http\Request;',
+            'class FooController extends Controller',
+            'public function __invoke(Request $request)',
+        ], 'app/Http/Controllers/FooController.php');
+
+        $this->assertFileNotContains([
+            'public function index()',
+            'public function store(Request $request)',
+            'public function update(Request $request, $id)',
+            'public function destroy($id)',
+        ], 'app/Http/Controllers/FooController.php');
+    }
+
+    /** @test */
+    public function it_can_generate_controller_with_model_and_api_options_file()
+    {
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--api' => true, '--no-interaction' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use App\Foo;',
+            'public function index()',
+            'public function store(Request $request)',
+            'public function show(Foo $foo)',
+            'public function update(Request $request, Foo $foo)',
+            'public function destroy(Foo $foo)',
+        ], 'app/Http/Controllers/FooController.php');
+
+        $this->assertFileNotContains([
+            'public function create()',
+            'public function edit(Foo $foo)',
+        ], 'app/Http/Controllers/FooController.php');
+    }
 }
