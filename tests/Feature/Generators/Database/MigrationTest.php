@@ -61,4 +61,13 @@ class MigrationTest extends TestCase
             'Schema::dropIfExists(\'foobar\');',
         ], 'foos_table.php');
     }
+
+     /** @test */
+    public function it_cant_generate_migration_with_invalid_path_options_file()
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $this->artisan('make:migration', ['name' => 'CreateFoosTable', '--path' => 'app/migrations'])
+            ->assertExitCode(1);
+    }
 }
