@@ -118,4 +118,12 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         return [];
     }
+
+    /**
+     * Get the desired class name from the input.
+     */
+    protected function getNameInput(): string
+    {
+        return \trim($this->argument('name'));
+    }
 }
