@@ -28,7 +28,7 @@ class GeneratesFactoryCode extends GeneratesCode
     protected function getPath(string $name): string
     {
         $name = \str_replace(
-            ['\\', '/'], '', $this->name
+            ['\\', '/'], '', $this->options['name']
         );
 
         return $this->preset->factoryPath()."/{$name}.php";

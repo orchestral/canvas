@@ -80,7 +80,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
 
         $processor = new $class($this->preset, $this);
 
-        return $processor($listener, $force);
+        return $processor($name, $force);
     }
 
     /**
@@ -116,7 +116,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function generatorOptions(): array
     {
-        return [];
+        return [
+            'name' => $this->getNameInput(),
+        ];
     }
 
     /**

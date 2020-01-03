@@ -49,9 +49,9 @@ class Factory extends Generator
      */
     public function generatorOptions(): array
     {
-        return [
+        return \array_merge(parent::generatorOptions(), [
             'model' => $this->option('model'),
-        ];
+        ]);
     }
 
     /**

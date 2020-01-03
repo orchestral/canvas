@@ -19,12 +19,12 @@ class GeneratesCode
     public function __construct(Preset $preset, GeneratesCodeListener $listener)
     {
         $this->preset = $preset;
-        $this->files = $preset->getFilesystem();
+        $this->files = $preset->filesystem();
         $this->listener = $listener;
         $this->options = $listener->generatorOptions();
     }
 
-    public function create(string $name, bool $force = false)
+    public function __invoke(string $name, bool $force = false)
     {
         $className = $this->qualifyClass($name);
 
@@ -33,7 +33,7 @@ class GeneratesCode
         // First we will check to see if the class already exists. If it does, we don't want
         // to create the class and overwrite the user's code. So, we will bail out so the
         // code is untouched. Otherwise, we will continue generating this class' files.
-        if (! force && $this->alreadyExists($name)) {
+        if (! $force && $this->alreadyExists($name)) {
             return $this->listener->codeAlreadyExists($className);
         }
 
