@@ -79,4 +79,26 @@ class ControllerTest extends TestCase
             'public function destroy(Foo $foo, Bar $bar)',
         ], 'app/Http/Controllers/FooController.php');
     }
+
+    /** @test */
+    public function it_can_generate_controller_with_api_options_file()
+    {
+        $this->artisan('make:controller', ['name' => 'FooController', '--api' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use Illuminate\Http\Request;',
+            'class FooController extends Controller',
+            'public function index()',
+            'public function store(Request $request)',
+            'public function update(Request $request, $id)',
+            'public function destroy($id)',
+        ], 'app/Http/Controllers/FooController.php');
+
+        $this->assertFileNotContains([
+            'public function create()',
+            'public function edit($id)',
+        ], 'app/Http/Controllers/FooController.php');
+    }
 }
