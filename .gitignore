@@ -1,6 +1,6 @@
 # Composer
-/vendor/*
-/composer.lock
+composer.lock
+vendor/*
 
 # PHPUnit
 /coverage/*
