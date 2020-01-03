@@ -18,7 +18,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require-dev": {
-        "orchestra/canvas": "dev-master"
+        "orchestra/canvas": "^4.0"
     }
 }
 ```
