@@ -62,11 +62,20 @@ mv storage/laravel/resource-collection.stub storage/resource/collection.stub
 mv storage/laravel/resource.stub storage/resource/resource.stub
 
 ## Testing
-rm -rf storage/testing/*.stub
+rm -f storage/testing/feature.stub
+rm -f storage/testing/unit.stub
 mv storage/laravel/test.stub storage/testing/feature.stub
 mv storage/laravel/unit-test.stub storage/testing/unit.stub
 
 # Routing
 cp -rf vendor/laravel/framework/src/Illuminate/Routing/Console/stubs/*.stub storage/routing/
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.api.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.api.stub
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.invokable.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.invokable.stub
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.model.api.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.model.api.stub
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.model.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.model.stub
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.nested.api.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.nested.api.stub
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.nested.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.nested.stub
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.plain.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.plain.stub
+awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.stub
 
 
