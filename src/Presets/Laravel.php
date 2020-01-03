@@ -25,18 +25,6 @@ class Laravel extends Preset
     }
 
     /**
-     * Get the path to the resource directory.
-     */
-    public function resourcePath(): string
-    {
-        return \sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('paths.resource', 'resources')
-        );
-    }
-
-    /**
      * Preset namespace.
      */
     public function rootNamespace(): string

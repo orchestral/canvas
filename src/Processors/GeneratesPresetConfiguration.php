@@ -23,7 +23,7 @@ class GeneratesPresetConfiguration extends GeneratesCode
             return $namespace;
         }
 
-        switch ($this->getNameInput()) {
+        switch ($this->options['preset']) {
             case 'package':
                 return 'PackageName';
             case 'laravel':

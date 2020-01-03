@@ -14,9 +14,21 @@ class CanvasTest extends TestCase
         $files = new Filesystem();
         $preset = Canvas::preset([
             'preset' => 'laravel',
+            'namespace' => 'App',
+            'paths' => [
+                'src' => 'app',
+                'resources' => 'resources',
+            ],
         ], __DIR__, $files);
 
         $this->assertInstanceOf('Orchestra\Canvas\Presets\Laravel', $preset);
+        $this->assertSame([
+            'namespace' => 'App',
+            'paths' => [
+                'src' => 'app',
+                'resources' => 'resources',
+            ],
+        ], $preset->config());
     }
 
     /** @test */
@@ -25,8 +37,20 @@ class CanvasTest extends TestCase
         $files = new Filesystem();
         $preset = Canvas::preset([
             'preset' => 'package',
+            'namespace' => 'Orchestra\Foundation',
+            'paths' => [
+                'src' => 'src',
+                'resources' => 'resources',
+            ],
         ], __DIR__, $files);
 
         $this->assertInstanceOf('Orchestra\Canvas\Presets\Package', $preset);
+        $this->assertSame([
+            'namespace' => 'Orchestra\Foundation',
+            'paths' => [
+                'src' => 'src',
+                'resources' => 'resources',
+            ],
+        ], $preset->config());
     }
 }

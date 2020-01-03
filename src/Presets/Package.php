@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Presets;
 
+use InvalidArgumentException;
+
 class Package extends Preset
 {
     /**
@@ -25,26 +27,14 @@ class Package extends Preset
     }
 
     /**
-     * Get the path to the resource directory.
-     */
-    public function resourcePath(): string
-    {
-        return \sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('paths.resource', 'resources')
-        );
-    }
-
-    /**
      * Preset namespace.
      */
     public function rootNamespace(): string
     {
-        $namespace = $this->config['namespace'] ?? null;
+        $namespace = \trim($this->config['namespace'] ?? '');
 
-        if (\is_null($namespace)) {
-            throw new InvalidArgumentException('Please configure namespace configuration under canvas.yaml');
+        if (empty($namespace)) {
+            throw new InvalidArgumentException("Please configure namespace configuration under 'canvas.yaml'");
         }
 
         return $namespace;

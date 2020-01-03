@@ -71,6 +71,18 @@ abstract class Preset
     }
 
     /**
+     * Get the path to the resource directory.
+     */
+    public function resourcePath(): string
+    {
+        return \sprintf(
+            '%s/%s',
+            $this->basePath(),
+            $this->config('paths.resource', 'resources')
+        );
+    }
+
+    /**
      * Get the path to the factory directory.
      */
     public function factoryPath(): string
@@ -115,11 +127,6 @@ abstract class Preset
      * Get the path to the source directory.
      */
     abstract public function sourcePath(): string;
-
-    /**
-     * Get the path to the resource directory.
-     */
-    abstract public function resourcePath(): string;
 
     /**
      * Preset namespace.

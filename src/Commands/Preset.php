@@ -59,6 +59,7 @@ class Preset extends Generator
     {
         return [
             'namespace' => $this->option('namespace'),
+            'preset' => $this->getNameInput(),
         ];
     }
 
