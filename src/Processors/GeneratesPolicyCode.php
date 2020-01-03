@@ -32,7 +32,7 @@ class GeneratesPolicyCode extends GeneratesCode
         }
 
         return \str_replace(
-            $this->rootNamespace().'User',
+            $this->rootNamespace().'\User',
             $model,
             $stub
         );
