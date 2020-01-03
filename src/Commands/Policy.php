@@ -56,6 +56,16 @@ class Policy extends Generator
     }
 
     /**
+     * Generator options.
+     */
+    public function generatorOptions(): array
+    {
+        return \array_merge(parent::generatorOptions(), [
+            'model' => $this->option('model'),
+        ]);
+    }
+
+    /**
      * Get the console command arguments.
      *
      * @return array
