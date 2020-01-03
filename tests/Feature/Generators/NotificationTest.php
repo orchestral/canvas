@@ -17,7 +17,9 @@ class NotificationTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Notifications;',
+            'use Illuminate\Notifications\Notification;',
             'class FooNotification extends Notification',
+            'return (new MailMessage)',
         ], 'app/Notifications/FooNotification.php');
     }
 
@@ -30,6 +32,7 @@ class NotificationTest extends TestCase
         $this->assertFileContains([
             'namespace App\Notifications;',
             'class FooNotification extends Notification',
+            "return (new MailMessage)->markdown('foo-notification')",
         ], 'app/Notifications/FooNotification.php');
 
         $this->assertFileContains([
