@@ -119,8 +119,32 @@ class EloquentTest extends TestCase
             'class Foo extends Model',
         ], 'app/Foo.php');
 
-        $this->assertFilenameNotExists('app/Htt/Controllers/FooController.php');
+        $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameExists('database/factories/FooFactory.php');
+        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+    }
+
+    /** @test */
+    public function it_can_generate_eloquent_with_migration_options_file()
+    {
+        $this->artisan('make:model', ['name' => 'Foo', '--migration' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App;',
+            'use Illuminate\Database\Eloquent\Model;',
+            'class Foo extends Model',
+        ], 'app/Foo.php');
+
+        $this->assertMigrationFileContains([
+            'use Illuminate\Database\Migrations\Migration;',
+            'class CreateFoosTable extends Migration',
+            'Schema::create(\'foos\', function (Blueprint $table) {',
+            'Schema::dropIfExists(\'foos\');',
+        ], 'create_foos_table.php');
+
+        $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
+        $this->assertFilenameNotExists('database/factories/FooFactory.php');
         $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
     }
 
@@ -136,7 +160,7 @@ class EloquentTest extends TestCase
             'class Foo extends Model',
         ], 'app/Foo.php');
 
-        $this->assertFilenameNotExists('app/Htt/Controllers/FooController.php');
+        $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
         $this->assertFilenameExists('database/seeds/FooSeeder.php');
     }
@@ -193,5 +217,29 @@ class EloquentTest extends TestCase
 
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
         $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+    }
+
+    /** @test */
+    public function it_can_generate_eloquent_with_all_options_file()
+    {
+        $this->artisan('make:model', ['name' => 'Foo', '--all' => true, '--no-interaction' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App;',
+            'use Illuminate\Database\Eloquent\Model;',
+            'class Foo extends Model',
+        ], 'app/Foo.php');
+
+        $this->assertMigrationFileContains([
+            'use Illuminate\Database\Migrations\Migration;',
+            'class CreateFoosTable extends Migration',
+            'Schema::create(\'foos\', function (Blueprint $table) {',
+            'Schema::dropIfExists(\'foos\');',
+        ], 'create_foos_table.php');
+
+        $this->assertFilenameExists('app/Http/Controllers/FooController.php');
+        $this->assertFilenameExists('database/factories/FooFactory.php');
+        $this->assertFilenameExists('database/seeds/FooSeeder.php');
     }
 }

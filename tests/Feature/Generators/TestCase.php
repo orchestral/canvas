@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Tests\Feature\Generators;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -33,6 +34,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->filesystem = $this->app['files'];
 
         $this->cleanUpFiles();
+        $this->cleanUpMigrationFiles();
     }
 
     /**
@@ -41,6 +43,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function tearDown(): void
     {
         $this->cleanUpFiles();
+        $this->cleanUpMigrationFiles();
 
         parent::tearDown();
 
@@ -61,6 +64,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
+    /**
+     * Assert file does contains data.
+     */
     protected function assertFileContains(array $contains, string $file, string $message = ''): void
     {
         $this->assertFilenameExists($file);
@@ -74,6 +80,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
         }
     }
 
+    /**
+     * Assert file doesn't contains data.
+     */
     protected function assertFileNotContains(array $contains, string $file, string $message = ''): void
     {
         $this->assertFilenameExists($file);
@@ -87,6 +96,34 @@ class TestCase extends \Orchestra\Testbench\TestCase
         }
     }
 
+    /**
+     * Assert file does contains data.
+     */
+    protected function assertMigrationFileContains(array $contains, string $file, string $message = ''): void
+    {
+        $haystack = $this->filesystem->get($this->getMigrationFile($file));
+
+        foreach ($contains as $needle) {
+            $this->assertStringContainsString($needle, $haystack, $message);
+        }
+    }
+
+    /**
+     * Assert file doesn't contains data.
+     */
+    protected function assertMigrationFileNotContains(array $contains, string $file, string $message = ''): void
+    {
+        $haystack = $this->filesystem->get($this->getMigrationFile($file));
+
+        foreach ($contains as $needle) {
+            $this->assertStringNotContainsString($needle, $haystack, $message);
+        }
+    }
+
+
+    /**
+     * Assert filename exists.
+     */
     protected function assertFilenameExists(string $file): void
     {
         $appFile = $this->app->basePath($file);
@@ -94,6 +131,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->assertTrue($this->filesystem->exists($appFile), "Assert file {$file} does exist");
     }
 
+    /**
+     * Assert filename not exists.
+     */
     protected function assertFilenameNotExists(string $file): void
     {
         $appFile = $this->app->basePath($file);
@@ -113,6 +153,29 @@ class TestCase extends \Orchestra\Testbench\TestCase
                 })
                 ->filter(function ($file) {
                     return $this->filesystem->exists($file);
+                })->all()
+        );
+    }
+
+    /**
+     * Removes generated migration files.
+     */
+    protected function getMigrationFile(string $filename): string
+    {
+        $migrationPath = $this->app->databasePath('migrations');
+
+        return $this->filesystem->glob("{$migrationPath}/*{$filename}")[0];
+    }
+
+    /**
+     * Removes generated migration files.
+     */
+    protected function cleanUpMigrationFiles(): void
+    {
+        $this->filesystem->delete(
+            Collection::make($this->filesystem->files($this->app->databasePath('migrations')))
+                ->filter(function ($file) {
+                    return Str::endsWith($file, '.php');
                 })->all()
         );
     }
