@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands\Routing;
 
 use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Processors\GeneratesControllerCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Controller extends Generator
@@ -27,6 +28,13 @@ class Controller extends Generator
      * @var string
      */
     protected $type = 'Controller';
+
+    /**
+     * Generator processor.
+     *
+     * @var string
+     */
+    protected $processor = GeneratesControllerCode::class;
 
     /**
      * Get the stub file for the generator.
