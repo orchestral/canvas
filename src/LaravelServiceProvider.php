@@ -26,8 +26,9 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                 $config = Yaml::parseFile($app->basePath('canvas.yaml'));
             } else {
                 $config['namespace'] = \trim($this->app->getNamespace(), '\\');
-                $config['user-auth-provider'] = $this->userProviderModel();
             }
+
+            $config['user-auth-provider'] = $this->userProviderModel();
 
             return Canvas::preset($config, $app->basePath(), $files);
         });

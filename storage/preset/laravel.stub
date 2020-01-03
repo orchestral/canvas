@@ -1,7 +1,6 @@
 preset: laravel
 
 namespace: DummyNamespace
-user-auth-provider: DummyNamespace\User
 
 model:
   namespace: DummyNamespace
