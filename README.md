@@ -80,7 +80,6 @@ Which will output the following as `canvas.yaml`:
 preset: laravel
 
 namespace: App
-user-auth-provider: App\User
 
 model:
   namespace: App
