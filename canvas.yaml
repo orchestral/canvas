@@ -1,27 +1,15 @@
-preset: laravel
+preset: package
 
-namespace: App
-user-auth-provider: App\User
+namespace: Orchestra\Canvas
 
 paths:
-  src: app
-  resource: resources
-
-factory:
-  path: database/factories
-
-migration:
-  path: database/migrations
-  prefix: ''
-
-seeder:
-  path: database/seeds
+  src: src
 
 console:
-  namespace: App\Console\Commands
+  namespace: Orchestra\Canvas\Commands
 
 provider:
-  namespace: App\Providers
+  namespace: Orchestra\Canvas
 
 testing:
-  namespace: Tests
+  namespace: Orchestra\Canvas\Tests

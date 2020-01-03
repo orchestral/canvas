@@ -205,7 +205,6 @@ trait InteractionsWithIO
      * Give the user a single choice from an array of answers.
      *
      * @param  string  $question
-     * @param  array  $choices
      * @param  string|null  $default
      * @param  mixed|null  $attempts
      * @param  bool|null  $multiple
@@ -227,7 +226,6 @@ trait InteractionsWithIO
      * @param  array  $headers
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $rows
      * @param  string  $tableStyle
-     * @param  array  $columnStyles
      *
      * @return void
      */
@@ -356,8 +354,6 @@ trait InteractionsWithIO
     /**
      * Set the input interface implementation.
      *
-     * @param  \Symfony\Component\Console\Input\InputInterface  $input
-     *
      * @return void
      */
     public function setInput(InputInterface $input)
@@ -367,8 +363,6 @@ trait InteractionsWithIO
 
     /**
      * Set the output interface implementation.
-     *
-     * @param  \Illuminate\Console\OutputStyle  $output
      *
      * @return void
      */

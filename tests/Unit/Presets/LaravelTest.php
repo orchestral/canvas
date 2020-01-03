@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Presets;
+namespace Orchestra\Canvas\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Presets\Laravel;

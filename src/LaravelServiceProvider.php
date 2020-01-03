@@ -2,9 +2,9 @@
 
 namespace Orchestra\Canvas;
 
+use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 
@@ -24,6 +24,9 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
             if ($files->exists($app->basePath('canvas.yaml'))) {
                 $config = Yaml::parseFile($app->basePath('canvas.yaml'));
+            } else {
+                $config['namespace'] = $this->app->getNamespace();
+                $config['user-auth-provider'] = $this->userProviderModel();
             }
 
             return Canvas::preset($config, $app->basePath(), $files);
@@ -40,28 +43,40 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         Artisan::starting(function ($artisan) {
             $preset = $this->app->make('orchestra.canvas');
 
-            $artisan->registerCommand(new Commands\Channel($preset));
-            $artisan->registerCommand(new Commands\Console($preset));
-            $artisan->registerCommand(new Commands\Event($preset));
-            $artisan->registerCommand(new Commands\Exception($preset));
-            $artisan->registerCommand(new Commands\Database\Eloquent($preset));
-            $artisan->registerCommand(new Commands\Database\Factory($preset));
-            $artisan->registerCommand(new Commands\Database\Migration($preset));
-            $artisan->registerCommand(new Commands\Database\Observer($preset));
-            $artisan->registerCommand(new Commands\Database\Seeder($preset));
-            $artisan->registerCommand(new Commands\Job($preset));
-            $artisan->registerCommand(new Commands\Listener($preset));
-            $artisan->registerCommand(new Commands\Mail($preset));
-            $artisan->registerCommand(new Commands\Notification($preset));
-            $artisan->registerCommand(new Commands\Policy($preset));
-            $artisan->registerCommand(new Commands\Provider($preset));
-            $artisan->registerCommand(new Commands\Request($preset));
-            $artisan->registerCommand(new Commands\Resource($preset));
-            $artisan->registerCommand(new Commands\Routing\Controller($preset));
-            $artisan->registerCommand(new Commands\Routing\Middleware($preset));
-            $artisan->registerCommand(new Commands\Rule($preset));
-            $artisan->registerCommand(new Commands\Testing($preset));
+            $artisan->add(new Commands\Channel($preset));
+            $artisan->add(new Commands\Console($preset));
+            $artisan->add(new Commands\Event($preset));
+            $artisan->add(new Commands\Exception($preset));
+            $artisan->add(new Commands\Database\Eloquent($preset));
+            $artisan->add(new Commands\Database\Factory($preset));
+            $artisan->add(new Commands\Database\Migration($preset));
+            $artisan->add(new Commands\Database\Observer($preset));
+            $artisan->add(new Commands\Database\Seeder($preset));
+            $artisan->add(new Commands\Job($preset));
+            $artisan->add(new Commands\Listener($preset));
+            $artisan->add(new Commands\Mail($preset));
+            $artisan->add(new Commands\Notification($preset));
+            $artisan->add(new Commands\Policy($preset));
+            $artisan->add(new Commands\Provider($preset));
+            $artisan->add(new Commands\Request($preset));
+            $artisan->add(new Commands\Resource($preset));
+            $artisan->add(new Commands\Routing\Controller($preset));
+            $artisan->add(new Commands\Routing\Middleware($preset));
+            $artisan->add(new Commands\Rule($preset));
+            $artisan->add(new Commands\Testing($preset));
         });
+    }
+
+    /**
+     * Get the model for the default guard's user provider.
+     */
+    protected function userProviderModel(): ?string
+    {
+        $guard = \config('auth.defaults.guard');
+
+        $provider = \config("auth.guards.{$guard}.provider");
+
+        return \config("auth.providers.{$provider}.model");
     }
 
     /**

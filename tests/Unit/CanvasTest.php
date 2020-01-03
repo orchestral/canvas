@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests;
+namespace Orchestra\Canvas\Tests\Unit;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Canvas;
