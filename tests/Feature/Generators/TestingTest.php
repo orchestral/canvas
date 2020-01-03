@@ -22,7 +22,6 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-
     /** @test */
     public function it_can_generate_unit_test_file()
     {

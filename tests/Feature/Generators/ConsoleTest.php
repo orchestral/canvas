@@ -18,7 +18,7 @@ class ConsoleTest extends TestCase
             'namespace App\Console\Commands;',
             'use Illuminate\Console\Command;',
             'class FooCommand extends Command',
-            'protected $signature = \'command:name\';'
+            'protected $signature = \'command:name\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 
@@ -32,7 +32,7 @@ class ConsoleTest extends TestCase
             'namespace App\Console\Commands;',
             'use Illuminate\Console\Command;',
             'class FooCommand extends Command',
-            'protected $signature = \'foo:bar\';'
+            'protected $signature = \'foo:bar\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 }

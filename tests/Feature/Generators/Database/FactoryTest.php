@@ -27,7 +27,6 @@ class FactoryTest extends TestCase
         ], 'database/factories/FooFactory.php');
     }
 
-
     /** @test */
     public function it_can_generate_factory_with_model_file()
     {

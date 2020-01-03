@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
 
-use Carbon\Carbon;
 use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class EloquentTest extends TestCase
@@ -165,7 +164,6 @@ class EloquentTest extends TestCase
         $this->assertFilenameExists('database/seeds/FooSeeder.php');
     }
 
-
     /** @test */
     public function it_can_generate_nested_eloquent_with_controller_options_file()
     {
@@ -187,7 +185,6 @@ class EloquentTest extends TestCase
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
         $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
     }
-
 
     /** @test */
     public function it_can_generate_nested_eloquent_with_resource_controller_options_file()

@@ -22,7 +22,6 @@ class ObserverTest extends TestCase
         ], 'app/Observers/FooObserver.php');
     }
 
-
     /** @test */
     public function it_can_generate_observer_with_model_file()
     {

@@ -2,8 +2,6 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert;
@@ -119,7 +117,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
             $this->assertStringNotContainsString($needle, $haystack, $message);
         }
     }
-
 
     /**
      * Assert filename exists.

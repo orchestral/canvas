@@ -84,7 +84,6 @@ class ListenerTest extends TestCase
         ], 'app/Listeners/HelloWorld.php');
     }
 
-
     /** @test */
     public function it_can_generate_queued_listener_with_laravel_event_file()
     {

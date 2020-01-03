@@ -26,7 +26,6 @@ class ExceptionTest extends TestCase
         ], 'app/Exceptions/FooException.php');
     }
 
-
     /** @test */
     public function it_can_generate_exception_file_with_only_report_options()
     {
@@ -62,7 +61,6 @@ class ExceptionTest extends TestCase
             'public function report()',
         ], 'app/Exceptions/FooException.php');
     }
-
 
     /** @test */
     public function it_can_generate_exception_file_with_report_and_render_options()

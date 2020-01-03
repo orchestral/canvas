@@ -19,7 +19,6 @@ class MigrationTest extends TestCase
         ], 'add_bar_to_foos_table.php');
     }
 
-
     /** @test */
     public function it_can_generate_migration_with_table_options_file()
     {
@@ -32,7 +31,6 @@ class MigrationTest extends TestCase
             'Schema::table(\'foobar\', function (Blueprint $table) {',
         ], 'add_bar_to_foos_table.php');
     }
-
 
     /** @test */
     public function it_can_generate_migration_for_create_using_keyword_file()
@@ -62,7 +60,7 @@ class MigrationTest extends TestCase
         ], 'foos_table.php');
     }
 
-     /** @test */
+    /** @test */
     public function it_cant_generate_migration_with_invalid_path_options_file()
     {
         $this->expectException('InvalidArgumentException');
