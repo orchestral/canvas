@@ -91,9 +91,14 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         $appFile = $this->app->basePath($file);
 
-        if (! $this->filesystem->exists($appFile)) {
-            $this->assertFalse($appFile, "Unable to find asserted file {$file}");
-        }
+        $this->assertTrue($this->filesystem->exists($appFile), "Assert file {$file} does exist");
+    }
+
+    protected function assertFilenameNotExists(string $file): void
+    {
+        $appFile = $this->app->basePath($file);
+
+        $this->assertTrue(! $this->filesystem->exists($appFile), "Assert file {$file} doesn't exist");
     }
 
     /**
