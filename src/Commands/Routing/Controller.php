@@ -2,8 +2,6 @@
 
 namespace Orchestra\Canvas\Commands\Routing;
 
-use Illuminate\Support\Str;
-use InvalidArgumentException;
 use Orchestra\Canvas\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -68,91 +66,24 @@ class Controller extends Generator
     }
 
     /**
-     * Build the class with the given name.
-     *
-     * Remove the base controller import if we are already in base namespace.
+     * Generator options.
      */
-    protected function buildClass(string $name): string
+    public function generatorOptions(): array
     {
-        $controllerNamespace = $this->getNamespace($name);
-
-        $replace = [];
-
-        if ($this->option('parent')) {
-            $replace = $this->buildParentReplacements();
-        }
-
-        if ($this->option('model')) {
-            $replace = $this->buildModelReplacements($replace);
-        }
-
-        $replace["use {$controllerNamespace}\Controller;\n"] = '';
-
-        return \str_replace(
-            \array_keys($replace), \array_values($replace), parent::buildClass($name)
-        );
-    }
-
-    /**
-     * Build the replacements for a parent controller.
-     */
-    protected function buildParentReplacements(): array
-    {
-        $parentModelClass = $this->parseModel($this->option('parent'));
-
-        if (! \class_exists($parentModelClass)) {
-            if ($this->confirm("A {$parentModelClass} model does not exist. Do you want to generate it?", true)) {
-                $this->call('make:model', ['name' => $parentModelClass]);
-            }
-        }
-
-        return [
-            'ParentDummyFullModelClass' => $parentModelClass,
-            'ParentDummyModelClass' => \class_basename($parentModelClass),
-            'ParentDummyModelVariable' => \lcfirst(\class_basename($parentModelClass)),
-        ];
-    }
-
-    /**
-     * Build the model replacement values.
-     *
-     * @return array
-     */
-    protected function buildModelReplacements(array $replace)
-    {
-        $modelClass = $this->parseModel($this->option('model'));
-
-        if (! \class_exists($modelClass)) {
-            if ($this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
-                $this->call('make:model', ['name' => $modelClass]);
-            }
-        }
-
-        return \array_merge($replace, [
-            'DummyFullModelClass' => $modelClass,
-            'DummyModelClass' => \class_basename($modelClass),
-            'DummyModelVariable' => \lcfirst(\class_basename($modelClass)),
+        return \array_merge(parent::generatorOptions(), [
+            'model' => $this->option('model'),
+            'parent' => $this->option('parent'),
         ]);
     }
 
     /**
-     * Get the fully-qualified model class name.
-     *
-     * @throws \InvalidArgumentException
+     * Create model.
      */
-    protected function parseModel(string $model): string
+    public function createModel(string $className): void
     {
-        if (\preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
-            throw new InvalidArgumentException('Model name contains invalid characters.');
+        if ($this->confirm("A {$className} model does not exist. Do you want to generate it?", true)) {
+            $this->call('make:model', ['name' => $className]);
         }
-
-        $model = \trim(\str_replace('/', '\\', $model), '\\');
-
-        if (! Str::startsWith($model, $rootNamespace = $this->preset->rootNamespace())) {
-            $model = $rootNamespace.$model;
-        }
-
-        return $model;
     }
 
     /**

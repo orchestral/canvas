@@ -8,14 +8,37 @@ use Orchestra\Canvas\Presets\Preset;
 
 class GeneratesCode
 {
+    /**
+     * The preset.
+     *
+     * @var \Orchestra\Canvas\Presets\Preset
+     */
     protected $preset;
 
+    /**
+     * The filesystem implementation.
+     *
+     * @var \Illuminate\Filesystem\Filesystem
+     */
     protected $files;
 
+    /**
+     * Processor listener implementation.
+     *
+     * @var \Orchestra\Canvas\Contracts\GeneratesCodeListener
+     */
     protected $listener;
 
+    /**
+     * Processor options.
+     *
+     * @var array
+     */
     protected $options = [];
 
+    /**
+     * Construct a new processor.
+     */
     public function __construct(Preset $preset, GeneratesCodeListener $listener)
     {
         $this->preset = $preset;
@@ -24,6 +47,11 @@ class GeneratesCode
         $this->options = $listener->generatorOptions();
     }
 
+    /**
+     * Execute generates code processor.
+     *
+     * @return mixed
+     */
     public function __invoke(string $name, bool $force = false)
     {
         $className = $this->qualifyClass($name);
