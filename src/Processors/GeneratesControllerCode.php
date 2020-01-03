@@ -40,7 +40,7 @@ class GeneratesControllerCode extends GeneratesCode
     {
         $parentModelClass = $this->parseModel($this->options['parent']);
 
-        if (! \class_exists($parentModelClass)) {
+        if (! \class_exists($parentModelClass) && \method_exists($this->listener, 'createModel')) {
             $this->listener->createModel($parentModelClass);
         }
 
@@ -58,10 +58,8 @@ class GeneratesControllerCode extends GeneratesCode
     {
         $modelClass = $this->parseModel($this->options['model']);
 
-        if (! \class_exists($modelClass)) {
-            if ($this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
-                $this->call('make:model', ['name' => $modelClass]);
-            }
+        if (! \class_exists($modelClass) && \method_exists($this->listener, 'createModel')) {
+            $this->listener->createModel($modelClass);
         }
 
         return \array_merge($replace, [
