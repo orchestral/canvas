@@ -69,6 +69,8 @@ mv storage/laravel/unit-test.stub storage/testing/unit.stub
 
 # Routing
 cp -rf vendor/laravel/framework/src/Illuminate/Routing/Console/stubs/*.stub storage/routing/
+
+## Fixes namespace.
 awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.api.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.api.stub
 awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.invokable.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.invokable.stub
 awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.model.api.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.model.api.stub
