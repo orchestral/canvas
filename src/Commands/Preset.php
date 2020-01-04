@@ -48,7 +48,7 @@ class Preset extends Generator
      */
     public function getStubFile(): string
     {
-        $name = $this->getNameInput();
+        $name = $this->generatorName();
 
         $directory = __DIR__.'/../../storage/canvas/preset';
 
@@ -66,7 +66,7 @@ class Preset extends Generator
     {
         return [
             'namespace' => $this->option('namespace'),
-            'preset' => $this->getNameInput(),
+            'preset' => $this->generatorName(),
         ];
     }
 

@@ -74,7 +74,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $name = $this->getNameInput();
+        $name = $this->generatorName();
         $force = $this->hasOption('force') && $this->option('force') === true;
 
         return $this->resolveGeneratesCodeProcessor()($name, $force);
@@ -109,13 +109,19 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
+     * Get the desired class name from the input.
+     */
+     public function generatorName(): string
+    {
+        return \trim($this->argument('name'));
+    }
+
+    /**
      * Generator options.
      */
     public function generatorOptions(): array
     {
-        return [
-            'name' => $this->getNameInput(),
-        ];
+        return [];
     }
 
     /**
@@ -128,13 +134,5 @@ abstract class Generator extends Command implements GeneratesCodeListener
             : GeneratesCode::class;
 
         return new $class($this->preset, $this);
-    }
-
-    /**
-     * Get the desired class name from the input.
-     */
-    protected function getNameInput(): string
-    {
-        return \trim($this->argument('name'));
     }
 }

@@ -29,6 +29,11 @@ interface GeneratesCodeListener
     public function getDefaultNamespace(string $rootNamespace): string;
 
     /**
+     * Get the desired class name.
+     */
+    public function generatorName(): string;
+
+    /**
      * Generator options.
      */
     public function generatorOptions(): array;
