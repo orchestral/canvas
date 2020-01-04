@@ -30,6 +30,6 @@ class Code extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/code.stub';
+        return __DIR__.'/../../storage/canvas/code.stub';
     }
 }
