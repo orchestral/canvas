@@ -65,6 +65,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             $artisan->add(new Commands\Routing\Middleware($preset));
             $artisan->add(new Commands\Rule($preset));
             $artisan->add(new Commands\Testing($preset));
+
+            $preset->addAdditionalCommands($artisan);
         });
     }
 

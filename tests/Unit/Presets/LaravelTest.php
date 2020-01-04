@@ -15,6 +15,9 @@ class LaravelTest extends TestCase
         $preset = new Laravel([], $directory, new Filesystem());
 
         $this->assertSame('laravel', $preset->name());
+        $this->assertTrue($preset->is('laravel'));
+        $this->assertFalse($preset->is('package'));
+
         $this->assertSame($directory, $preset->basePath());
 
         $this->assertSame('App', $preset->rootNamespace());
@@ -28,7 +31,6 @@ class LaravelTest extends TestCase
         $this->assertSame("{$directory}/database/seeds", $preset->seederPath());
     }
 
-
     /** @test */
     public function it_can_configure_model_namespace()
     {
@@ -39,7 +41,6 @@ class LaravelTest extends TestCase
         $this->assertSame('App\Model', $preset->modelNamespace());
         $this->assertSame('App\Providers', $preset->providerNamespace());
     }
-
 
     /** @test */
     public function it_can_configure_provider_namespace()

@@ -1,0 +1,55 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchestra\Canvas\Commands\Generator;
+
+class DummyClass extends Generator
+{
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $signature = 'dummy:command';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Create a new class';
+
+    /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Class';
+
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getStubFile(): string
+    {
+        // Implement path to stub file.
+    }
+
+    /**
+     * Get the default namespace for the class.
+     */
+    public function getDefaultNamespace(string $rootNamespace): string
+    {
+        return $rootNamespace;
+    }
+
+    /**
+     * Generator options.
+     */
+    public function generatorOptions(): array
+    {
+        return [
+            'name' => $this->getNameInput(),
+        ];
+    }
+}

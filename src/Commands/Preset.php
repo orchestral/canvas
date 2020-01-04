@@ -50,7 +50,7 @@ class Preset extends Generator
     {
         $name = $this->getNameInput();
 
-        $directory = __DIR__.'/../../storage/preset';
+        $directory = __DIR__.'/../../storage/canvas/preset';
 
         if (! $this->files->exists("{$directory}/{$name}.stub")) {
             $name = 'laravel';

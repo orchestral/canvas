@@ -18,8 +18,6 @@ mv storage/laravel/pivot.model.stub storage/database/eloquent/pivot.model.stub
 
 ## Event
 rm -rf storage/event/*.stub
-mv storage/laravel/event-handler-queued.stub storage/event/handler-queued.stub
-mv storage/laravel/event-handler.stub storage/event/handler.stub
 mv storage/laravel/event.stub storage/event/event.stub
 
 ## Exception
