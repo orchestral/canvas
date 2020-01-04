@@ -76,11 +76,8 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         $name = $this->getNameInput();
         $force = $this->hasOption('force') && $this->option('force') === true;
-        $class = $this->processor;
 
-        $processor = new $class($this->preset, $this);
-
-        return $processor($name, $force);
+        return $this->resolveGeneratesCodeProcessor()($name, $force);
     }
 
     /**
@@ -119,6 +116,18 @@ abstract class Generator extends Command implements GeneratesCodeListener
         return [
             'name' => $this->getNameInput(),
         ];
+    }
+
+    /**
+     * Resolve generates code processor.
+     */
+    protected function resolveGeneratesCodeProcessor(): GeneratesCode
+    {
+        $class = \property_exists($this, 'processor')
+            ? $this->processor
+            : GeneratesCode::class;
+
+        return new $class($this->preset, $this);
     }
 
     /**
