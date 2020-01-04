@@ -15,6 +15,9 @@ class PackageTest extends TestCase
         $preset = new Package(['namespace' => 'FooBar'], $directory, new Filesystem());
 
         $this->assertSame('package', $preset->name());
+        $this->assertTrue($preset->is('package'));
+        $this->assertFalse($preset->is('laravel'));
+
         $this->assertSame($directory, $preset->basePath());
 
         $this->assertSame('FooBar', $preset->rootNamespace());

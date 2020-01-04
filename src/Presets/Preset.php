@@ -40,6 +40,14 @@ abstract class Preset
     }
 
     /**
+     * Check if preset name equal to $name.
+     */
+    public function is(string $name): bool
+    {
+        return $this->name() === $name;
+    }
+
+    /**
      * Get configuration.
      *
      * @param  mixed|null  $default

@@ -15,6 +15,9 @@ class LaravelTest extends TestCase
         $preset = new Laravel([], $directory, new Filesystem());
 
         $this->assertSame('laravel', $preset->name());
+        $this->assertTrue($preset->is('laravel'));
+        $this->assertFalse($preset->is('package'));
+
         $this->assertSame($directory, $preset->basePath());
 
         $this->assertSame('App', $preset->rootNamespace());
