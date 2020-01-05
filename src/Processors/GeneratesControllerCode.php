@@ -58,7 +58,6 @@ class GeneratesControllerCode extends GeneratesCode
     {
         $modelClass = $this->parseModel($this->options['model']);
 
-
         if (! \class_exists($modelClass) && \method_exists($this->listener, 'createModel')) {
             $this->listener->createModel($modelClass);
         }
