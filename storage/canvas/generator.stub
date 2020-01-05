@@ -49,7 +49,7 @@ class DummyClass extends Generator
     public function generatorOptions(): array
     {
         return [
-            'name' => $this->getNameInput(),
+            'name' => $this->generatorName(),
         ];
     }
 }
