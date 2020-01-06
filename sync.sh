@@ -54,6 +54,9 @@ rm -rf storage/policy/*.stub
 mv storage/laravel/policy.stub storage/policy/policy.stub
 mv storage/laravel/policy.plain.stub storage/policy/plain.stub
 
+## Provider
+mv storage/laravel/provider.stub storage/provider/provider.stub
+
 ## Resource
 rm -rf storage/resource/*.stub
 mv storage/laravel/resource-collection.stub storage/resource/collection.stub
