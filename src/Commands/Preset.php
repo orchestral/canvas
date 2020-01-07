@@ -73,7 +73,7 @@ class Preset extends Generator
     /**
      * Get the desired class name from the input.
      */
-    protected function generatorName(): string
+    public function generatorName(): string
     {
         return Str::lower(\trim($this->argument('name')));
     }
