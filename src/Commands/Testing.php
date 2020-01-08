@@ -66,6 +66,17 @@ class Testing extends Generator
     }
 
     /**
+     * Generator options.
+     */
+    public function generatorOptions(): array
+    {
+        return \array_merge(parent::generatorOptions(), [
+            'unit' => $this->option('unit'),
+            'feature' => ! $this->option('unit'),
+        ]);
+    }
+
+    /**
      * Get the console command options.
      *
      * @return array

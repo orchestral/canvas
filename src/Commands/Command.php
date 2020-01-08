@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CallsCommands;
 use Illuminate\Console\OutputStyle;
 use Orchestra\Canvas\Presets\Preset;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class Command extends \Symfony\Component\Console\Command\Command
 {
-    use Concerns\CallOtherCommands,
+    use CallsCommands,
         Concerns\InteractionsWithIO;
 
     /**
@@ -68,6 +69,17 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
                 \call_user_func_array([$this, 'addOption'], $options);
             }
         }
+    }
+
+    /**
+     * Resolve the console command instance for the given command.
+     *
+     * @param  \Symfony\Component\Console\Command\Command|string  $command
+     * @return \Symfony\Component\Console\Command\Command
+     */
+    protected function resolveCommand($command)
+    {
+        return $this->getApplication()->find($command);
     }
 
     /**

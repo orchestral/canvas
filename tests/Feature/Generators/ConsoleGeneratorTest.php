@@ -46,7 +46,6 @@ class ConsoleGeneratorTest extends TestCase
         ], 'app/Console/Commands/FooCommand.php');
     }
 
-
     /** @test */
     public function it_can_generate_command_file_with_command_name_without_make_prefix()
     {
