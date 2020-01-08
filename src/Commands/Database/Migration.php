@@ -46,7 +46,7 @@ class Migration extends Command
                 ->addOption('realpath', null, InputOption::VALUE_NONE, 'Indicate any provided migration file paths are pre-resolved absolute paths')
                 ->addOption('fullpath', null, InputOption::VALUE_NONE, 'Output the full path of the migration');
 
-        $this->creator = new MigrationCreator($this->preset);
+        $this->creator = new MigrationCreator($this->preset, $this->preset->basePath().'/stubs');
 
         $this->composer = new Composer($this->preset->filesystem(), $this->preset->basePath());
     }

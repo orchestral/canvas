@@ -134,7 +134,7 @@ class Eloquent extends Generator
         $directory = __DIR__.'/../../../storage/database/eloquent';
 
         if ($this->option('pivot')) {
-            return "{$directory}/pivot.model.stub";
+            return "{$directory}/pivot.stub";
         }
 
         return "{$directory}/model.stub";
