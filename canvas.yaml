@@ -13,3 +13,7 @@ provider:
 
 testing:
   namespace: Orchestra\Canvas\Tests
+
+generators:
+  - Orchestra\Canvas\Commands\Code
+  - Orchestra\Canvas\Commands\ConsoleGenerator
