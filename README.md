@@ -92,7 +92,7 @@ model:
 
 You can run the following command to create the file:
 
-    ./vendor/bin/canvas preset laravel
+    ./vendor/bin/canvas preset package
 
 Which will output the following as `canvas.yaml`:
 
