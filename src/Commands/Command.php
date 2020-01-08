@@ -75,6 +75,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      * Resolve the console command instance for the given command.
      *
      * @param  \Symfony\Component\Console\Command\Command|string  $command
+     *
      * @return \Symfony\Component\Console\Command\Command
      */
     protected function resolveCommand($command)
