@@ -97,7 +97,7 @@ class Migration extends Command
     /**
      * Write the migration file to disk.
      */
-    protected function writeMigration(string $name, string $table, bool $create): string
+    protected function writeMigration(string $name, ?string $table, bool $create): string
     {
         $file = $this->creator->create(
             $name, $this->getMigrationPath(), $table, $create
