@@ -24,7 +24,7 @@ class ConsoleGeneratorTest extends TestCase
             'namespace App\Console\Commands;',
             'use Orchestra\Canvas\Core\Commands\Generator;',
             'class FooCommand extends Generator',
-            'protected $signature = \'make:name\';',
+            'protected $name = \'make:name\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 
@@ -42,7 +42,7 @@ class ConsoleGeneratorTest extends TestCase
             'namespace App\Console\Commands;',
             'use Orchestra\Canvas\Core\Commands\Generator;',
             'class FooCommand extends Generator',
-            'protected $signature = \'make:foobar\';',
+            'protected $name = \'make:foobar\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 
@@ -60,7 +60,7 @@ class ConsoleGeneratorTest extends TestCase
             'namespace App\Console\Commands;',
             'use Orchestra\Canvas\Core\Commands\Generator;',
             'class FooCommand extends Generator',
-            'protected $signature = \'make:foobar\';',
+            'protected $name = \'make:foobar\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 }

@@ -9,10 +9,14 @@ trait CommandsProvider
     /**
      * Setup preset for laravel.
      *
-     * @return \Orchestra\Canvas\Core\Presets\Laravel
+     * @return \Orchestra\Canvas\Core\Presets\Preset
      */
-    protected function presetForLaravel(Application $app): Presets\Laravel
+    protected function presetForLaravel(Application $app): Presets\Preset
     {
+        if ($app->bound('orchestra.canvas')) {
+            return $app->make('orchestra.canvas');
+        }
+
         return new Presets\Laravel([
             'preset' => 'laravel',
             'namespace' => \trim($this->app->getNamespace(), '\\'),

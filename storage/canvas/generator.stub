@@ -11,7 +11,7 @@ class DummyClass extends Generator
      *
      * @var string
      */
-    protected $signature = 'dummy:command';
+    protected $name = 'dummy:command';
 
     /**
      * The console command description.
