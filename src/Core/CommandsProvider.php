@@ -4,7 +4,7 @@ namespace Orchestra\Canvas\Core;
 
 use Illuminate\Contracts\Foundation\Application;
 
-trait CommandProvider
+trait CommandsProvider
 {
     /**
      * Setup preset for laravel.

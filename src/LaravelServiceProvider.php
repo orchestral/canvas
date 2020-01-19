@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    use Core\CommandProvider;
+    use Core\CommandsProvider;
 
     /**
      * Register services.
