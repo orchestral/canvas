@@ -2,12 +2,12 @@
 
 namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Core\CommandProvider;
+use Orchestra\Canvas\Core\CommandsProvider;
 use Orchestra\Testbench\TestCase;
 
-class CommandProviderTest extends TestCase
+class CommandsProviderTest extends TestCase
 {
-    use CommandProvider;
+    use CommandsProvider;
 
     /** @test */
     public function it_can_setup_laravel_preset()
