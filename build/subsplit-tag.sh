@@ -11,4 +11,4 @@ else
     git subsplit init git@github.com:orchestral/canvas.git
 fi
 
-git subsplit publish --heads="4.x" --tags=$1 src/Core:git@github.com:orchestral/canvas-core.git
+git subsplit publish --heads="master" --tags=$1 src/Core:git@github.com:orchestral/canvas-core.git
