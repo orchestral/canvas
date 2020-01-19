@@ -6,4 +6,4 @@ else
     git subsplit init git@github.com:orchestral/canvas.git
 fi
 
-git subsplit publish --heads="master" src/Core:git@github.com:orchestral/canvas-core.git
+git subsplit publish --heads="4.x" src/Core:git@github.com:orchestral/canvas-core.git
