@@ -20,9 +20,7 @@
     },
     "require": {
         "illuminate/console": "^6.10",
-        "illuminate/filesystem": "^6.10",
-        "symfony/console": "^4.2 || ^5.0",
-        "symfony/yaml": "^4.2 || ^5.0"
+        "illuminate/filesystem": "^6.10"
     },
     "config": {
         "sort-packages": true
