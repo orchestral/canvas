@@ -22,7 +22,7 @@
             <directory suffix=".php">src/</directory>
 
             <exclude>
-                <directory>src/Commands/Concerns</directory>
+                <directory>src/Core/Commands/Concerns</directory>
             </exclude>
         </whitelist>
     </filter>
