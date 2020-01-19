@@ -2,9 +2,9 @@
 
 namespace {{ namespace }};
 
-use PHPUnit\Framework\TestCase;
+use NamespacedDummyTestCase;
 
-class {{ class }} extends TestCase
+class {{ class }} extends DummyTestCase
 {
     /**
      * A basic unit test example.

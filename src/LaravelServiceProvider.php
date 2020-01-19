@@ -5,6 +5,7 @@ namespace Orchestra\Canvas;
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 
@@ -27,6 +28,11 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             if ($files->exists($app->basePath('canvas.yaml'))) {
                 $config = Yaml::parseFile($app->basePath('canvas.yaml'));
             } else {
+                Arr::set($config, 'testing.extends', [
+                    'unit' => 'PHPUnit\Framework\TestCase',
+                    'feature' => 'Tests\TestCase',
+                ]);
+
                 $config['namespace'] = \trim($this->app->getNamespace(), '\\');
             }
 
