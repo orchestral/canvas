@@ -4,9 +4,9 @@ namespace DummyNamespace;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use NamespacedDummyTestCase;
 
-class DummyClass extends TestCase
+class DummyClass extends DummyTestCase
 {
     /**
      * A basic feature test example.

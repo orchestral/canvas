@@ -62,12 +62,6 @@ rm -rf storage/resource/*.stub
 mv storage/laravel/resource-collection.stub storage/resource/collection.stub
 mv storage/laravel/resource.stub storage/resource/resource.stub
 
-## Testing
-rm -f storage/testing/feature.stub
-rm -f storage/testing/unit.stub
-mv storage/laravel/test.stub storage/testing/feature.stub
-mv storage/laravel/unit-test.stub storage/testing/unit.stub
-
 # Routing
 cp -rf vendor/laravel/framework/src/Illuminate/Routing/Console/stubs/*.stub storage/routing/
 
@@ -82,3 +76,13 @@ awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storag
 awk '{sub(/use DummyRootNamespaceHttp/,"use DummyRootNamespace\\Http")}1' storage/routing/controller.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.stub
 
 
+
+## Testing
+rm -f storage/testing/feature.stub
+rm -f storage/testing/unit.stub
+mv storage/laravel/test.stub storage/testing/feature.stub
+mv storage/laravel/unit-test.stub storage/testing/unit.stub
+awk '{sub(/use PHPUnit\\Framework\\TestCase/,"use NamespacedDummyTestCase")}1' storage/testing/unit.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/unit.stub
+awk '{sub(/class DummyClass extends TestCase/,"class DummyClass extends DummyTestCase")}1' storage/testing/unit.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/unit.stub
+awk '{sub(/use Tests\\TestCase/,"use NamespacedDummyTestCase")}1' storage/testing/feature.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/feature.stub
+awk '{sub(/class DummyClass extends TestCase/,"class DummyClass extends DummyTestCase")}1' storage/testing/feature.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/feature.stub

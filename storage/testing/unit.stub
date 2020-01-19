@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use PHPUnit\Framework\TestCase;
+use NamespacedDummyTestCase;
 
-class DummyClass extends TestCase
+class DummyClass extends DummyTestCase
 {
     /**
      * A basic unit test example.
