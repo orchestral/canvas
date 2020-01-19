@@ -4,17 +4,21 @@ namespace Orchestra\Canvas\Processors;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\GeneratesCode;
+use Orchestra\Canvas\Core\Presets\Laravel;
 
 class GeneratesTestingCode extends GeneratesCode
 {
-     /**
+    /**
      * Build the class with the given name.
      */
     protected function buildClass(string $name): string
     {
         $testCase = $this->options['unit']
             ? $this->preset->config('testing.extends.unit', 'PHPUnit\Framework\TestCase')
-            : $this->preset->config('testing.extends.feature', 'Orchestra\Testbench\TestCase');
+            : $this->preset->config(
+                'testing.extends.feature',
+                $this->preset instanceof Laravel ? 'Tests\TestCase' : 'Orchestra\Testbench\TestCase'
+            );
 
         return $this->replaceTestCase(parent::buildClass($name), $testCase);
     }

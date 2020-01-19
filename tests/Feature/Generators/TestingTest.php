@@ -57,7 +57,6 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-
     /** @test */
     public function it_can_generate_feature_test_file_on_laravel_preset_with_different_testcase()
     {
@@ -110,7 +109,6 @@ class TestingTest extends TestCase
             'class FooTest extends UnitTestCase',
         ], 'tests/Unit/FooTest.php');
     }
-
 
     /** @test */
     public function it_can_generate_feature_test_file_on_package_preset_with_different_testcase()
