@@ -9,7 +9,6 @@ trait CommandProvider
     /**
      * Setup preset for laravel.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return \Orchestra\Canvas\Core\Presets\Laravel
      */
     protected function presetForLaravel(Application $app): Presets\Laravel
