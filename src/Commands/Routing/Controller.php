@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Commands\Routing;
 
-use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Core\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesControllerCode;
 use Symfony\Component\Console\Input\InputOption;
 

@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
 
-use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Core\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class ObserverTest extends TestCase

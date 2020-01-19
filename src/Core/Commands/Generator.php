@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Commands;
+namespace Orchestra\Canvas\Core\Commands;
 
-use Orchestra\Canvas\Contracts\GeneratesCodeListener;
-use Orchestra\Canvas\Presets\Preset;
-use Orchestra\Canvas\Processors\GeneratesCode;
+use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
+use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Canvas\Core\GeneratesCode;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

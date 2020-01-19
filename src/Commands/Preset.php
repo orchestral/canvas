@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
+use Orchestra\Canvas\Core\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesPresetConfiguration;
 use Symfony\Component\Console\Input\InputOption;
 

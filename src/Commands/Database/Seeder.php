@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Composer;
-use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Core\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesSeederCode;
 
 class Seeder extends Generator

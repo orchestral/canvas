@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-use Orchestra\Canvas\Presets\Package;
+use Orchestra\Canvas\Core\Presets\Package;
 
 class TestingTest extends TestCase
 {

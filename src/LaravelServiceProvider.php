@@ -5,10 +5,9 @@ namespace Orchestra\Canvas;
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 
-class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
+class LaravelServiceProvider extends Core\CommandServiceProvider implements DeferrableProvider
 {
     /**
      * Register services.
@@ -68,18 +67,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
             $preset->addAdditionalCommands($artisan);
         });
-    }
-
-    /**
-     * Get the model for the default guard's user provider.
-     */
-    protected function userProviderModel(): ?string
-    {
-        $guard = \config('auth.defaults.guard');
-
-        $provider = \config("auth.guards.{$guard}.provider");
-
-        return \config("auth.providers.{$provider}.model");
     }
 
     /**

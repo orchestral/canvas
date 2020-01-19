@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Processors;
 
+use Orchestra\Canvas\Core\GeneratesCode;
+
 class GeneratesEventCode extends GeneratesCode
 {
     /**

@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Processors;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Orchestra\Canvas\Core\GeneratesCode;
 
 class GeneratesControllerCode extends GeneratesCode
 {

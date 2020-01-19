@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Core\Presets\Laravel;
 
 class CodeTest extends TestCase
 {

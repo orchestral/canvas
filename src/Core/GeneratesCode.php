@@ -1,10 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Processors;
+namespace Orchestra\Canvas\Core;
 
 use Illuminate\Support\Str;
-use Orchestra\Canvas\Contracts\GeneratesCodeListener;
-use Orchestra\Canvas\Presets\Preset;
 
 class GeneratesCode
 {
@@ -39,7 +37,7 @@ class GeneratesCode
     /**
      * Construct a new processor.
      */
-    public function __construct(Preset $preset, GeneratesCodeListener $listener)
+    public function __construct(Presets\Preset $preset, Contracts\GeneratesCodeListener $listener)
     {
         $this->preset = $preset;
         $this->files = $preset->filesystem();

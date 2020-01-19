@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Commands\Concerns;
+namespace Orchestra\Canvas\Core\Commands\Concerns;
 
 use Illuminate\Console\OutputStyle;
 use Illuminate\Contracts\Support\Arrayable;
