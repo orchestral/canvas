@@ -3,9 +3,8 @@
 namespace Orchestra\Canvas\Core;
 
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\ServiceProvider;
 
-abstract class CommandServiceProvider extends ServiceProvider
+trait CommandProvider
 {
     /**
      * Setup preset for laravel.

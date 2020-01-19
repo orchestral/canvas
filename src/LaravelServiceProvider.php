@@ -5,10 +5,13 @@ namespace Orchestra\Canvas;
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 
-class LaravelServiceProvider extends Core\CommandServiceProvider implements DeferrableProvider
+class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    use Core\CommandProvider;
+
     /**
      * Register services.
      *
