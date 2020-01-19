@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Contracts;
+namespace Orchestra\Canvas\Core\Contracts;
 
 interface GeneratesCodeListener
 {

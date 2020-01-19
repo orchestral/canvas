@@ -10,6 +10,8 @@ use Symfony\Component\Yaml\Yaml;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    use Core\CommandProvider;
+
     /**
      * Register services.
      *
@@ -68,18 +70,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
             $preset->addAdditionalCommands($artisan);
         });
-    }
-
-    /**
-     * Get the model for the default guard's user provider.
-     */
-    protected function userProviderModel(): ?string
-    {
-        $guard = \config('auth.defaults.guard');
-
-        $provider = \config("auth.guards.{$guard}.provider");
-
-        return \config("auth.providers.{$provider}.model");
     }
 
     /**

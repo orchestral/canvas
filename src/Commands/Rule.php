@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Core\Commands\Generator;
+
 class Rule extends Generator
 {
     /**

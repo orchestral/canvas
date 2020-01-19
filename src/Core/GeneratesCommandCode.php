@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Processors;
+namespace Orchestra\Canvas\Core;
 
 class GeneratesCommandCode extends GeneratesCode
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Presets;
+namespace Orchestra\Canvas\Tests\Core\Presets;
 
 use Illuminate\Filesystem\Filesystem;
-use Orchestra\Canvas\Presets\Package;
+use Orchestra\Canvas\Core\Presets\Package;
 use PHPUnit\Framework\TestCase;
 
 class PackageTest extends TestCase

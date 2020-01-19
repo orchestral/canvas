@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators\Routing;
 
-use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Core\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class ControllerTest extends TestCase

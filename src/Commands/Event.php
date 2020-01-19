@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Core\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesEventCode;
 
 class Event extends Generator

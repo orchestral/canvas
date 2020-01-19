@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Commands\Database;
 
-use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Core\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesObserverCode;
 use Symfony\Component\Console\Input\InputOption;
 

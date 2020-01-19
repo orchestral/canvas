@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Commands;
+namespace Orchestra\Canvas\Core\Commands;
 
 use Illuminate\Console\Concerns\CallsCommands;
 use Illuminate\Console\OutputStyle;
-use Orchestra\Canvas\Presets\Preset;
+use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

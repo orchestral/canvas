@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Core\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesExceptionCode;
 use Symfony\Component\Console\Input\InputOption;
 

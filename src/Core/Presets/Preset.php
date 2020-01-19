@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Presets;
+namespace Orchestra\Canvas\Core\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;

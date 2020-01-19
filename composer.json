@@ -40,6 +40,9 @@
         "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^8.4"
     },
+    "replace": {
+        "orchestra/canvas-core": "self.version"
+    },
     "config": {
         "sort-packages": true
     },

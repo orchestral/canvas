@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Unit\Presets;
+namespace Orchestra\Canvas\Tests\Unit\Core\Presets;
 
 use Illuminate\Filesystem\Filesystem;
-use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Core\Presets\Laravel;
 use PHPUnit\Framework\TestCase;
 
 class LaravelTest extends TestCase

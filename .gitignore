@@ -2,6 +2,9 @@
 composer.lock
 vendor/*
 
+# Subsplit
+/.subsplit/
+
 # PHPUnit
 /coverage/*
 /.phpunit.result.cache

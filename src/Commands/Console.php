@@ -2,7 +2,8 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Orchestra\Canvas\Processors\GeneratesCommandCode;
+use Orchestra\Canvas\Core\Commands\Generator;
+use Orchestra\Canvas\Core\GeneratesCommandCode;
 use Symfony\Component\Console\Input\InputOption;
 
 class Console extends Generator

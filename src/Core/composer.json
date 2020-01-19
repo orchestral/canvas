@@ -1,0 +1,47 @@
+{
+    "name": "orchestra/canvas-core",
+    "description": "Code Generators Builder for Laravel Applications and Packages",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        },
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Orchestra\\Canvas\\Core\\": ""
+        }
+    },
+    "require": {
+        "illuminate/console": "^6.10",
+        "illuminate/database": "^6.10",
+        "illuminate/filesystem": "^6.10",
+        "illuminate/support": "^6.10",
+        "symfony/console": "^4.2 || ^5.0",
+        "symfony/yaml": "^4.2 || ^5.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^6.10",
+        "mockery/mockery": "^1.3.1",
+        "orchestra/testbench": "^4.4",
+        "phpunit/phpunit": "^8.4"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "support": {
+        "issues": "https://github.com/orchestral/canvas/issues"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "5.0-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
