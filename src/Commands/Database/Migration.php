@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Commands\Command;
-use Orchestra\Canvas\Core\Database\MigrationCreator;
+use Orchestra\Canvas\Database\MigrationCreator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

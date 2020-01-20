@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Database;
+namespace Orchestra\Canvas\Database;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -54,6 +54,6 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      */
     public function stubPath()
     {
-        return __DIR__.'/../../../storage/database/migrations';
+        return __DIR__.'/../../storage/database/migrations';
     }
 }
