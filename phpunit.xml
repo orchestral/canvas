@@ -12,7 +12,7 @@
 >
 
     <testsuites>
-        <testsuite name="Canvas Core Test Suite">
+        <testsuite name="Canvas Test Suite">
             <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
@@ -20,10 +20,6 @@
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="false">
             <directory suffix=".php">src/</directory>
-
-            <exclude>
-                <directory>src/Commands/Concerns</directory>
-            </exclude>
         </whitelist>
     </filter>
 
