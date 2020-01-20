@@ -12,6 +12,7 @@ env:
   matrix:
     - setup=basic
     - setup=stable
+    - setup=lowest
 
 before_install:
   - travis_retry composer self-update
