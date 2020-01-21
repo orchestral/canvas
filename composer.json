@@ -30,7 +30,7 @@
         "illuminate/database": "^7.0",
         "illuminate/support": "^7.0",
         "orchestra/canvas-core": "^5.0",
-        "symfony/yaml": "^4.2 || ^5.0"
+        "symfony/yaml": "^4.3 || ^5.0"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0"
