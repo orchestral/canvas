@@ -1,7 +1,7 @@
 Code Generators for Laravel Applications and Packages
 ==============
 
-**Canvas** replicates of all the `make` artisan commands available in your basic Laravel application. It allows everyone to use it: 
+**Canvas** replicates all of the `make` artisan commands available in your basic Laravel application. It allows everyone to use it: 
 
 * outside of Laravel installation such as when building Laravel packages.
 * with Laravel by allowing few customization to the stub resolved class and namespace.
