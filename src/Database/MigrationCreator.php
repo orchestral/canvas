@@ -49,7 +49,6 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
             $this->files->makeDirectory($path, 0755, true, true);
         }
 
-
         return parent::create($name, $path, $table, $create);
     }
 
