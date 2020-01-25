@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Database;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Orchestra\Canvas\Core\Presets\Laravel;
 use Orchestra\Canvas\Core\Presets\Preset;
 
 class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
@@ -41,8 +42,13 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
         $name = \trim(\implode('_', [Str::slug($this->preset->config('migration.prefix', ''), '_'), $name]), '_');
 
         if (! $this->files->isDirectory($path)) {
-            throw new InvalidArgumentException("Path {$path} doesn't exists.");
+            if ($this->preset instanceof Laravel) {
+                throw new InvalidArgumentException("Path {$path} doesn't exists.");
+            }
+
+            $this->files->makeDirectory($path, 0755, true, true);
         }
+
 
         return parent::create($name, $path, $table, $create);
     }
