@@ -217,6 +217,34 @@ class EloquentTest extends TestCase
     }
 
     /** @test */
+    public function it_can_generate_nested_eloquent_with_api_controller_options_file()
+    {
+        $this->artisan('make:model', ['name' => 'Foo/Bar', '--api' => true, '--no-interaction' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Foo;',
+            'use Illuminate\Database\Eloquent\Model;',
+            'class Bar extends Model',
+        ], 'app/Foo/Bar.php');
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use App\Foo\Bar;',
+            'use Illuminate\Http\Request;',
+            'class BarController extends Controller',
+            'public function index()',
+            'public function store(Request $request)',
+            'public function show(Bar $bar)',
+            'public function update(Request $request, Bar $bar)',
+            'public function destroy(Bar $bar)',
+        ], 'app/Http/Controllers/BarController.php');
+
+        $this->assertFilenameNotExists('database/factories/FooFactory.php');
+        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+    }
+
+    /** @test */
     public function it_can_generate_eloquent_with_all_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--all' => true, '--no-interaction' => true])

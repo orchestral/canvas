@@ -64,7 +64,7 @@ class Eloquent extends Generator
             $this->createSeeder($className);
         }
 
-        if ($this->option('controller') || $this->option('resource')) {
+        if ($this->option('controller') || $this->option('resource') || $this->option('api')) {
             $this->createController($className);
         }
 
@@ -120,10 +120,11 @@ class Eloquent extends Generator
     {
         $controller = Str::studly(\class_basename($this->argument('name')));
 
-        $this->call('make:controller', [
+        $this->call('make:controller', \array_filter([
             'name' => "{$controller}Controller",
-            '--model' => $this->option('resource') ? $eloquentClassName : null,
-        ]);
+            '--model' => $this->option('resource') || $this->option('api') ? $eloquentClassName : null,
+            '--api' => $this->option('api'),
+        ]));
     }
 
     /**
@@ -156,6 +157,7 @@ class Eloquent extends Generator
             ['seed', 's', InputOption::VALUE_NONE, 'Create a new seeder file for the model'],
             ['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom intermediate table model'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Indicates if the generated controller should be a resource controller'],
+            ['api', null, InputOption::VALUE_NONE, 'Indicates if the generated controller should be an api controller'],
         ];
     }
 }
