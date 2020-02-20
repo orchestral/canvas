@@ -6,12 +6,12 @@ Code Generators for Laravel Applications and Packages
 * outside of Laravel installation such as when building Laravel packages.
 * with Laravel by allowing few customization to the stub resolved class and namespace.
 
-[![Build Status](https://travis-ci.org/orchestral/canvas.svg?branch=4.x)](https://travis-ci.org/orchestral/canvas)
+[![Build Status](https://travis-ci.org/orchestral/canvas.svg?branch=5.x)](https://travis-ci.org/orchestral/canvas)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/canvas/v/stable)](https://packagist.org/packages/orchestra/canvas)
 [![Total Downloads](https://poser.pugx.org/orchestra/canvas/downloads)](https://packagist.org/packages/orchestra/canvas)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/canvas/v/unstable)](https://packagist.org/packages/orchestra/canvas)
 [![License](https://poser.pugx.org/orchestra/canvas/license)](https://packagist.org/packages/orchestra/canvas)
-[![Coverage Status](https://coveralls.io/repos/github/orchestral/canvas/badge.svg?branch=master)](https://coveralls.io/github/orchestral/canvas?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/orchestral/canvas/badge.svg?branch=5.x)](https://coveralls.io/github/orchestral/canvas?branch=5.x)
 
 
 ## Installation
@@ -21,7 +21,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require-dev": {
-        "orchestra/canvas": "^4.0"
+        "orchestra/canvas": "^5.0"
     }
 }
 ```
