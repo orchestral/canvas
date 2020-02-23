@@ -16,21 +16,7 @@ Code Generators for Laravel Applications and Packages
 
 ## Installation
 
-To install through composer, simply put the following in your `composer.json` file:
-
-```json
-{
-    "require-dev": {
-        "orchestra/canvas": "^4.0"
-    }
-}
-```
-
-And then run `composer install` from the terminal.
-
-### Quick Installation
-
-Above installation can also be simplify by using the following command:
+To install through composer, run the following command from terminal:
 
     composer require --dev "orchestra/canvas"
 
