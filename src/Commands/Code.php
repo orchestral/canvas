@@ -2,8 +2,6 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Orchestra\Canvas\Core\Commands\Generator;
-
 class Code extends Generator
 {
     /**
