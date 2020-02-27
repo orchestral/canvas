@@ -54,6 +54,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                 $preset = $app->make('orchestra.canvas');
 
                 $artisan->add(new Commands\Channel($preset));
+                $artisan->add(new Commands\Component($preset));
                 $artisan->add(new Commands\Console($preset));
                 $artisan->add(new Commands\Event($preset));
                 $artisan->add(new Commands\Exception($preset));

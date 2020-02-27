@@ -27,6 +27,7 @@ if (! file_exists("{$workingPath}/canvas.yaml")) {
 }
 
 $app->add(new Orchestra\Canvas\Commands\Channel($preset));
+$app->add(new Orchestra\Canvas\Commands\Component($preset));
 $app->add(new Orchestra\Canvas\Commands\Console($preset));
 $app->add(new Orchestra\Canvas\Commands\Event($preset));
 $app->add(new Orchestra\Canvas\Commands\Exception($preset));

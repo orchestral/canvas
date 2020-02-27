@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Processors;
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Str;
+use Orchestra\Canvas\Core\GeneratesCode;
 
 class GeneratesCodeWithComponent extends GeneratesCode
 {
@@ -17,7 +18,7 @@ class GeneratesCodeWithComponent extends GeneratesCode
         if (! empty($this->options['inline'])) {
             $class = \str_replace(
                 'DummyView',
-                "<<<blade\n<div>\n    ".Inspiring::quote()."\n</div>\nblade",
+                "<<<'blade'\n<div>\n    ".Inspiring::quote()."\n</div>\nblade",
                 $class
             );
         }

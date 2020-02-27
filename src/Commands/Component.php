@@ -14,7 +14,7 @@ class Component extends Generator
      *
      * @var string
      */
-    protected $signature = 'make:component';
+    protected $name = 'make:component';
 
     /**
      * The console command description.
@@ -79,7 +79,7 @@ class Component extends Generator
      */
     public function getStubFile(): string
     {
-        return '../../storage/laravel/view-component.stub';
+        return __DIR__.'/../../storage/laravel/view-component.stub';
     }
 
     /**
@@ -87,7 +87,7 @@ class Component extends Generator
      */
     public function getDefaultNamespace(string $rootNamespace): string
     {
-        return $rootNamespace.'\ViewComponents';
+        return $rootNamespace.'\View\Components';
     }
 
     /**

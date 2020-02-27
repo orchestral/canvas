@@ -2,8 +2,6 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
-
 class ComponentTest extends TestCase
 {
     protected $files = [
@@ -26,7 +24,6 @@ class ComponentTest extends TestCase
 
         $this->assertFilenameExists('resources/views/components/foo.blade.php');
     }
-
 
     /** @test */
     public function it_can_generate_inline_component_file()
