@@ -39,10 +39,9 @@ class Controller extends Generator
     /**
      * Get the stub file for the generator.
      */
-    public function getStubFile(): string
+    public function getPublishedStubFileName(): ?string
     {
         $stub = null;
-        $directory = __DIR__.'/../../../storage/routing';
 
         if ($this->option('parent')) {
             $stub = 'controller.nested.stub';
@@ -60,9 +59,17 @@ class Controller extends Generator
             $stub = \str_replace('.stub', '.api.stub', $stub);
         }
 
-        $stub = $stub ?? 'controller.plain.stub';
+        return $stub ?? 'controller.plain.stub';
+    }
 
-        return "{$directory}/{$stub}";
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getStubFile(): string
+    {
+        $directory = __DIR__.'/../../../storage/routing';
+
+        return \sprintf('%s/%s', $directory, $this->getPublishedStubFileName());
     }
 
     /**
