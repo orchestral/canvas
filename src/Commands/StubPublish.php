@@ -22,6 +22,7 @@ class StubPublish extends Command
      * @var string
      */
     protected $description = 'Publish all stubs that are available for customization';
+
     /**
      * Configure the command options.
      *
