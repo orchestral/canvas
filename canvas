@@ -20,7 +20,7 @@ $preset = Orchestra\Canvas\Canvas::preset(
     $config, $workingPath, new Illuminate\Filesystem\Filesystem()
 );
 
-$app = new Symfony\Component\Console\Application('Canvas for Laravel', '0.1.0');
+$app = new Symfony\Component\Console\Application('Canvas for Laravel', '4.5');
 
 if (! file_exists("{$workingPath}/canvas.yaml")) {
     $app->add(new Orchestra\Canvas\Commands\Preset($preset));
