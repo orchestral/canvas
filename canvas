@@ -47,6 +47,7 @@ $app->add(new Orchestra\Canvas\Commands\Routing\Controller($preset));
 $app->add(new Orchestra\Canvas\Commands\Routing\Middleware($preset));
 $app->add(new Orchestra\Canvas\Commands\Rule($preset));
 $app->add(new Orchestra\Canvas\Commands\Testing($preset));
+$app->add(new Orchestra\Canvas\Commands\StubPublish($preset));
 
 if ($preset->is('laravel')) {
     $app->add(new Orchestra\Canvas\Commands\Database\Seeder($preset));
