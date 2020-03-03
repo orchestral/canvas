@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Orchestra\Canvas\Core\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesTestingCode;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -39,19 +38,29 @@ class Testing extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return $this->option('unit')
+            ? 'test.unit.stub'
+            : 'test.stub';
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
         $directory = __DIR__.'/../../storage/testing';
 
         if ($this->option('unit')) {
-            return "{$directory}/unit.stub";
+            return "{$directory}/test.unit.stub";
         }
 
         if ($this->preset->name() === 'package') {
-            return "{$directory}/feature.package.stub";
+            return "{$directory}/test.package.stub";
         }
 
-        return "{$directory}/feature.stub";
+        return "{$directory}/test.stub";
     }
 
     /**

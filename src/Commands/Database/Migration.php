@@ -38,13 +38,7 @@ class Migration extends Command
         $this->ignoreValidationErrors();
 
         $this->setName('make:migration')
-                ->setDescription('Create a new migration file.')
-                ->addArgument('name', InputArgument::REQUIRED, 'The name of the migration')
-                ->addOption('create', null, InputOption::VALUE_OPTIONAL, 'The table be created')
-                ->addOption('table', null, InputOption::VALUE_OPTIONAL, 'The table to migrate')
-                ->addOption('path', null, InputOption::VALUE_OPTIONAL, 'The location where the migration file should be created')
-                ->addOption('realpath', null, InputOption::VALUE_NONE, 'Indicate any provided migration file paths are pre-resolved absolute paths')
-                ->addOption('fullpath', null, InputOption::VALUE_NONE, 'Output the full path of the migration');
+            ->setDescription('Create a new migration file.');
 
         $this->creator = new MigrationCreator($this->preset, $this->preset->basePath().'/stubs');
 
@@ -138,5 +132,33 @@ class Migration extends Command
     protected function usingFullPath(): bool
     {
         return $this->input->hasOption('fullpath') && $this->input->getOption('fullpath');
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the migration'],
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['create', null, InputOption::VALUE_OPTIONAL, 'The table be created'],
+            ['table', null, InputOption::VALUE_OPTIONAL, 'The table to migrate'],
+            ['path', null, InputOption::VALUE_OPTIONAL, 'The location where the migration file should be created'],
+            ['realpath', null, InputOption::VALUE_NONE, 'Indicate any provided migration file paths are pre-resolved absolute paths'],
+            ['fullpath', null, InputOption::VALUE_NONE, 'Output the full path of the migration'],
+        ];
     }
 }

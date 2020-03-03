@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Orchestra\Canvas\Core\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
 class Provider extends Generator

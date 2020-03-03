@@ -13,24 +13,9 @@ Code Generators for Laravel Applications and Packages
 [![License](https://poser.pugx.org/orchestra/canvas/license)](https://packagist.org/packages/orchestra/canvas)
 [![Coverage Status](https://coveralls.io/repos/github/orchestral/canvas/badge.svg?branch=master)](https://coveralls.io/github/orchestral/canvas?branch=master)
 
-
 ## Installation
 
-To install through composer, simply put the following in your `composer.json` file:
-
-```json
-{
-    "require-dev": {
-        "orchestra/canvas": "^5.0"
-    }
-}
-```
-
-And then run `composer install` from the terminal.
-
-### Quick Installation
-
-Above installation can also be simplify by using the following command:
+To install through composer, run the following command from terminal:
 
     composer require --dev "orchestra/canvas"
 

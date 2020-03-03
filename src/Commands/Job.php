@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Orchestra\Canvas\Core\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
 class Job extends Generator
@@ -31,13 +30,23 @@ class Job extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return $this->option('sync')
+            ? 'job.stub'
+            : 'job.queued.stub';
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
         $directory = __DIR__.'/../../storage/job';
 
         return $this->option('sync')
             ? "{$directory}/job.stub"
-            : "{$directory}/queued.stub";
+            : "{$directory}/job.queued.stub";
     }
 
     /**

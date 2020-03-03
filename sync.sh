@@ -12,7 +12,7 @@ rm -rf storage/laravel/routes.stub
 ## Eloquent
 rm -rf storage/database/eloquent/*.stub
 mv storage/laravel/model.stub storage/database/eloquent/model.stub
-mv storage/laravel/model.pivot.stub storage/database/eloquent/pivot.stub
+mv storage/laravel/model.pivot.stub storage/database/eloquent/model.pivot.stub
 mv storage/laravel/observer.plain.stub storage/database/eloquent/observer.plain.stub
 mv storage/laravel/observer.stub storage/database/eloquent/observer.stub
 
@@ -29,7 +29,7 @@ mv storage/laravel/exception.stub storage/exception/exception.stub
 
 ## Job
 rm -rf storage/job/*.stub
-mv storage/laravel/job.queued.stub storage/job/queued.stub
+mv storage/laravel/job.queued.stub storage/job/job.queued.stub
 mv storage/laravel/job.stub storage/job/job.stub
 
 ## Listener
@@ -76,13 +76,13 @@ awk '{sub(/use {{ rootNamespace }}Http/,"use {{ rootNamespace }}\\Http")}1' stor
 awk '{sub(/use {{ rootNamespace }}Http/,"use {{ rootNamespace }}\\Http")}1' storage/routing/controller.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/routing/controller.stub
 
 ## Testing
-rm -f storage/testing/feature.stub
+rm -f storage/testing/test.stub
 rm -f storage/testing/unit.stub
-mv storage/laravel/test.stub storage/testing/feature.stub
-mv storage/laravel/test.unit.stub storage/testing/unit.stub
+mv storage/laravel/test.stub storage/testing/test.stub
+mv storage/laravel/test.unit.stub storage/testing/test.unit.stub
 
 ## Fixes namespace.
-awk '{sub(/use PHPUnit\\Framework\\TestCase/,"use NamespacedDummyTestCase")}1' storage/testing/unit.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/unit.stub
-awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' storage/testing/unit.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/unit.stub
-awk '{sub(/use Tests\\TestCase/,"use NamespacedDummyTestCase")}1' storage/testing/feature.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/feature.stub
-awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' storage/testing/feature.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/feature.stub
+awk '{sub(/use PHPUnit\\Framework\\TestCase/,"use NamespacedDummyTestCase")}1' storage/testing/test.unit.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/test.unit.stub
+awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' storage/testing/test.unit.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/test.unit.stub
+awk '{sub(/use Tests\\TestCase/,"use NamespacedDummyTestCase")}1' storage/testing/test.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/test.stub
+awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' storage/testing/test.stub > storage/routing/temp.stub && mv storage/routing/temp.stub storage/testing/test.stub

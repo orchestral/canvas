@@ -14,7 +14,7 @@ class Component extends Generator
      *
      * @var string
      */
-    protected $signature = 'make:component';
+    protected $name = 'make:component';
 
     /**
      * The console command description.
@@ -44,7 +44,7 @@ class Component extends Generator
     {
         $exitCode = parent::codeHasBeenGenerated($className);
 
-        if ($this->hasOption('view')) {
+        if (! $this->option('inline')) {
             $this->writeView();
         }
 
@@ -58,9 +58,7 @@ class Component extends Generator
      */
     protected function writeView()
     {
-        $view = $this->option('view')
-            ? $this->option('view')
-            : 'components.'.Str::kebab(\class_basename($this->argument('name')));
+        $view = 'components.'.Str::kebab(\class_basename($this->argument('name')));
 
         $path = $this->preset->resourcePath().'/views/'.\str_replace('.', '/', $view);
 
@@ -81,7 +79,7 @@ class Component extends Generator
      */
     public function getStubFile(): string
     {
-        return '../../storage/laravel/view-component.stub';
+        return __DIR__.'/../../storage/laravel/view-component.stub';
     }
 
     /**
@@ -89,7 +87,7 @@ class Component extends Generator
      */
     public function getDefaultNamespace(string $rootNamespace): string
     {
-        return $rootNamespace.'\ViewComponents';
+        return $rootNamespace.'\View\Components';
     }
 
     /**
@@ -99,7 +97,7 @@ class Component extends Generator
     {
         return [
             'name' => $this->generatorName(),
-            'view' => $this->option('view'),
+            'inline' => $this->option('inline'),
             'force' => $this->option('force'),
         ];
     }
@@ -113,7 +111,7 @@ class Component extends Generator
     {
         return [
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the component already exists'],
-            ['view', null, InputOption::VALUE_OPTIONAL, 'Create a new Blade template for the component'],
+            ['inline', null, InputOption::VALUE_NONE, 'Create a component that renders an inline view'],
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Commands\Routing;
 
-use Orchestra\Canvas\Core\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
 
 class Middleware extends Generator
 {

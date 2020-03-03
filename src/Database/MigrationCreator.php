@@ -23,6 +23,7 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
     {
         $this->files = $preset->filesystem();
         $this->preset = $preset;
+        $this->customStubPath = \sprintf('%s/stubs', $this->preset->basePath());
     }
 
     /**

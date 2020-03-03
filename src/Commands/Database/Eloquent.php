@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Str;
-use Orchestra\Canvas\Core\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesEloquentCode;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -130,12 +130,24 @@ class Eloquent extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        if ($this->option('pivot')) {
+            return 'model.pivot.stub';
+        }
+
+        return 'model.stub';
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
         $directory = __DIR__.'/../../../storage/database/eloquent';
 
         if ($this->option('pivot')) {
-            return "{$directory}/pivot.stub";
+            return "{$directory}/model.pivot.stub";
         }
 
         return "{$directory}/model.stub";
