@@ -57,6 +57,7 @@ class StubPublish extends Command
             \realpath(__DIR__.'/../../storage/job/job.stub') => $stubsPath.'/job.stub',
             \realpath(__DIR__.'/../../storage/database/eloquent/model.pivot.stub') => $stubsPath.'/model.pivot.stub',
             \realpath(__DIR__.'/../../storage/database/eloquent/model.stub') => $stubsPath.'/model.stub',
+            \realpath(__DIR__.'/../../storage/laravel/request.stub') => $stubsPath.'/request.stub',
             $this->getFeatureTestStubFile() => $stubsPath.'/test.stub',
             \realpath(__DIR__.'/../../storage/testing/test.unit.stub') => $stubsPath.'/test.unit.stub',
             \realpath(__DIR__.'/../../storage/database/migrations/migration.create.stub') => $stubsPath.'/migration.create.stub',

@@ -34,6 +34,14 @@ class Request extends Generator
     }
 
     /**
+     * Get the stub file for the generator.
+     */
+    public function getPublishedStubFileName(): ?string
+    {
+        return 'request.stub';
+    }
+
+    /**
      * Get the default namespace for the class.
      */
     public function getDefaultNamespace(string $rootNamespace): string
