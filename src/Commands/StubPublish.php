@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Commands;
 use Orchestra\Canvas\Core\Commands\Command;
 use Orchestra\Canvas\Core\Presets\Package;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class StubPublish extends Command
@@ -73,8 +74,12 @@ class StubPublish extends Command
             \realpath(__DIR__.'/../../storage/routing/controller.stub') => $stubsPath.'/controller.stub',
         ];
 
+        $force = $this->option('force');
+
         foreach ($files as $from => $to) {
-            \file_put_contents($to, \file_get_contents($from));
+            if (! \file_exists($to) || $force) {
+                \file_put_contents($to, \file_get_contents($from));
+            }
         }
 
         $this->info('Stubs published successfully.');
@@ -92,5 +97,17 @@ class StubPublish extends Command
         }
 
         return \realpath(__DIR__.'/../../storage/testing/test.stub');
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Overwrite any existing files if already exists'],
+        ];
     }
 }
