@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Foundation\Inspiring;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
 use Symfony\Component\Console\Input\InputOption;
@@ -58,9 +59,12 @@ class Component extends Generator
      */
     protected function writeView()
     {
-        $view = 'components.'.Str::kebab(\class_basename($this->argument('name')));
+        $view = Collection::make(\explode('/', $this->argument('name')))
+            ->map(static function ($part) {
+                return Str::kebab($part);
+            })->implode('.');
 
-        $path = $this->preset->resourcePath().'/views/'.\str_replace('.', '/', $view);
+        $path = $this->preset->resourcePath().'/views/'.\str_replace('.', '/', 'components.'.$view);
 
         if (! $this->files->isDirectory(\dirname($path))) {
             $this->files->makeDirectory(\dirname($path), 0777, true, true);
@@ -79,7 +83,7 @@ class Component extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/view-component.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'view-component.stub');
     }
 
     /**

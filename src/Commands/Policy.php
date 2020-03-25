@@ -40,11 +40,9 @@ class Policy extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/policy';
-
         return $this->option('model')
-            ? "{$directory}/policy.stub"
-            : "{$directory}/plain.stub";
+            ? $this->getStubFileFromPresetStorage($this->preset, 'policy.stub')
+            : $this->getStubFileFromPresetStorage($this->preset, 'policy.plain.stub');
     }
 
     /**

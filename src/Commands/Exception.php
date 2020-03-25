@@ -40,17 +40,15 @@ class Exception extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/exception';
-
         if ($this->option('render')) {
             return $this->option('report')
-                ? "{$directory}/render-and-report.stub"
-                : "{$directory}/render.stub";
+                ? $this->getStubFileFromPresetStorage($this->preset, 'exception-render-report.stub')
+                : $this->getStubFileFromPresetStorage($this->preset, 'exception-render.stub');
         }
 
         return $this->option('report')
-            ? "{$directory}/report.stub"
-            : "{$directory}/exception.stub";
+            ? $this->getStubFileFromPresetStorage($this->preset, 'exception-report.stub')
+            : $this->getStubFileFromPresetStorage($this->preset, 'exception.stub');
     }
 
     /**

@@ -30,7 +30,15 @@ class Request extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/request.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'request.stub');
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getPublishedStubFileName(): ?string
+    {
+        return 'request.stub';
     }
 
     /**

@@ -41,6 +41,22 @@ class Controller extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
+        return $this->getStubFileName();
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getStubFile(): string
+    {
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         $stub = null;
 
         if ($this->option('parent')) {
@@ -60,16 +76,6 @@ class Controller extends Generator
         }
 
         return $stub ?? 'controller.plain.stub';
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        $directory = __DIR__.'/../../../storage/routing';
-
-        return \sprintf('%s/%s', $directory, $this->getPublishedStubFileName());
     }
 
     /**

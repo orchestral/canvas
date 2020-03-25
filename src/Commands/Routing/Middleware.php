@@ -30,9 +30,17 @@ class Middleware extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return 'middleware.stub';
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../../storage/routing/middleware.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'middleware.stub');
     }
 
     /**

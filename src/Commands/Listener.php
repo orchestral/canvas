@@ -40,17 +40,17 @@ class Listener extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/listener';
+        $directory = __DIR__.'/../../storage/laravel';
 
         if ($this->option('queued')) {
             return $this->option('event')
-                ? "{$directory}/queued.stub"
-                : "{$directory}/queued-duck.stub";
+                ? $this->getStubFileFromPresetStorage($this->preset, 'listener-queued.stub')
+                : $this->getStubFileFromPresetStorage($this->preset, 'listener-queued-duck.stub');
         }
 
         return $this->option('event')
-            ? "{$directory}/listener.stub"
-            : "{$directory}/listener-duck.stub";
+            ? $this->getStubFileFromPresetStorage($this->preset, 'listener.stub')
+            : $this->getStubFileFromPresetStorage($this->preset, 'listener-duck.stub');
     }
 
     /**

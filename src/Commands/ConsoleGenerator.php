@@ -31,6 +31,14 @@ class ConsoleGenerator extends Console
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
         return __DIR__.'/../../storage/canvas/generator.stub';

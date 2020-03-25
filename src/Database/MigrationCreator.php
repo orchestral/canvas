@@ -4,11 +4,14 @@ namespace Orchestra\Canvas\Database;
 
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Orchestra\Canvas\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Presets\Laravel;
 use Orchestra\Canvas\Core\Presets\Preset;
 
 class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
 {
+    use ResolvesPresetStubs;
+
     /**
      * Canvas preset.
      *
@@ -54,12 +57,39 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
     }
 
     /**
+     * Get the migration stub file.
+     *
+     * @param  string|null  $table
+     * @param  bool  $create
+     *
+     * @return string
+     */
+    protected function getStub($table, $create)
+    {
+        if (\is_null($table)) {
+            $stub = $this->files->exists($customPath = $this->customStubPath.'/migration.stub')
+                ? $customPath
+                : $this->getStubFileFromPresetStorage($this->preset, 'migration.stub');
+        } elseif ($create) {
+            $stub = $this->files->exists($customPath = $this->customStubPath.'/migration.create.stub')
+                ? $customPath
+                : $this->getStubFileFromPresetStorage($this->preset, 'migration.create.stub');
+        } else {
+            $stub = $this->files->exists($customPath = $this->customStubPath.'/migration.update.stub')
+                ? $customPath
+                : $this->getStubFileFromPresetStorage($this->preset, 'migration.update.stub');
+        }
+
+        return $this->files->get($stub);
+    }
+
+    /**
      * Get the path to the stubs.
      *
      * @return string
      */
     public function stubPath()
     {
-        return __DIR__.'/../../storage/database/migrations';
+        return '';
     }
 }

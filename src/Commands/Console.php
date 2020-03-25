@@ -45,9 +45,17 @@ class Console extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return 'console.stub';
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/console.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'console.stub');
     }
 
     /**

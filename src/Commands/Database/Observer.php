@@ -41,11 +41,9 @@ class Observer extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../../storage/database/eloquent';
-
         return $this->option('model')
-            ? "{$directory}/observer.stub"
-            : "{$directory}/observer.plain.stub";
+            ? $this->getStubFileFromPresetStorage($this->preset, 'observer.stub')
+            : $this->getStubFileFromPresetStorage($this->preset, 'observer.plain.stub');
     }
 
     /**

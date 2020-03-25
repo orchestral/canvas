@@ -32,13 +32,9 @@ class Provider extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/provider';
-
-        if ($this->option('deferred')) {
-            return "{$directory}/provider.deferred.stub";
-        }
-
-        return "{$directory}/provider.stub";
+        return $this->option('deferred')
+            ? $this->getStubFileFromPresetStorage($this->preset, 'provider.deferred.stub')
+            : $this->getStubFileFromPresetStorage($this->preset, 'provider.stub');
     }
 
     /**

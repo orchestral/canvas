@@ -28,9 +28,17 @@ class Rule extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return 'rule.stub';
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/rule.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'rule.stub');
     }
 
     /**

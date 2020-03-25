@@ -132,11 +132,7 @@ class Eloquent extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
-        if ($this->option('pivot')) {
-            return 'model.pivot.stub';
-        }
-
-        return 'model.stub';
+        return $this->getStubFileName();
     }
 
     /**
@@ -144,13 +140,17 @@ class Eloquent extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../../storage/database/eloquent';
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
 
-        if ($this->option('pivot')) {
-            return "{$directory}/model.pivot.stub";
-        }
-
-        return "{$directory}/model.stub";
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return $this->option('pivot')
+            ? 'model.pivot.stub'
+            : 'model.stub';
     }
 
     /**

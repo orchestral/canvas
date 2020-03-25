@@ -46,17 +46,12 @@ class GeneratesPolicyCode extends GeneratesCode
     {
         $model = \str_replace('/', '\\', $model);
 
-        $namespaceModel = $this->preset->modelNamespace().'\\'.$model;
 
         if (Str::startsWith($model, '\\')) {
-            $stub = \str_replace('NamespacedDummyModel', trim($model, '\\'), $stub);
+            $namespacedModel = trim($model, '\\');
         } else {
-            $stub = \str_replace('NamespacedDummyModel', $namespaceModel, $stub);
+            $namespacedModel = $this->preset->modelNamespace().'\\'.$model;
         }
-
-        $stub = \str_replace(
-            "use {$namespaceModel};\nuse {$namespaceModel};", "use {$namespaceModel};", $stub
-        );
 
         $model = \class_basename(trim($model, '\\'));
 
@@ -64,14 +59,33 @@ class GeneratesPolicyCode extends GeneratesCode
 
         $dummyModel = Str::camel($model) === 'user' ? 'model' : $model;
 
-        $stub = \str_replace('DocDummyModel', Str::snake($dummyModel, ' '), $stub);
+        $replace = [
+            'NamespacedDummyModel' => $namespacedModel,
+            '{{ namespacedModel }}' => $namespacedModel,
+            '{{namespacedModel}}' => $namespacedModel,
+            'DummyModel' => $model,
+            '{{ model }}' => $model,
+            '{{model}}' => $model,
+            'dummyModel' => Str::camel($dummyModel),
+            '{{ modelVariable }}' => Str::camel($dummyModel),
+            '{{modelVariable}}' => Str::camel($dummyModel),
+            'DocDummyModel' => Str::snake($dummyModel, ' '),
+            '{{ modelDoc }}' => Str::snake($dummyModel, ' '),
+            '{{modelDoc}}' => Str::snake($dummyModel, ' '),
+            'DocDummyPluralModel' => Str::snake(Str::pluralStudly($dummyModel), ' '),
+            '{{ modelDocPlural }}' => Str::snake(Str::pluralStudly($dummyModel), ' '),
+            '{{modelDocPlural}}' => Str::snake(Str::pluralStudly($dummyModel), ' '),
+            'DummyUser' => $dummyUser,
+            '{{ user }}' => $dummyUser,
+            '{{user}}' => $dummyUser,
+        ];
 
-        $stub = \str_replace('DummyModel', $model, $stub);
+        $stub = \str_replace(
+            \array_keys($replace), \array_values($replace), $stub
+        );
 
-        $stub = \str_replace('dummyModel', Str::camel($dummyModel), $stub);
-
-        $stub = \str_replace('DummyUser', $dummyUser, $stub);
-
-        return \str_replace('DocDummyPluralModel', Str::snake(Str::pluralStudly($dummyModel), ' '), $stub);
+        return \str_replace(
+            "use {$namespacedModel};\nuse {$namespacedModel};", "use {$namespacedModel};", $stub
+        );
     }
 }
