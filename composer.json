@@ -29,7 +29,7 @@
     "require": {
         "illuminate/database": "^7.0",
         "illuminate/support": "^7.0",
-        "orchestra/canvas-core": "^5.2",
+        "orchestra/canvas-core": "^5.3",
         "symfony/yaml": "^4.3 || ^5.0"
     },
     "require-dev": {
