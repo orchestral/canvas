@@ -57,33 +57,33 @@ class StubPublish extends Command
         }
 
         $files = [
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'job.queued.stub')) => $stubsPath.'/job.queued.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'job.stub')) => $stubsPath.'/job.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'database/eloquent/model.pivot.stub')) => $stubsPath.'/model.pivot.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'database/eloquent/model.stub')) => $stubsPath.'/model.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'request.stub')) => $stubsPath.'/request.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'test.stub')) => $stubsPath.'/test.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'test.unit.stub')) => $stubsPath.'/test.unit.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'database/migrations/migration.create.stub')) => $stubsPath.'/migration.create.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'database/migrations/migration.stub')) => $stubsPath.'/migration.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'database/migrations/migration.update.stub')) => $stubsPath.'/migration.update.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'policy.plain.stub')) => $stubsPath.'/policy.plain.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'policy.stub')) => $stubsPath.'/policy.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.api.stub')) => $stubsPath.'/controller.api.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.invokable.stub')) => $stubsPath.'/controller.invokable.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.model.api.stub')) => $stubsPath.'/controller.model.api.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.model.stub')) => $stubsPath.'/controller.model.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.nested.api.stub')) => $stubsPath.'/controller.nested.api.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.nested.stub')) => $stubsPath.'/controller.nested.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.plain.stub')) => $stubsPath.'/controller.plain.stub',
-            \realpath($this->getStubFileFromPresetStorage($this->preset, 'routing/controller.stub')) => $stubsPath.'/controller.stub',
+            'job.queued.stub' => $stubsPath.'/job.queued.stub',
+            'job.stub' => $stubsPath.'/job.stub',
+            'database/eloquent/model.pivot.stub' => $stubsPath.'/model.pivot.stub',
+            'database/eloquent/model.stub' => $stubsPath.'/model.stub',
+            'request.stub' => $stubsPath.'/request.stub',
+            'test.stub' => $stubsPath.'/test.stub',
+            'test.unit.stub' => $stubsPath.'/test.unit.stub',
+            'database/migrations/migration.create.stub' => $stubsPath.'/migration.create.stub',
+            'database/migrations/migration.stub' => $stubsPath.'/migration.stub',
+            'database/migrations/migration.update.stub' => $stubsPath.'/migration.update.stub',
+            'policy.plain.stub' => $stubsPath.'/policy.plain.stub',
+            'policy.stub' => $stubsPath.'/policy.stub',
+            'routing/controller.api.stub' => $stubsPath.'/controller.api.stub',
+            'routing/controller.invokable.stub' => $stubsPath.'/controller.invokable.stub',
+            'routing/controller.model.api.stub' => $stubsPath.'/controller.model.api.stub',
+            'routing/controller.model.stub' => $stubsPath.'/controller.model.stub',
+            'routing/controller.nested.api.stub' => $stubsPath.'/controller.nested.api.stub',
+            'routing/controller.nested.stub' => $stubsPath.'/controller.nested.stub',
+            'routing/controller.plain.stub' => $stubsPath.'/controller.plain.stub',
+            'routing/controller.stub' => $stubsPath.'/controller.stub',
         ];
 
         $force = $this->option('force');
 
         foreach ($files as $from => $to) {
             if (! \file_exists($to) || $force) {
-                \file_put_contents($to, \file_get_contents($from));
+                \file_put_contents($to, \file_get_contents($this->getStubFileFromPresetStorage($this->preset, $from)));
             }
         }
 
