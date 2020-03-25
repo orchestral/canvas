@@ -67,6 +67,7 @@ class StubPublish extends Command
             'migration.create.stub' => $stubsPath.'/migration.create.stub',
             'migration.stub' => $stubsPath.'/migration.stub',
             'migration.update.stub' => $stubsPath.'/migration.update.stub',
+            'factory.stub' => $stubsPath.'/factory.stub',
             'policy.plain.stub' => $stubsPath.'/policy.plain.stub',
             'policy.stub' => $stubsPath.'/policy.stub',
             'console.stub' => $stubsPath.'/console.stub',

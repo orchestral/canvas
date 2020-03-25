@@ -17,10 +17,17 @@ class GeneratesFactoryCode extends GeneratesCode
 
         $model = \class_basename($namespaceModel);
 
+        $replace = [
+            'NamespacedDummyModel' => $namespaceModel,
+            '{{ namespacedModel }}' => $namespaceModel,
+            '{{namespacedModel}}' => $namespaceModel,
+            'DummyModel' => $model,
+            '{{ model }}' => $model,
+            '{{model}}' => $model,
+        ];
+
         return \str_replace(
-            ['NamespacedDummyModel', 'DummyModel'],
-            [$namespaceModel, $model],
-            parent::buildClass($name)
+            \array_keys($replace), \array_values($replace), parent::buildClass($name)
         );
     }
 

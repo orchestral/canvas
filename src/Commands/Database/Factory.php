@@ -39,6 +39,14 @@ class Factory extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return 'factory.stub';
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
         return $this->getStubFileFromPresetStorage($this->preset, 'factory.stub');
