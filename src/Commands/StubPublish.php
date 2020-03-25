@@ -70,6 +70,7 @@ class StubPublish extends Command
             'factory.stub' => $stubsPath.'/factory.stub',
             'policy.plain.stub' => $stubsPath.'/policy.plain.stub',
             'policy.stub' => $stubsPath.'/policy.stub',
+            'rule.stub' => $stubsPath.'/rule.stub',
             'console.stub' => $stubsPath.'/console.stub',
             'controller.api.stub' => $stubsPath.'/controller.api.stub',
             'controller.invokable.stub' => $stubsPath.'/controller.invokable.stub',
