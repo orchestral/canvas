@@ -144,13 +144,13 @@ class Eloquent extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../../storage/laravel/database/eloquent';
+        $directory = 'database/eloquent';
 
         if ($this->option('pivot')) {
-            return "{$directory}/model.pivot.stub";
+            return $this->getStubFileFromPresetStorage($this->preset, "{$directory}/model.pivot.stub");
         }
 
-        return "{$directory}/model.stub";
+        return $this->getStubFileFromPresetStorage($this->preset, "{$directory}/model.stub");
     }
 
     /**

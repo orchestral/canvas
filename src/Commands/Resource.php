@@ -51,11 +51,9 @@ class Resource extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/laravel';
-
         return $this->collection()
-            ? "{$directory}/resource-collection.stub"
-            : "{$directory}/resource.stub";
+            ? $this->getStubFileFromPresetStorage($this->preset, 'resource-collection.stub')
+            : $this->getStubFileFromPresetStorage($this->preset, 'resource.stub');
     }
 
     /**

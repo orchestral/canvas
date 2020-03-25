@@ -83,7 +83,7 @@ class Component extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/view-component.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'view-component.stub');
     }
 
     /**

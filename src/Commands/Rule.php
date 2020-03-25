@@ -30,7 +30,7 @@ class Rule extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/rule.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'rule.stub');
     }
 
     /**

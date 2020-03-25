@@ -6,11 +6,10 @@ use Orchestra\Canvas\Core\Presets\Preset;
 
 trait ResolvesPresetStubs
 {
-
     /**
-     * Get the stub file for the preset, or return null.
+     * Get the stub file for the preset.
      */
-    public function getStubFileFromPresetStorage(Preset $preset, string $filename): ?string
+    public function getStubFileFromPresetStorage(Preset $preset, string $filename): string
     {
         $directory = $this->getPresetStorage();
 

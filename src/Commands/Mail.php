@@ -54,11 +54,9 @@ class Mail extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/laravel';
-
         return $this->option('markdown')
-            ? "{$directory}/markdown-mail.stub"
-            : "{$directory}/mail.stub";
+            ? $this->getStubFileFromPresetStorage($this->preset, 'markdown-mail.stub')
+            : $this->getStubFileFromPresetStorage($this->preset, 'mail.stub');
     }
 
     /**

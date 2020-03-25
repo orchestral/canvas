@@ -40,9 +40,7 @@ class Testing extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
-        return $this->option('unit')
-            ? 'test.unit.stub'
-            : 'test.stub';
+        return $this->getStubFileName();
     }
 
     /**
@@ -50,11 +48,17 @@ class Testing extends Generator
      */
     public function getStubFile(): string
     {
-        if ($this->option('unit')) {
-            return $this->getStubFileFromPresetStorage($this->preset, 'test.unit.stub');
-        }
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
 
-        return $this->getStubFileFromPresetStorage($this->preset, 'test.stub');
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return $this->option('unit')
+            ? 'test.unit.stub'
+            : 'test.stub';
     }
 
     /**

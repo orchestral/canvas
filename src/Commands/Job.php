@@ -32,9 +32,7 @@ class Job extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
-        return $this->option('sync')
-            ? 'job.stub'
-            : 'job.queued.stub';
+        return $this->getStubFileName();
     }
 
     /**
@@ -42,11 +40,17 @@ class Job extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/laravel';
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
 
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         return $this->option('sync')
-            ? "{$directory}/job.stub"
-            : "{$directory}/job.queued.stub";
+            ? 'job.stub'
+            : 'job.queued.stub';
     }
 
     /**

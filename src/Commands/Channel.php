@@ -30,7 +30,7 @@ class Channel extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/laravel/channel.stub';
+        return $this->getStubFileFromPresetStorage($this->preset, 'channel.stub');
     }
 
     /**
