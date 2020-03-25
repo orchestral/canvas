@@ -79,6 +79,7 @@ class StubPublish extends Command
             'controller.nested.stub' => $stubsPath.'/controller.nested.stub',
             'controller.plain.stub' => $stubsPath.'/controller.plain.stub',
             'controller.stub' => $stubsPath.'/controller.stub',
+            'middleware.stub' => $stubsPath.'/middleware.stub',
         ];
 
         $force = $this->option('force');

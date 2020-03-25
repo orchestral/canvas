@@ -17,6 +17,7 @@ class StubPublishTest extends TestCase
         'stubs/factory.stub',
         'stubs/job.queued.stub',
         'stubs/job.stub',
+        'stubs/middleware.stub',
         'stubs/migration.create.stub',
         'stubs/migration.stub',
         'stubs/migration.update.stub',
