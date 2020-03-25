@@ -32,7 +32,7 @@ class Middleware extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../../storage/routing/middleware.stub';
+        return __DIR__.'/../../../storage/laravel/routing/middleware.stub';
     }
 
     /**

@@ -40,11 +40,11 @@ class Policy extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/policy';
+        $directory = __DIR__.'/../../storage/laravel';
 
         return $this->option('model')
             ? "{$directory}/policy.stub"
-            : "{$directory}/plain.stub";
+            : "{$directory}/policy.plain.stub";
     }
 
     /**

@@ -50,17 +50,11 @@ class Testing extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/testing';
-
         if ($this->option('unit')) {
-            return "{$directory}/test.unit.stub";
+            return $this->getStubFileFromPresetStorage($this->preset, 'test.unit.stub');
         }
 
-        if ($this->preset->name() === 'package') {
-            return "{$directory}/test.package.stub";
-        }
-
-        return "{$directory}/test.stub";
+        return $this->getStubFileFromPresetStorage($this->preset, 'test.stub');
     }
 
     /**

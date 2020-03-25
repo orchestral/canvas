@@ -32,7 +32,7 @@ class Provider extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/provider';
+        $directory = __DIR__.'/../../storage/laravel';
 
         if ($this->option('deferred')) {
             return "{$directory}/provider.deferred.stub";

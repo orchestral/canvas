@@ -67,7 +67,7 @@ class Controller extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../../storage/routing';
+        $directory = __DIR__.'/../../../storage/laravel/routing';
 
         return \sprintf('%s/%s', $directory, $this->getPublishedStubFileName());
     }

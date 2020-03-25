@@ -39,7 +39,7 @@ class Event extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../storage/event/event.stub';
+        return __DIR__.'/../../storage/laravel/event.stub';
     }
 
     /**

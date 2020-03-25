@@ -40,16 +40,16 @@ class Exception extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/exception';
+        $directory = __DIR__.'/../../storage/laravel';
 
         if ($this->option('render')) {
             return $this->option('report')
-                ? "{$directory}/render-and-report.stub"
-                : "{$directory}/render.stub";
+                ? "{$directory}/exception-render-report.stub"
+                : "{$directory}/exception-render.stub";
         }
 
         return $this->option('report')
-            ? "{$directory}/report.stub"
+            ? "{$directory}/exception-report.stub"
             : "{$directory}/exception.stub";
     }
 

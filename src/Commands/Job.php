@@ -42,7 +42,7 @@ class Job extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/job';
+        $directory = __DIR__.'/../../storage/laravel';
 
         return $this->option('sync')
             ? "{$directory}/job.stub"

@@ -72,6 +72,6 @@ class Seeder extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../../storage/database/seeds/seeder.stub';
+        return __DIR__.'/../../../storage/laravel/database/seeds/seeder.stub';
     }
 }

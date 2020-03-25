@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Commands\Command;
 use Orchestra\Canvas\Core\Presets\Package;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,6 +11,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class StubPublish extends Command
 {
+    use ResolvesPresetStubs;
+
     /**
      * The console command name.
      *
@@ -54,26 +57,26 @@ class StubPublish extends Command
         }
 
         $files = [
-            \realpath(__DIR__.'/../../storage/job/job.queued.stub') => $stubsPath.'/job.queued.stub',
-            \realpath(__DIR__.'/../../storage/job/job.stub') => $stubsPath.'/job.stub',
-            \realpath(__DIR__.'/../../storage/database/eloquent/model.pivot.stub') => $stubsPath.'/model.pivot.stub',
-            \realpath(__DIR__.'/../../storage/database/eloquent/model.stub') => $stubsPath.'/model.stub',
+            \realpath(__DIR__.'/../../storage/laravel/job.queued.stub') => $stubsPath.'/job.queued.stub',
+            \realpath(__DIR__.'/../../storage/laravel/job.stub') => $stubsPath.'/job.stub',
+            \realpath(__DIR__.'/../../storage/laravel/database/eloquent/model.pivot.stub') => $stubsPath.'/model.pivot.stub',
+            \realpath(__DIR__.'/../../storage/laravel/database/eloquent/model.stub') => $stubsPath.'/model.stub',
             \realpath(__DIR__.'/../../storage/laravel/request.stub') => $stubsPath.'/request.stub',
-            $this->getFeatureTestStubFile() => $stubsPath.'/test.stub',
-            \realpath(__DIR__.'/../../storage/testing/test.unit.stub') => $stubsPath.'/test.unit.stub',
-            \realpath(__DIR__.'/../../storage/database/migrations/migration.create.stub') => $stubsPath.'/migration.create.stub',
-            \realpath(__DIR__.'/../../storage/database/migrations/migration.stub') => $stubsPath.'/migration.stub',
-            \realpath(__DIR__.'/../../storage/database/migrations/migration.update.stub') => $stubsPath.'/migration.update.stub',
-            realpath(__DIR__.'/../../storage/policy/policy.plain.stub') => $stubsPath.'/policy.plain.stub',
-            realpath(__DIR__.'/../../storage/policy/policy.stub') => $stubsPath.'/policy.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.api.stub') => $stubsPath.'/controller.api.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.invokable.stub') => $stubsPath.'/controller.invokable.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.model.api.stub') => $stubsPath.'/controller.model.api.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.model.stub') => $stubsPath.'/controller.model.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.nested.api.stub') => $stubsPath.'/controller.nested.api.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.nested.stub') => $stubsPath.'/controller.nested.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.plain.stub') => $stubsPath.'/controller.plain.stub',
-            \realpath(__DIR__.'/../../storage/routing/controller.stub') => $stubsPath.'/controller.stub',
+            \realpath($this->getStubFileFromPresetStorage($this->preset, 'test.stub')) => $stubsPath.'/test.stub',
+            \realpath$this->getStubFileFromPresetStorage($this->preset, 'test.unit.stub')) => $stubsPath.'/test.unit.stub',
+            \realpath(__DIR__.'/../../storage/laravel/database/migrations/migration.create.stub') => $stubsPath.'/migration.create.stub',
+            \realpath(__DIR__.'/../../storage/laravel/database/migrations/migration.stub') => $stubsPath.'/migration.stub',
+            \realpath(__DIR__.'/../../storage/laravel/database/migrations/migration.update.stub') => $stubsPath.'/migration.update.stub',
+            realpath(__DIR__.'/../../storage/laravel/policy.plain.stub') => $stubsPath.'/policy.plain.stub',
+            realpath(__DIR__.'/../../storage/laravel/policy.stub') => $stubsPath.'/policy.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.api.stub') => $stubsPath.'/controller.api.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.invokable.stub') => $stubsPath.'/controller.invokable.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.model.api.stub') => $stubsPath.'/controller.model.api.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.model.stub') => $stubsPath.'/controller.model.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.nested.api.stub') => $stubsPath.'/controller.nested.api.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.nested.stub') => $stubsPath.'/controller.nested.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.plain.stub') => $stubsPath.'/controller.plain.stub',
+            \realpath(__DIR__.'/../../storage/laravel/controller.stub') => $stubsPath.'/controller.stub',
         ];
 
         $force = $this->option('force');

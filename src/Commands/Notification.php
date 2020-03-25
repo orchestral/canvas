@@ -54,10 +54,10 @@ class Notification extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../storage/notification';
+        $directory = __DIR__.'/../../storage/laravel';
 
         return $this->option('markdown')
-                ? "{$directory}/markdown.stub"
+                ? "{$directory}/markdown-notification.stub"
                 : "{$directory}/notification.stub";
     }
 

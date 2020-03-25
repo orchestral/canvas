@@ -41,7 +41,7 @@ class Observer extends Generator
      */
     public function getStubFile(): string
     {
-        $directory = __DIR__.'/../../../storage/database/eloquent';
+        $directory = __DIR__.'/../../../storage/laravel/database/eloquent';
 
         return $this->option('model')
             ? "{$directory}/observer.stub"

@@ -41,7 +41,7 @@ class Factory extends Generator
      */
     public function getStubFile(): string
     {
-        return __DIR__.'/../../../storage/database/factories/factory.stub';
+        return __DIR__.'/../../../storage/laravel/database/factories/factory.stub';
     }
 
     /**

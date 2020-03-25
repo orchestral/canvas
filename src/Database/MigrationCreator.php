@@ -60,6 +60,6 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      */
     public function stubPath()
     {
-        return __DIR__.'/../../storage/database/migrations';
+        return __DIR__.'/../../storage/laravel/database/migrations';
     }
 }
