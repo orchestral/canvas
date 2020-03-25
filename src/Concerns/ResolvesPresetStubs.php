@@ -11,7 +11,7 @@ trait ResolvesPresetStubs
      */
     public function getStubFileFromPresetStorage(Preset $preset, string $filename): string
     {
-        $directory = $this->getPresetStorage();
+        $directory = $this->getPresetStorage($preset);
 
         if ($preset->name() !== 'laravel') {
             if (\file_exists("{$directory}/{$preset->name()}/$filename")) {
@@ -25,8 +25,10 @@ trait ResolvesPresetStubs
     /**
      * Get the stub storage.
      */
-    public function getPresetStorage(): string
+    public function getPresetStorage(Preset $preset): string
     {
-        return __DIR__.'/../../storage';
+        return $preset->hasCustomStubPath()
+            ? $preset->getCustomStubPath()
+            : __DIR__.'/../../storage';
     }
 }
