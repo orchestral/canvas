@@ -41,7 +41,7 @@ class Factory extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, '/database/factories/factory.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, 'factory.stub');
     }
 
     /**

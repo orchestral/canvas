@@ -32,7 +32,7 @@ class Middleware extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'routing/middleware.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, 'middleware.stub');
     }
 
     /**

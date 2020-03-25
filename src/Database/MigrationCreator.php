@@ -66,20 +66,18 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      */
     protected function getStub($table, $create)
     {
-        $directory = $this->stubPath();
-
         if (\is_null($table)) {
             $stub = $this->files->exists($customPath = $this->customStubPath.'/migration.stub')
                 ? $customPath
-                : $this->getStubFileFromPresetStorage($this->preset, "{$directory}/migration.stub");
+                : $this->getStubFileFromPresetStorage($this->preset, 'migration.stub');
         } elseif ($create) {
             $stub = $this->files->exists($customPath = $this->customStubPath.'/migration.create.stub')
                 ? $customPath
-                : $this->getStubFileFromPresetStorage($this->preset, "{$directory}/migration.create.stub");
+                : $this->getStubFileFromPresetStorage($this->preset, 'migration.create.stub');
         } else {
             $stub = $this->files->exists($customPath = $this->customStubPath.'/migration.update.stub')
                 ? $customPath
-                : $this->getStubFileFromPresetStorage($this->preset, "{$directory}/migration.update.stub");
+                : $this->getStubFileFromPresetStorage($this->preset, 'migration.update.stub');
         }
 
         return $this->files->get($stub);
@@ -92,6 +90,6 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      */
     public function stubPath()
     {
-        return 'database/migrations';
+        return '';
     }
 }
