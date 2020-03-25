@@ -13,13 +13,11 @@ trait ResolvesPresetStubs
     {
         $directory = $this->getPresetStorage($preset);
 
-        if ($preset->name() !== 'laravel') {
-            if (\file_exists("{$directory}/{$preset->name()}/$filename")) {
-                return "{$directory}/{$preset->name()}/$filename";
-            }
+        if (\file_exists("{$directory}/$filename")) {
+            return "{$directory}/{$filename}";
         }
 
-        return "{$directory}/laravel/$filename";
+        return __DIR__."/../../storage/laravel/{$filename}";
     }
 
     /**
@@ -29,6 +27,6 @@ trait ResolvesPresetStubs
     {
         return $preset->hasCustomStubPath()
             ? $preset->getCustomStubPath()
-            : __DIR__.'/../../storage';
+            : __DIR__."/../../storage/{$preset->name()}";
     }
 }
