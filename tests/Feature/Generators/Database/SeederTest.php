@@ -17,14 +17,10 @@ class SeederTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
+            'namespace Database\Seeders;',
             'use Illuminate\Database\Seeder;',
             'class FooSeeder extends Seeder',
             'public function run()',
-        ], 'database/seeds/FooSeeder.php');
-
-
-        $this->assertFileNotContains([
-            'namespace',
         ], 'database/seeds/FooSeeder.php');
     }
 }

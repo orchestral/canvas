@@ -17,13 +17,12 @@ class FactoryTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
+            'namespace Database\Factories;',
             'use App\Model;',
-            'use Faker\Generator as Faker;',
-            '$factory->define(Model::class, function (Faker $faker) {',
-        ], 'database/factories/FooFactory.php');
-
-        $this->assertFileNotContains([
-            'namespace',
+            'use Illuminate\Database\Eloquent\Factories\Factory;',
+            'class ModelFactory extends Factory',
+            'protected $model = Model::class;',
+            'public function definition()',
         ], 'database/factories/FooFactory.php');
     }
 
@@ -34,13 +33,12 @@ class FactoryTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
+            'namespace Database\Factories;',
             'use App\Foo;',
-            'use Faker\Generator as Faker;',
-            '$factory->define(Foo::class, function (Faker $faker) {',
-        ], 'database/factories/FooFactory.php');
-
-        $this->assertFileNotContains([
-            'namespace',
+            'use Illuminate\Database\Eloquent\Factories\Factory;',
+            'class FooFactory extends Factory',
+            'protected $model = Foo::class;',
+            'public function definition()',
         ], 'database/factories/FooFactory.php');
     }
 }
