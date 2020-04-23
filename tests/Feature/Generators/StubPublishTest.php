@@ -26,6 +26,7 @@ class StubPublishTest extends TestCase
         'stubs/policy.plain.stub',
         'stubs/request.stub',
         'stubs/rule.stub',
+        'stubs/seeder.stub',
         'stubs/test.stub',
         'stubs/test.unit.stub',
     ];
