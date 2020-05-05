@@ -34,8 +34,6 @@ class GeneratesControllerCode extends GeneratesCode
             "use {$rootNamespace}\Http\Controllers\Controller;\n" => "use {$rootNamespace}Http\Controllers\Controller;\n",
         ]);
 
-        dump($replace);
-
         return \str_replace(
             \array_keys($replace), \array_values($replace), parent::buildClass($name)
         );
