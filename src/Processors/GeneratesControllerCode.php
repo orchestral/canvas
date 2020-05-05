@@ -17,6 +17,8 @@ class GeneratesControllerCode extends GeneratesCode
     {
         $controllerNamespace = $this->getNamespace($name);
 
+        $rootNamespace = $this->rootNamespace();
+
         $replace = [];
 
         if ($this->options['parent']) {
@@ -27,7 +29,12 @@ class GeneratesControllerCode extends GeneratesCode
             $replace = $this->buildModelReplacements($replace);
         }
 
-        $replace["use {$controllerNamespace}\Controller;\n"] = '';
+        $replace = \array_merge($replace, [
+            "use {$controllerNamespace}\Controller;\n" => '',
+            "use {$rootNamespace}\Http\Controllers\Controller;\n" => "use {$rootNamespace}Http\Controllers\Controller;\n",
+        ]);
+
+        dump($replace);
 
         return \str_replace(
             \array_keys($replace), \array_values($replace), parent::buildClass($name)

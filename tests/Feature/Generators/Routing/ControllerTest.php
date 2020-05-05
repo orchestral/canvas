@@ -69,6 +69,7 @@ class ControllerTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
+            'use App\Http\Controllers\Controller;',
             'use App\Bar;',
             'use App\Foo;',
             'public function index(Foo $foo)',
@@ -93,6 +94,7 @@ class ControllerTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
+            'use App\Http\Controllers\Controller;',
             'use App\Model\Foo;',
             'public function index()',
             'public function create()',
