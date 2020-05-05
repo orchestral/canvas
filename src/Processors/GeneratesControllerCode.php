@@ -31,7 +31,7 @@ class GeneratesControllerCode extends GeneratesCode
 
         $replace = \array_merge($replace, [
             "use {$controllerNamespace}\Controller;\n" => '',
-            "use {$rootNamespace}\Http\Controllers\Controller;\n" => "use {$rootNamespace}Http\Controllers\Controller;\n",
+            "use {$rootNamespace}\Http\Controllers\Controller;" => "use {$rootNamespace}Http\Controllers\Controller;",
         ]);
 
         return \str_replace(
