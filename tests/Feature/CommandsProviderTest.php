@@ -22,7 +22,7 @@ class CommandsProviderTest extends TestCase
         $this->assertSame($directory, $preset->basePath());
 
         $this->assertSame('App', $preset->rootNamespace());
-        $this->assertSame('App', $preset->modelNamespace());
+        $this->assertSame('App\Models', $preset->modelNamespace());
         $this->assertSame('App\Providers', $preset->providerNamespace());
 
         $this->assertSame("{$directory}/app", $preset->sourcePath());

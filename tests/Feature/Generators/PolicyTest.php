@@ -18,7 +18,7 @@ class PolicyTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Policies;',
-            'use App\User;',
+            'use App\Models\User;',
             'class FooPolicy',
         ], 'app/Policies/FooPolicy.php');
     }
@@ -31,8 +31,8 @@ class PolicyTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Policies;',
-            'use App\Post;',
-            'use App\User;',
+            'use App\Models\Post;',
+            'use App\Models\User;',
             'class FooPolicy',
             'public function viewAny(User $user)',
             'public function view(User $user, Post $post)',
@@ -48,7 +48,7 @@ class PolicyTest extends TestCase
     public function it_can_generate_policy_with_model_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model'], 'user-auth-provider' => 'App\User'], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model'], 'user-auth-provider' => 'App\Models\User'], $this->app->basePath(), $this->filesystem
         ));
 
         $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post'])
@@ -57,7 +57,7 @@ class PolicyTest extends TestCase
         $this->assertFileContains([
             'namespace App\Policies;',
             'use App\Model\Post;',
-            'use App\User;',
+            'use App\Models\User;',
             'class FooPolicy',
             'public function viewAny(User $user)',
             'public function view(User $user, Post $post)',

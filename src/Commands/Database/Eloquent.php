@@ -154,6 +154,14 @@ class Eloquent extends Generator
     }
 
     /**
+     * Get the default namespace for the class.
+     */
+    public function getDefaultNamespace(string $rootNamespace): string
+    {
+        return $this->preset->modelNamespace();
+    }
+
+    /**
      * Get the console command options.
      *
      * @return array

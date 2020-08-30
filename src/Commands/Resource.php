@@ -49,11 +49,27 @@ class Resource extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return $this->getStubFileName();
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         return $this->collection()
-            ? $this->getStubFileFromPresetStorage($this->preset, 'resource-collection.stub')
-            : $this->getStubFileFromPresetStorage($this->preset, 'resource.stub');
+            ? 'resource-collection.stub'
+            : 'resource.stub';
     }
 
     /**

@@ -31,7 +31,7 @@ class ObserverTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Observers;',
-            'use App\Foo;',
+            'use App\Models\Foo;',
             'class FooObserver',
             'public function created(Foo $foo)',
             'public function updated(Foo $foo)',

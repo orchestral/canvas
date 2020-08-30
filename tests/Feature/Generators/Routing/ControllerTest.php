@@ -50,7 +50,7 @@ class ControllerTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Foo;',
+            'use App\Models\Foo;',
             'public function index()',
             'public function create()',
             'public function store(Request $request)',
@@ -69,8 +69,9 @@ class ControllerTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Bar;',
-            'use App\Foo;',
+            'use App\Http\Controllers\Controller;',
+            'use App\Models\Bar;',
+            'use App\Models\Foo;',
             'public function index(Foo $foo)',
             'public function create(Foo $foo)',
             'public function store(Request $request, Foo $foo)',
@@ -93,6 +94,7 @@ class ControllerTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
+            'use App\Http\Controllers\Controller;',
             'use App\Model\Foo;',
             'public function index()',
             'public function create()',
@@ -179,7 +181,7 @@ class ControllerTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Foo;',
+            'use App\Models\Foo;',
             'public function index()',
             'public function store(Request $request)',
             'public function show(Foo $foo)',

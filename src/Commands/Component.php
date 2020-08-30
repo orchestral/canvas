@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Commands;
 
-use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
@@ -73,7 +72,7 @@ class Component extends Generator
         $this->files->put(
             $path.'.blade.php',
             '<div>
-    <!-- '.Inspiring::quote().' -->
+    <!-- Insert your component content -->
 </div>'
         );
     }

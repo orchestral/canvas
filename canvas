@@ -31,6 +31,7 @@ $app->add(new Orchestra\Canvas\Commands\Component($preset));
 $app->add(new Orchestra\Canvas\Commands\Console($preset));
 $app->add(new Orchestra\Canvas\Commands\Event($preset));
 $app->add(new Orchestra\Canvas\Commands\Exception($preset));
+$app->add(new Orchestra\Canvas\Commands\Database\Cast($preset));
 $app->add(new Orchestra\Canvas\Commands\Database\Eloquent($preset));
 $app->add(new Orchestra\Canvas\Commands\Database\Factory($preset));
 $app->add(new Orchestra\Canvas\Commands\Database\Migration($preset));

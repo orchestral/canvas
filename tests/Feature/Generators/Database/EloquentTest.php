@@ -7,8 +7,8 @@ use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 class EloquentTest extends TestCase
 {
     protected $files = [
-        'app/Foo.php',
-        'app/Foo/Bar.php',
+        'app/Models/Foo.php',
+        'app/Models/Foo/Bar.php',
         'app/Http/Controllers/FooController.php',
         'app/Http/Controllers/BarController.php',
         'database/factories/FooFactory.php',
@@ -22,10 +22,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
     }
 
     /** @test */
@@ -35,10 +35,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Relations\Pivot;',
             'class Foo extends Pivot',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
     }
 
     /** @test */
@@ -48,10 +48,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
 
 
         $this->assertFileContains([
@@ -62,7 +62,7 @@ class EloquentTest extends TestCase
 
 
         $this->assertFileNotContains([
-            'use App\Foo;',
+            'use App\Models\Foo;',
             'public function index()',
             'public function create()',
             'public function store(Request $request)',
@@ -83,14 +83,14 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Foo;',
+            'use App\Models\Foo;',
             'use Illuminate\Http\Request;',
             'class FooController extends Controller',
             'public function index()',
@@ -113,10 +113,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
 
         $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameExists('database/factories/FooFactory.php');
@@ -130,10 +130,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
 
         $this->assertMigrationFileContains([
             'use Illuminate\Database\Migrations\Migration;',
@@ -154,10 +154,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
 
         $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
@@ -171,10 +171,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App\Foo;',
+            'namespace App\Models\Foo;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Bar extends Model',
-        ], 'app/Foo/Bar.php');
+        ], 'app/Models/Foo/Bar.php');
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -193,14 +193,14 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App\Foo;',
+            'namespace App\Models\Foo;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Bar extends Model',
-        ], 'app/Foo/Bar.php');
+        ], 'app/Models/Foo/Bar.php');
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Foo\Bar;',
+            'use App\Models\Foo\Bar;',
             'use Illuminate\Http\Request;',
             'class BarController extends Controller',
             'public function index()',
@@ -223,14 +223,14 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App\Foo;',
+            'namespace App\Models\Foo;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Bar extends Model',
-        ], 'app/Foo/Bar.php');
+        ], 'app/Models/Foo/Bar.php');
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Foo\Bar;',
+            'use App\Models\Foo\Bar;',
             'use Illuminate\Http\Request;',
             'class BarController extends Controller',
             'public function index()',
@@ -251,10 +251,10 @@ class EloquentTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileContains([
-            'namespace App;',
+            'namespace App\Models;',
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
-        ], 'app/Foo.php');
+        ], 'app/Models/Foo.php');
 
         $this->assertMigrationFileContains([
             'use Illuminate\Database\Migrations\Migration;',
