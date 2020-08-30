@@ -56,6 +56,17 @@ class Resource extends Generator
             : $this->getStubFileFromPresetStorage($this->preset, 'resource.stub');
     }
 
+
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getPublishedStubFileName(): ?string
+    {
+        return $this->collection()
+            ? 'request-collection.stub'
+            : 'request.stub';
+    }
+
     /**
      * Get the default namespace for the class.
      */
