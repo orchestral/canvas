@@ -18,7 +18,7 @@ class PolicyTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Policies;',
-            'use App\Models\User;',
+            'use Illuminate\Foundation\Auth\User;',
             'class FooPolicy',
         ], 'app/Policies/FooPolicy.php');
     }
@@ -32,7 +32,7 @@ class PolicyTest extends TestCase
         $this->assertFileContains([
             'namespace App\Policies;',
             'use App\Models\Post;',
-            'use App\Models\User;',
+            'use Illuminate\Foundation\Auth\User;',
             'class FooPolicy',
             'public function viewAny(User $user)',
             'public function view(User $user, Post $post)',

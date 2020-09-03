@@ -16,7 +16,7 @@ class ChannelTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Broadcasting;',
-            'use App\Models\User;',
+            'use Illuminate\Foundation\Auth\User;',
             'class FooChannel',
         ], 'app/Broadcasting/FooChannel.php');
     }
