@@ -6,7 +6,7 @@ Code Generators for Laravel Applications and Packages
 * outside of Laravel installation such as when building Laravel packages.
 * with Laravel by allowing few customization to the stub resolved class and namespace.
 
-[![Build Status](https://travis-ci.org/orchestral/canvas.svg?branch=4.x)](https://travis-ci.org/orchestral/canvas)
+[![tests](https://github.com/orchestral/canvas/workflows/tests/badge.svg?branch=4.x)](https://github.com/orchestral/canvas/actions?query=workflow%3Atests+branch%3A4.x)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/canvas/v/stable)](https://packagist.org/packages/orchestra/canvas)
 [![Total Downloads](https://poser.pugx.org/orchestra/canvas/downloads)](https://packagist.org/packages/orchestra/canvas)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/canvas/v/unstable)](https://packagist.org/packages/orchestra/canvas)
