@@ -16,11 +16,15 @@ if (file_exists("{$workingPath}/canvas.yaml")) {
     $config = Symfony\Component\Yaml\Yaml::parseFile("{$workingPath}/canvas.yaml");
 }
 
+$files = new Illuminate\Filesystem\Filesystem();
+
 $preset = Orchestra\Canvas\Canvas::preset(
-    $config, $workingPath, new Illuminate\Filesystem\Filesystem()
+    $config, $workingPath, $files
 );
 
-$app = new Symfony\Component\Console\Application('Canvas for Laravel', '4.5');
+$manifest = json_decode($files->get(__DIR__.'/composer.json'), true);
+
+$app = new Symfony\Component\Console\Application('Canvas for Laravel', $manifest['version'] ?? '4.x-dev');
 
 if (! file_exists("{$workingPath}/canvas.yaml")) {
     $app->add(new Orchestra\Canvas\Commands\Preset($preset));
