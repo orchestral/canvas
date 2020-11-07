@@ -30,6 +30,8 @@ class GeneratesFactoryCode extends GeneratesCode
             '{{ namespacedModel }}' => $namespaceModel,
             '{{namespacedModel}}' => $namespaceModel,
             'DummyModel' => $model,
+            '{{ factory }}' => $model,
+            '{{factory}}' => $model,
             '{{ model }}' => $model,
             '{{model}}' => $model,
         ];
