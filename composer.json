@@ -51,5 +51,6 @@
             ]
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "version": "4.6.0"
 }
