@@ -33,7 +33,6 @@ class JobTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Jobs;',
-            'use Illuminate\Bus\Queueable;',
             'use Illuminate\Foundation\Bus\Dispatchable;',
             'class FooCreated',
         ], 'app/Jobs/FooCreated.php');
