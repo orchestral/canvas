@@ -34,6 +34,8 @@ class GeneratesFactoryCode extends GeneratesCode
             '{{factory}}' => $model,
             '{{ model }}' => $model,
             '{{model}}' => $model,
+            '{{ factory }}' => $model,
+            '{{factory}}' => $model,
         ];
 
         return \str_replace(
