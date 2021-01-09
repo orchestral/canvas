@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Processors;
 
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use Orchestra\Canvas\Core\GeneratesCode;
 
 class GeneratesObserverCode extends GeneratesCode
@@ -24,26 +25,61 @@ class GeneratesObserverCode extends GeneratesCode
      */
     protected function replaceModel(string $stub, string $model): string
     {
-        $model = \str_replace('/', '\\', $model);
+        $modelClass = $this->parseModel($model);
 
-        $namespaceModel = $this->preset->modelNamespace().'\\'.$model;
+        $replace = [
+            'DummyFullModelClass' => $modelClass,
+            '{{ namespacedModel }}' => $modelClass,
+            '{{namespacedModel}}' => $modelClass,
+            'DummyModelClass' => class_basename($modelClass),
+            '{{ model }}' => class_basename($modelClass),
+            '{{model}}' => class_basename($modelClass),
+            'DummyModelVariable' => lcfirst(class_basename($modelClass)),
+            '{{ modelVariable }}' => lcfirst(class_basename($modelClass)),
+            '{{modelVariable}}' => lcfirst(class_basename($modelClass)),
+        ];
 
-        if (Str::startsWith($model, '\\')) {
-            $stub = \str_replace('NamespacedDummyModel', trim($model, '\\'), $stub);
-        } else {
-            $stub = \str_replace('NamespacedDummyModel', $namespaceModel, $stub);
+        return str_replace(
+            array_keys($replace), array_values($replace), $stub
+        );
+    }
+
+    /**
+     * Get the fully-qualified model class name.
+     *
+     * @param  string  $model
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function parseModel($model): string
+    {
+        if (preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
+            throw new InvalidArgumentException('Model name contains invalid characters.');
         }
 
-        $stub = \str_replace(
-            "use {$namespaceModel};\nuse {$namespaceModel};", "use {$namespaceModel};", $stub
-        );
+        return $this->qualifyModel($model);
+    }
 
-        $model = \class_basename(\trim($model, '\\'));
+    /**
+     * Qualify the given model class base name.
+     */
+    protected function qualifyModel(string $model): string
+    {
+        $model = ltrim($model, '\\/');
 
-        $stub = \str_replace('DocDummyModel', Str::snake($model, ' '), $stub);
+        $model = str_replace('/', '\\', $model);
 
-        $stub = \str_replace('DummyModel', $model, $stub);
+        $rootNamespace = $this->rootNamespace();
+        $namespaceModel = $this->preset->modelNamespace().'\\'.$model;
 
-        return \str_replace('dummyModel', Str::camel($model), $stub);
+        if (Str::startsWith($model, $namespaceModel)) {
+            return $model;
+        } elseif (! \is_null($this->preset->config('model.namespace'))) {
+            return $namespaceModel;
+        }
+
+        return is_dir(app_path('Models'))
+                    ? $rootNamespace.'Models\\'.$model
+                    : $namespaceModel;
     }
 }
