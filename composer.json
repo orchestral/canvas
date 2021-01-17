@@ -27,11 +27,11 @@
         }
     },
     "require": {
-        "php": ">=7.3 || >=8.0",
+        "php": "^7.3 || ^8.0",
         "illuminate/database": "^9.0",
         "illuminate/support": "^9.0",
         "orchestra/canvas-core": "^7.0",
-        "symfony/yaml": "^5.0"
+        "symfony/yaml": "^5.2"
     },
     "require-dev": {
         "orchestra/testbench": "^7.0"
@@ -49,6 +49,5 @@
             ]
         }
     },
-    "minimum-stability": "dev",
-    "version": "6.1.0"
+    "minimum-stability": "dev"
 }
