@@ -49,6 +49,5 @@
             ]
         }
     },
-    "minimum-stability": "dev",
-    "version": "v6.1.2"
+    "minimum-stability": "dev"
 }

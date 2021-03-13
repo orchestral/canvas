@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+
 $workingPath = getcwd();
 $config = ['preset' => 'laravel'];
 
@@ -22,9 +23,9 @@ $preset = Orchestra\Canvas\Canvas::preset(
     $config, $workingPath, $files
 );
 
-$manifest = json_decode($files->get(__DIR__.'/composer.json'), true);
-
-$app = new Symfony\Component\Console\Application('Canvas for Laravel', $manifest['version'] ?? '4.x-dev');
+$app = new Symfony\Component\Console\Application(
+    'Canvas for Laravel', Composer\InstalledVersions::getPrettyVersion('orchestra/canvas')
+);
 
 if (! file_exists("{$workingPath}/canvas.yaml")) {
     $app->add(new Orchestra\Canvas\Commands\Preset($preset));
