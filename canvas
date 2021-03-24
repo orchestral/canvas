@@ -22,9 +22,11 @@ $preset = Orchestra\Canvas\Canvas::preset(
     $config, $workingPath, $files
 );
 
-$app = new Symfony\Component\Console\Application(
-    'Canvas for Laravel', Composer\InstalledVersions::getPrettyVersion('orchestra/canvas')
-);
+$app = new Symfony\Component\Console\Application('Canvas for Laravel');
+
+if (class_exists(Composer\InstalledVersions::class)) {
+    $app->setVersion(Composer\InstalledVersions::getPrettyVersion('orchestra/canvas'));
+}
 
 if (! file_exists("{$workingPath}/canvas.yaml")) {
     $app->add(new Orchestra\Canvas\Commands\Preset($preset));
