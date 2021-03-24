@@ -53,7 +53,7 @@ Which can be execute via:
 
 With **Canvas**, you can run the equivalent command via:
 
-    ./vendor/bin/canvas make:migration CreatePostsTable --create
+    composer exec canvas make:migration CreatePostsTable --create
 
 ### `canvas.yaml` Preset file
 
@@ -63,7 +63,7 @@ To get started you can first create `canvas.yaml` in the root directory of your 
 
 You can run the following command to create the file:
 
-    ./vendor/bin/canvas preset laravel
+    composer exec canvas preset laravel
 
 Which will output the following as `canvas.yaml`:
 
@@ -80,7 +80,7 @@ model:
 
 You can run the following command to create the file:
 
-    ./vendor/bin/canvas preset package
+    composer exec canvas preset package
 
 Which will output the following as `canvas.yaml`:
 
@@ -153,4 +153,4 @@ testing:
 
 ### Integration with Laravel
 
-By default, you can always use `./vendor/bin/canvas` for Laravel and Packages environment. However, with the Package Discovery `Orchestra\Canvas\LaravelServiceProvider` will be installed automatically and override all default `make` command available via artisan so you can use it without changing anything.
+By default, you can always use `composer exec canvas` for Laravel and Packages environment. However, with the Package Discovery `Orchestra\Canvas\LaravelServiceProvider` will be installed automatically and override all default `make` command available via artisan so you can use it without changing anything.
