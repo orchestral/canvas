@@ -14,8 +14,8 @@ provider:
 testing:
   namespace: Orchestra\Canvas\Tests
   extends:
-    - unit: PHPUnit\Framework\TestCase
-    - feature: Orchestra\Testbench\TestCase
+    unit: PHPUnit\Framework\TestCase
+    feature: Orchestra\Testbench\TestCase
 
 generators:
   - Orchestra\Canvas\Commands\Code
