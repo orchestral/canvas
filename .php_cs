@@ -19,6 +19,7 @@ return PhpCsFixer\Config::create()
                 'phpdoc_align' => false,
                 'phpdoc_no_empty_return' => false,
                 'phpdoc_order' => true,
+                'php_unit_method_casing' => false,
                 'pre_increment' => false,
                 'single_trait_insert_per_statement' => false,
                 'yoda_style' => false,
