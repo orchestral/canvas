@@ -28,6 +28,21 @@ class ControllerTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
+
+    /** @test */
+    public function it_can_generate_controller_file_with_specific_type()
+    {
+        $this->artisan('make:controller', ['name' => 'FooController', '--type' => 'invokable'])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use Illuminate\Http\Request;',
+            'class FooController extends Controller',
+            'public function __invoke(Request $request)',
+        ], 'app/Http/Controllers/FooController.php');
+    }
+
     /** @test */
     public function it_can_generate_controller_with_invokable_options_file()
     {

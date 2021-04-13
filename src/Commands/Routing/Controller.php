@@ -60,7 +60,7 @@ class Controller extends Generator
         $stub = null;
 
         if ($type = $this->option('type')) {
-            $stub = "/stubs/controller.{$type}.stub";
+            $stub = "controller.{$type}.stub";
         } elseif ($this->option('parent')) {
             $stub = 'controller.nested.stub';
         } elseif ($this->option('model')) {
