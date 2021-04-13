@@ -28,7 +28,6 @@ class ControllerTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-
     /** @test */
     public function it_can_generate_controller_file_with_specific_type()
     {
