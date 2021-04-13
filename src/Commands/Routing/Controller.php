@@ -59,7 +59,9 @@ class Controller extends Generator
     {
         $stub = null;
 
-        if ($this->option('parent')) {
+        if ($type = $this->option('type')) {
+            $stub = "/stubs/controller.{$type}.stub";
+        } elseif ($this->option('parent')) {
             $stub = 'controller.nested.stub';
         } elseif ($this->option('model')) {
             $stub = 'controller.model.stub';
@@ -121,6 +123,7 @@ class Controller extends Generator
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'Generate a resource controller for the given model.'],
             ['parent', 'p', InputOption::VALUE_OPTIONAL, 'Generate a nested resource controller class.'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],
+            ['type', null, InputOption::VALUE_REQUIRED, 'Manually specify the controller stub file to use.'],
         ];
     }
 }
