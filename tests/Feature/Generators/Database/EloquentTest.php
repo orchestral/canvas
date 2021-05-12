@@ -137,7 +137,7 @@ class EloquentTest extends TestCase
 
         $this->assertMigrationFileContains([
             'use Illuminate\Database\Migrations\Migration;',
-            'class CreateFoosTable extends Migration',
+            'return new class extends Migration',
             'Schema::create(\'foos\', function (Blueprint $table) {',
             'Schema::dropIfExists(\'foos\');',
         ], 'create_foos_table.php');
@@ -258,7 +258,7 @@ class EloquentTest extends TestCase
 
         $this->assertMigrationFileContains([
             'use Illuminate\Database\Migrations\Migration;',
-            'class CreateFoosTable extends Migration',
+            'return new class extends Migration',
             'Schema::create(\'foos\', function (Blueprint $table) {',
             'Schema::dropIfExists(\'foos\');',
         ], 'create_foos_table.php');
