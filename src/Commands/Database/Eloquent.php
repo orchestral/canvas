@@ -76,7 +76,7 @@ class Eloquent extends Generator
      */
     protected function createFactory(string $eloquentClassName): void
     {
-        $factory = Str::studly(\class_basename($this->argument('name')));
+        $factory = Str::studly(class_basename($this->argument('name')));
 
         $this->call('make:factory', [
             'name' => "{$factory}Factory",
@@ -89,7 +89,7 @@ class Eloquent extends Generator
      */
     protected function createMigration(string $eloquentClassName): void
     {
-        $table = Str::snake(Str::pluralStudly(\class_basename($this->argument('name'))));
+        $table = Str::snake(Str::pluralStudly(class_basename($this->argument('name'))));
 
         if ($this->option('pivot')) {
             $table = Str::singular($table);
@@ -106,7 +106,7 @@ class Eloquent extends Generator
      */
     protected function createSeeder(string $eloquentClassName): void
     {
-        $seeder = Str::studly(\class_basename($this->argument('name')));
+        $seeder = Str::studly(class_basename($this->argument('name')));
 
         $this->call('make:seed', [
             'name' => "{$seeder}Seeder",
@@ -118,9 +118,9 @@ class Eloquent extends Generator
      */
     protected function createController(string $eloquentClassName): void
     {
-        $controller = Str::studly(\class_basename($this->argument('name')));
+        $controller = Str::studly(class_basename($this->argument('name')));
 
-        $this->call('make:controller', \array_filter([
+        $this->call('make:controller', array_filter([
             'name' => "{$controller}Controller",
             '--model' => $this->option('resource') || $this->option('api') ? $eloquentClassName : null,
             '--api' => $this->option('api'),

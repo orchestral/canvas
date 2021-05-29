@@ -78,7 +78,7 @@ class Testing extends Generator
      */
     public function generatorOptions(): array
     {
-        return \array_merge(parent::generatorOptions(), [
+        return array_merge(parent::generatorOptions(), [
             'unit' => $this->option('unit'),
             'feature' => ! $this->option('unit'),
         ]);

@@ -14,7 +14,7 @@ class GeneratesCodeWithMarkdown extends GeneratesCode
         $class = parent::buildClass($name);
 
         if (! empty($this->options['markdown'])) {
-            $class = \str_replace('DummyView', $this->options['markdown'], $class);
+            $class = str_replace('DummyView', $this->options['markdown'], $class);
         }
 
         return $class;

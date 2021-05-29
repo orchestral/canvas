@@ -24,12 +24,12 @@ class GeneratesListenerCode extends GeneratesCode
             $event = $this->preset->rootNamespace().'\\Events\\'.$event;
         }
 
-        $stub = \str_replace(
-            'DummyEvent', \class_basename($event), parent::buildClass($name)
+        $stub = str_replace(
+            'DummyEvent', class_basename($event), parent::buildClass($name)
         );
 
-        return \str_replace(
-            'DummyFullEvent', \trim($event, '\\'), $stub
+        return str_replace(
+            'DummyFullEvent', trim($event, '\\'), $stub
         );
     }
 
@@ -40,6 +40,6 @@ class GeneratesListenerCode extends GeneratesCode
      */
     protected function alreadyExists(string $rawName): bool
     {
-        return \class_exists($rawName);
+        return class_exists($rawName);
     }
 }

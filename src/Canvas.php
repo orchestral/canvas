@@ -22,7 +22,7 @@ class Canvas
             case 'laravel':
                 return new Core\Presets\Laravel($configuration, $basePath, $files);
             default:
-                if (\class_exists($config['preset'])) {
+                if (class_exists($config['preset'])) {
                     return new $config['preset']($configuration, $basePath, $files);
                 }
 

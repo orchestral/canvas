@@ -32,7 +32,7 @@ class GeneratesPolicyCode extends GeneratesCode
             return $stub;
         }
 
-        return \str_replace(
+        return str_replace(
             $this->rootNamespace().'\User',
             $model,
             $stub
@@ -44,7 +44,7 @@ class GeneratesPolicyCode extends GeneratesCode
      */
     protected function replaceModel(string $stub, string $model): string
     {
-        $model = \str_replace('/', '\\', $model);
+        $model = str_replace('/', '\\', $model);
 
 
         if (Str::startsWith($model, '\\')) {
@@ -53,9 +53,9 @@ class GeneratesPolicyCode extends GeneratesCode
             $namespacedModel = $this->preset->modelNamespace().'\\'.$model;
         }
 
-        $model = \class_basename(trim($model, '\\'));
+        $model = class_basename(trim($model, '\\'));
 
-        $dummyUser = \class_basename($this->userProviderModel());
+        $dummyUser = class_basename($this->userProviderModel());
 
         $dummyModel = Str::camel($model) === 'user' ? 'model' : $model;
 
@@ -80,11 +80,11 @@ class GeneratesPolicyCode extends GeneratesCode
             '{{user}}' => $dummyUser,
         ];
 
-        $stub = \str_replace(
-            \array_keys($replace), \array_values($replace), $stub
+        $stub = str_replace(
+            array_keys($replace), array_values($replace), $stub
         );
 
-        return \str_replace(
+        return str_replace(
             "use {$namespacedModel};\nuse {$namespacedModel};", "use {$namespacedModel};", $stub
         );
     }
