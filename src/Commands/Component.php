@@ -58,12 +58,12 @@ class Component extends Generator
      */
     protected function writeView()
     {
-        $view = Collection::make(\explode('/', $this->argument('name')))
+        $view = Collection::make(explode('/', $this->argument('name')))
             ->map(static function ($part) {
                 return Str::kebab($part);
             })->implode('.');
 
-        $path = $this->preset->resourcePath().'/views/'.\str_replace('.', '/', 'components.'.$view);
+        $path = $this->preset->resourcePath().'/views/'.str_replace('.', '/', 'components.'.$view);
 
         if (! $this->files->isDirectory(\dirname($path))) {
             $this->files->makeDirectory(\dirname($path), 0777, true, true);

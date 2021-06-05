@@ -29,13 +29,13 @@ class GeneratesControllerCode extends GeneratesCode
             $replace = $this->buildModelReplacements($replace);
         }
 
-        $replace = \array_merge($replace, [
+        $replace = array_merge($replace, [
             "use {$controllerNamespace}\Controller;\n" => '',
             "use {$rootNamespace}\Http\Controllers\Controller;" => "use {$rootNamespace}Http\Controllers\Controller;",
         ]);
 
-        return \str_replace(
-            \array_keys($replace), \array_values($replace), parent::buildClass($name)
+        return str_replace(
+            array_keys($replace), array_values($replace), parent::buildClass($name)
         );
     }
 
@@ -46,7 +46,7 @@ class GeneratesControllerCode extends GeneratesCode
     {
         $parentModelClass = $this->parseModel($this->options['parent']);
 
-        if (! \class_exists($parentModelClass) && \method_exists($this->listener, 'createModel')) {
+        if (! class_exists($parentModelClass) && method_exists($this->listener, 'createModel')) {
             $this->listener->createModel($parentModelClass);
         }
 
@@ -54,12 +54,12 @@ class GeneratesControllerCode extends GeneratesCode
             'ParentDummyFullModelClass' => $parentModelClass,
             '{{ namespacedParentModel }}' => $parentModelClass,
             '{{namespacedParentModel}}' => $parentModelClass,
-            'ParentDummyModelClass' => \class_basename($parentModelClass),
-            '{{ parentModel }}' => \class_basename($parentModelClass),
-            '{{parentModel}}' => \class_basename($parentModelClass),
-            'ParentDummyModelVariable' => \lcfirst(\class_basename($parentModelClass)),
-            '{{ parentModelVariable }}' => \lcfirst(\class_basename($parentModelClass)),
-            '{{parentModelVariable}}' => \lcfirst(\class_basename($parentModelClass)),
+            'ParentDummyModelClass' => class_basename($parentModelClass),
+            '{{ parentModel }}' => class_basename($parentModelClass),
+            '{{parentModel}}' => class_basename($parentModelClass),
+            'ParentDummyModelVariable' => lcfirst(class_basename($parentModelClass)),
+            '{{ parentModelVariable }}' => lcfirst(class_basename($parentModelClass)),
+            '{{parentModelVariable}}' => lcfirst(class_basename($parentModelClass)),
         ];
     }
 
@@ -70,20 +70,20 @@ class GeneratesControllerCode extends GeneratesCode
     {
         $modelClass = $this->parseModel($this->options['model']);
 
-        if (! \class_exists($modelClass) && \method_exists($this->listener, 'createModel')) {
+        if (! class_exists($modelClass) && method_exists($this->listener, 'createModel')) {
             $this->listener->createModel($modelClass);
         }
 
-        return \array_merge($replace, [
+        return array_merge($replace, [
             'DummyFullModelClass' => $modelClass,
             '{{ namespacedModel }}' => $modelClass,
             '{{namespacedModel}}' => $modelClass,
-            'DummyModelClass' => \class_basename($modelClass),
-            '{{ model }}' => \class_basename($modelClass),
-            '{{model}}' => \class_basename($modelClass),
-            'DummyModelVariable' => \lcfirst(\class_basename($modelClass)),
-            '{{ modelVariable }}' => \lcfirst(\class_basename($modelClass)),
-            '{{modelVariable}}' => \lcfirst(\class_basename($modelClass)),
+            'DummyModelClass' => class_basename($modelClass),
+            '{{ model }}' => class_basename($modelClass),
+            '{{model}}' => class_basename($modelClass),
+            'DummyModelVariable' => lcfirst(class_basename($modelClass)),
+            '{{ modelVariable }}' => lcfirst(class_basename($modelClass)),
+            '{{modelVariable}}' => lcfirst(class_basename($modelClass)),
         ]);
     }
 
@@ -94,11 +94,11 @@ class GeneratesControllerCode extends GeneratesCode
      */
     protected function parseModel(string $model): string
     {
-        if (\preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
+        if (preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
             throw new InvalidArgumentException('Model name contains invalid characters.');
         }
 
-        $model = \trim(\str_replace('/', '\\', $model), '\\');
+        $model = trim(str_replace('/', '\\', $model), '\\');
 
         if (! Str::startsWith($model, $rootNamespace = $this->preset->modelNamespace())) {
             $model = $rootNamespace.'\\'.$model;

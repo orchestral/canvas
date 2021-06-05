@@ -58,7 +58,7 @@ class Policy extends Generator
      */
     public function generatorOptions(): array
     {
-        return \array_merge(parent::generatorOptions(), [
+        return array_merge(parent::generatorOptions(), [
             'model' => $this->option('model'),
         ]);
     }

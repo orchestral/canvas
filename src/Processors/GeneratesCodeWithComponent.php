@@ -16,16 +16,16 @@ class GeneratesCodeWithComponent extends GeneratesCode
         $class = parent::buildClass($name);
 
         if (! empty($this->options['inline'])) {
-            $class = \str_replace(
+            $class = str_replace(
                 'DummyView',
                 "<<<'blade'\n<div>\n    ".Inspiring::quote()."\n</div>\nblade",
                 $class
             );
         }
 
-        return \str_replace(
+        return str_replace(
             'DummyView',
-            'view(\'components.'.Str::kebab(\class_basename($name)).'\')',
+            'view(\'components.'.Str::kebab(class_basename($name)).'\')',
             $class
         );
     }

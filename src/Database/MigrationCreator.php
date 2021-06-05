@@ -26,7 +26,7 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
     {
         $this->files = $preset->filesystem();
         $this->preset = $preset;
-        $this->customStubPath = \sprintf('%s/stubs', $this->preset->basePath());
+        $this->customStubPath = sprintf('%s/stubs', $this->preset->basePath());
     }
 
     /**
@@ -43,7 +43,7 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      */
     public function create($name, $path, $table = null, $create = false)
     {
-        $name = \trim(\implode('_', [Str::slug($this->preset->config('migration.prefix', ''), '_'), $name]), '_');
+        $name = trim(implode('_', [Str::slug($this->preset->config('migration.prefix', ''), '_'), $name]), '_');
 
         if (! $this->files->isDirectory($path)) {
             if ($this->preset instanceof Laravel) {

@@ -14,7 +14,7 @@ class GeneratesFactoryCode extends GeneratesCode
     {
         $namespaceModel = ! empty($this->options['model'])
             ? $this->qualifyClass($this->options['model'])
-            : \trim($this->rootNamespace(), '\\').'\\Model';
+            : trim($this->rootNamespace(), '\\').'\\Model';
 
         $model = class_basename($namespaceModel);
 
@@ -38,8 +38,8 @@ class GeneratesFactoryCode extends GeneratesCode
             '{{factory}}' => $model,
         ];
 
-        return \str_replace(
-            \array_keys($replace), \array_values($replace), parent::buildClass($name)
+        return str_replace(
+            array_keys($replace), array_values($replace), parent::buildClass($name)
         );
     }
 
@@ -48,7 +48,7 @@ class GeneratesFactoryCode extends GeneratesCode
      */
     protected function getPath(string $name): string
     {
-        $name = \str_replace(
+        $name = str_replace(
             ['\\', '/'], '', $this->listener->generatorName()
         );
 

@@ -11,6 +11,6 @@ class GeneratesEventCode extends GeneratesCode
      */
     protected function alreadyExists(string $rawName): bool
     {
-        return \class_exists($rawName);
+        return class_exists($rawName);
     }
 }

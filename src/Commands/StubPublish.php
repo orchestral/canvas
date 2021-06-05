@@ -50,7 +50,7 @@ class StubPublish extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $files = $this->preset->filesystem();
-        $stubsPath = \sprintf('%s/stubs', $this->preset->basePath());
+        $stubsPath = sprintf('%s/stubs', $this->preset->basePath());
 
         if (! $files->isDirectory($stubsPath)) {
             $files->makeDirectory($stubsPath);
@@ -87,8 +87,8 @@ class StubPublish extends Command
         $force = $this->option('force');
 
         foreach ($files as $from => $to) {
-            if (! \file_exists($to) || $force) {
-                \file_put_contents($to, \file_get_contents($this->getStubFileFromPresetStorage($this->preset, $from)));
+            if (! file_exists($to) || $force) {
+                file_put_contents($to, file_get_contents($this->getStubFileFromPresetStorage($this->preset, $from)));
             }
         }
 
@@ -103,10 +103,10 @@ class StubPublish extends Command
     protected function getFeatureTestStubFile(): string
     {
         if ($this->preset instanceof Package) {
-            return \realpath(__DIR__.'/../../storage/testing/test.package.stub');
+            return realpath(__DIR__.'/../../storage/testing/test.package.stub');
         }
 
-        return \realpath(__DIR__.'/../../storage/testing/test.stub');
+        return realpath(__DIR__.'/../../storage/testing/test.stub');
     }
 
     /**

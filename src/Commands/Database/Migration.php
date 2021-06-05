@@ -55,7 +55,7 @@ class Migration extends Command
         // It's possible for the developer to specify the tables to modify in this
         // schema operation. The developer may also specify if this table needs
         // to be freshly created so we can create the appropriate migrations.
-        $name = Str::snake(\trim($input->getArgument('name')));
+        $name = Str::snake(trim($input->getArgument('name')));
 
         $table = $input->getOption('table');
 
@@ -98,7 +98,7 @@ class Migration extends Command
         );
 
         if (! $this->usingFullPath()) {
-            $file = \pathinfo($file, PATHINFO_FILENAME);
+            $file = pathinfo($file, PATHINFO_FILENAME);
         }
 
         return $file;

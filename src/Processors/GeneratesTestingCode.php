@@ -28,21 +28,21 @@ class GeneratesTestingCode extends GeneratesCode
      */
     protected function replaceTestCase(string $stub, string $testCase): string
     {
-        $namespaceTestCase = $testCase = \str_replace('/', '\\', $testCase);
+        $namespaceTestCase = $testCase = str_replace('/', '\\', $testCase);
 
         if (Str::startsWith($testCase, '\\')) {
-            $stub = \str_replace('NamespacedDummyTestCase', \trim($testCase, '\\'), $stub);
+            $stub = str_replace('NamespacedDummyTestCase', trim($testCase, '\\'), $stub);
         } else {
-            $stub = \str_replace('NamespacedDummyTestCase', $namespaceTestCase, $stub);
+            $stub = str_replace('NamespacedDummyTestCase', $namespaceTestCase, $stub);
         }
 
-        $stub = \str_replace(
+        $stub = str_replace(
             "use {$namespaceTestCase};\nuse {$namespaceTestCase};", "use {$namespaceTestCase};", $stub
         );
 
-        $testCase = \class_basename(trim($testCase, '\\'));
+        $testCase = class_basename(trim($testCase, '\\'));
 
-        return \str_replace('DummyTestCase', $testCase, $stub);
+        return str_replace('DummyTestCase', $testCase, $stub);
     }
 
     /**
@@ -52,10 +52,10 @@ class GeneratesTestingCode extends GeneratesCode
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return \sprintf(
+        return sprintf(
             '%s/tests/%s',
             $this->preset->basePath(),
-            \str_replace('\\', '/', $name).'.php'
+            str_replace('\\', '/', $name).'.php'
         );
     }
 

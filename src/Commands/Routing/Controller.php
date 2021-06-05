@@ -74,7 +74,7 @@ class Controller extends Generator
         if ($this->option('api') && \is_null($stub)) {
             $stub = 'controller.api.stub';
         } elseif ($this->option('api') && ! \is_null($stub) && ! $this->option('invokable')) {
-            $stub = \str_replace('.stub', '.api.stub', $stub);
+            $stub = str_replace('.stub', '.api.stub', $stub);
         }
 
         return $stub ?? 'controller.plain.stub';
@@ -93,7 +93,7 @@ class Controller extends Generator
      */
     public function generatorOptions(): array
     {
-        return \array_merge(parent::generatorOptions(), [
+        return array_merge(parent::generatorOptions(), [
             'model' => $this->option('model'),
             'parent' => $this->option('parent'),
         ]);

@@ -13,6 +13,6 @@ class GeneratesExceptionCode extends GeneratesCode
      */
     protected function alreadyExists(string $rawName): bool
     {
-        return \class_exists($this->getDefaultNamespace($this->rootNamespace()).'\\'.$rawName);
+        return class_exists($this->getDefaultNamespace($this->rootNamespace()).'\\'.$rawName);
     }
 }
