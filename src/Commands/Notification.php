@@ -49,14 +49,31 @@ class Notification extends Generator
         return $exitCode;
     }
 
+
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getPublishedStubFileName(): ?string
+    {
+        return $this->getStubFileName();
+    }
+
     /**
      * Get the stub file for the generator.
      */
     public function getStubFile(): string
     {
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         return $this->option('markdown')
-            ? $this->getStubFileFromPresetStorage($this->preset, 'markdown-notification.stub')
-            : $this->getStubFileFromPresetStorage($this->preset, 'notification.stub');
+            ? 'markdown-notification.stub'
+            : 'notification.stub';
     }
 
     /**
