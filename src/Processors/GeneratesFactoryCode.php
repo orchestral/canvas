@@ -18,10 +18,12 @@ class GeneratesFactoryCode extends GeneratesCode
 
         $model = class_basename($namespaceModel);
 
+        $factoryNamespace = $this->preset->config('factory.namespace', 'Database\Factories');
+
         if (Str::startsWith($namespaceModel, 'App\\Models')) {
-            $namespace = Str::beforeLast('Database\\Factories\\'.Str::after($namespaceModel, 'App\\Models\\'), '\\');
+            $namespace = Str::beforeLast($factoryNamespace.'\\'.Str::after($namespaceModel, 'App\\Models\\'), '\\');
         } else {
-            $namespace = 'Database\\Factories';
+            $namespace = $factoryNamespace;
         }
 
         $replace = [
