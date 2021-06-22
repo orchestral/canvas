@@ -30,7 +30,7 @@ class Rule extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
-        return 'rule.stub';
+        return $this->getStubFileName();
     }
 
     /**
@@ -38,7 +38,15 @@ class Rule extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'rule.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return 'rule.stub';
     }
 
     /**

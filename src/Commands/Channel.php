@@ -30,7 +30,15 @@ class Channel extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'channel.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return 'channel.stub';
     }
 
     /**

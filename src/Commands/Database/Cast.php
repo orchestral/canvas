@@ -32,7 +32,7 @@ class Cast extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
-        return 'cast.stub';
+        return $this->getStubFileName();
     }
 
     /**
@@ -40,7 +40,15 @@ class Cast extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'cast.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return 'cast.stub';
     }
 
     /**

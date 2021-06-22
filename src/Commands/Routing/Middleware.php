@@ -32,7 +32,7 @@ class Middleware extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
-        return 'middleware.stub';
+        return $this->getStubFileName();
     }
 
     /**
@@ -40,7 +40,15 @@ class Middleware extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'middleware.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return 'middleware.stub';
     }
 
     /**

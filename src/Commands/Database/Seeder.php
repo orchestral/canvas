@@ -72,7 +72,7 @@ class Seeder extends Generator
      */
     public function getPublishedStubFileName(): ?string
     {
-        return 'seeder.stub';
+        return $this->getStubFileName();
     }
 
     /**
@@ -80,6 +80,14 @@ class Seeder extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'seeder.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return 'seeder.stub';
     }
 }
