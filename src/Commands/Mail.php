@@ -54,9 +54,17 @@ class Mail extends Generator
      */
     public function getStubFile(): string
     {
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         return $this->option('markdown')
-            ? $this->getStubFileFromPresetStorage($this->preset, 'markdown-mail.stub')
-            : $this->getStubFileFromPresetStorage($this->preset, 'mail.stub');
+            ? 'markdown-mail.stub'
+            : 'mail.stub';
     }
 
     /**

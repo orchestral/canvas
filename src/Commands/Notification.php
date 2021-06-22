@@ -49,7 +49,6 @@ class Notification extends Generator
         return $exitCode;
     }
 
-
     /**
      * Get the stub file for the generator.
      */

@@ -55,7 +55,15 @@ class Console extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'console.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return 'console.stub';
     }
 
     /**

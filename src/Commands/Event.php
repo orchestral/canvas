@@ -37,9 +37,25 @@ class Event extends Generator
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string
+    {
+        return $this->getStubFileName();
+    }
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset, 'event.stub');
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
+        return 'event.stub';
     }
 
     /**

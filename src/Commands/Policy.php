@@ -40,9 +40,17 @@ class Policy extends Generator
      */
     public function getStubFile(): string
     {
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         return $this->option('model')
-            ? $this->getStubFileFromPresetStorage($this->preset, 'policy.stub')
-            : $this->getStubFileFromPresetStorage($this->preset, 'policy.plain.stub');
+            ? 'policy.stub'
+            : 'policy.plain.stub';
     }
 
     /**
