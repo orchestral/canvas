@@ -30,10 +30,11 @@
         "php": "^7.3 || ^8.0",
         "illuminate/database": "^8.0",
         "illuminate/support": "^8.0",
-        "orchestra/canvas-core": "^6.1",
+        "orchestra/canvas-core": "^6.2",
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
+        "nunomaduro/larastan": "^0.7.12",
         "orchestra/testbench": "^6.14"
     },
     "config": {

@@ -96,8 +96,10 @@ class StubPublish extends Command
         $force = $this->option('force');
 
         foreach ($files as $from => $to) {
-            if (! file_exists($to) || $force) {
-                file_put_contents($to, file_get_contents($this->getStubFileFromPresetStorage($this->preset, $from)));
+            $file = $this->getStubFileFromPresetStorage($this->preset, $from);
+
+            if ((! file_exists($to) || $force) && is_string($file)) {
+                file_put_contents($to, file_get_contents($file));
             }
         }
 
@@ -108,8 +110,10 @@ class StubPublish extends Command
 
     /**
      * Get feature test stub file.
+     *
+     * @return string|bool
      */
-    protected function getFeatureTestStubFile(): string
+    protected function getFeatureTestStubFile()
     {
         if ($this->preset instanceof Package) {
             return realpath(__DIR__.'/../../storage/testing/test.package.stub');

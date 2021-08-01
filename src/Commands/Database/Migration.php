@@ -40,7 +40,7 @@ class Migration extends Command
         $this->setName('make:migration')
             ->setDescription('Create a new migration file.');
 
-        $this->creator = new MigrationCreator($this->preset, $this->preset->basePath().'/stubs');
+        $this->creator = new MigrationCreator($this->preset);
 
         $this->composer = new Composer($this->preset->filesystem(), $this->preset->basePath());
     }

@@ -23,7 +23,7 @@ trait ResolvesPresetStubs
     /**
      * Get the stub storage.
      */
-    public function getPresetStorage(Preset $preset): string
+    public function getPresetStorage(Preset $preset): ?string
     {
         return $preset->hasCustomStubPath()
             ? $preset->getCustomStubPath()
