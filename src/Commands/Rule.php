@@ -2,6 +2,9 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Orchestra\Canvas\Processors\GeneratesRuleCode;
+use Symfony\Component\Console\Input\InputOption;
+
 class Rule extends Generator
 {
     /**
@@ -24,6 +27,13 @@ class Rule extends Generator
      * @var string
      */
     protected $type = 'Rule';
+
+    /**
+     * Generator processor.
+     *
+     * @var string
+     */
+    protected $processor = GeneratesRuleCode::class;
 
     /**
      * Get the stub file for the generator.
@@ -55,5 +65,27 @@ class Rule extends Generator
     public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Rules';
+    }
+
+    /**
+     * Generator options.
+     */
+    public function generatorOptions(): array
+    {
+        return [
+            'implicit' => $this->option('implicit') ?? false,
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['implicit', 'i', InputOption::VALUE_NONE, 'Generate an implicit rule.'],
+        ];
     }
 }
