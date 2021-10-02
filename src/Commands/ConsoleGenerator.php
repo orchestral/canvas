@@ -46,6 +46,8 @@ class ConsoleGenerator extends Console
 
     /**
      * Generator options.
+     *
+     * @return array<string, mixed>
      */
     public function generatorOptions(): array
     {
@@ -63,7 +65,7 @@ class ConsoleGenerator extends Console
     /**
      * Get the console command options.
      *
-     * @return array
+     * @return array<int, array>
      */
     protected function getOptions()
     {

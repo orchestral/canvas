@@ -164,7 +164,7 @@ class Eloquent extends Generator
     /**
      * Get the console command options.
      *
-     * @return array
+     * @return array<int, array>
      */
     protected function getOptions()
     {

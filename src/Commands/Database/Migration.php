@@ -137,7 +137,7 @@ class Migration extends Command
     /**
      * Get the console command arguments.
      *
-     * @return array
+     * @return array<int, array>
      */
     protected function getArguments()
     {
@@ -149,7 +149,7 @@ class Migration extends Command
     /**
      * Get the console command options.
      *
-     * @return array
+     * @return array<int, array>
      */
     protected function getOptions()
     {

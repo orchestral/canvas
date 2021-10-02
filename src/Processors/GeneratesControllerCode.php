@@ -41,6 +41,8 @@ class GeneratesControllerCode extends GeneratesCode
 
     /**
      * Build the replacements for a parent controller.
+     *
+     * @return array<string, string>
      */
     protected function buildParentReplacements(): array
     {
@@ -65,6 +67,9 @@ class GeneratesControllerCode extends GeneratesCode
 
     /**
      * Build the model replacement values.
+     *
+     * @param  array<string, string>  $replace
+     * @return array<string, string>
      */
     protected function buildModelReplacements(array $replace): array
     {
