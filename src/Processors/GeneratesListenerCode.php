@@ -9,14 +9,12 @@ class GeneratesListenerCode extends GeneratesCode
 {
     /**
      * Build the class with the given name.
-     *
-     * @todo
      */
     protected function buildClass(string $name): string
     {
         $event = $this->options['event'];
 
-        if (! Str::startsWith($event, [
+        if (is_null($event) || ! Str::startsWith($event, [
             $this->preset->rootNamespace(),
             'Illuminate',
             '\\',
@@ -35,8 +33,6 @@ class GeneratesListenerCode extends GeneratesCode
 
     /**
      * Determine if the class already exists.
-     *
-     * @todo
      */
     protected function alreadyExists(string $rawName): bool
     {
