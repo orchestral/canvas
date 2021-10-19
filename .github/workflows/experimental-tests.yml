@@ -1,8 +1,6 @@
 name: experimental-tests
 
 on:
-  push:
-  pull_request:
   schedule:
     - cron: '0 0 * * 4'
 
@@ -15,11 +13,10 @@ jobs:
         os:
           - "ubuntu-latest"
         php:
-          - "8.1"
+          - "8.2"
         dependencies:
-          - "locked"
-          - "lowest"
           - "highest"
+          - "locked"
         experimental:
           - false
 
