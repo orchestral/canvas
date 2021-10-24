@@ -13,7 +13,7 @@ trait ResolvesPresetStubs
     {
         $directory = $this->getPresetStorage($preset);
 
-        if (file_exists("{$directory}/$filename")) {
+        if (file_exists("{$directory}/{$filename}")) {
             return "{$directory}/{$filename}";
         }
 
@@ -23,7 +23,7 @@ trait ResolvesPresetStubs
     /**
      * Get the stub storage.
      */
-    public function getPresetStorage(Preset $preset): string
+    public function getPresetStorage(Preset $preset): ?string
     {
         return $preset->hasCustomStubPath()
             ? $preset->getCustomStubPath()

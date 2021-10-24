@@ -75,6 +75,8 @@ class Testing extends Generator
 
     /**
      * Generator options.
+     *
+     * @return array<string, mixed>
      */
     public function generatorOptions(): array
     {
@@ -87,12 +89,13 @@ class Testing extends Generator
     /**
      * Get the console command options.
      *
-     * @return array
+     * @return array<int, array>
      */
     protected function getOptions()
     {
         return [
-            ['unit', null, InputOption::VALUE_NONE, 'Create a unit test'],
+            ['unit', 'u', InputOption::VALUE_NONE, 'Create a unit test.'],
+            ['pest', 'p', InputOption::VALUE_NONE, 'Create a Pest test.'],
         ];
     }
 }

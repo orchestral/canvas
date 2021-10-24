@@ -63,6 +63,8 @@ class Policy extends Generator
 
     /**
      * Generator options.
+     *
+     * @return array<string, mixed>
      */
     public function generatorOptions(): array
     {
@@ -74,7 +76,7 @@ class Policy extends Generator
     /**
      * Get the console command arguments.
      *
-     * @return array
+     * @return array<int, array>
      */
     protected function getOptions()
     {

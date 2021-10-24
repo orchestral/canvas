@@ -10,7 +10,8 @@ class Canvas
     /**
      * Make Preset from configuration.
      *
-     * @return \Orchestra\Canvas\Presets\Preset
+     * @param  array<string, mixed>  $config
+     * @return \Orchestra\Canvas\Core\Presets\Preset
      */
     public static function preset(array $config, string $basePath, Filesystem $files): Core\Presets\Preset
     {

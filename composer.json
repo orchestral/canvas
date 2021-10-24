@@ -34,6 +34,7 @@
         "symfony/yaml": "^5.3 || ^6.0"
     },
     "require-dev": {
+        "nunomaduro/larastan": "^0.7.12",
         "orchestra/testbench": "^7.0"
     },
     "config": {

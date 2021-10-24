@@ -64,6 +64,8 @@ class Observer extends Generator
 
     /**
      * Generator options.
+     *
+     * @return array<string, mixed>
      */
     public function generatorOptions(): array
     {
@@ -75,7 +77,7 @@ class Observer extends Generator
     /**
      * Get the console command arguments.
      *
-     * @return array
+     * @return array<int, array>
      */
     protected function getOptions()
     {

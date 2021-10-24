@@ -15,7 +15,7 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
     /**
      * Canvas preset.
      *
-     * @var \Orchestra\Canvas\Presets\Preset
+     * @var \Orchestra\Canvas\Core\Presets\Preset
      */
     protected $preset;
 

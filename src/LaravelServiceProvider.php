@@ -86,7 +86,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     /**
      * Get the services provided by the provider.
      *
-     * @return array
+     * @return array<int, string>
      */
     public function provides()
     {
