@@ -125,7 +125,7 @@ class GeneratesControllerCode extends GeneratesCode
      *
      * @param  string  $modelClass
      *
-     * @return array
+     * @return array<string, string>
      */
     protected function buildFormRequestReplacements(array $replace, $modelClass)
     {
@@ -168,7 +168,7 @@ class GeneratesControllerCode extends GeneratesCode
      * @param  string  $storeRequestClass
      * @param  string  $updateRequestClass
      *
-     * @return array
+     * @return array<int, string>
      */
     protected function generateFormRequests($modelClass, $storeRequestClass, $updateRequestClass)
     {
