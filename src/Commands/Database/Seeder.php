@@ -6,6 +6,9 @@ use Illuminate\Support\Composer;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesSeederCode;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
+ */
 class Seeder extends Generator
 {
     /**

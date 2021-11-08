@@ -12,6 +12,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Console/Migrations/MigrateMakeCommand.php
+ */
 class Migration extends Command
 {
     /**

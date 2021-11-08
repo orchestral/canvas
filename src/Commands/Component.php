@@ -7,6 +7,9 @@ use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
+ */
 class Component extends Generator
 {
     /**

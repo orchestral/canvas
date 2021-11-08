@@ -2,6 +2,9 @@
 
 namespace Orchestra\Canvas\Commands;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ChannelMakeCommand.php
+ */
 class Channel extends Generator
 {
     /**

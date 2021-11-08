@@ -5,6 +5,9 @@ namespace Orchestra\Canvas\Commands;
 use Orchestra\Canvas\Core\GeneratesCommandCode;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
+ */
 class Console extends Generator
 {
     /**

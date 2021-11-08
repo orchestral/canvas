@@ -5,6 +5,11 @@ namespace Orchestra\Canvas\Processors;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\GeneratesCode;
 
+/**
+ * @property \Orchestra\Canvas\Commands\Listener $listener
+ *
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
+ */
 class GeneratesListenerCode extends GeneratesCode
 {
     /**

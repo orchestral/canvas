@@ -4,6 +4,11 @@ namespace Orchestra\Canvas\Processors;
 
 use Orchestra\Canvas\Core\GeneratesCode;
 
+/**
+ * @property \Orchestra\Canvas\Commands\Database\Seeder $listener
+ *
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
+ */
 class GeneratesSeederCode extends GeneratesCode
 {
     /**

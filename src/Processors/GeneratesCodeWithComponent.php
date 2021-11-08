@@ -6,6 +6,11 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\GeneratesCode;
 
+/**
+ * @property \Orchestra\Canvas\Commands\Database\Cast $listener
+ *
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
+ */
 class GeneratesCodeWithComponent extends GeneratesCode
 {
     /**
