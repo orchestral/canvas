@@ -40,7 +40,7 @@ class Exception extends Generator
      */
     public function getStubFile(): string
     {
-        return $this->getStubFileFromPresetStorage($this->preset,  $this->getStubFileName());
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

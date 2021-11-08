@@ -14,7 +14,7 @@ class GeneratesListenerCode extends GeneratesCode
     {
         $event = $this->options['event'];
 
-        if (is_null($event) || ! Str::startsWith($event, [
+        if (\is_null($event) || ! Str::startsWith($event, [
             $this->preset->rootNamespace(),
             'Illuminate',
             '\\',

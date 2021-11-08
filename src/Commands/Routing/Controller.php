@@ -98,6 +98,7 @@ class Controller extends Generator
         return array_merge(parent::generatorOptions(), [
             'model' => $this->option('model'),
             'parent' => $this->option('parent'),
+            'requests' => $this->option('requests'),
         ]);
     }
 
@@ -108,6 +109,16 @@ class Controller extends Generator
     {
         if ($this->confirm("A {$className} model does not exist. Do you want to generate it?", true)) {
             $this->call('make:model', ['name' => $className]);
+        }
+    }
+
+    /**
+     * Create request.
+     */
+    public function createRequest(string $className): void
+    {
+        if ($this->confirm("A {$className} request does not exist. Do you want to generate it?", true)) {
+            $this->call('make:request', ['name' => $className]);
         }
     }
 
@@ -126,6 +137,7 @@ class Controller extends Generator
             ['parent', 'p', InputOption::VALUE_OPTIONAL, 'Generate a nested resource controller class.'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],
             ['type', null, InputOption::VALUE_REQUIRED, 'Manually specify the controller stub file to use.'],
+            ['requests', 'R', InputOption::VALUE_NONE, 'Create new form request classes and use them in the resource controller'],
         ];
     }
 }
