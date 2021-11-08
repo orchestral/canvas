@@ -7,6 +7,8 @@ use InvalidArgumentException;
 use Orchestra\Canvas\Core\GeneratesCode;
 
 /**
+ * @property \Orchestra\Canvas\Commands\Routing\Controller $listener
+ *
  * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
 class GeneratesControllerCode extends GeneratesCode
@@ -162,7 +164,7 @@ class GeneratesControllerCode extends GeneratesCode
     /**
      * Generate the form requests for the given model and classes.
      *
-     * @param  string  $modelName
+     * @param  string  $modelClass
      * @param  string  $storeRequestClass
      * @param  string  $updateRequestClass
      *
