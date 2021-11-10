@@ -28,7 +28,7 @@ class Canvas
                 return new Core\Presets\Laravel($configuration, $basePath, $files);
             default:
                 if (class_exists($preset)) {
-                    /** @var class-string<\Orchestra\Canvas\Core\Presets\Preset> $preset */
+                    /* @var class-string<\Orchestra\Canvas\Core\Presets\Preset> $preset */
                     return new $preset($configuration, $basePath, $files);
                 }
 
