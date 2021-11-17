@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -73,7 +74,7 @@ class Notification extends Generator
      */
     public function getStubFileName(): string
     {
-        return $this->option('markdown')
+        return $this->option('markdown') !== false
             ? 'markdown-notification.stub'
             : 'notification.stub';
     }
@@ -95,6 +96,7 @@ class Notification extends Generator
     {
         return [
             'markdown' => $this->option('markdown') ?? null,
+            'view' => $this->componentView(),
         ];
     }
 
@@ -103,13 +105,29 @@ class Notification extends Generator
      */
     protected function writeMarkdownTemplate(): void
     {
-        $path = $this->preset->resourcePath().'/views/'.str_replace('.', '/', $this->option('markdown')).'.blade.php';
+        $path = $this->preset->resourcePath().'/views/'.str_replace('.', '/', $this->componentView()).'.blade.php';
 
         if (! $this->files->isDirectory(\dirname($path))) {
             $this->files->makeDirectory(\dirname($path), 0755, true);
         }
 
         $this->files->put($path, file_get_contents(__DIR__.'/../../storage/laravel/markdown.stub'));
+    }
+
+    /**
+     * Get the view name.
+     *
+     * @return string
+     */
+    protected function componentView(): string
+    {
+        $view = $this->option('markdown');
+
+        if (! $view) {
+            $view = 'mail.'.Str::kebab(class_basename($this->argument('name')));
+        }
+
+        return $view;
     }
 
     /**
@@ -121,7 +139,7 @@ class Notification extends Generator
     {
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the notification already exists'],
-            ['markdown', 'm', InputOption::VALUE_OPTIONAL, 'Create a new Markdown template for the notification'],
+            ['markdown', 'm', InputOption::VALUE_OPTIONAL, 'Create a new Markdown template for the notification', false],
         ];
     }
 }

@@ -105,6 +105,20 @@ class Component extends Generator
     }
 
     /**
+     * Get the view name relative to the components directory.
+     */
+    protected function componentView(): string
+    {
+        $name = str_replace('\\', '/', $this->argument('name'));
+
+        return collect(explode('/', $name))
+            ->map(function ($part) {
+                return Str::kebab($part);
+            })
+            ->implode('.');
+    }
+
+    /**
      * Generator options.
      *
      * @return array<string, mixed>
@@ -115,6 +129,7 @@ class Component extends Generator
             'name' => $this->generatorName(),
             'inline' => $this->option('inline'),
             'force' => $this->option('force'),
+            'view' => $this->componentView(),
         ];
     }
 

@@ -22,14 +22,14 @@ class GeneratesCodeWithComponent extends GeneratesCode
 
         if (! empty($this->options['inline'])) {
             $class = str_replace(
-                'DummyView',
+                 ['DummyView', '{{ view }}', '{{view}}'],
                 "<<<'blade'\n<div>\n    ".Inspiring::quote()."\n</div>\nblade",
                 $class
             );
         }
 
         return str_replace(
-            'DummyView',
+            ['DummyView', '{{ view }}', '{{view}}'],
             'view(\'components.'.Str::kebab(class_basename($name)).'\')',
             $class
         );

@@ -28,11 +28,15 @@ class GeneratesListenerCode extends GeneratesCode
         }
 
         $stub = str_replace(
-            'DummyEvent', class_basename($event), parent::buildClass($name)
+            ['DummyEvent', '{{ event }}', '{{event}}'],
+            class_basename($event),
+            parent::buildClass($name)
         );
 
         return str_replace(
-            'DummyFullEvent', trim($event, '\\'), $stub
+            ['DummyFullEvent', '{{ eventNamespace }}', '{{eventNamespace}}'],
+            trim($event, '\\'),
+            $stub
         );
     }
 
