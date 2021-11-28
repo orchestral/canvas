@@ -4,6 +4,9 @@ namespace Orchestra\Canvas\Commands;
 
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ProviderMakeCommand.php
+ */
 class Provider extends Generator
 {
     /**

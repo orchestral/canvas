@@ -5,6 +5,11 @@ namespace Orchestra\Canvas\Processors;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\GeneratesCode;
 
+/**
+ * @property \Orchestra\Canvas\Commands\Database\Factory $listener
+ *
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
+ */
 class GeneratesFactoryCode extends GeneratesCode
 {
     /**

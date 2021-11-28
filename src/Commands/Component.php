@@ -7,6 +7,9 @@ use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
+ */
 class Component extends Generator
 {
     /**
@@ -102,6 +105,20 @@ class Component extends Generator
     }
 
     /**
+     * Get the view name relative to the components directory.
+     */
+    protected function componentView(): string
+    {
+        $name = str_replace('\\', '/', $this->argument('name'));
+
+        return collect(explode('/', $name))
+            ->map(function ($part) {
+                return Str::kebab($part);
+            })
+            ->implode('.');
+    }
+
+    /**
      * Generator options.
      *
      * @return array<string, mixed>
@@ -112,6 +129,7 @@ class Component extends Generator
             'name' => $this->generatorName(),
             'inline' => $this->option('inline'),
             'force' => $this->option('force'),
+            'view' => $this->componentView(),
         ];
     }
 

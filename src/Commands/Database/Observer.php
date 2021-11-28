@@ -6,6 +6,9 @@ use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesObserverCode;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
+ */
 class Observer extends Generator
 {
     /**

@@ -4,6 +4,11 @@ namespace Orchestra\Canvas\Processors;
 
 use Orchestra\Canvas\Core\GeneratesCode;
 
+/**
+ * @property \Orchestra\Canvas\Commands\Event $listener
+ *
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/EventMakeCommand.php
+ */
 class GeneratesEventCode extends GeneratesCode
 {
     /**

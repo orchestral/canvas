@@ -6,6 +6,11 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Orchestra\Canvas\Core\GeneratesCode;
 
+/**
+ * @property \Orchestra\Canvas\Commands\Routing\Controller $listener
+ *
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
+ */
 class GeneratesControllerCode extends GeneratesCode
 {
     /**
@@ -69,6 +74,7 @@ class GeneratesControllerCode extends GeneratesCode
      * Build the model replacement values.
      *
      * @param  array<string, string>  $replace
+     *
      * @return array<string, string>
      */
     protected function buildModelReplacements(array $replace): array
@@ -78,6 +84,8 @@ class GeneratesControllerCode extends GeneratesCode
         if (! class_exists($modelClass) && method_exists($this->listener, 'createModel')) {
             $this->listener->createModel($modelClass);
         }
+
+        $replace = $this->buildFormRequestReplacements($replace, $modelClass);
 
         return array_merge($replace, [
             'DummyFullModelClass' => $modelClass,
@@ -110,5 +118,66 @@ class GeneratesControllerCode extends GeneratesCode
         }
 
         return $model;
+    }
+
+    /**
+     * Build the model replacement values.
+     *
+     * @param  string  $modelClass
+     *
+     * @return array<string, string>
+     */
+    protected function buildFormRequestReplacements(array $replace, $modelClass)
+    {
+        [$namespace, $storeRequestClass, $updateRequestClass] = [
+            'Illuminate\\Http', 'Request', 'Request',
+        ];
+
+        if ($this->options['requests']) {
+            $namespace = 'App\\Http\\Requests';
+
+            [$storeRequestClass, $updateRequestClass] = $this->generateFormRequests(
+                $modelClass, $storeRequestClass, $updateRequestClass
+            );
+        }
+
+        $namespacedRequests = $namespace.'\\'.$storeRequestClass.';';
+
+        if ($storeRequestClass !== $updateRequestClass) {
+            $namespacedRequests .= PHP_EOL.'use '.$namespace.'\\'.$updateRequestClass.';';
+        }
+
+        return array_merge($replace, [
+            '{{ storeRequest }}' => $storeRequestClass,
+            '{{storeRequest}}' => $storeRequestClass,
+            '{{ updateRequest }}' => $updateRequestClass,
+            '{{updateRequest}}' => $updateRequestClass,
+            '{{ namespacedStoreRequest }}' => $namespace.'\\'.$storeRequestClass,
+            '{{namespacedStoreRequest}}' => $namespace.'\\'.$storeRequestClass,
+            '{{ namespacedUpdateRequest }}' => $namespace.'\\'.$updateRequestClass,
+            '{{namespacedUpdateRequest}}' => $namespace.'\\'.$updateRequestClass,
+            '{{ namespacedRequests }}' => $namespacedRequests,
+            '{{namespacedRequests}}' => $namespacedRequests,
+        ]);
+    }
+
+    /**
+     * Generate the form requests for the given model and classes.
+     *
+     * @param  string  $modelClass
+     * @param  string  $storeRequestClass
+     * @param  string  $updateRequestClass
+     *
+     * @return array<int, string>
+     */
+    protected function generateFormRequests($modelClass, $storeRequestClass, $updateRequestClass)
+    {
+        $storeRequestClass = 'Store'.class_basename($modelClass).'Request';
+        $updateRequestClass = 'Update'.class_basename($modelClass).'Request';
+
+        $this->listener->createRequest($storeRequestClass);
+        $this->listener->createRequest($updateRequestClass);
+
+        return [$storeRequestClass, $updateRequestClass];
     }
 }

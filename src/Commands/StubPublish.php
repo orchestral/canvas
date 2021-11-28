@@ -9,6 +9,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/StubPublishCommand.php
+ */
 class StubPublish extends Command
 {
     use ResolvesPresetStubs;
@@ -98,7 +101,7 @@ class StubPublish extends Command
         foreach ($files as $from => $to) {
             $file = $this->getStubFileFromPresetStorage($this->preset, $from);
 
-            if ((! file_exists($to) || $force) && is_string($file)) {
+            if ((! file_exists($to) || $force) && \is_string($file)) {
                 file_put_contents($to, file_get_contents($file));
             }
         }

@@ -4,6 +4,9 @@ namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
 
+/**
+ * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
+ */
 class Cast extends Generator
 {
     /**
