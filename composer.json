@@ -31,10 +31,10 @@
         "illuminate/database": "^9.0",
         "illuminate/support": "^9.0",
         "orchestra/canvas-core": "^7.0",
-        "symfony/yaml": "^5.3 || ^6.0"
+        "symfony/yaml": "^5.4 || ^6.0"
     },
     "require-dev": {
-        "nunomaduro/larastan": "^1.0.1",
+        "nunomaduro/larastan": "dev-l9",
         "orchestra/testbench": "^7.0"
     },
     "config": {
@@ -42,7 +42,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "7.0-dev"
+            "dev-master": "8.0-dev"
         },
         "laravel": {
             "providers": [
