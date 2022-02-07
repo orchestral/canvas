@@ -28,9 +28,9 @@
     },
     "require": {
         "php": "^7.3 || ^8.0",
-        "illuminate/database": "^8.65",
-        "illuminate/support": "^8.65",
-        "orchestra/canvas-core": "^6.4",
+        "illuminate/database": "^8.75",
+        "illuminate/support": "^8.75",
+        "orchestra/canvas-core": "^6.4.1",
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
