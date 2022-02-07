@@ -1,8 +1,7 @@
 name: experimental-tests
 
 on:
-  schedule:
-    - cron: '0 0 * * 4'
+  push:
 
 jobs:
   tests:
