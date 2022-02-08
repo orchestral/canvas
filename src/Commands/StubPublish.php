@@ -75,7 +75,7 @@ class StubPublish extends Command
             'resource.stub' => $stubsPath.'/resource.stub',
             'test.stub' => $stubsPath.'/test.stub',
             'test.unit.stub' => $stubsPath.'/test.unit.stub',
-
+            'view-component.stub' => $stubsPath.'/view-component.stub',
             'factory.stub' => $stubsPath.'/factory.stub',
             'seeder.stub' => $stubsPath.'/seeder.stub',
             'migration.create.stub' => $stubsPath.'/migration.create.stub',
