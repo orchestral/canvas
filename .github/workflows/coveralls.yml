@@ -15,7 +15,7 @@ jobs:
         php:
           - "8.0"
         dependencies:
-          - "locked"
+          - "highest"
         laravel:
           - "8.x"
         experimental:
@@ -38,7 +38,7 @@ jobs:
         uses: "ramsey/composer-install@v1"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
-          composer-options: "--prefer-dist"
+          composer-options: "--prefer-dist --no-cache"
 
       - name: Execute tests
         run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
