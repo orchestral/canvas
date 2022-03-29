@@ -152,9 +152,15 @@ class Eloquent extends Generator
      */
     public function getStubFileName(): string
     {
-        return $this->option('pivot')
-            ? 'model.pivot.stub'
-            : 'model.stub';
+        if ($this->option('pivot')) {
+            return 'model.pivot.stub';
+        }
+
+        if ($this->option('morph-pivot')) {
+            return 'model.morph-pivot.stub';
+        }
+
+        return 'model.stub';
     }
 
     /**
@@ -178,6 +184,7 @@ class Eloquent extends Generator
             ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the model'],
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
             ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],
+            ['morph-pivot', null, InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom polymorphic intermediate table model'],
             ['seed', 's', InputOption::VALUE_NONE, 'Create a new seeder file for the model'],
             ['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom intermediate table model'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Indicates if the generated controller should be a resource controller'],

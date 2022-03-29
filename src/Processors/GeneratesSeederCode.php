@@ -26,4 +26,21 @@ class GeneratesSeederCode extends GeneratesCode
     {
         return $name;
     }
+
+
+    /**
+     * Get the full namespace for a given class, without the class name.
+     */
+    protected function getNamespace(string $name): string
+    {
+        return trim(implode('', [$this->rootNamespace(), parent::getNamespace($name)]), '\\');
+    }
+
+    /**
+     * Get the root namespace for the class.
+     */
+    protected function rootNamespace(): string
+    {
+        return 'Database\Seeders\\';
+    }
 }
