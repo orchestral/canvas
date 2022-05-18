@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
@@ -51,7 +52,7 @@ class Cast extends Generator
      */
     public function getStubFileName(): string
     {
-        return 'cast.stub';
+        return $this->option('inbound') ? 'cast.inbound.stub' : 'cast.stub';
     }
 
     /**
@@ -60,5 +61,17 @@ class Cast extends Generator
     public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Casts';
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['inbound', null, InputOption::VALUE_OPTIONAL, 'Generate an inbound cast class'],
+        ];
     }
 }
