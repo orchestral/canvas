@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Commands;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/RequestMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RequestMakeCommand.php
  */
 class Request extends Generator
 {

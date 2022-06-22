@@ -7,7 +7,7 @@ use Orchestra\Canvas\Processors\GeneratesControllerCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
 class Controller extends Generator
 {

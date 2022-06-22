@@ -6,7 +6,7 @@ use Orchestra\Canvas\Processors\GeneratesRuleCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
  */
 class Rule extends Generator
 {

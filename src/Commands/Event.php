@@ -5,7 +5,7 @@ namespace Orchestra\Canvas\Commands;
 use Orchestra\Canvas\Processors\GeneratesEventCode;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/EventMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/EventMakeCommand.php
  */
 class Event extends Generator
 {

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ResourceMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ResourceMakeCommand.php
  */
 class Resource extends Generator
 {

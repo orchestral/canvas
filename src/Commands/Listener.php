@@ -6,7 +6,7 @@ use Orchestra\Canvas\Processors\GeneratesListenerCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
  */
 class Listener extends Generator
 {

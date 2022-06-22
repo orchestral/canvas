@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\GeneratesCode;
 /**
  * @property \Orchestra\Canvas\Commands\Routing\Controller $listener
  *
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
 class GeneratesControllerCode extends GeneratesCode
 {

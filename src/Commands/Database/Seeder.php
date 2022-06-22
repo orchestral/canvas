@@ -7,7 +7,7 @@ use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesSeederCode;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
  */
 class Seeder extends Generator
 {

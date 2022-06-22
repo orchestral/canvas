@@ -7,7 +7,7 @@ use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/NotificationMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/NotificationMakeCommand.php
  */
 class Notification extends Generator
 {
