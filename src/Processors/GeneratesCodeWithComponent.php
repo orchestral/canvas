@@ -22,7 +22,7 @@ class GeneratesCodeWithComponent extends GeneratesCode
 
         if (! empty($this->options['inline'])) {
             $class = str_replace(
-                 ['DummyView', '{{ view }}', '{{view}}'],
+                ['DummyView', '{{ view }}', '{{view}}'],
                 "<<<'blade'\n<div>\n    ".Inspiring::quote()."\n</div>\nblade",
                 $class
             );

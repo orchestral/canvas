@@ -51,7 +51,6 @@ class GeneratesPolicyCode extends GeneratesCode
     {
         $model = str_replace('/', '\\', $model);
 
-
         if (Str::startsWith($model, '\\')) {
             $namespacedModel = trim($model, '\\');
         } else {

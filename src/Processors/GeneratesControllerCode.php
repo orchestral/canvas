@@ -74,7 +74,6 @@ class GeneratesControllerCode extends GeneratesCode
      * Build the model replacement values.
      *
      * @param  array<string, string>  $replace
-     *
      * @return array<string, string>
      */
     protected function buildModelReplacements(array $replace): array
@@ -124,7 +123,6 @@ class GeneratesControllerCode extends GeneratesCode
      * Build the model replacement values.
      *
      * @param  string  $modelClass
-     *
      * @return array<string, string>
      */
     protected function buildFormRequestReplacements(array $replace, $modelClass)
@@ -167,7 +165,6 @@ class GeneratesControllerCode extends GeneratesCode
      * @param  string  $modelClass
      * @param  string  $storeRequestClass
      * @param  string  $updateRequestClass
-     *
      * @return array<int, string>
      */
     protected function generateFormRequests($modelClass, $storeRequestClass, $updateRequestClass)
