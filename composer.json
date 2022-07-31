@@ -34,6 +34,7 @@
         "symfony/yaml": "^5.4 || ^6.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.1",
         "nunomaduro/larastan": "^2.0",
         "orchestra/testbench": "^7.0"
     },
