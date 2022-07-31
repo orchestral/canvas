@@ -66,13 +66,11 @@ class EloquentTest extends TestCase
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 
-
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
             'use Illuminate\Http\Request;',
             'class FooController extends Controller',
         ], 'app/Http/Controllers/FooController.php');
-
 
         $this->assertFileNotContains([
             'use App\Models\Foo;',

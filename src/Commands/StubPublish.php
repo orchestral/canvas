@@ -46,9 +46,9 @@ class StubPublish extends Command
     /**
      * Execute the command.
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
      * @return int 0 if everything went fine, or an exit code
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

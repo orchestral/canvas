@@ -106,7 +106,7 @@ class Mail extends Generator
         $this->files->put($path, file_get_contents(__DIR__.'/../../storage/laravel/markdown.stub'));
     }
 
-        /**
+    /**
      * Get the view name.
      *
      * @return string
