@@ -27,7 +27,6 @@ class GeneratesSeederCode extends GeneratesCode
         return $name;
     }
 
-
     /**
      * Get the full namespace for a given class, without the class name.
      */
