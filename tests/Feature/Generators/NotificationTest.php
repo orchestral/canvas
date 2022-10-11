@@ -36,7 +36,7 @@ class NotificationTest extends TestCase
         ], 'app/Notifications/FooNotification.php');
 
         $this->assertFileContains([
-            "@component('mail::message')",
+            "<x-mail::message>",
         ], 'resources/views/foo-notification.blade.php');
     }
 }

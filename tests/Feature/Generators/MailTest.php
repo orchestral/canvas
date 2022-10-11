@@ -36,7 +36,10 @@ class MailTest extends TestCase
         ], 'app/Mail/FooMail.php');
 
         $this->assertFileContains([
-            "@component('mail::message')",
+            '<x-mail::message>',
+            '<x-mail::button :url="\'\'">',
+            '</x-mail::button>',
+            '</x-mail::message>',
         ], 'resources/views/foo-mail.blade.php');
     }
 }
