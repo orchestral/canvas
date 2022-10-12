@@ -32,7 +32,8 @@ class MailTest extends TestCase
             'namespace App\Mail;',
             'use Illuminate\Mail\Mailable;',
             'class FooMail extends Mailable',
-            "return \$this->markdown('foo-mail')",
+            'return new Content(',
+            "markdown: 'foo-mail',",
         ], 'app/Mail/FooMail.php');
 
         $this->assertFileContains([
