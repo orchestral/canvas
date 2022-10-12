@@ -30,13 +30,13 @@
         "php": "^8.0",
         "illuminate/database": "^9.34",
         "illuminate/support": "^9.34",
-        "orchestra/canvas-core": "^7.0",
+        "orchestra/canvas-core": "^7.1",
         "symfony/yaml": "^5.4 || ^6.0"
     },
     "require-dev": {
         "laravel/pint": "^1.1",
         "nunomaduro/larastan": "^2.0",
-        "orchestra/testbench": "^7.10"
+        "orchestra/testbench": "^7.10.1"
     },
     "config": {
         "sort-packages": true
@@ -50,6 +50,9 @@
                 "Orchestra\\Canvas\\LaravelServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi"
     },
     "minimum-stability": "dev"
 }
