@@ -31,7 +31,7 @@ class Eloquent extends Generator
      *
      * @var string
      */
-    protected $type = 'Model';
+    protected string $type = 'Model';
 
     /**
      * Generator processor.

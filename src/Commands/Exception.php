@@ -29,7 +29,7 @@ class Exception extends Generator
      *
      * @var string
      */
-    protected $type = 'Exception';
+    protected string $type = 'Exception';
 
     /**
      * Generator processor.

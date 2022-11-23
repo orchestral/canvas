@@ -30,7 +30,7 @@ class Notification extends Generator
      *
      * @var string
      */
-    protected $type = 'Notification';
+    protected string $type = 'Notification';
 
     /**
      * Generator processor.

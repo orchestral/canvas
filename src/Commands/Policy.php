@@ -29,7 +29,7 @@ class Policy extends Generator
      *
      * @var string
      */
-    protected $type = 'Policy';
+    protected string $type = 'Policy';
 
     /**
      * Generator processor.

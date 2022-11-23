@@ -30,7 +30,7 @@ class Seeder extends Generator
      *
      * @var string
      */
-    protected $type = 'Seeder';
+    protected string $type = 'Seeder';
 
     /**
      * Generator processor.

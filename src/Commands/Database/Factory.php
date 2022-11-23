@@ -30,7 +30,7 @@ class Factory extends Generator
      *
      * @var string
      */
-    protected $type = 'Factory';
+    protected string $type = 'Factory';
 
     /**
      * Generator processor.

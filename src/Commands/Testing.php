@@ -29,7 +29,7 @@ class Testing extends Generator
      *
      * @var string
      */
-    protected $type = 'Test';
+    protected string $type = 'Test';
 
     /**
      * Generator processor.

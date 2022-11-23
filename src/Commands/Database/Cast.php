@@ -28,7 +28,7 @@ class Cast extends Generator
      *
      * @var string
      */
-    protected $type = 'Cast';
+    protected string $type = 'Cast';
 
     /**
      * Get the stub file for the generator.

@@ -27,14 +27,14 @@ class Preset extends Generator
      *
      * @var string
      */
-    protected $type = 'Preset';
+    protected string $type = 'Preset';
 
     /**
      * The type of file being generated.
      *
      * @var string
      */
-    protected $fileType = 'preset';
+    protected string $fileType = 'preset';
 
     /**
      * Generator processor.

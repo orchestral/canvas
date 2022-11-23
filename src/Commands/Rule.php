@@ -29,7 +29,7 @@ class Rule extends Generator
      *
      * @var string
      */
-    protected $type = 'Rule';
+    protected string $type = 'Rule';
 
     /**
      * Generator processor.

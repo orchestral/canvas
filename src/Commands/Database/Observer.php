@@ -30,7 +30,7 @@ class Observer extends Generator
      *
      * @var string
      */
-    protected $type = 'Observer';
+    protected string $type = 'Observer';
 
     /**
      * Generator processor.

@@ -28,7 +28,7 @@ class Event extends Generator
      *
      * @var string
      */
-    protected $type = 'Event';
+    protected string $type = 'Event';
 
     /**
      * Generator processor.

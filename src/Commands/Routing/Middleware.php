@@ -28,7 +28,7 @@ class Middleware extends Generator
      *
      * @var string
      */
-    protected $type = 'Middleware';
+    protected string $type = 'Middleware';
 
     /**
      * Get the stub file for the generator.

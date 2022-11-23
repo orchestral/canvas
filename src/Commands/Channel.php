@@ -26,7 +26,7 @@ class Channel extends Generator
      *
      * @var string
      */
-    protected $type = 'Channel';
+    protected string $type = 'Channel';
 
     /**
      * Get the stub file for the generator.

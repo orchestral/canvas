@@ -26,7 +26,7 @@ class ConsoleGenerator extends Console
      *
      * @var string
      */
-    protected $type = 'Generator command';
+    protected string $type = 'Generator command';
 
     /**
      * Get the stub file for the generator.

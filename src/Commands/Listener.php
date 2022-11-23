@@ -29,7 +29,7 @@ class Listener extends Generator
      *
      * @var string
      */
-    protected $type = 'Listener';
+    protected string $type = 'Listener';
 
     /**
      * Generator processor.

@@ -31,7 +31,7 @@ class Component extends Generator
      *
      * @var string
      */
-    protected $type = 'Component';
+    protected string $type = 'Component';
 
     /**
      * Generator processor.

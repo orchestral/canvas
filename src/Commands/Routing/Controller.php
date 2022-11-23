@@ -30,7 +30,7 @@ class Controller extends Generator
      *
      * @var string
      */
-    protected $type = 'Controller';
+    protected string $type = 'Controller';
 
     /**
      * Generator processor.
