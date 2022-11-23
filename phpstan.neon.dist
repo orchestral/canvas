@@ -1,14 +1,12 @@
 includes:
-  - ./vendor/nunomaduro/larastan/extension.neon
-
 parameters:
 
   paths:
     - src
 
   # The level 8 is the highest level
-  level: 6
+  level: 7
 
+  checkGenericClassInNonGenericObjectType: false
   checkMissingIterableValueType: false
-  noUnnecessaryCollectionCall: false
-  checkModelProperties: false
+  treatPhpDocTypesAsCertain: false

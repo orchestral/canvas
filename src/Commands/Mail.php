@@ -103,7 +103,7 @@ class Mail extends Generator
             $this->files->makeDirectory(\dirname($path), 0755, true);
         }
 
-        $this->files->put($path, file_get_contents(__DIR__.'/../../storage/laravel/markdown.stub'));
+        $this->files->put($path, (string) file_get_contents(__DIR__.'/../../storage/laravel/markdown.stub'));
     }
 
     /**
@@ -113,10 +113,14 @@ class Mail extends Generator
      */
     protected function componentView(): string
     {
+        /** @var string|null $view */
         $view = $this->option('markdown');
 
         if (! $view) {
-            $view = 'mail.'.Str::kebab(class_basename($this->argument('name')));
+            /** @var string $name */
+            $name = $this->argument('name');
+
+            $view = 'mail.'.Str::kebab(class_basename($name));
         }
 
         return $view;

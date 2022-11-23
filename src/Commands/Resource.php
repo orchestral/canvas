@@ -90,8 +90,11 @@ class Resource extends Generator
      */
     protected function collection()
     {
+        /** @var string $name */
+        $name = $this->argument('name');
+
         return $this->option('collection') ||
-            Str::endsWith($this->argument('name'), 'Collection');
+            Str::endsWith($name, 'Collection');
     }
 
     /**
