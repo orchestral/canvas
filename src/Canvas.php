@@ -29,6 +29,7 @@ class Canvas
                 if (class_exists($preset)) {
                     /**
                      * @var class-string<\Orchestra\Canvas\Core\Presets\Preset> $preset
+                     *
                      * @return \Orchestra\Canvas\Core\Presets\Preset
                      */
                     return new $preset($configuration, $basePath, $files);
