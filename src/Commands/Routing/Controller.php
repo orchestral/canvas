@@ -68,11 +68,15 @@ class Controller extends Generator
         if ($type) {
             $stub = "controller.{$type}.stub";
         } elseif ($this->option('parent')) {
-            $stub = 'controller.nested.stub';
+            $stub = $this->option('singleton')
+                        ? 'controller.nested.singleton.stub'
+                        : 'controller.nested.stub';
         } elseif ($this->option('model')) {
             $stub = 'controller.model.stub';
         } elseif ($this->option('invokable')) {
             $stub = 'controller.invokable.stub';
+        } elseif ($this->option('singleton')) {
+            $stub = 'controller.singleton.stub';
         } elseif ($this->option('resource')) {
             $stub = 'controller.stub';
         }
@@ -142,6 +146,7 @@ class Controller extends Generator
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'Generate a resource controller for the given model.'],
             ['parent', 'p', InputOption::VALUE_OPTIONAL, 'Generate a nested resource controller class.'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],
+            ['singleton', 's', InputOption::VALUE_NONE, 'Generate a singleton resource controller class'],
             ['type', null, InputOption::VALUE_REQUIRED, 'Manually specify the controller stub file to use.'],
             ['requests', 'R', InputOption::VALUE_NONE, 'Create new form request classes and use them in the resource controller'],
         ];
