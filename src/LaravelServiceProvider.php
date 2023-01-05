@@ -51,6 +51,10 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         Artisan::starting(static function ($artisan) {
             $artisan->getLaravel()->booted(static function ($app) use ($artisan) {
+                /**
+                 * @var \Illuminate\Contracts\Foundation\Application $app
+                 * @var \Illuminate\Console\Application $artisan
+                 */
                 $preset = $app->make('orchestra.canvas');
 
                 $artisan->add(new Commands\Channel($preset));

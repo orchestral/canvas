@@ -51,6 +51,7 @@ class ConsoleGenerator extends Console
      */
     public function generatorOptions(): array
     {
+        /** @var string $command */
         $command = $this->option('command');
 
         if (! Str::startsWith($command, 'make:')) {

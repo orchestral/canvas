@@ -1,7 +1,7 @@
 preset: package
 
 namespace: DummyNamespace
-user-auth-provider: App\User
+user-auth-provider: App\Models\User
 
 paths:
   src: src
@@ -18,7 +18,7 @@ console:
   namespace: DummyNamespace\Console
 
 model:
-  namespace: DummyNamespace
+  namespace: DummyNamespace\Models
 
 provider:
   namespace: DummyNamespace\Providers

@@ -27,13 +27,15 @@
         }
     },
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "illuminate/database": "^10.0",
         "illuminate/support": "^10.0",
         "orchestra/canvas-core": "^8.0",
         "symfony/yaml": "^5.3 || ^6.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.1",
+        "phpstan/phpstan": "^1.8",
         "orchestra/testbench": "^8.0"
     },
     "config": {
@@ -48,6 +50,17 @@
                 "Orchestra\\Canvas\\LaravelServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "@php testbench package:discover --ansi",
+        "ci": [
+            "@composer run prepare",
+            "@php vendor/bin/phpstan analyse",
+            "@php vendor/bin/pint",
+            "@composer run test"
+        ],
+        "test": "@php vendor/bin/phpunit -c ./ --color"
     },
     "minimum-stability": "dev"
 }

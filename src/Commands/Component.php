@@ -8,7 +8,7 @@ use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
  */
 class Component extends Generator
 {
@@ -61,7 +61,10 @@ class Component extends Generator
      */
     protected function writeView()
     {
-        $view = Collection::make(explode('/', $this->argument('name')))
+        /** @var string $name */
+        $name = $this->argument('name');
+
+        $view = Collection::make(explode('/', $name))
             ->map(static function ($part) {
                 return Str::kebab($part);
             })->implode('.');
@@ -109,7 +112,10 @@ class Component extends Generator
      */
     protected function componentView(): string
     {
-        $name = str_replace('\\', '/', $this->argument('name'));
+        /** @var string $name */
+        $name = $this->argument('name');
+
+        $name = str_replace('\\', '/', $name);
 
         return collect(explode('/', $name))
             ->map(function ($part) {

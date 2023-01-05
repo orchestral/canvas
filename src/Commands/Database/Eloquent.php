@@ -8,7 +8,7 @@ use Orchestra\Canvas\Processors\GeneratesEloquentCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ModelMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ModelMakeCommand.php
  */
 class Eloquent extends Generator
 {
@@ -79,7 +79,10 @@ class Eloquent extends Generator
      */
     protected function createFactory(string $eloquentClassName): void
     {
-        $factory = Str::studly(class_basename($this->argument('name')));
+        /** @var string $name */
+        $name = $this->argument('name');
+
+        $factory = Str::studly(class_basename($name));
 
         $this->call('make:factory', [
             'name' => "{$factory}Factory",
@@ -92,7 +95,10 @@ class Eloquent extends Generator
      */
     protected function createMigration(string $eloquentClassName): void
     {
-        $table = Str::snake(Str::pluralStudly(class_basename($this->argument('name'))));
+        /** @var string $name */
+        $name = $this->argument('name');
+
+        $table = Str::snake(Str::pluralStudly(class_basename($name)));
 
         if ($this->option('pivot')) {
             $table = Str::singular($table);
@@ -109,7 +115,10 @@ class Eloquent extends Generator
      */
     protected function createSeeder(string $eloquentClassName): void
     {
-        $seeder = Str::studly(class_basename($this->argument('name')));
+        /** @var string $name */
+        $name = $this->argument('name');
+
+        $seeder = Str::studly(class_basename($name));
 
         $this->call('make:seed', [
             'name' => "{$seeder}Seeder",
@@ -121,7 +130,10 @@ class Eloquent extends Generator
      */
     protected function createController(string $eloquentClassName): void
     {
-        $controller = Str::studly(class_basename($this->argument('name')));
+        /** @var string $name */
+        $name = $this->argument('name');
+
+        $controller = Str::studly(class_basename($name));
 
         $this->call('make:controller', array_filter([
             'name' => "{$controller}Controller",
@@ -152,9 +164,15 @@ class Eloquent extends Generator
      */
     public function getStubFileName(): string
     {
-        return $this->option('pivot')
-            ? 'model.pivot.stub'
-            : 'model.stub';
+        if ($this->option('pivot')) {
+            return 'model.pivot.stub';
+        }
+
+        if ($this->option('morph-pivot')) {
+            return 'model.morph-pivot.stub';
+        }
+
+        return 'model.stub';
     }
 
     /**
@@ -178,6 +196,7 @@ class Eloquent extends Generator
             ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the model'],
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
             ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],
+            ['morph-pivot', null, InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom polymorphic intermediate table model'],
             ['seed', 's', InputOption::VALUE_NONE, 'Create a new seeder file for the model'],
             ['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom intermediate table model'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Indicates if the generated controller should be a resource controller'],

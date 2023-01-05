@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ResourceMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ResourceMakeCommand.php
  */
 class Resource extends Generator
 {
@@ -36,9 +36,9 @@ class Resource extends Generator
     /**
      * Execute the command.
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
      * @return int 0 if everything went fine, or an exit code
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -90,8 +90,11 @@ class Resource extends Generator
      */
     protected function collection()
     {
+        /** @var string $name */
+        $name = $this->argument('name');
+
         return $this->option('collection') ||
-            Str::endsWith($this->argument('name'), 'Collection');
+            Str::endsWith($name, 'Collection');
     }
 
     /**

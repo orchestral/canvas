@@ -7,7 +7,7 @@ use Orchestra\Canvas\Processors\GeneratesControllerCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
 class Controller extends Generator
 {
@@ -62,14 +62,21 @@ class Controller extends Generator
     {
         $stub = null;
 
-        if ($type = $this->option('type')) {
+        /** @var string $type */
+        $type = $this->option('type');
+
+        if ($type) {
             $stub = "controller.{$type}.stub";
         } elseif ($this->option('parent')) {
-            $stub = 'controller.nested.stub';
+            $stub = $this->option('singleton')
+                        ? 'controller.nested.singleton.stub'
+                        : 'controller.nested.stub';
         } elseif ($this->option('model')) {
             $stub = 'controller.model.stub';
         } elseif ($this->option('invokable')) {
             $stub = 'controller.invokable.stub';
+        } elseif ($this->option('singleton')) {
+            $stub = 'controller.singleton.stub';
         } elseif ($this->option('resource')) {
             $stub = 'controller.stub';
         }
@@ -139,6 +146,7 @@ class Controller extends Generator
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'Generate a resource controller for the given model.'],
             ['parent', 'p', InputOption::VALUE_OPTIONAL, 'Generate a nested resource controller class.'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],
+            ['singleton', 's', InputOption::VALUE_NONE, 'Generate a singleton resource controller class'],
             ['type', null, InputOption::VALUE_REQUIRED, 'Manually specify the controller stub file to use.'],
             ['requests', 'R', InputOption::VALUE_NONE, 'Create new form request classes and use them in the resource controller'],
         ];

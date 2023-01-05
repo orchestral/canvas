@@ -7,7 +7,7 @@ use Orchestra\Canvas\Processors\GeneratesFactoryCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
  */
 class Factory extends Generator
 {

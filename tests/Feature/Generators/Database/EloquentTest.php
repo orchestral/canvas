@@ -42,6 +42,19 @@ class EloquentTest extends TestCase
     }
 
     /** @test */
+    public function it_can_generate_eloquent_with_morph_pivot_options_file()
+    {
+        $this->artisan('make:model', ['name' => 'Foo', '--morph-pivot' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Models;',
+            'use Illuminate\Database\Eloquent\Relations\MorphPivot;',
+            'class Foo extends MorphPivot',
+        ], 'app/Models/Foo.php');
+    }
+
+    /** @test */
     public function it_can_generate_eloquent_with_controller_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--controller' => true])
@@ -53,13 +66,11 @@ class EloquentTest extends TestCase
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 
-
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
             'use Illuminate\Http\Request;',
             'class FooController extends Controller',
         ], 'app/Http/Controllers/FooController.php');
-
 
         $this->assertFileNotContains([
             'use App\Models\Foo;',

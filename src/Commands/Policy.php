@@ -6,7 +6,7 @@ use Orchestra\Canvas\Processors\GeneratesPolicyCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/PolicyMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/PolicyMakeCommand.php
  */
 class Policy extends Generator
 {

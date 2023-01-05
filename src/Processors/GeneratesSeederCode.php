@@ -7,7 +7,7 @@ use Orchestra\Canvas\Core\GeneratesCode;
 /**
  * @property \Orchestra\Canvas\Commands\Database\Seeder $listener
  *
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
  */
 class GeneratesSeederCode extends GeneratesCode
 {
@@ -25,5 +25,21 @@ class GeneratesSeederCode extends GeneratesCode
     protected function qualifyClass(string $name): string
     {
         return $name;
+    }
+
+    /**
+     * Get the full namespace for a given class, without the class name.
+     */
+    protected function getNamespace(string $name): string
+    {
+        return trim(implode('', [$this->rootNamespace(), parent::getNamespace($name)]), '\\');
+    }
+
+    /**
+     * Get the root namespace for the class.
+     */
+    protected function rootNamespace(): string
+    {
+        return 'Database\Seeders\\';
     }
 }

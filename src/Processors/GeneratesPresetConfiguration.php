@@ -19,7 +19,7 @@ class GeneratesPresetConfiguration extends GeneratesCode
      */
     protected function rootNamespace(): string
     {
-        $namespace = trim($this->options['namespace']);
+        $namespace = trim($this->options['namespace'] ?? '');
 
         if (! empty($namespace)) {
             return $namespace;

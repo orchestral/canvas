@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Presets\Laravel;
 /**
  * @property \Orchestra\Canvas\Commands\Testing $listener
  *
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/TestMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/TestMakeCommand.php
  */
 class GeneratesTestingCode extends GeneratesCode
 {

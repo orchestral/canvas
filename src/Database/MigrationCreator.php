@@ -36,10 +36,9 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      * @param  string  $path
      * @param  string|null  $table
      * @param  bool  $create
+     * @return string
      *
      * @throws \Exception
-     *
-     * @return string
      */
     public function create($name, $path, $table = null, $create = false)
     {
@@ -61,7 +60,6 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
      *
      * @param  string|null  $table
      * @param  bool  $create
-     *
      * @return string
      */
     protected function getStub($table, $create)

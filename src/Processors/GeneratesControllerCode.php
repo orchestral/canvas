@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\GeneratesCode;
 /**
  * @property \Orchestra\Canvas\Commands\Routing\Controller $listener
  *
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
 class GeneratesControllerCode extends GeneratesCode
 {
@@ -74,7 +74,6 @@ class GeneratesControllerCode extends GeneratesCode
      * Build the model replacement values.
      *
      * @param  array<string, string>  $replace
-     *
      * @return array<string, string>
      */
     protected function buildModelReplacements(array $replace): array
@@ -124,7 +123,6 @@ class GeneratesControllerCode extends GeneratesCode
      * Build the model replacement values.
      *
      * @param  string  $modelClass
-     *
      * @return array<string, string>
      */
     protected function buildFormRequestReplacements(array $replace, $modelClass)
@@ -167,7 +165,6 @@ class GeneratesControllerCode extends GeneratesCode
      * @param  string  $modelClass
      * @param  string  $storeRequestClass
      * @param  string  $updateRequestClass
-     *
      * @return array<int, string>
      */
     protected function generateFormRequests($modelClass, $storeRequestClass, $updateRequestClass)
