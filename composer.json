@@ -31,7 +31,7 @@
         "illuminate/database": "^10.0",
         "illuminate/support": "^10.0",
         "orchestra/canvas-core": "^8.0",
-        "symfony/yaml": "^5.3 || ^6.0"
+        "symfony/yaml": "^5.4 || ^6.0"
     },
     "require-dev": {
         "laravel/pint": "^1.1",
