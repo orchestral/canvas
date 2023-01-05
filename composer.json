@@ -28,15 +28,15 @@
     },
     "require": {
         "php": "^8.0",
-        "illuminate/database": "^9.34",
-        "illuminate/support": "^9.34",
+        "illuminate/database": "^9.45",
+        "illuminate/support": "^9.45",
         "orchestra/canvas-core": "^7.2",
         "symfony/yaml": "^5.4 || ^6.0"
     },
     "require-dev": {
         "laravel/pint": "^1.1",
         "phpstan/phpstan": "^1.8",
-        "orchestra/testbench": "^7.10.2"
+        "orchestra/testbench": "^7.18"
     },
     "config": {
         "sort-packages": true
