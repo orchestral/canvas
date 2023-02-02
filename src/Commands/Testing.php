@@ -59,9 +59,12 @@ class Testing extends Generator
      */
     public function getStubFileName(): string
     {
+        $prefix = $this->option('pest')
+            ? 'pest'
+            : 'test';
         return $this->option('unit')
-            ? 'test.unit.stub'
-            : 'test.stub';
+            ? "$prefix.unit.stub"
+            : "$prefix.stub";
     }
 
     /**
