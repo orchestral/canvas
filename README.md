@@ -53,7 +53,7 @@ Which can be execute via:
 
 With **Canvas**, you can run the equivalent command via:
 
-    composer exec canvas make:migration CreatePostsTable --create
+    composer exec canvas make:migration CreatePostsTable -- --create
 
 ### `canvas.yaml` Preset file
 
