@@ -59,9 +59,11 @@ class Testing extends Generator
      */
     public function getStubFileName(): string
     {
+        $file = $this->option('pest') ? 'pest' : 'test';
+
         return $this->option('unit')
-            ? 'test.unit.stub'
-            : 'test.stub';
+            ? "{$file}.unit.stub"
+            : "{$file}.stub";
     }
 
     /**
@@ -86,6 +88,7 @@ class Testing extends Generator
         return array_merge(parent::generatorOptions(), [
             'unit' => $this->option('unit'),
             'feature' => ! $this->option('unit'),
+            'pest' => $this->option('pest'),
         ]);
     }
 
@@ -97,6 +100,7 @@ class Testing extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the test already exists'],
             ['unit', 'u', InputOption::VALUE_NONE, 'Create a unit test.'],
             ['pest', 'p', InputOption::VALUE_NONE, 'Create a Pest test.'],
         ];
