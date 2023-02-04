@@ -74,6 +74,7 @@ class Policy extends Generator
     {
         return array_merge(parent::generatorOptions(), [
             'model' => $this->option('model'),
+            'guard' => $this->option('guard'),
         ]);
     }
 
@@ -85,7 +86,9 @@ class Policy extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the policy already exists'],
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'The model that the policy applies to'],
+            ['guard', 'g', InputOption::VALUE_OPTIONAL, 'The guard that the policy relies on'],
         ];
     }
 }

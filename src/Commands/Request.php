@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Symfony\Component\Console\Input\InputOption;
+
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RequestMakeCommand.php
  */
@@ -59,5 +61,17 @@ class Request extends Generator
     public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Http\Requests';
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the request already exists'],
+        ];
     }
 }

@@ -45,6 +45,32 @@ class GeneratesPolicyCode extends GeneratesCode
     }
 
     /**
+     * Get the model for the guard's user provider.
+     *
+     * @throws \LogicException
+     */
+    protected function userProviderModel(): string
+    {
+        if (\is_null($guard = $this->options['guard'])) {
+            return parent::userProviderModel();
+        }
+
+        $config = $this->laravel['config'];
+
+        if (\is_null($guardProvider = $config->get('auth.guards.'.$guard.'.provider'))) {
+            throw new LogicException('The ['.$guard.'] guard is not defined in your "auth" configuration file.');
+        }
+
+        if (! $config->get('auth.providers.'.$guardProvider.'.model')) {
+            return parent::userProviderModel();
+        }
+
+        return $config->get(
+            'auth.providers.'.$guardProvider.'.model'
+        );
+    }
+
+    /**
      * Replace the model for the given stub.
      */
     protected function replaceModel(string $stub, string $model): string

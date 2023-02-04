@@ -65,6 +65,7 @@ class Provider extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the provider already exists'],
             ['deferred', null, InputOption::VALUE_NONE, 'Create deferrable service provider.'],
         ];
     }

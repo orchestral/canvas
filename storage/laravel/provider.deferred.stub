@@ -1,11 +1,11 @@
 <?php
 
-namespace DummyNamespace;
+namespace {{ namespace }};
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class DummyClass extends ServiceProvider implements DeferrableProvider
+class {{ class }} extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register services.
