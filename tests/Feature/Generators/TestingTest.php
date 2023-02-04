@@ -136,7 +136,7 @@ class TestingTest extends TestCase
         $this->assertFileContains([
             'test(\'example\', function () {',
             '$response = $this->get(\'/\');',
-            '$response->assertStatus(200);'
+            '$response->assertStatus(200);',
         ], 'tests/Feature/FooTest.php');
     }
 
@@ -180,7 +180,7 @@ class TestingTest extends TestCase
         $this->assertFileContains([
             'test(\'example\', function () {',
             '$response = $this->get(\'/\');',
-            '$response->assertStatus(200);'
+            '$response->assertStatus(200);',
         ], 'tests/Feature/FooTest.php');
     }
 
@@ -197,7 +197,7 @@ class TestingTest extends TestCase
         $this->assertFileContains([
             'test(\'example\', function () {',
             '$response = $this->get(\'/\');',
-            '$response->assertStatus(200);'
+            '$response->assertStatus(200);',
         ], 'tests/Feature/FooTest.php');
     }
 
@@ -230,7 +230,7 @@ class TestingTest extends TestCase
         $this->assertFileContains([
             'test(\'example\', function () {',
             '$response = $this->get(\'/\');',
-            '$response->assertStatus(200);'
+            '$response->assertStatus(200);',
         ], 'tests/Feature/FooTest.php');
     }
 }
