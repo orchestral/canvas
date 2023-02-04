@@ -79,6 +79,7 @@ class Exception extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the exception already exists'],
             ['render', null, InputOption::VALUE_NONE, 'Create the exception with an empty render method'],
             ['report', null, InputOption::VALUE_NONE, 'Create the exception with an empty report method'],
         ];

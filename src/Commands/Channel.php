@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Symfony\Component\Console\Input\InputOption;
+
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ChannelMakeCommand.php
  */
@@ -51,5 +53,17 @@ class Channel extends Generator
     public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Broadcasting';
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the channel already exists'],
+        ];
     }
 }

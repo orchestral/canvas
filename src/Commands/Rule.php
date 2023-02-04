@@ -85,6 +85,7 @@ class Rule extends Generator
         return [
             'implicit' => $this->option('implicit') ?? false,
             'invokable' => $this->option('invokable') ?? false,
+            'force' => $this->option('force'),
         ];
     }
 

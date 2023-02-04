@@ -87,6 +87,7 @@ class Console extends Generator
     {
         return [
             'command' => $this->option('command'),
+            'force' => $this->option('force'),
         ];
     }
 
@@ -98,6 +99,7 @@ class Console extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the console command already exists'],
             ['command', null, InputOption::VALUE_OPTIONAL, 'The terminal command that should be assigned', 'command:name'],
         ];
     }

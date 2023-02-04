@@ -90,6 +90,7 @@ class Testing extends Generator
             'unit' => $this->option('unit'),
             'feature' => ! $this->option('unit'),
             'pest' => $this->option('pest'),
+            'force' => $this->option('force'),
         ]);
     }
 

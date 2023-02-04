@@ -61,6 +61,7 @@ class ConsoleGenerator extends Console
 
         return [
             'command' => $command,
+            'force' => $this->option('force'),
         ];
     }
 
@@ -72,6 +73,7 @@ class ConsoleGenerator extends Console
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the generator already exists'],
             ['command', null, InputOption::VALUE_OPTIONAL, 'The terminal command that should be assigned', 'make:name'],
         ];
     }

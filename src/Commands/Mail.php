@@ -90,6 +90,7 @@ class Mail extends Generator
         return [
             'markdown' => $this->option('markdown') ?? null,
             'view' => $this->componentView(),
+            'force' => $this->option('force'),
         ];
     }
 

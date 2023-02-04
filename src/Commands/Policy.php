@@ -75,6 +75,7 @@ class Policy extends Generator
         return array_merge(parent::generatorOptions(), [
             'model' => $this->option('model'),
             'guard' => $this->option('guard'),
+            'force' => $this->option('force'),
         ]);
     }
 
