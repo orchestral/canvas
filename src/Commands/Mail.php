@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/MailMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:mail')]
 class Mail extends Generator
 {
     /**
@@ -89,6 +90,7 @@ class Mail extends Generator
         return [
             'markdown' => $this->option('markdown') ?? null,
             'view' => $this->componentView(),
+            'force' => $this->option('force'),
         ];
     }
 

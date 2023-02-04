@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:command')]
 class Console extends Generator
 {
     /**
@@ -86,6 +87,7 @@ class Console extends Generator
     {
         return [
             'command' => $this->option('command'),
+            'force' => $this->option('force'),
         ];
     }
 
@@ -97,6 +99,7 @@ class Console extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the console command already exists'],
             ['command', null, InputOption::VALUE_OPTIONAL, 'The terminal command that should be assigned', 'command:name'],
         ];
     }

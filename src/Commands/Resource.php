@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ResourceMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:resource')]
 class Resource extends Generator
 {
     /**
@@ -105,6 +106,7 @@ class Resource extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the resource already exists'],
             ['collection', 'c', InputOption::VALUE_NONE, 'Create a resource collection'],
         ];
     }

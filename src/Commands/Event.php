@@ -3,10 +3,12 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesEventCode;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/EventMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:event')]
 class Event extends Generator
 {
     /**
@@ -67,5 +69,17 @@ class Event extends Generator
     public function getDefaultNamespace(string $rootNamespace): string
     {
         return $rootNamespace.'\Events';
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the event already exists'],
+        ];
     }
 }

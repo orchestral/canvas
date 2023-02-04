@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:observer')]
 class Observer extends Generator
 {
     /**
@@ -74,6 +75,7 @@ class Observer extends Generator
     {
         return [
             'model' => $this->option('model'),
+            'force' => $this->option('force'),
         ];
     }
 
@@ -85,6 +87,7 @@ class Observer extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the observer already exists'],
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'The model that the observer applies to.'],
         ];
     }

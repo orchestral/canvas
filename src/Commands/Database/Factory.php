@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:factory')]
 class Factory extends Generator
 {
     /**
@@ -72,6 +73,7 @@ class Factory extends Generator
     {
         return array_merge(parent::generatorOptions(), [
             'model' => $this->option('model'),
+            'force' => $this->option('force'),
         ]);
     }
 
@@ -83,6 +85,7 @@ class Factory extends Generator
     protected function getOptions()
     {
         return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the factory already exists'],
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'The name of the model'],
         ];
     }
