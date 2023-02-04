@@ -3,11 +3,13 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Core\GeneratesCommandCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
  */
+#[AsCommand(name: 'make:command')]
 class Console extends Generator
 {
     /**

@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ProviderMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:provider')]
 class Provider extends Generator
 {
     /**

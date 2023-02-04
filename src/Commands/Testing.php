@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/TestMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:test')]
 class Testing extends Generator
 {
     /**
