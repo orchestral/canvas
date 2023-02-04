@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:factory')]
 class Factory extends Generator
 {
     /**

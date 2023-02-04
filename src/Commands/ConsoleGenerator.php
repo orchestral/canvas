@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Commands;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:generator')]
 class ConsoleGenerator extends Console
 {
     /**

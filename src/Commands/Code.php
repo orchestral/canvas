@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:class')]
 class Code extends Generator
 {
     /**

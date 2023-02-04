@@ -7,6 +7,7 @@ use Orchestra\Canvas\Processors\GeneratesEventCode;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/EventMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:event')]
 class Event extends Generator
 {
     /**

@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Commands;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RequestMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:request')]
 class Request extends Generator
 {
     /**
