@@ -6,7 +6,7 @@ use Orchestra\Canvas\Processors\GeneratesExceptionCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ExceptionMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ExceptionMakeCommand.php
  */
 #[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:exception')]
 class Exception extends Generator

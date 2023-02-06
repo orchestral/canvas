@@ -6,7 +6,7 @@ use Orchestra\Canvas\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
  */
 #[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:cast')]
 class Cast extends Generator

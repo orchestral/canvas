@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\GeneratesCode;
 /**
  * @property \Orchestra\Canvas\Commands\Database\Observer $listener
  *
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
 class GeneratesObserverCode extends GeneratesCode
 {

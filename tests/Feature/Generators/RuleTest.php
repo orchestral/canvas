@@ -16,8 +16,8 @@ class RuleTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use Illuminate\Contracts\Validation\Rule;',
-            'class FooBar implements Rule',
+            'use Illuminate\Contracts\Validation\ValidationRule;',
+            'class FooBar implements ValidationRule',
         ], 'app/Rules/FooBar.php');
     }
 

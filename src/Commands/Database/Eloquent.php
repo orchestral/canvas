@@ -8,7 +8,7 @@ use Orchestra\Canvas\Processors\GeneratesEloquentCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ModelMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ModelMakeCommand.php
  */
 #[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:model')]
 class Eloquent extends Generator

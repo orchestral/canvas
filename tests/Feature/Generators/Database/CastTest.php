@@ -33,7 +33,7 @@ class CastTest extends TestCase
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;',
             'class FooBar implements CastsInboundAttributes',
-            'public function set($model, string $key, $value, array $attributes)',
+            'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
         ], 'app/Casts/FooBar.php');
     }
 }

@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Migrations/MigrateMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Migrations/MigrateMakeCommand.php
  */
 #[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:migration')]
 class Migration extends Command
