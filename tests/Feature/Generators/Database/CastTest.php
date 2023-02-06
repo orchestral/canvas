@@ -1,6 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
+
+use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class CastTest extends TestCase
 {
