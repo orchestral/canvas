@@ -60,11 +60,7 @@ class Rule extends Generator
      */
     public function getStubFileName(): string
     {
-        if ($this->option('invokable')) {
-            return $this->option('implicit') ? 'rule.invokable.implicit.stub' : 'rule.invokable.stub';
-        }
-
-        return 'rule.stub';
+        return $this->option('implicit') ? 'rule.implicit.stub' : 'rule.stub';
     }
 
     /**
