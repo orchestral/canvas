@@ -35,11 +35,11 @@
         "symfony/yaml": "^6.2"
     },
     "require-dev": {
-        "laravel/pint": "^1.4",
+        "laravel/pint": "^1.6",
         "laravel/framework": "^10.1",
         "orchestra/testbench": "^8.0",
-        "phpstan/phpstan": "^1.9.14",
-        "phpunit/phpunit": "^10.0"
+        "phpstan/phpstan": "^1.10.1",
+        "phpunit/phpunit": "^10.0.7"
     },
     "config": {
         "sort-packages": true
