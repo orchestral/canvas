@@ -87,7 +87,7 @@ class Migration extends Command
 
         $this->composer->dumpAutoloads();
 
-        $this->line("<info>Created Migration:</info> {$file}");
+        $this->components->info(sprintf('Migration [%s] created successfully.', $file));
 
         return 0;
     }
