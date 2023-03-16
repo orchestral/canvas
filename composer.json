@@ -31,7 +31,7 @@
         "composer-runtime-api": "^2.2",
         "illuminate/database": "^10.1",
         "illuminate/support": "^10.1",
-        "orchestra/canvas-core": "^8.0",
+        "orchestra/canvas-core": "^8.1",
         "symfony/yaml": "^6.2"
     },
     "require-dev": {
