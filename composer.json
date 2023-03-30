@@ -29,14 +29,16 @@
     "require": {
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
+        "composer/semver": "^3.0",
         "illuminate/database": "^10.1",
         "illuminate/support": "^10.1",
-        "orchestra/canvas-core": "^8.1",
+        "orchestra/canvas-core": "^8.1.1",
         "symfony/yaml": "^6.2"
     },
     "require-dev": {
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^8.0",
+        "laravel/framework": "^10.1",
+        "orchestra/testbench": "^8.1",
         "phpstan/phpstan": "^1.10.5",
         "phpunit/phpunit": "^10.0.7"
     },
