@@ -40,7 +40,7 @@
         "laravel/framework": "^10.1",
         "orchestra/testbench": "^8.1",
         "phpstan/phpstan": "^1.10.5",
-        "phpunit/phpunit": "^10.0.7"
+        "phpunit/phpunit": "~10.0.7"
     },
     "config": {
         "sort-packages": true
