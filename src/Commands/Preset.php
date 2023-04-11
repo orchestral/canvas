@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesPresetConfiguration;
 use Symfony\Component\Console\Input\InputOption;
 
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'preset')]
 class Preset extends Generator
 {
     /**

@@ -16,8 +16,8 @@ class RuleTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use Illuminate\Contracts\Validation\Rule;',
-            'class FooBar implements Rule',
+            'use Illuminate\Contracts\Validation\ValidationRule;',
+            'class FooBar implements ValidationRule',
         ], 'app/Rules/FooBar.php');
     }
 
@@ -29,9 +29,9 @@ class RuleTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use Illuminate\Contracts\Validation\InvokableRule;',
-            'class FooBar implements InvokableRule',
-            'public function __invoke($attribute, $value, $fail)',
+            'use Illuminate\Contracts\Validation\ValidationRule;',
+            'class FooBar implements ValidationRule',
+            'public function validate(string $attribute, mixed $value, Closure $fail): void',
         ], 'app/Rules/FooBar.php');
     }
 
@@ -43,10 +43,10 @@ class RuleTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use Illuminate\Contracts\Validation\InvokableRule;',
-            'class FooBar implements InvokableRule',
+            'use Illuminate\Contracts\Validation\ValidationRule;',
+            'class FooBar implements ValidationRule',
             'public $implicit = true;',
-            'public function __invoke($attribute, $value, $fail)',
+            'public function validate(string $attribute, mixed $value, Closure $fail): void',
         ], 'app/Rules/FooBar.php');
     }
 }

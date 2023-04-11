@@ -6,8 +6,9 @@ use Orchestra\Canvas\Commands\Generator;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:cast')]
 class Cast extends Generator
 {
     /**
@@ -71,6 +72,7 @@ class Cast extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the cast already exists'],
             ['inbound', null, InputOption::VALUE_OPTIONAL, 'Generate an inbound cast class'],
         ];
     }

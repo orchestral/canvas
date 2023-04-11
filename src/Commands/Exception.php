@@ -6,8 +6,9 @@ use Orchestra\Canvas\Processors\GeneratesExceptionCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ExceptionMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ExceptionMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:exception')]
 class Exception extends Generator
 {
     /**
@@ -78,6 +79,7 @@ class Exception extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the exception already exists'],
             ['render', null, InputOption::VALUE_NONE, 'Create the exception with an empty render method'],
             ['report', null, InputOption::VALUE_NONE, 'Create the exception with an empty report method'],
         ];

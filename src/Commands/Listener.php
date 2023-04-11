@@ -6,8 +6,9 @@ use Orchestra\Canvas\Processors\GeneratesListenerCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:listener')]
 class Listener extends Generator
 {
     /**
@@ -79,6 +80,7 @@ class Listener extends Generator
     {
         return [
             'event' => $this->option('event'),
+            'force' => $this->option('force'),
         ];
     }
 
@@ -91,6 +93,7 @@ class Listener extends Generator
     {
         return [
             ['event', 'e', InputOption::VALUE_OPTIONAL, 'The event class being listened for'],
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the listener already exists'],
             ['queued', null, InputOption::VALUE_NONE, 'Indicates the event listener should be queued'],
         ];
     }

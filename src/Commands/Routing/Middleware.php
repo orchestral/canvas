@@ -5,8 +5,9 @@ namespace Orchestra\Canvas\Commands\Routing;
 use Orchestra\Canvas\Commands\Generator;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:middleware')]
 class Middleware extends Generator
 {
     /**

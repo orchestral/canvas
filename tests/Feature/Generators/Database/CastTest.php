@@ -1,6 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
+
+use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class CastTest extends TestCase
 {
@@ -18,8 +20,8 @@ class CastTest extends TestCase
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsAttributes;',
             'class FooBar implements CastsAttributes',
-            'public function get($model, string $key, $value, array $attributes)',
-            'public function set($model, string $key, $value, array $attributes)',
+            'public function get(Model $model, string $key, mixed $value, array $attributes): mixed',
+            'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
         ], 'app/Casts/FooBar.php');
     }
 
@@ -33,7 +35,7 @@ class CastTest extends TestCase
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;',
             'class FooBar implements CastsInboundAttributes',
-            'public function set($model, string $key, $value, array $attributes)',
+            'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
         ], 'app/Casts/FooBar.php');
     }
 }

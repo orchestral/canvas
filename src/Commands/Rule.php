@@ -6,8 +6,9 @@ use Orchestra\Canvas\Processors\GeneratesRuleCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
  */
+#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:rule')]
 class Rule extends Generator
 {
     /**
@@ -59,11 +60,9 @@ class Rule extends Generator
      */
     public function getStubFileName(): string
     {
-        if ($this->option('invokable')) {
-            return $this->option('implicit') ? 'rule.invokable.implicit.stub' : 'rule.invokable.stub';
-        }
-
-        return 'rule.stub';
+        return $this->option('implicit')
+            ? 'rule.implicit.stub'
+            : 'rule.stub';
     }
 
     /**
@@ -84,6 +83,7 @@ class Rule extends Generator
         return [
             'implicit' => $this->option('implicit') ?? false,
             'invokable' => $this->option('invokable') ?? false,
+            'force' => $this->option('force'),
         ];
     }
 
@@ -95,6 +95,7 @@ class Rule extends Generator
     protected function getOptions()
     {
         return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the rule already exists'],
             ['implicit', 'i', InputOption::VALUE_NONE, 'Generate an implicit rule.'],
             ['invokable', null, InputOption::VALUE_NONE, 'Generate a single method, invokable rule class.'],
         ];

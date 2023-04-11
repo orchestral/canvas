@@ -17,7 +17,7 @@ class ListenerTest extends TestCase
         $this->assertFileContains([
             'namespace App\Listeners;',
             'class HelloWorld',
-            'public function handle($event)',
+            'public function handle(object $event)',
         ], 'app/Listeners/HelloWorld.php');
 
         $this->assertFileNotContains([
@@ -64,7 +64,7 @@ class ListenerTest extends TestCase
             'use Illuminate\Contracts\Queue\ShouldQueue;',
             'use Illuminate\Queue\InteractsWithQueue;',
             'class HelloWorld implements ShouldQueue',
-            'public function handle($event)',
+            'public function handle(object $event)',
         ], 'app/Listeners/HelloWorld.php');
     }
 
