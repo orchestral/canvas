@@ -8,11 +8,12 @@
          stopOnFailure="false"
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false">
-    <coverage includeUncoveredFiles="false">
+    <coverage includeUncoveredFiles="false" />
+    <source>
         <include>
             <directory suffix=".php">src/</directory>
         </include>
-    </coverage>
+    </source>
     <testsuites>
         <testsuite name="Canvas Test Suite">
             <directory suffix="Test.php">./tests/</directory>
