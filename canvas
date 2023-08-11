@@ -2,7 +2,7 @@
 <?php
 
 $workingPath = getcwd();
-$config = ['preset' => 'laravel'];
+$config = ['preset' => is_file("{$workingPath}/artisan") ? 'laravel' : 'package'];
 
 require $_composer_autoload_path ?? __DIR__.'/vendor/autoload.php';
 
