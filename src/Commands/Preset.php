@@ -4,9 +4,10 @@ namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesPresetConfiguration;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'preset')]
+#[AsCommand(name: 'preset', description: 'Create canvas.yaml for the project')]
 class Preset extends Generator
 {
     /**

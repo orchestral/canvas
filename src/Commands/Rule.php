@@ -3,12 +3,13 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesRuleCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:rule')]
+#[AsCommand(name: 'make:rule', description: 'Create a new validation rule')]
 class Rule extends Generator
 {
     /**

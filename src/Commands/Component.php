@@ -5,12 +5,13 @@ namespace Orchestra\Canvas\Commands;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:component')]
+#[AsCommand(name: 'make:component', description: 'Create a new view component class')]
 class Component extends Generator
 {
     /**

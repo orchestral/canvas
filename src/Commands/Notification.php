@@ -4,12 +4,13 @@ namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/NotificationMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:notification')]
+#[AsCommand(name: 'make:notification', description: 'Create a new notification class')]
 class Notification extends Generator
 {
     /**
