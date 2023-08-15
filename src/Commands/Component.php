@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
@@ -14,6 +15,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:component', description: 'Create a new view component class')]
 class Component extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *
