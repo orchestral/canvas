@@ -24,7 +24,7 @@ class RuleTest extends TestCase
     /** @test */
     public function it_can_generate_invokable_rule_file()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar', '--invokable' => true])
+        $this->artisan('make:rule', ['name' => 'FooBar'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -38,7 +38,7 @@ class RuleTest extends TestCase
     /** @test */
     public function it_can_generate_invokable_implicit_rule_file()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar', '--invokable' => true, '--implicit' => true])
+        $this->artisan('make:rule', ['name' => 'FooBar', '--implicit' => true])
             ->assertExitCode(0);
 
         $this->assertFileContains([

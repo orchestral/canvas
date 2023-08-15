@@ -80,7 +80,7 @@ class Listener extends Generator
     public function generatorOptions(): array
     {
         return [
-            'event' => $this->option('event'),
+            'event' => $this->option('event') ?? '',
             'force' => $this->option('force'),
         ];
     }

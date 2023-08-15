@@ -32,7 +32,7 @@ class Mail extends Generator
      *
      * @var string
      */
-    protected string $type = 'Mail';
+    protected string $type = 'Mailable';
 
     /**
      * Generator processor.
