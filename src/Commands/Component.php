@@ -46,17 +46,15 @@ class Component extends Generator
     protected $processor = GeneratesCodeWithComponent::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if (! $this->option('inline')) {
             $this->writeView();
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**

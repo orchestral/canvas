@@ -45,17 +45,15 @@ class Mail extends Generator
     protected $processor = GeneratesCodeWithMarkdown::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if ($this->option('markdown') !== false) {
             $this->writeMarkdownTemplate();
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**
