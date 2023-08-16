@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -11,6 +12,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:job', description: 'Create a new job class')]
 class Job extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *

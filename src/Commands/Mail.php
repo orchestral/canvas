@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -13,6 +14,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:mail', description: 'Create a new email class')]
 class Mail extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *

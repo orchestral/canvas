@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands\Routing;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesControllerCode;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -13,6 +14,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:controller', description: 'Create a new controller class')]
 class Controller extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *

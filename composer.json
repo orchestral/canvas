@@ -32,7 +32,7 @@
         "composer/semver": "^3.0",
         "illuminate/database": "^10.17",
         "illuminate/support": "^10.17",
-        "orchestra/canvas-core": "^8.2.1",
+        "orchestra/canvas-core": "^8.3",
         "symfony/yaml": "^6.2"
     },
     "require-dev": {

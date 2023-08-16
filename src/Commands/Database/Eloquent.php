@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands\Database;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesEloquentCode;
@@ -14,6 +15,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:model', description: 'Create a new Eloquent model class')]
 class Eloquent extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *
