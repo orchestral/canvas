@@ -7,7 +7,7 @@ use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 class SeederTest extends TestCase
 {
     protected $files = [
-        'database/seeds/FooSeeder.php',
+        'database/seeders/FooSeeder.php',
     ];
 
     /** @test */
@@ -21,6 +21,6 @@ class SeederTest extends TestCase
             'use Illuminate\Database\Seeder;',
             'class FooSeeder extends Seeder',
             'public function run()',
-        ], 'database/seeds/FooSeeder.php');
+        ], 'database/seeders/FooSeeder.php');
     }
 }

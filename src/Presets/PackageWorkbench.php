@@ -28,7 +28,7 @@ class PackageWorkbench extends Preset
      */
     public function sourcePath(): string
     {
-        return Workbench::path();
+        return Workbench::path('app');
     }
 
     /**
@@ -53,6 +53,22 @@ class PackageWorkbench extends Preset
     public function providerNamespace(): string
     {
         return 'Workbench\App\Providers';
+    }
+
+    /**
+     * Databases namespace.
+     */
+    public function factoryNamespace(): string
+    {
+        return 'Workbench\Database\Factories';
+    }
+
+    /**
+     * Databases namespace.
+     */
+    public function seederNamespace(): string
+    {
+        return 'Workbench\Database\Seeders';
     }
 
     /**
