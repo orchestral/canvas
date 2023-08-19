@@ -24,7 +24,7 @@ class PackageWorkbenchTest extends TestCase
         $this->assertFalse($preset->is('laravel'));
 
         $this->assertSame($directory, $preset->basePath());
-        $this->assertSame("{$directory}/vendor/orchestra/testbench-core/laravel", $preset->laravelPath());
+        $this->assertSame(static::normalisePath("{$directory}/vendor/orchestra/testbench-core/laravel"), $preset->laravelPath());
 
         $this->assertSame('Workbench\App', $preset->rootNamespace());
         $this->assertSame('Workbench\App\Models', $preset->modelNamespace());
@@ -32,16 +32,22 @@ class PackageWorkbenchTest extends TestCase
         $this->assertSame('Workbench\Database\Factories', $preset->factoryNamespace());
         $this->assertSame('Workbench\Database\Seeders', $preset->seederNamespace());
 
-        $this->assertSame("{$directory}/workbench/app", $preset->sourcePath());
-        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
-        $this->assertSame("{$directory}/workbench/resources", $preset->resourcePath());
-        $this->assertSame("{$directory}/workbench/database/factories", $preset->factoryPath());
-        $this->assertSame("{$directory}/workbench/database/migrations", $preset->migrationPath());
-        $this->assertSame("{$directory}/workbench/database/seeders", $preset->seederPath());
+        $this->assertSame($this->normalisePath("{$directory}/workbench/app"), $preset->sourcePath());
+        $this->assertSame(static::normalisePath("{$directory}/workbench/app"), $preset->sourcePath());
+        $this->assertSame(static::normalisePath("{$directory}/vendor"), $preset->vendorPath());
+        $this->assertSame(static::normalisePath("{$directory}/workbench/resources"), $preset->resourcePath());
+        $this->assertSame(static::normalisePath("{$directory}/workbench/database/factories"), $preset->factoryPath());
+        $this->assertSame(static::normalisePath("{$directory}/workbench/database/migrations"), $preset->migrationPath());
+        $this->assertSame(static::normalisePath("{$directory}/workbench/database/seeders"), $preset->seederPath());
 
         $this->assertFalse($preset->hasCustomStubPath());
         $this->assertNull($preset->getCustomStubPath());
 
         $this->assertSame($files, $preset->filesystem());
+    }
+
+    public static function normalisePath(string $path): string
+    {
+        return str_replace('/', DIRECTORY_SEPARATOR, $path);
     }
 }
