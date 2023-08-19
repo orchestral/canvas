@@ -34,7 +34,7 @@ class PackageWorkbenchTest extends TestCase
         $this->assertSame('Workbench\Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame(Workbench::path('app'), $preset->sourcePath());
-        $this->assertSame(Workbench::packagePath('vendor'), $preset->vendorPath());
+        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
         $this->assertSame(Workbench::path('resources'), $preset->resourcePath());
         $this->assertSame(Workbench::path('database/factories'), $preset->factoryPath());
         $this->assertSame(Workbench::path('database/migrations'), $preset->migrationPath());
