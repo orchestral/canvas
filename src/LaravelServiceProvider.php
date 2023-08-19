@@ -64,7 +64,11 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                  */
                 $preset = $app->make('orchestra.canvas');
 
-                if (\defined('TESTBENCH_WORKING_PATH') || $app->runningUnitTests()) {
+                if (
+                    \defined('TESTBENCH_WORKING_PATH')
+                    || $app->runningUnitTests()
+                    || file_exists($app->basePath('canvas.yaml'))
+                ) {
                     $artisan->add(new Commands\Channel($preset));
                     $artisan->add(new Commands\Component($preset));
                     $artisan->add(new Commands\Console($preset));
