@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas\Tests\Feature\Presets;
 
 use Illuminate\Filesystem\Filesystem;
-use Orchestra\Canvas\Core\Presets\Package;
 use Orchestra\Canvas\Presets\PackageWorkbench;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
