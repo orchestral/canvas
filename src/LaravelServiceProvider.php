@@ -110,7 +110,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                     ],
                 ],
             ],
-            Workbench::packagePath(),
+            rtrim(Workbench::packagePath(), DIRECTORY_SEPARATOR),
             $filesystem
         );
     }

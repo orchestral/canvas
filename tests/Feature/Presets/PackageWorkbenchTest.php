@@ -15,7 +15,7 @@ class PackageWorkbenchTest extends TestCase
     /** @test */
     public function it_has_proper_signatures()
     {
-        $directory = __DIR__;
+        $directory = rtrim(Workbench::packagePath(), DIRECTORY_SEPARATOR);
         $preset = new PackageWorkbench([], $directory, $files = new Filesystem());
 
         $this->assertSame('workbench', $preset->name());
@@ -34,7 +34,7 @@ class PackageWorkbenchTest extends TestCase
         $this->assertSame('Workbench\Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame(Workbench::path('app'), $preset->sourcePath());
-        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
+        $this->assertSame(Workbench::packagePath('vendor'), $preset->vendorPath());
         $this->assertSame(Workbench::path('resources'), $preset->resourcePath());
         $this->assertSame(Workbench::path('database/factories'), $preset->factoryPath());
         $this->assertSame(Workbench::path('database/migrations'), $preset->migrationPath());
