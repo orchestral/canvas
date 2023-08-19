@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Env;
 use Illuminate\Support\ServiceProvider;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Workbench\Workbench;
@@ -66,7 +67,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
                 if (
                     \defined('TESTBENCH_WORKING_PATH')
-                    || $app->runningUnitTests()
+                    || Env::get('CANVAS_FOR_LARAVEL') === true
                     || file_exists($app->basePath('canvas.yaml'))
                 ) {
                     $artisan->add(new Commands\Channel($preset));
@@ -105,17 +106,16 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     protected function registerCanvasForWorkbench(Filesystem $filesystem): Preset
     {
+        $config = ['preset' => Presets\PackageWorkbench::class, 'generators' => null];
+
+        if ($filesystem->exists(Workbench::packagePath('canvas.yaml'))) {
+            $yaml = Yaml::parseFile(Workbench::packagePath('canvas.yaml'));
+
+            $config['generators'] = $yaml['generators'] ?? [];
+        }
+
         return Canvas::preset(
-            [
-                'preset' => Presets\PackageWorkbench::class,
-                'testing' => [
-                    'extends' => ['unit' => 'PHPUnit\Framework\TestCase',
-                        'feature' => 'Orchestra\Testbench\TestCase',
-                    ],
-                ],
-            ],
-            rtrim(Workbench::packagePath(), DIRECTORY_SEPARATOR),
-            $filesystem
+            $config, rtrim(Workbench::packagePath(), DIRECTORY_SEPARATOR), $filesystem
         );
     }
 
