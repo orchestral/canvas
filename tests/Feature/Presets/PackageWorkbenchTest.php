@@ -34,7 +34,7 @@ class PackageWorkbenchTest extends TestCase
 
         $this->assertSame($this->normalisePath("{$directory}/workbench/app"), $preset->sourcePath());
         $this->assertSame(static::normalisePath("{$directory}/workbench/app"), $preset->sourcePath());
-        $this->assertSame(static::normalisePath("{$directory}/vendor"), $preset->vendorPath());
+        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
         $this->assertSame(static::normalisePath("{$directory}/workbench/resources"), $preset->resourcePath());
         $this->assertSame(static::normalisePath("{$directory}/workbench/database/factories"), $preset->factoryPath());
         $this->assertSame(static::normalisePath("{$directory}/workbench/database/migrations"), $preset->migrationPath());
