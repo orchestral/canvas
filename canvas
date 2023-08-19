@@ -5,7 +5,7 @@ $workingPath = getcwd();
 
 define('CANVAS_WORKING_PATH', $workingPath);
 
-$config = ['preset' => is_file("{$workingPath}/artisan") ? 'laravel' : 'package'];
+$config = ['preset' => Orchestra\Canvas\Canvas::presetFromEnvironment($workingPath)];
 
 require $_composer_autoload_path ?? __DIR__.'/vendor/autoload.php';
 
