@@ -37,7 +37,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^8.8.1",
+        "orchestra/testbench": "^8.9",
         "phpstan/phpstan": "^1.10.5",
         "phpunit/phpunit": "^10.1"
     },
@@ -55,11 +55,15 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
+        "post-autoload-dump": "@prepare",
         "prepare": "@php testbench package:discover --ansi",
         "ci": [
-            "@composer audit",
-            "@composer run prepare",
+            "@audit",
+            "@prepare",
+            "@lint",
+            "@test"
+        ],
+        "lint": [
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
         ],
