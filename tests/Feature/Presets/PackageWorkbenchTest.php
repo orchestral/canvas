@@ -30,6 +30,8 @@ class PackageWorkbenchTest extends TestCase
         $this->assertSame('Workbench\App', $preset->rootNamespace());
         $this->assertSame('Workbench\App\Models', $preset->modelNamespace());
         $this->assertSame('Workbench\App\Providers', $preset->providerNamespace());
+        $this->assertSame('Workbench\Database\Factories', $preset->factoryNamespace());
+        $this->assertSame('Workbench\Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/workbench/app", $preset->sourcePath());
         $this->assertSame("{$directory}/vendor", $preset->vendorPath());
