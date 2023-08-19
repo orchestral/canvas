@@ -5,8 +5,11 @@ namespace Orchestra\Canvas;
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
+use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Workbench\Workbench;
 use Symfony\Component\Yaml\Yaml;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
@@ -21,11 +24,15 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     public function register()
     {
         $this->app->singleton('orchestra.canvas', function (Application $app) {
-            $files = $app->make('files');
+            $filesystem = $app->make('files');
+
+            if (\defined('TESTBENCH_WORKING_PATH') && class_exists(Workbench::class)) {
+                return $this->registerCanvasForWorkbench($filesystem);
+            }
 
             $config = ['preset' => 'laravel'];
 
-            if ($files->exists($app->basePath('canvas.yaml'))) {
+            if ($filesystem->exists($app->basePath('canvas.yaml'))) {
                 $config = Yaml::parseFile($app->basePath('canvas.yaml'));
             } else {
                 Arr::set($config, 'testing.extends', [
@@ -38,7 +45,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
             $config['user-auth-provider'] = $this->userProviderModel();
 
-            return Canvas::preset($config, $app->basePath(), $files);
+            return Canvas::preset($config, $app->basePath(), $filesystem);
         });
     }
 
@@ -57,7 +64,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                  */
                 $preset = $app->make('orchestra.canvas');
 
-                if ($app->runningUnitTests()) {
+                if (\defined('TESTBENCH_WORKING_PATH') || $app->runningUnitTests()) {
                     $artisan->add(new Commands\Channel($preset));
                     $artisan->add(new Commands\Component($preset));
                     $artisan->add(new Commands\Console($preset));
@@ -87,6 +94,25 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                 $preset->addAdditionalCommands($artisan);
             });
         });
+    }
+
+    /**
+     * Regiseter canvas for workbench.
+     */
+    protected function registerCanvasForWorkbench(Filesystem $filesystem): Preset
+    {
+        return Canvas::preset(
+            [
+                'preset' => Presets\PackageWorkbench::class,
+                'testing' => [
+                    'extends' => ['unit' => 'PHPUnit\Framework\TestCase',
+                        'feature' => 'Orchestra\Testbench\TestCase',
+                    ],
+                ],
+            ],
+            rtrim(Workbench::packagePath(), DIRECTORY_SEPARATOR),
+            $filesystem
+        );
     }
 
     /**

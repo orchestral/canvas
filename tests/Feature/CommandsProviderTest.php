@@ -29,6 +29,6 @@ class CommandsProviderTest extends TestCase
         $this->assertSame("{$directory}/resources", $preset->resourcePath());
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
-        $this->assertSame("{$directory}/database/seeds", $preset->seederPath());
+        $this->assertSame("{$directory}/database/seeders", $preset->seederPath());
     }
 }

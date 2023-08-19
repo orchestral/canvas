@@ -23,7 +23,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Orchestra\\Canvas\\Tests\\": "tests/"
+            "Orchestra\\Canvas\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "require": {
@@ -32,12 +35,12 @@
         "composer/semver": "^3.0",
         "illuminate/database": "^10.17",
         "illuminate/support": "^10.17",
-        "orchestra/canvas-core": "^8.3",
+        "orchestra/canvas-core": "^8.4",
         "symfony/yaml": "^6.2"
     },
     "require-dev": {
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^8.8.1",
+        "orchestra/testbench": "^8.9",
         "phpstan/phpstan": "^1.10.5",
         "phpunit/phpunit": "^10.1"
     },
@@ -55,15 +58,28 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
-        "prepare": "@php testbench package:discover --ansi",
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "ci": [
-            "@composer audit",
-            "@composer run prepare",
+            "@audit",
+            "@prepare",
+            "@lint",
+            "@test"
+        ],
+        "lint": [
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
         ],
-        "test": "@php vendor/bin/phpunit -c ./ --color"
+        "test": "@php vendor/bin/phpunit -c ./ --color",
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "build": "@php vendor/bin/testbench workbench:build",
+        "serve": [
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ]
     },
     "minimum-stability": "dev"
 }
