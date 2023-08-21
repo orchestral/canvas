@@ -3,7 +3,6 @@
 # Ignore following folder/file.
 /.github export-ignore
 /tests export-ignore
-/.coveralls.yml export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
 /canvas.yaml export-ignore

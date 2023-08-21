@@ -23,7 +23,7 @@ class GeneratesFactoryCode extends GeneratesCode
 
         $model = class_basename($namespaceModel);
 
-        $factoryNamespace = $this->preset->config('factory.namespace', 'Database\Factories');
+        $factoryNamespace = $this->preset->factoryNamespace();
 
         if (Str::startsWith($namespaceModel, 'App\\Models')) {
             $namespace = Str::beforeLast($factoryNamespace.'\\'.Str::after($namespaceModel, 'App\\Models\\'), '\\');

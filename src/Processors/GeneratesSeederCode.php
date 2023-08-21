@@ -40,6 +40,6 @@ class GeneratesSeederCode extends GeneratesCode
      */
     protected function rootNamespace(): string
     {
-        return 'Database\Seeders\\';
+        return $this->preset->seederNamespace();
     }
 }

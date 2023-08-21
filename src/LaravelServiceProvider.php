@@ -6,6 +6,7 @@ use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Env;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 
@@ -21,11 +22,11 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     public function register()
     {
         $this->app->singleton('orchestra.canvas', function (Application $app) {
-            $files = $app->make('files');
+            $filesystem = $app->make('files');
 
             $config = ['preset' => 'laravel'];
 
-            if ($files->exists($app->basePath('canvas.yaml'))) {
+            if ($filesystem->exists($app->basePath('canvas.yaml'))) {
                 $config = Yaml::parseFile($app->basePath('canvas.yaml'));
             } else {
                 Arr::set($config, 'testing.extends', [
@@ -38,7 +39,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
             $config['user-auth-provider'] = $this->userProviderModel();
 
-            return Canvas::preset($config, $app->basePath(), $files);
+            return Canvas::preset($config, $app->basePath(), $filesystem);
         });
     }
 
@@ -57,30 +58,35 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                  */
                 $preset = $app->make('orchestra.canvas');
 
-                $artisan->add(new Commands\Channel($preset));
-                $artisan->add(new Commands\Component($preset));
-                $artisan->add(new Commands\Console($preset));
-                $artisan->add(new Commands\Event($preset));
-                $artisan->add(new Commands\Exception($preset));
-                $artisan->add(new Commands\Database\Cast($preset));
-                $artisan->add(new Commands\Database\Eloquent($preset));
-                $artisan->add(new Commands\Database\Factory($preset));
-                $artisan->add(new Commands\Database\Migration($preset));
-                $artisan->add(new Commands\Database\Observer($preset));
-                $artisan->add(new Commands\Database\Seeder($preset));
-                $artisan->add(new Commands\Job($preset));
-                $artisan->add(new Commands\Listener($preset));
-                $artisan->add(new Commands\Mail($preset));
-                $artisan->add(new Commands\Notification($preset));
-                $artisan->add(new Commands\Policy($preset));
-                $artisan->add(new Commands\Provider($preset));
-                $artisan->add(new Commands\Request($preset));
-                $artisan->add(new Commands\Resource($preset));
-                $artisan->add(new Commands\Routing\Controller($preset));
-                $artisan->add(new Commands\Routing\Middleware($preset));
-                $artisan->add(new Commands\Rule($preset));
-                $artisan->add(new Commands\StubPublish($preset));
-                $artisan->add(new Commands\Testing($preset));
+                if (
+                    Env::get('CANVAS_FOR_LARAVEL') === true
+                    || file_exists($app->basePath('canvas.yaml'))
+                ) {
+                    $artisan->add(new Commands\Channel($preset));
+                    $artisan->add(new Commands\Component($preset));
+                    $artisan->add(new Commands\Console($preset));
+                    $artisan->add(new Commands\Event($preset));
+                    $artisan->add(new Commands\Exception($preset));
+                    $artisan->add(new Commands\Database\Cast($preset));
+                    $artisan->add(new Commands\Database\Eloquent($preset));
+                    $artisan->add(new Commands\Database\Factory($preset));
+                    $artisan->add(new Commands\Database\Migration($preset));
+                    $artisan->add(new Commands\Database\Observer($preset));
+                    $artisan->add(new Commands\Database\Seeder($preset));
+                    $artisan->add(new Commands\Job($preset));
+                    $artisan->add(new Commands\Listener($preset));
+                    $artisan->add(new Commands\Mail($preset));
+                    $artisan->add(new Commands\Notification($preset));
+                    $artisan->add(new Commands\Policy($preset));
+                    $artisan->add(new Commands\Provider($preset));
+                    $artisan->add(new Commands\Request($preset));
+                    $artisan->add(new Commands\Resource($preset));
+                    $artisan->add(new Commands\Routing\Controller($preset));
+                    $artisan->add(new Commands\Routing\Middleware($preset));
+                    $artisan->add(new Commands\Rule($preset));
+                    $artisan->add(new Commands\StubPublish($preset));
+                    $artisan->add(new Commands\Testing($preset));
+                }
 
                 $preset->addAdditionalCommands($artisan);
             });

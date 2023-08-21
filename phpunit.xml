@@ -24,5 +24,6 @@
   </testsuites>
   <php>
     <ini name="memory_limit" value="256M"/>
+    <env name="CANVAS_FOR_LARAVEL" value="(true)"/>
   </php>
 </phpunit>
