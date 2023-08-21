@@ -71,7 +71,7 @@ class EloquentTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
 
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
-        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
@@ -101,7 +101,7 @@ class EloquentTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
 
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
-        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
@@ -118,7 +118,7 @@ class EloquentTest extends TestCase
 
         $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameExists('database/factories/FooFactory.php');
-        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
@@ -142,7 +142,7 @@ class EloquentTest extends TestCase
 
         $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
-        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
@@ -181,7 +181,7 @@ class EloquentTest extends TestCase
         ], 'app/Http/Controllers/BarController.php');
 
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
-        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
@@ -211,7 +211,7 @@ class EloquentTest extends TestCase
         ], 'app/Http/Controllers/BarController.php');
 
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
-        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
@@ -239,7 +239,7 @@ class EloquentTest extends TestCase
         ], 'app/Http/Controllers/BarController.php');
 
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
-        $this->assertFilenameNotExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
