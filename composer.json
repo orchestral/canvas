@@ -39,8 +39,11 @@
         "symfony/yaml": "^6.2"
     },
     "require-dev": {
+        "laravel/framework": "^10.17",
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^8.9",
+        "mockery/mockery": "^1.5.1",
+        "orchestra/testbench-core": "^8.9",
+        "orchestra/workbench": "^0.1",
         "phpstan/phpstan": "^1.10.5",
         "phpunit/phpunit": "^10.1"
     },
