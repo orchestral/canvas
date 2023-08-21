@@ -12,7 +12,7 @@ class EloquentTest extends TestCase
         'app/Http/Controllers/FooController.php',
         'app/Http/Controllers/BarController.php',
         'database/factories/FooFactory.php',
-        'database/seeds/FooSeeder.php',
+        'database/seeders/FooSeeder.php',
     ];
 
     /** @test */
@@ -159,7 +159,7 @@ class EloquentTest extends TestCase
 
         $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameNotExists('database/factories/FooFactory.php');
-        $this->assertFilenameExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameExists('database/seeders/FooSeeder.php');
     }
 
     /** @test */
@@ -263,6 +263,6 @@ class EloquentTest extends TestCase
 
         $this->assertFilenameExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameExists('database/factories/FooFactory.php');
-        $this->assertFilenameExists('database/seeds/FooSeeder.php');
+        $this->assertFilenameExists('database/seeders/FooSeeder.php');
     }
 }
