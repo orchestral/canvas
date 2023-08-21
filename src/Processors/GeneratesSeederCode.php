@@ -26,4 +26,12 @@ class GeneratesSeederCode extends GeneratesCode
     {
         return $name;
     }
+
+    /**
+     * Get the root namespace for the class.
+     */
+    protected function rootNamespace(): string
+    {
+        return $this->preset->seederNamespace();
+    }
 }
