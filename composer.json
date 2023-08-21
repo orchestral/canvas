@@ -28,17 +28,15 @@
     },
     "require": {
         "php": "^7.3 || ^8.0",
-        "illuminate/database": "^8.75",
-        "illuminate/support": "^8.75",
+        "illuminate/database": "^8.83.27",
+        "illuminate/support": "^8.83.27",
         "orchestra/canvas-core": "^6.5",
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
         "laravel/framework": "^8.83.27",
         "nunomaduro/larastan": "^1.0.1",
-        "orchestra/testbench-core": "^6.36",
-        "phpunit/phpunit": "^8.5.21 || ^9.5.10",
-        "spatie/laravel-ray": "^1.29.7"
+        "orchestra/testbench": "^6.32"
     },
     "config": {
         "sort-packages": true
