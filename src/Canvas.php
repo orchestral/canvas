@@ -18,9 +18,8 @@ class Canvas
             'testbench.yaml',
             'testbench.yaml.example',
             'testbench.yaml.dist',
-        ])->filter(function ($filename) use ($basePath) {
-            return file_exists($basePath.DIRECTORY_SEPARATOR.$filename);
-        })->first();
+        ])->filter(fn ($filename) => file_exists($basePath.DIRECTORY_SEPARATOR.$filename))
+            ->first();
 
         if (! \is_null($testbenchYaml)) {
             return 'package';
@@ -30,9 +29,8 @@ class Canvas
             file_exists($basePath.DIRECTORY_SEPARATOR.'artisan'),
             file_exists($basePath.DIRECTORY_SEPARATOR.'bootstrap'.DIRECTORY_SEPARATOR.'app.php'),
             is_dir($basePath.DIRECTORY_SEPARATOR.'bootstrap'.DIRECTORY_SEPARATOR.'cache'),
-        ])->reject(function ($condition) {
-            return $condition === true;
-        })->isEmpty() ? 'laravel' : 'package';
+        ])->reject(fn ($condition) => $condition === true)
+            ->isEmpty() ? 'laravel' : 'package';
     }
 
     /**
