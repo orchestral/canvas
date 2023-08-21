@@ -1,10 +1,8 @@
-name: tests
+name: analyse
 
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 0 * * 4'
 
 jobs:
   tests:
@@ -14,15 +12,10 @@ jobs:
       matrix:
         os:
           - "ubuntu-latest"
-          - "windows-latest"
         php:
-          - "7.3"
-          - "7.4"
-          - "8.0"
-          - "8.1"
+          - 8.1
         dependencies:
           - "highest"
-          - "lowest"
         experimental:
           - false
 
@@ -30,20 +23,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, intl, fileinfo
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, bcmath, fileinfo
           coverage: none
 
       - name: Install dependencies
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "--prefer-dist --no-cache"
 
-      - name: Execute tests
-        run: vendor/bin/phpunit
+      - name: Execute Static Code Analysis
+        run: vendor/bin/phpstan analyse
