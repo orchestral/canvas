@@ -34,8 +34,7 @@
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
-        "laravel/framework": "^8.83.27",
-        "nunomaduro/larastan": "^1.0.1",
+        "nunomaduro/larastan": "^1.0.4",
         "orchestra/testbench": "^6.32"
     },
     "config": {
