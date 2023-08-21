@@ -5,9 +5,12 @@ namespace Orchestra\Canvas;
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
 use Illuminate\Support\ServiceProvider;
+use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Workbench\Workbench;
 use Symfony\Component\Yaml\Yaml;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
@@ -23,6 +26,10 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $this->app->singleton('orchestra.canvas', function (Application $app) {
             $filesystem = $app->make('files');
+
+            if (\defined('TESTBENCH_WORKING_PATH') && class_exists(Workbench::class)) {
+                return $this->registerCanvasForWorkbench($filesystem);
+            }
 
             $config = ['preset' => 'laravel'];
 
@@ -59,7 +66,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                 $preset = $app->make('orchestra.canvas');
 
                 if (
-                    Env::get('CANVAS_FOR_LARAVEL') === true
+                    \defined('TESTBENCH_WORKING_PATH')
+                    || Env::get('CANVAS_FOR_LARAVEL') === true
                     || file_exists($app->basePath('canvas.yaml'))
                 ) {
                     $artisan->add(new Commands\Channel($preset));
@@ -91,6 +99,24 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                 $preset->addAdditionalCommands($artisan);
             });
         });
+    }
+
+    /**
+     * Regiseter canvas for workbench.
+     */
+    protected function registerCanvasForWorkbench(Filesystem $filesystem): Preset
+    {
+        $config = ['preset' => Presets\PackageWorkbench::class, 'generators' => null];
+
+        if ($filesystem->exists(Workbench::packagePath('canvas.yaml'))) {
+            $yaml = Yaml::parseFile(Workbench::packagePath('canvas.yaml'));
+
+            $config['generators'] = $yaml['generators'] ?? [];
+        }
+
+        return Canvas::preset(
+            $config, rtrim(Workbench::packagePath(), DIRECTORY_SEPARATOR), $filesystem
+        );
     }
 
     /**
