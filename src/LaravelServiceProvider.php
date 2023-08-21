@@ -106,7 +106,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     protected function registerCanvasForWorkbench(Filesystem $filesystem): Preset
     {
-        $config = ['preset' => Presets\PackageWorkbench::class, 'generators' => null];
+        $config = ['preset' => Presets\PackageWorkbench::class];
 
         if ($filesystem->exists(Workbench::packagePath('canvas.yaml'))) {
             $yaml = Yaml::parseFile(Workbench::packagePath('canvas.yaml'));
