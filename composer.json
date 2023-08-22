@@ -33,15 +33,15 @@
         "php": "^8.0",
         "illuminate/database": "^9.45",
         "illuminate/support": "^9.45",
-        "orchestra/canvas-core": "^7.3",
+        "orchestra/canvas-core": "^7.3.1",
         "symfony/yaml": "^5.4 || ^6.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.4",
-        "phpstan/phpstan": "^1.9.14",
         "laravel/framework": "^9.52.15",
+        "laravel/pint": "^1.4",
         "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^7.29",
+        "orchestra/testbench-core": "^7.29.1",
+        "phpstan/phpstan": "^1.10.5",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ray": "^1.32.4"
     },
@@ -61,27 +61,19 @@
     "scripts": {
         "post-autoload-dump": [
             "@clear",
-            "@prepare",
-            "@composer run prepare"
+            "@prepare"
         ],
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "ci": [
-            "@composer run prepare",
-            "@php vendor/bin/phpstan analyse",
-            "@php vendor/bin/pint",
-            "@composer run test"
-        ],
-        "test": "@php vendor/bin/phpunit -c ./ --color",
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "build": "@php vendor/bin/testbench workbench:build --ansi",
-        "serve": [
-            "@build",
-            "@php vendor/bin/testbench serve"
-        ],
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "lint": [
-            "@prepare",
             "@php vendor/bin/pint",
             "@php vendor/bin/phpstan analyse"
+        ],
+        "test": "@php vendor/bin/phpunit -c ./ --color",
+        "ci": [
+            "@prepare",
+            "@lint",
+            "@test"
         ]
     },
     "minimum-stability": "dev"

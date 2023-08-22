@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas\Presets;
 
 use Orchestra\Canvas\Core\Presets\Preset;
-use Orchestra\Workbench\Workbench;
 
 use function Orchestra\Testbench\workbench_path;
 
