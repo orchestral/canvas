@@ -2,14 +2,18 @@
 
 namespace Orchestra\Canvas\Commands\Routing;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Commands\Generator;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:middleware')]
+#[AsCommand(name: 'make:middleware', description: 'Create a new middleware class')]
 class Middleware extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *

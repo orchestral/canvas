@@ -7,6 +7,7 @@ use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Commands\Command;
 use Orchestra\Canvas\Database\MigrationCreator;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Migrations/MigrateMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:migration')]
+#[AsCommand(name: 'make:migration', description: 'Create a new migration file')]
 class Migration extends Command
 {
     /**
@@ -40,9 +41,6 @@ class Migration extends Command
     protected function configure()
     {
         $this->ignoreValidationErrors();
-
-        $this->setName('make:migration')
-            ->setDescription('Create a new migration file.');
 
         $this->creator = new MigrationCreator($this->preset);
 

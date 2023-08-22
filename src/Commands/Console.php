@@ -3,12 +3,13 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Core\GeneratesCommandCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:command')]
+#[AsCommand(name: 'make:command', description: 'Create a new Artisan command')]
 class Console extends Generator
 {
     /**
@@ -100,7 +101,7 @@ class Console extends Generator
     {
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the console command already exists'],
-            ['command', null, InputOption::VALUE_OPTIONAL, 'The terminal command that should be assigned', 'command:name'],
+            ['command', null, InputOption::VALUE_OPTIONAL, 'The terminal command that will be used to invoke the class'],
         ];
     }
 }

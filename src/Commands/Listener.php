@@ -2,15 +2,19 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Processors\GeneratesListenerCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:listener')]
+#[AsCommand(name: 'make:listener', description: 'Create a new event listener class')]
 class Listener extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *
@@ -79,7 +83,7 @@ class Listener extends Generator
     public function generatorOptions(): array
     {
         return [
-            'event' => $this->option('event'),
+            'event' => $this->option('event') ?? '',
             'force' => $this->option('force'),
         ];
     }

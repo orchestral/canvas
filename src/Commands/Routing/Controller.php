@@ -2,16 +2,20 @@
 
 namespace Orchestra\Canvas\Commands\Routing;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesControllerCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:controller')]
+#[AsCommand(name: 'make:controller', description: 'Create a new controller class')]
 class Controller extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *

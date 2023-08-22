@@ -2,12 +2,13 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ProviderMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:provider')]
+#[AsCommand(name: 'make:provider', description: 'Create a new service provider class')]
 class Provider extends Generator
 {
     /**

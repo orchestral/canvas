@@ -3,12 +3,13 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesTestingCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/TestMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:test')]
+#[AsCommand(name: 'make:test', description: 'Create a new test class')]
 class Testing extends Generator
 {
     /**

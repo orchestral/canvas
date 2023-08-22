@@ -5,11 +5,12 @@ namespace Orchestra\Canvas\Commands\Database;
 use Illuminate\Support\Composer;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesSeederCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:seeder')]
+#[AsCommand(name: 'make:seeder', description: 'Create a new seeder class')]
 class Seeder extends Generator
 {
     /**
@@ -60,15 +61,13 @@ class Seeder extends Generator
     }
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         $this->composer->dumpAutoloads();
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**

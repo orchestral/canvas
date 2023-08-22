@@ -2,12 +2,13 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ChannelMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:channel')]
+#[AsCommand(name: 'make:channel', description: 'Create a new channel class')]
 class Channel extends Generator
 {
     /**

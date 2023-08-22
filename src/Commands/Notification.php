@@ -2,16 +2,20 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/NotificationMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:notification')]
+#[AsCommand(name: 'make:notification', description: 'Create a new notification class')]
 class Notification extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *
@@ -41,17 +45,15 @@ class Notification extends Generator
     protected $processor = GeneratesCodeWithMarkdown::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if ($this->option('markdown')) {
             $this->writeMarkdownTemplate();
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**

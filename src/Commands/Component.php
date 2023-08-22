@@ -2,17 +2,21 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:component')]
+#[AsCommand(name: 'make:component', description: 'Create a new view component class')]
 class Component extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The console command name.
      *
@@ -42,17 +46,15 @@ class Component extends Generator
     protected $processor = GeneratesCodeWithComponent::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if (! $this->option('inline')) {
             $this->writeView();
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**
