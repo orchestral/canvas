@@ -6,7 +6,6 @@ use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Presets\PackageWorkbench;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
-use Orchestra\Workbench\Workbench;
 
 use function Orchestra\Testbench\package_path;
 use function Orchestra\Testbench\workbench_path;
