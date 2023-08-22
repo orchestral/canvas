@@ -42,10 +42,10 @@
         "laravel/framework": "^10.17",
         "laravel/pint": "^1.6",
         "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^8.9",
-        "orchestra/workbench": "^0.1.7",
+        "orchestra/testbench-core": "^8.9.1",
         "phpstan/phpstan": "^1.10.5",
-        "phpunit/phpunit": "^10.1"
+        "phpunit/phpunit": "^10.1",
+        "spatie/laravel-ray": "^1.32.4"
     },
     "config": {
         "sort-packages": true
@@ -65,23 +65,18 @@
             "@clear",
             "@prepare"
         ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "ci": [
-            "@audit",
-            "@prepare",
-            "@lint",
-            "@test"
-        ],
         "lint": [
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
         ],
         "test": "@php vendor/bin/phpunit -c ./ --color",
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "build": "@php vendor/bin/testbench workbench:build",
-        "serve": [
-            "@build",
-            "@php vendor/bin/testbench serve"
+        "ci": [
+            "@audit",
+            "@prepare",
+            "@lint",
+            "@test"
         ]
     },
     "minimum-stability": "dev"

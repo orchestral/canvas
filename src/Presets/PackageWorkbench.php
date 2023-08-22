@@ -5,6 +5,8 @@ namespace Orchestra\Canvas\Presets;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Workbench\Workbench;
 
+use function Orchestra\Testbench\workbench_path;
+
 class PackageWorkbench extends Preset
 {
     /**
@@ -20,7 +22,7 @@ class PackageWorkbench extends Preset
      */
     public function laravelPath(): string
     {
-        return Workbench::laravelPath();
+        return app()->basePath();
     }
 
     /**
@@ -28,7 +30,7 @@ class PackageWorkbench extends Preset
      */
     public function sourcePath(): string
     {
-        return Workbench::path('app');
+        return workbench_path('app');
     }
 
     /**
@@ -76,7 +78,7 @@ class PackageWorkbench extends Preset
      */
     public function resourcePath(): string
     {
-        return Workbench::path('resources');
+        return workbench_path('resources');
     }
 
     /**
@@ -84,7 +86,7 @@ class PackageWorkbench extends Preset
      */
     public function factoryPath(): string
     {
-        return Workbench::path('database/factories');
+        return workbench_path('database/factories');
     }
 
     /**
@@ -92,7 +94,7 @@ class PackageWorkbench extends Preset
      */
     public function migrationPath(): string
     {
-        return Workbench::path('database/migrations');
+        return workbench_path('database/migrations');
     }
 
     /**
@@ -100,7 +102,7 @@ class PackageWorkbench extends Preset
      */
     public function seederPath(): string
     {
-        return Workbench::path('database/seeders');
+        return workbench_path('database/seeders');
     }
 
     /**

@@ -13,6 +13,8 @@ use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Workbench\Workbench;
 use Symfony\Component\Yaml\Yaml;
 
+use function Orchestra\Testbench\package_path;
+
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     use Core\CommandsProvider;
@@ -108,14 +110,14 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $config = ['preset' => Presets\PackageWorkbench::class];
 
-        if ($filesystem->exists(Workbench::packagePath('canvas.yaml'))) {
-            $yaml = Yaml::parseFile(Workbench::packagePath('canvas.yaml'));
+        if ($filesystem->exists(package_path('canvas.yaml'))) {
+            $yaml = Yaml::parseFile(package_path('canvas.yaml'));
 
             $config['generators'] = $yaml['generators'] ?? [];
         }
 
         return Canvas::preset(
-            $config, rtrim(Workbench::packagePath(), DIRECTORY_SEPARATOR), $filesystem
+            $config, rtrim(package_path(), DIRECTORY_SEPARATOR), $filesystem
         );
     }
 

@@ -24,6 +24,8 @@ class CommandsProviderTest extends TestCase
         $this->assertSame('App', $preset->rootNamespace());
         $this->assertSame('App\Models', $preset->modelNamespace());
         $this->assertSame('App\Providers', $preset->providerNamespace());
+        $this->assertSame('Database\Factories', $preset->factoryNamespace());
+        $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/app", $preset->sourcePath());
         $this->assertSame("{$directory}/resources", $preset->resourcePath());
