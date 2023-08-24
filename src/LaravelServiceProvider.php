@@ -43,7 +43,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                     'feature' => 'Tests\TestCase',
                 ]);
 
-                $config['namespace'] = trim($this->app->getNamespace(), '\\');
+                $config['namespace'] = rescue(fn () => trim($this->app->getNamespace(), '\\'), null, false);
             }
 
             $config['user-auth-provider'] = $this->userProviderModel();
