@@ -5,8 +5,6 @@ $workingPath = getcwd();
 
 define('CANVAS_WORKING_PATH', $workingPath);
 
-$config = ['preset' => Orchestra\Canvas\Canvas::presetFromEnvironment($workingPath)];
-
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
     // Development environment.
     require __DIR__.'/vendor/autoload.php';
@@ -14,6 +12,8 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     // Installation environment.
     require __DIR__.'/../../autoload.php';
 }
+
+$config = ['preset' => Orchestra\Canvas\Canvas::presetFromEnvironment($workingPath)];
 
 if (file_exists($workingPath.DIRECTORY_SEPARATOR.'canvas.yaml')) {
     $config = Symfony\Component\Yaml\Yaml::parseFile($workingPath.DIRECTORY_SEPARATOR.'canvas.yaml');
