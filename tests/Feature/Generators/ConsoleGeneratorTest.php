@@ -22,7 +22,7 @@ class ConsoleGeneratorTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Core\Commands\Generator;',
+            'use Orchestra\Canvas\Commands\Generator;',
             'class FooCommand extends Generator',
             'protected $name = \'make:name\';',
         ], 'app/Console/Commands/FooCommand.php');
@@ -40,7 +40,7 @@ class ConsoleGeneratorTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Core\Commands\Generator;',
+            'use Orchestra\Canvas\Commands\Generator;',
             'class FooCommand extends Generator',
             'protected $name = \'make:foobar\';',
         ], 'app/Console/Commands/FooCommand.php');
@@ -58,7 +58,7 @@ class ConsoleGeneratorTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Core\Commands\Generator;',
+            'use Orchestra\Canvas\Commands\Generator;',
             'class FooCommand extends Generator',
             'protected $name = \'make:foobar\';',
         ], 'app/Console/Commands/FooCommand.php');
