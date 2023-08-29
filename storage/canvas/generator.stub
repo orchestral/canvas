@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Orchestra\Canvas\Core\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
 
 class DummyClass extends Generator
 {
@@ -28,9 +28,9 @@ class DummyClass extends Generator
     protected $type = 'Class';
 
     /**
-     * Get the stub file for the generator.
+     * Get the stub file name for the generator.
      */
-    public function getStubFile(): string
+    public function getStubFileName(): string
     {
         // Implement path to stub file.
     }

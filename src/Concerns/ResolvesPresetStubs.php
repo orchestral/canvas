@@ -29,4 +29,12 @@ trait ResolvesPresetStubs
             ? $preset->getCustomStubPath()
             : __DIR__."/../../storage/{$preset->name()}";
     }
+
+    /**
+     * Get the stub file for the generator.
+     */
+    public function getStubFile(): string
+    {
+        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
+    }
 }
