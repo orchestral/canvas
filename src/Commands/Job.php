@@ -40,14 +40,6 @@ class Job extends Generator
     }
 
     /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
-    }
-
-    /**
      * Get the stub file name for the generator.
      */
     public function getStubFileName(): string
