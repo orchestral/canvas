@@ -31,14 +31,14 @@ class Controller extends Generator
      *
      * @var string
      */
-    protected $type = 'Controller';
+    protected string $type = 'Controller';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesControllerCode::class;
+    protected string $processor = GeneratesControllerCode::class;
 
     /**
      * Get the stub file for the generator.

@@ -3,12 +3,13 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesEventCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/EventMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:event')]
+#[AsCommand(name: 'make:event', description: 'Create a new event class')]
 class Event extends Generator
 {
     /**
@@ -30,14 +31,14 @@ class Event extends Generator
      *
      * @var string
      */
-    protected $type = 'Event';
+    protected string $type = 'Event';
 
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesEventCode::class;
+    protected string $processor = GeneratesEventCode::class;
 
     /**
      * Get the stub file for the generator.

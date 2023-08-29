@@ -32,7 +32,7 @@ class Resource extends Generator
      *
      * @var string
      */
-    protected $type = 'Resource';
+    protected string $type = 'Resource';
 
     /**
      * Execute the command.

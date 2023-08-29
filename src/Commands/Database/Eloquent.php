@@ -32,14 +32,14 @@ class Eloquent extends Generator
      *
      * @var string
      */
-    protected $type = 'Model';
+    protected string $type = 'Model';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesEloquentCode::class;
+    protected string $processor = GeneratesEloquentCode::class;
 
     /**
      * Code successfully generated.

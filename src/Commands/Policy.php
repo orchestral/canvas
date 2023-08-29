@@ -30,14 +30,14 @@ class Policy extends Generator
      *
      * @var string
      */
-    protected $type = 'Policy';
+    protected string $type = 'Policy';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesPolicyCode::class;
+    protected string $processor = GeneratesPolicyCode::class;
 
     /**
      * Get the stub file name for the generator.

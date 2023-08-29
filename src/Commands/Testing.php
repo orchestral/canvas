@@ -30,14 +30,14 @@ class Testing extends Generator
      *
      * @var string
      */
-    protected $type = 'Test';
+    protected string $type = 'Test';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesTestingCode::class;
+    protected string $processor = GeneratesTestingCode::class;
 
     /**
      * Get the stub file for the generator.

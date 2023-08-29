@@ -2,7 +2,9 @@
 
 namespace Orchestra\Canvas\Commands;
 
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:class')]
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'make:class', description: 'Create a new class')]
 class Code extends Generator
 {
     /**
@@ -24,7 +26,7 @@ class Code extends Generator
      *
      * @var string
      */
-    protected $type = 'Class';
+    protected string $type = 'Class';
 
     /**
      * Get the stub file for the generator.

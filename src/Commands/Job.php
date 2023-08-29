@@ -29,7 +29,7 @@ class Job extends Generator
      *
      * @var string
      */
-    protected $type = 'Job';
+    protected string $type = 'Job';
 
     /**
      * Get the stub file for the generator.

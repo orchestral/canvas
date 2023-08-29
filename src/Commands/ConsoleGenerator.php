@@ -3,9 +3,10 @@
 namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:generator')]
+#[AsCommand(name: 'make:generator', description: 'Create a new generator command')]
 class ConsoleGenerator extends Console
 {
     /**
@@ -27,7 +28,7 @@ class ConsoleGenerator extends Console
      *
      * @var string
      */
-    protected $type = 'Generator command';
+    protected string $type = 'Generator command';
 
     /**
      * Get the stub file for the generator.

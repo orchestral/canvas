@@ -29,7 +29,7 @@ class Provider extends Generator
      *
      * @var string
      */
-    protected $type = 'Provider';
+    protected string $type = 'Provider';
 
     /**
      * Get the stub file name for the generator.

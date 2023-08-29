@@ -31,14 +31,14 @@ class Factory extends Generator
      *
      * @var string
      */
-    protected $type = 'Factory';
+    protected string $type = 'Factory';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesFactoryCode::class;
+    protected string $processor = GeneratesFactoryCode::class;
 
     /**
      * Get the stub file for the generator.

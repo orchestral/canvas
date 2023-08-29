@@ -28,7 +28,7 @@ class Preset extends Generator
      *
      * @var string
      */
-    protected $type = 'Preset';
+    protected string $type = 'Preset';
 
     /**
      * The type of file being generated.
@@ -37,12 +37,12 @@ class Preset extends Generator
      */
     protected $fileType = 'preset';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesPresetConfiguration::class;
+    protected string $processor = GeneratesPresetConfiguration::class;
 
     /**
      * Get the stub file for the generator.

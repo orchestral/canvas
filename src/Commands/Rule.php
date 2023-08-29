@@ -30,14 +30,14 @@ class Rule extends Generator
      *
      * @var string
      */
-    protected $type = 'Rule';
+    protected string $type = 'Rule';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesRuleCode::class;
+    protected string $processor = GeneratesRuleCode::class;
 
     /**
      * Get the stub file for the generator.

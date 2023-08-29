@@ -31,14 +31,14 @@ class Notification extends Generator
      *
      * @var string
      */
-    protected $type = 'Notification';
+    protected string $type = 'Notification';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCodeWithMarkdown::class;
+    protected string $processor = GeneratesCodeWithMarkdown::class;
 
     /**
      * Code successfully generated.

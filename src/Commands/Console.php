@@ -30,21 +30,21 @@ class Console extends Generator
      *
      * @var string
      */
-    protected $type = 'Console command';
+    protected string $type = 'Console command';
 
     /**
      * The type of file being generated.
      *
      * @var string
      */
-    protected $fileType = 'command';
+    protected string $fileType = 'command';
 
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCommandCode::class;
+    protected string $processor = GeneratesCommandCode::class;
 
     /**
      * Get the stub file for the generator.

@@ -3,12 +3,13 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesExceptionCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ExceptionMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:exception')]
+#[AsCommand(name: 'make:exception', description: 'Create a new custom exception class')]
 class Exception extends Generator
 {
     /**
@@ -30,14 +31,14 @@ class Exception extends Generator
      *
      * @var string
      */
-    protected $type = 'Exception';
+    protected string $type = 'Exception';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesExceptionCode::class;
+    protected string $processor = GeneratesExceptionCode::class;
 
     /**
      * Get the stub file name for the generator.

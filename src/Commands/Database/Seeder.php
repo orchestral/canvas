@@ -31,14 +31,14 @@ class Seeder extends Generator
      *
      * @var string
      */
-    protected $type = 'Seeder';
+    protected string $type = 'Seeder';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesSeederCode::class;
+    protected string $processor = GeneratesSeederCode::class;
 
     /**
      * The Composer instance.

@@ -30,14 +30,14 @@ class Listener extends Generator
      *
      * @var string
      */
-    protected $type = 'Listener';
+    protected string $type = 'Listener';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesListenerCode::class;
+    protected string $processor = GeneratesListenerCode::class;
 
     /**
      * Get the stub file name for the generator.

@@ -31,14 +31,14 @@ class Observer extends Generator
      *
      * @var string
      */
-    protected $type = 'Observer';
+    protected string $type = 'Observer';
 
-    /**
+     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesObserverCode::class;
+    protected string $processor = GeneratesObserverCode::class;
 
     /**
      * Get the stub file name for the generator.

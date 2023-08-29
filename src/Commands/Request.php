@@ -29,7 +29,7 @@ class Request extends Generator
      *
      * @var string
      */
-    protected $type = 'Request';
+    protected string $type = 'Request';
 
     /**
      * Get the stub file for the generator.
