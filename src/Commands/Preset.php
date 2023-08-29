@@ -50,6 +50,14 @@ class Preset extends Generator
      */
     public function getStubFile(): string
     {
+        return $this->getStubFileName();
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         $name = $this->generatorName();
 
         $directory = __DIR__.'/../../storage/canvas/preset';

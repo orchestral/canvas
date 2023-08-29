@@ -33,6 +33,14 @@ class Code extends Generator
      */
     public function getStubFile(): string
     {
+        return $this->getStubFileName();
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
+    {
         return __DIR__.'/../../storage/canvas/code.stub';
     }
 }
