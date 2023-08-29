@@ -3,9 +3,10 @@
 namespace DummyNamespace;
 
 use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Core\GeneratesCode;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'dummy:command')]
+#[AsCommand(name: 'dummy:command', description: 'Create a new class')]
 class DummyClass extends Generator
 {
     /**
@@ -27,7 +28,14 @@ class DummyClass extends Generator
      *
      * @var string
      */
-    protected $type = 'Class';
+    protected string $type = 'Class';
+
+    /**
+     * Generator processor.
+     *
+     * @var string
+     */
+    protected $processor = GeneratesCode::class;
 
     /**
      * Get the stub file name for the generator.
