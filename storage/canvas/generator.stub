@@ -3,7 +3,9 @@
 namespace DummyNamespace;
 
 use Orchestra\Canvas\Commands\Generator;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'dummy:command')]
 class DummyClass extends Generator
 {
     /**
