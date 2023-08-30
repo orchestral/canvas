@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -13,6 +14,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:notification', description: 'Create a new notification class')]
 class Notification extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The type of class being generated.
      *
@@ -28,17 +31,15 @@ class Notification extends Generator
     protected string $processor = GeneratesCodeWithMarkdown::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path)
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if ($this->option('markdown')) {
             $this->writeMarkdownTemplate();
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**

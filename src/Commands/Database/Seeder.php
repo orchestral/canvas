@@ -47,15 +47,13 @@ class Seeder extends Generator
     }
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path)
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         $this->composer->dumpAutoloads();
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**

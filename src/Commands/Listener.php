@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Processors\GeneratesListenerCode;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,6 +13,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:listener', description: 'Create a new event listener class')]
 class Listener extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The type of class being generated.
      *

@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands\Database;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesEloquentCode;
@@ -14,6 +15,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:model', description: 'Create a new Eloquent model class')]
 class Eloquent extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The type of class being generated.
      *
@@ -29,12 +32,10 @@ class Eloquent extends Generator
     protected string $processor = GeneratesEloquentCode::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path)
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if ($this->option('all')) {
             $this->input->setOption('factory', true);
             $this->input->setOption('seed', true);
@@ -59,7 +60,7 @@ class Eloquent extends Generator
             $this->createController($className);
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**
