@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Presets;
 
-use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Canvas\Core\Presets\Package as Preset;
 
 use function Orchestra\Testbench\workbench_path;
 
