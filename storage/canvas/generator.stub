@@ -5,23 +5,9 @@ namespace DummyNamespace;
 use Orchestra\Canvas\Commands\Generator;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'dummy:command')]
+#[AsCommand(name: 'dummy:command', description: 'Create a new class')]
 class DummyClass extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'dummy:command';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new class';
-
     /**
      * The type of class being generated.
      *
