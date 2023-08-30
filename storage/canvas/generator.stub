@@ -21,7 +21,7 @@ class DummyClass extends Generator
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCode::class;
+    protected string $processor = GeneratesCode::class;
 
     /**
      * Get the stub file name for the generator.
