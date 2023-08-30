@@ -15,20 +15,6 @@ class Middleware extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:middleware';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new middleware class';
-
-    /**
      * The type of class being generated.
      *
      * @var string

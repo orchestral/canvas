@@ -13,20 +13,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Event extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:event';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new event class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -36,9 +22,9 @@ class Event extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesEventCode::class;
+    protected string $processor = GeneratesEventCode::class;
 
     /**
      * Get the stub file for the generator.

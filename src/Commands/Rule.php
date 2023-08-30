@@ -13,20 +13,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Rule extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:rule';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new validation rule';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -36,9 +22,9 @@ class Rule extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesRuleCode::class;
+    protected string $processor = GeneratesRuleCode::class;
 
     /**
      * Get the stub file for the generator.

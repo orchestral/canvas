@@ -17,20 +17,6 @@ class Notification extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:notification';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new notification class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -40,9 +26,9 @@ class Notification extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCodeWithMarkdown::class;
+    protected string $processor = GeneratesCodeWithMarkdown::class;
 
     /**
      * Run after code successfully generated.

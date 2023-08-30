@@ -13,20 +13,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Testing extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:test';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new test class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -36,9 +22,9 @@ class Testing extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesTestingCode::class;
+    protected string $processor = GeneratesTestingCode::class;
 
     /**
      * Get the stub file for the generator.

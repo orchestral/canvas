@@ -8,20 +8,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 class Code extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:class';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new class';
-
-    /**
      * The type of class being generated.
      *
      * @var string

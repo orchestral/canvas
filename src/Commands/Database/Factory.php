@@ -14,20 +14,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Factory extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:factory';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new model factory';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -37,9 +23,9 @@ class Factory extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesFactoryCode::class;
+    protected string $processor = GeneratesFactoryCode::class;
 
     /**
      * Get the stub file for the generator.

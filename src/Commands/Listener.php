@@ -16,20 +16,6 @@ class Listener extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:listener';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new event listener class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -39,9 +25,9 @@ class Listener extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesListenerCode::class;
+    protected string $processor = GeneratesListenerCode::class;
 
     /**
      * Get the stub file name for the generator.

@@ -41,9 +41,9 @@ class Preset extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesPresetConfiguration::class;
+    protected string $processor = GeneratesPresetConfiguration::class;
 
     /**
      * Get the stub file for the generator.

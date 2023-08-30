@@ -13,20 +13,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Console extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:command';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new Artisan command';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -43,9 +29,9 @@ class Console extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCommandCode::class;
+    protected string $processor = GeneratesCommandCode::class;
 
     /**
      * Get the stub file for the generator.

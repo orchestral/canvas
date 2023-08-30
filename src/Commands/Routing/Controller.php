@@ -17,20 +17,6 @@ class Controller extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:controller';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new controller class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -40,9 +26,9 @@ class Controller extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesControllerCode::class;
+    protected string $processor = GeneratesControllerCode::class;
 
     /**
      * Get the stub file for the generator.

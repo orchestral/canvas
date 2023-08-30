@@ -12,20 +12,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Provider extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:provider';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new service provider class';
-
-    /**
      * The type of class being generated.
      *
      * @var string

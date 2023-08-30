@@ -41,9 +41,9 @@ class Component extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCodeWithComponent::class;
+    protected string $processor = GeneratesCodeWithComponent::class;
 
     /**
      * Run after code successfully generated.

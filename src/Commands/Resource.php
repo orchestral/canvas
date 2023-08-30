@@ -15,20 +15,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Resource extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:resource';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new resource';
-
-    /**
      * The type of class being generated.
      *
      * @var string

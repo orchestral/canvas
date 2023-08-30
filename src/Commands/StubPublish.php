@@ -19,20 +19,6 @@ class StubPublish extends Command
     use ResolvesPresetStubs;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'stub:publish';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Publish all stubs that are available for customization';
-
-    /**
      * Configure the command options.
      *
      * @return void

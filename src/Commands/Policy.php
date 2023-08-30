@@ -13,20 +13,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Policy extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:policy';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new policy class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -36,9 +22,9 @@ class Policy extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesPolicyCode::class;
+    protected string $processor = GeneratesPolicyCode::class;
 
     /**
      * Get the stub file name for the generator.

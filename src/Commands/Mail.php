@@ -17,20 +17,6 @@ class Mail extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:mail';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new email class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -40,9 +26,9 @@ class Mail extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCodeWithMarkdown::class;
+    protected string $processor = GeneratesCodeWithMarkdown::class;
 
     /**
      * Run after code successfully generated.

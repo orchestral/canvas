@@ -18,20 +18,6 @@ class Eloquent extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:model';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new Eloquent model class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -41,9 +27,9 @@ class Eloquent extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesEloquentCode::class;
+    protected string $processor = GeneratesEloquentCode::class;
 
     /**
      * Run after code successfully generated.

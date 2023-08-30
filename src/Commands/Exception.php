@@ -13,20 +13,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Exception extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:exception';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new custom exception class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
@@ -36,9 +22,9 @@ class Exception extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesExceptionCode::class;
+    protected string $processor = GeneratesExceptionCode::class;
 
     /**
      * Get the stub file name for the generator.

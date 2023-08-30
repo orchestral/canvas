@@ -15,20 +15,6 @@ class Job extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:job';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new job class';
-
-    /**
      * The type of class being generated.
      *
      * @var string

@@ -12,20 +12,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Request extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:request';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new form request class';
-
-    /**
      * The type of class being generated.
      *
      * @var string
