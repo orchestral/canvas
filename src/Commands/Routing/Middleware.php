@@ -3,27 +3,14 @@
 namespace Orchestra\Canvas\Commands\Routing;
 
 use Orchestra\Canvas\Commands\Generator;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:middleware')]
+#[AsCommand(name: 'make:middleware', description: 'Create a new middleware class')]
 class Middleware extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:middleware';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new middleware class';
-
     /**
      * The type of class being generated.
      *

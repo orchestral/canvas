@@ -3,28 +3,15 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesPolicyCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/PolicyMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:policy')]
+#[AsCommand(name: 'make:policy', description: 'Create a new policy class')]
 class Policy extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:policy';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new policy class';
-
     /**
      * The type of class being generated.
      *
