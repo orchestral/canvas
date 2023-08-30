@@ -18,20 +18,6 @@ class Component extends Generator
     use CreatesMatchingTest;
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:component';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new view component class';
-
-    /**
      * The type of class being generated.
      *
      * @var string

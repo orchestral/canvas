@@ -11,20 +11,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Preset extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'preset';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create canvas.yaml for the project';
-
-    /**
      * The type of class being generated.
      *
      * @var string
