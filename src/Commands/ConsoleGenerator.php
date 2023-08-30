@@ -10,20 +10,6 @@ use Symfony\Component\Console\Input\InputOption;
 class ConsoleGenerator extends Console
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:generator';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new generator command';
-
-    /**
      * The type of class being generated.
      *
      * @var string

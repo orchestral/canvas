@@ -4,28 +4,15 @@ namespace Orchestra\Canvas\Commands\Routing;
 
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesControllerCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:controller')]
+#[AsCommand(name: 'make:controller', description: 'Create a new controller class')]
 class Controller extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:controller';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new controller class';
-
     /**
      * The type of class being generated.
      *

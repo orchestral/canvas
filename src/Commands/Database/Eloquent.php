@@ -5,28 +5,15 @@ namespace Orchestra\Canvas\Commands\Database;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesEloquentCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ModelMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:model')]
+#[AsCommand(name: 'make:model', description: 'Create a new Eloquent model class')]
 class Eloquent extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:model';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new Eloquent model class';
-
     /**
      * The type of class being generated.
      *

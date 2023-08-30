@@ -12,20 +12,6 @@ use Symfony\Component\Console\Input\InputOption;
 class Channel extends Generator
 {
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:channel';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new channel class';
-
-    /**
      * The type of class being generated.
      *
      * @var string

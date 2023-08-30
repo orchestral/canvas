@@ -3,28 +3,15 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:cast')]
+#[AsCommand(name: 'make:cast', description: 'Create a new custom Eloquent cast class')]
 class Cast extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:cast';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new custom Eloquent cast class';
-
     /**
      * The type of class being generated.
      *
