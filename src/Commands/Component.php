@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
@@ -14,6 +15,8 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:component', description: 'Create a new view component class')]
 class Component extends Generator
 {
+    use CreatesMatchingTest;
+
     /**
      * The type of class being generated.
      *
@@ -29,17 +32,15 @@ class Component extends Generator
     protected string $processor = GeneratesCodeWithComponent::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path)
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if (! $this->option('inline')) {
             $this->writeView();
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**
