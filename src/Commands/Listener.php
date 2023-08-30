@@ -19,7 +19,7 @@ class Listener extends Generator
      */
     protected string $type = 'Listener';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

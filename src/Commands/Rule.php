@@ -19,7 +19,7 @@ class Rule extends Generator
      */
     protected string $type = 'Rule';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

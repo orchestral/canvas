@@ -13,24 +13,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/StubPublishCommand.php
  */
-#[AsCommand(name: 'stub:publish')]
+#[AsCommand(name: 'stub:publish', description: 'Publish all stubs that are available for customization')]
 class StubPublish extends Command
 {
     use ResolvesPresetStubs;
-
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'stub:publish';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Publish all stubs that are available for customization';
 
     /**
      * Configure the command options.
@@ -40,9 +26,6 @@ class StubPublish extends Command
     protected function configure()
     {
         $this->ignoreValidationErrors();
-
-        $this->setName($this->name)
-            ->setDescription($this->description);
     }
 
     /**

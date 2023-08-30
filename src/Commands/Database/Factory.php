@@ -20,7 +20,7 @@ class Factory extends Generator
      */
     protected string $type = 'Factory';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

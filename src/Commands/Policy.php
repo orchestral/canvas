@@ -19,7 +19,7 @@ class Policy extends Generator
      */
     protected string $type = 'Policy';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

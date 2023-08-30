@@ -20,7 +20,7 @@ class Observer extends Generator
      */
     protected string $type = 'Observer';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

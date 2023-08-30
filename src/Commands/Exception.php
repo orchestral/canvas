@@ -19,7 +19,7 @@ class Exception extends Generator
      */
     protected string $type = 'Exception';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

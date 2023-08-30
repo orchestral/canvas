@@ -20,7 +20,7 @@ class Seeder extends Generator
      */
     protected string $type = 'Seeder';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

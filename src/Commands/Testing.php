@@ -19,7 +19,7 @@ class Testing extends Generator
      */
     protected string $type = 'Test';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

@@ -20,7 +20,7 @@ class Controller extends Generator
      */
     protected string $type = 'Controller';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

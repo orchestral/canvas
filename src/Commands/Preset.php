@@ -4,25 +4,12 @@ namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesPresetConfiguration;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsCommand(name: 'preset')]
+#[AsCommand(name: 'preset', description: 'Create canvas.yaml for the project')]
 class Preset extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'preset';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create canvas.yaml for the project';
-
     /**
      * The type of class being generated.
      *
@@ -35,9 +22,9 @@ class Preset extends Generator
      *
      * @var string
      */
-    protected $fileType = 'preset';
+    protected string $fileType = 'preset';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>

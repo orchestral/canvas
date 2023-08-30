@@ -21,7 +21,7 @@ class Eloquent extends Generator
      */
     protected string $type = 'Model';
 
-     /**
+    /**
      * Generator processor.
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
