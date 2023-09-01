@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
-use Orchestra\Canvas\Processors\GeneratesCodeWithMarkdown;
+use Orchestra\Canvas\Core\GeneratesCodeWithMarkdown;
 use Symfony\Component\Console\Input\InputOption;
 
 /**

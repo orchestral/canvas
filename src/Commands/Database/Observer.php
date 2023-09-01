@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
-use Orchestra\Canvas\Processors\GeneratesCodeWithEloquent;
+use Orchestra\Canvas\Core\GeneratesCodeWithEloquent;
 use Symfony\Component\Console\Input\InputOption;
 
 /**

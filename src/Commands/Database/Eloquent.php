@@ -4,7 +4,6 @@ namespace Orchestra\Canvas\Commands\Database;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Commands\Generator;
-use Orchestra\Canvas\Processors\GeneratesEloquentCode;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -32,13 +31,6 @@ class Eloquent extends Generator
      * @var string
      */
     protected $type = 'Model';
-
-    /**
-     * Generator processor.
-     *
-     * @var string
-     */
-    protected $processor = GeneratesEloquentCode::class;
 
     /**
      * Code successfully generated.
