@@ -12,14 +12,14 @@ use Orchestra\Canvas\Core\GeneratesCode;
 class GeneratesRuleCode extends GeneratesCode
 {
     /**
-     * Build the class with the given name.
+     * Replace the namespace for the given stub.
      */
-    protected function buildClass(string $name): string
+    protected function replaceNamespace(string $stub, string $name): string
     {
+        $stub = parent::replaceNamespace($stub, $name);
+
         return str_replace(
-            '{{ ruleType }}',
-            $this->options['implicit'] ? 'ImplicitRule' : 'Rule',
-            parent::buildClass($name)
+            '{{ ruleType }}', $this->options['implicit'] ? 'ImplicitRule' : 'Rule', $stub
         );
     }
 }

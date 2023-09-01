@@ -13,12 +13,12 @@ use Orchestra\Canvas\Core\GeneratesCode;
 class GeneratesPolicyCode extends GeneratesCode
 {
     /**
-     * Build the class with the given name.
+     * Replace the namespace for the given stub.
      */
-    protected function buildClass(string $name): string
+    protected function replaceNamespace(string $stub, string $name): string
     {
         $stub = $this->replaceUserNamespace(
-            parent::buildClass($name)
+            parent::replaceNamespace($stub, $name)
         );
 
         $model = $this->options['model'];
