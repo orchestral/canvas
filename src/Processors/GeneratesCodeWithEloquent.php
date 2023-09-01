@@ -11,7 +11,7 @@ use Orchestra\Canvas\Core\GeneratesCode;
  *
  * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
-class GeneratesObserverCode extends GeneratesCode
+class GeneratesCodeWithEloquent extends GeneratesCode
 {
     /**
      * Build the class with the given name.
@@ -83,7 +83,7 @@ class GeneratesObserverCode extends GeneratesCode
             return $namespaceModel;
         }
 
-        return is_dir(app_path('Models'))
+        return is_dir($this->preset->sourcePath().'/Models')
                     ? $rootNamespace.'Models\\'.$model
                     : $namespaceModel;
     }

@@ -14,24 +14,24 @@ use Orchestra\Canvas\Core\GeneratesCode;
 class GeneratesCodeWithComponent extends GeneratesCode
 {
     /**
-     * Build the class with the given name.
+     * Replace the namespace for the given stub.
      */
-    protected function buildClass(string $name): string
+    protected function replaceNamespace(string $stub, string $name): string
     {
-        $class = parent::buildClass($name);
+        $stub = parent::replaceNamespace($stub, $name);
 
         if (! empty($this->options['inline'])) {
-            $class = str_replace(
+            $stub = str_replace(
                 ['DummyView', '{{ view }}', '{{view}}'],
                 "<<<'blade'\n<div>\n    ".Inspiring::quote()."\n</div>\nblade",
-                $class
+                $stub
             );
         }
 
         return str_replace(
             ['DummyView', '{{ view }}', '{{view}}'],
             'view(\'components.'.Str::kebab(class_basename($name)).'\')',
-            $class
+            $stub
         );
     }
 }
