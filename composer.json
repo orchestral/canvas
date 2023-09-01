@@ -30,7 +30,7 @@
         "php": "^8.0",
         "illuminate/database": "^9.45",
         "illuminate/support": "^9.45",
-        "orchestra/canvas-core": "^7.4",
+        "orchestra/canvas-core": "^7.5",
         "symfony/yaml": "^5.4 || ^6.0"
     },
     "require-dev": {
