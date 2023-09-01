@@ -5,7 +5,6 @@ namespace Orchestra\Canvas\Commands\Database;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Commands\Generator;
-use Orchestra\Canvas\Processors\GeneratesEloquentCode;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -23,13 +22,6 @@ class Eloquent extends Generator
      * @var string
      */
     protected string $type = 'Model';
-
-    /**
-     * Generator processor.
-     *
-     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
-     */
-    protected string $processor = GeneratesEloquentCode::class;
 
     /**
      * Run after code successfully generated.

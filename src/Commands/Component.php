@@ -5,7 +5,7 @@ namespace Orchestra\Canvas\Commands;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
+use Orchestra\Canvas\Core\GeneratesCodeWithComponent;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 

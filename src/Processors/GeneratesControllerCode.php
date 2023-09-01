@@ -14,12 +14,12 @@ use Orchestra\Canvas\Core\GeneratesCode;
 class GeneratesControllerCode extends GeneratesCode
 {
     /**
-     * Build the class with the given name.
-     *
-     * Remove the base controller import if we are already in base namespace.
+     * Replace the namespace for the given stub.
      */
-    protected function buildClass(string $name): string
+    protected function replaceNamespace(string $stub, string $name): string
     {
+        $stub = parent::replaceNamespace($stub, $name);
+
         $controllerNamespace = $this->getNamespace($name);
 
         $rootNamespace = $this->rootNamespace();
@@ -34,13 +34,14 @@ class GeneratesControllerCode extends GeneratesCode
             $replace = $this->buildModelReplacements($replace);
         }
 
+        // Remove the base controller import if we are already in base namespace.
         $replace = array_merge($replace, [
             "use {$controllerNamespace}\Controller;\n" => '',
             "use {$rootNamespace}\Http\Controllers\Controller;" => "use {$rootNamespace}Http\Controllers\Controller;",
         ]);
 
         return str_replace(
-            array_keys($replace), array_values($replace), parent::buildClass($name)
+            array_keys($replace), array_values($replace), $stub
         );
     }
 
