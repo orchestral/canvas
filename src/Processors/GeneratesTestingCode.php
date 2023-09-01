@@ -14,11 +14,11 @@ use Orchestra\Canvas\Core\Presets\Laravel;
 class GeneratesTestingCode extends GeneratesCode
 {
     /**
-     * Replace the namespace for the given stub.
+     * Handle generating code.
      */
-    protected function replaceNamespace(string $stub, string $name): string
+    protected function generatingCode(string $stub, string $name): string
     {
-        $stub = parent::replaceNamespace($stub, $name);
+        $stub = parent::generatingCode($stub, $name);
 
         $testCase = $this->options['unit']
             ? $this->preset->config('testing.extends.unit', 'PHPUnit\Framework\TestCase')

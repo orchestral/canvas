@@ -14,11 +14,11 @@ use Orchestra\Canvas\Core\GeneratesCode;
 class GeneratesControllerCode extends GeneratesCode
 {
     /**
-     * Replace the namespace for the given stub.
+     * Handle generating code.
      */
-    protected function replaceNamespace(string $stub, string $name): string
+    protected function generatingCode(string $stub, string $name): string
     {
-        $stub = parent::replaceNamespace($stub, $name);
+        $stub = parent::generatingCode($stub, $name);
 
         $controllerNamespace = $this->getNamespace($name);
 
