@@ -2,27 +2,17 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/JobMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:job')]
+#[AsCommand(name: 'make:job', description: 'Create a new job class')]
 class Job extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:job';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new job class';
+    use CreatesMatchingTest;
 
     /**
      * The type of class being generated.
@@ -37,14 +27,6 @@ class Job extends Generator
     public function getPublishedStubFileName(): ?string
     {
         return $this->getStubFileName();
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

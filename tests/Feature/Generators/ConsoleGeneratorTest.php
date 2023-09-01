@@ -22,9 +22,10 @@ class ConsoleGeneratorTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Core\Commands\Generator;',
+            'use Orchestra\Canvas\Commands\Generator;',
+            'use Symfony\Component\Console\Attribute\AsCommand;',
+            '#[AsCommand(name: \'make:name\', description: \'Create a new class\')]',
             'class FooCommand extends Generator',
-            'protected $name = \'make:name\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 
@@ -40,9 +41,10 @@ class ConsoleGeneratorTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Core\Commands\Generator;',
+            'use Orchestra\Canvas\Commands\Generator;',
+            'use Symfony\Component\Console\Attribute\AsCommand;',
+            '#[AsCommand(name: \'make:foobar\', description: \'Create a new class\')]',
             'class FooCommand extends Generator',
-            'protected $name = \'make:foobar\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 
@@ -58,9 +60,10 @@ class ConsoleGeneratorTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Core\Commands\Generator;',
+            'use Orchestra\Canvas\Commands\Generator;',
+            'use Symfony\Component\Console\Attribute\AsCommand;',
+            '#[AsCommand(name: \'make:foobar\', description: \'Create a new class\')]',
             'class FooCommand extends Generator',
-            'protected $name = \'make:foobar\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 }

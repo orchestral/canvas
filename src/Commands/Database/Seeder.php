@@ -5,27 +5,14 @@ namespace Orchestra\Canvas\Commands\Database;
 use Illuminate\Support\Composer;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesSeederCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:seeder')]
+#[AsCommand(name: 'make:seeder', description: 'Create a new seeder class')]
 class Seeder extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:seeder';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new seeder class';
-
     /**
      * The type of class being generated.
      *
@@ -36,9 +23,9 @@ class Seeder extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesSeederCode::class;
+    protected string $processor = GeneratesSeederCode::class;
 
     /**
      * The Composer instance.
@@ -60,15 +47,13 @@ class Seeder extends Generator
     }
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         $this->composer->dumpAutoloads();
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**
@@ -77,14 +62,6 @@ class Seeder extends Generator
     public function getPublishedStubFileName(): ?string
     {
         return $this->getStubFileName();
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

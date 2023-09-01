@@ -2,12 +2,15 @@
 <?php
 
 $workingPath = getcwd();
-$config = ['preset' => 'laravel'];
+
+define('CANVAS_WORKING_PATH', $workingPath);
 
 require $_composer_autoload_path ?? __DIR__.'/vendor/autoload.php';
 
-if (file_exists("{$workingPath}/canvas.yaml")) {
-    $config = Symfony\Component\Yaml\Yaml::parseFile("{$workingPath}/canvas.yaml");
+$config = ['preset' => Orchestra\Canvas\Canvas::presetFromEnvironment($workingPath)];
+
+if (file_exists($workingPath.DIRECTORY_SEPARATOR.'canvas.yaml')) {
+    $config = Symfony\Component\Yaml\Yaml::parseFile($workingPath.DIRECTORY_SEPARATOR.'canvas.yaml');
 }
 
 $files = new Illuminate\Filesystem\Filesystem();

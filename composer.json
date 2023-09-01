@@ -36,10 +36,12 @@
         "symfony/yaml": "^6.2"
     },
     "require-dev": {
-        "laravel/pint": "^1.6",
         "laravel/framework": "^11.0",
+        "laravel/pint": "^1.6",
+        "mockery/mockery": "^1.5.1",
         "orchestra/testbench": "^9.0",
-        "phpstan/phpstan": "^1.10.5"
+        "phpstan/phpstan": "^1.10.6",
+        "phpunit/phpunit": "^10.1"
     },
     "config": {
         "sort-packages": true
@@ -55,15 +57,23 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
-        "prepare": "@php testbench package:discover --ansi",
-        "ci": [
-            "@composer audit",
-            "@composer run prepare",
-            "@php vendor/bin/phpstan analyse",
-            "@php vendor/bin/pint"
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
         ],
-        "test": "@php vendor/bin/phpunit -c ./ --color"
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "lint": [
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "test": "@php vendor/bin/phpunit -c ./ --color",
+        "ci": [
+            "@composer run audit",
+            "@prepare",
+            "@lint",
+            "@test"
+        ]
     },
     "minimum-stability": "dev"
 }

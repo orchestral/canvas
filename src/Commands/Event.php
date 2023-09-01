@@ -3,28 +3,15 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesEventCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/EventMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:event')]
+#[AsCommand(name: 'make:event', description: 'Create a new event class')]
 class Event extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:event';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new event class';
-
     /**
      * The type of class being generated.
      *
@@ -35,9 +22,9 @@ class Event extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesEventCode::class;
+    protected string $processor = GeneratesEventCode::class;
 
     /**
      * Get the stub file for the generator.
@@ -45,14 +32,6 @@ class Event extends Generator
     public function getPublishedStubFileName(): ?string
     {
         return $this->getStubFileName();
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

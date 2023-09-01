@@ -3,29 +3,16 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
-use Orchestra\Canvas\Processors\GeneratesObserverCode;
+use Orchestra\Canvas\Core\GeneratesCodeWithEloquent;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:observer')]
+#[AsCommand(name: 'make:observer', description: 'Create a new observer class')]
 class Observer extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:observer';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new observer class';
-
     /**
      * The type of class being generated.
      *
@@ -36,17 +23,9 @@ class Observer extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesObserverCode::class;
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
-    }
+    protected string $processor = GeneratesCodeWithEloquent::class;
 
     /**
      * Get the stub file name for the generator.

@@ -4,25 +4,12 @@ namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesPresetConfiguration;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'preset')]
+#[AsCommand(name: 'preset', description: 'Create canvas.yaml for the project')]
 class Preset extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'preset';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create canvas.yaml for the project';
-
     /**
      * The type of class being generated.
      *
@@ -40,14 +27,22 @@ class Preset extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesPresetConfiguration::class;
+    protected string $processor = GeneratesPresetConfiguration::class;
 
     /**
      * Get the stub file for the generator.
      */
     public function getStubFile(): string
+    {
+        return $this->getStubFileName();
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
     {
         $name = $this->generatorName();
 

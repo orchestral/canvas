@@ -2,23 +2,11 @@
 
 namespace Orchestra\Canvas\Commands;
 
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:class')]
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'make:class', description: 'Create a new class')]
 class Code extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:class';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new class';
-
     /**
      * The type of class being generated.
      *
@@ -30,6 +18,14 @@ class Code extends Generator
      * Get the stub file for the generator.
      */
     public function getStubFile(): string
+    {
+        return $this->getStubFileName();
+    }
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
     {
         return __DIR__.'/../../storage/canvas/code.stub';
     }

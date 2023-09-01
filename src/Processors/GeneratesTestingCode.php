@@ -14,10 +14,12 @@ use Orchestra\Canvas\Core\Presets\Laravel;
 class GeneratesTestingCode extends GeneratesCode
 {
     /**
-     * Build the class with the given name.
+     * Handle generating code.
      */
-    protected function buildClass(string $name): string
+    protected function generatingCode(string $stub, string $name): string
     {
+        $stub = parent::generatingCode($stub, $name);
+
         $testCase = $this->options['unit']
             ? $this->preset->config('testing.extends.unit', 'PHPUnit\Framework\TestCase')
             : $this->preset->config(
@@ -25,7 +27,7 @@ class GeneratesTestingCode extends GeneratesCode
                 $this->preset instanceof Laravel ? 'Tests\TestCase' : 'Orchestra\Testbench\TestCase'
             );
 
-        return $this->replaceTestCase(parent::buildClass($name), $testCase);
+        return $this->replaceTestCase($stub, $testCase);
     }
 
     /**

@@ -4,28 +4,15 @@ namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesFactoryCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:factory')]
+#[AsCommand(name: 'make:factory', description: 'Create a new model factory')]
 class Factory extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:factory';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new model factory';
-
     /**
      * The type of class being generated.
      *
@@ -36,9 +23,9 @@ class Factory extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesFactoryCode::class;
+    protected string $processor = GeneratesFactoryCode::class;
 
     /**
      * Get the stub file for the generator.
@@ -46,14 +33,6 @@ class Factory extends Generator
     public function getPublishedStubFileName(): ?string
     {
         return $this->getStubFileName();
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

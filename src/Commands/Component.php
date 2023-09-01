@@ -2,30 +2,20 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Orchestra\Canvas\Processors\GeneratesCodeWithComponent;
+use Orchestra\Canvas\Core\GeneratesCodeWithComponent;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:component')]
+#[AsCommand(name: 'make:component', description: 'Create a new view component class')]
 class Component extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:component';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new view component class';
+    use CreatesMatchingTest;
 
     /**
      * The type of class being generated.
@@ -37,22 +27,20 @@ class Component extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCodeWithComponent::class;
+    protected string $processor = GeneratesCodeWithComponent::class;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $exitCode = parent::codeHasBeenGenerated($className);
-
         if (! $this->option('inline')) {
             $this->writeView();
         }
 
-        return $exitCode;
+        parent::afterCodeHasBeenGenerated($className, $path);
     }
 
     /**
@@ -82,14 +70,6 @@ class Component extends Generator
     <!-- Insert your component content -->
 </div>'
         );
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

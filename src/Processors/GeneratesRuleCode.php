@@ -12,14 +12,14 @@ use Orchestra\Canvas\Core\GeneratesCode;
 class GeneratesRuleCode extends GeneratesCode
 {
     /**
-     * Build the class with the given name.
+     * Handle generating code.
      */
-    protected function buildClass(string $name): string
+    protected function generatingCode(string $stub, string $name): string
     {
+        $stub = parent::generatingCode($stub, $name);
+
         return str_replace(
-            '{{ ruleType }}',
-            $this->options['implicit'] ? 'ImplicitRule' : 'Rule',
-            parent::buildClass($name)
+            '{{ ruleType }}', $this->options['implicit'] ? 'ImplicitRule' : 'Rule', $stub
         );
     }
 }

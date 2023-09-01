@@ -21,12 +21,20 @@ trait ResolvesPresetStubs
     }
 
     /**
-     * Get the stub storage.
+     * Get the stub storage for the preset.
      */
     public function getPresetStorage(Preset $preset): ?string
     {
         return $preset->hasCustomStubPath()
             ? $preset->getCustomStubPath()
-            : __DIR__."/../../storage/{$preset->name()}";
+            : $this->getDefaultPresetStorage($preset);
+    }
+
+    /**
+     * Get the default stub storage for the preset.
+     */
+    public function getDefaultPresetStorage(Preset $preset): string
+    {
+        return __DIR__."/../../storage/{$preset->name()}";
     }
 }

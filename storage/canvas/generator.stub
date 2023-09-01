@@ -2,35 +2,31 @@
 
 namespace DummyNamespace;
 
-use Orchestra\Canvas\Core\Commands\Generator;
+use Orchestra\Canvas\Commands\Generator;
+use Orchestra\Canvas\Core\GeneratesCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'dummy:command', description: 'Create a new class')]
 class DummyClass extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'dummy:command';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new class';
-
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Class';
+    protected string $type = 'Class';
 
     /**
-     * Get the stub file for the generator.
+     * Generator processor.
+     *
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    public function getStubFile(): string
+    protected string $processor = GeneratesCode::class;
+
+    /**
+     * Get the stub file name for the generator.
+     */
+    public function getStubFileName(): string
     {
         // Implement path to stub file.
     }

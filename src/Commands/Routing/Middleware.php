@@ -2,27 +2,17 @@
 
 namespace Orchestra\Canvas\Commands\Routing;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Commands\Generator;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:middleware')]
+#[AsCommand(name: 'make:middleware', description: 'Create a new middleware class')]
 class Middleware extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:middleware';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new middleware class';
+    use CreatesMatchingTest;
 
     /**
      * The type of class being generated.
@@ -37,14 +27,6 @@ class Middleware extends Generator
     public function getPublishedStubFileName(): ?string
     {
         return $this->getStubFileName();
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

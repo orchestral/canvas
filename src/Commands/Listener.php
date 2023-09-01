@@ -2,28 +2,18 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Processors\GeneratesListenerCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:listener')]
+#[AsCommand(name: 'make:listener', description: 'Create a new event listener class')]
 class Listener extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:listener';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new event listener class';
+    use CreatesMatchingTest;
 
     /**
      * The type of class being generated.
@@ -35,17 +25,9 @@ class Listener extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesListenerCode::class;
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
-    }
+    protected string $processor = GeneratesListenerCode::class;
 
     /**
      * Get the stub file name for the generator.
@@ -79,7 +61,7 @@ class Listener extends Generator
     public function generatorOptions(): array
     {
         return [
-            'event' => $this->option('event'),
+            'event' => $this->option('event') ?? '',
             'force' => $this->option('force'),
         ];
     }

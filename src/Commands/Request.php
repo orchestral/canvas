@@ -2,28 +2,15 @@
 
 namespace Orchestra\Canvas\Commands;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/RequestMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:request')]
+#[AsCommand(name: 'make:request', description: 'Create a new form request class')]
 class Request extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:request';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new form request class';
-
     /**
      * The type of class being generated.
      *
@@ -37,14 +24,6 @@ class Request extends Generator
     public function getPublishedStubFileName(): ?string
     {
         return $this->getStubFileName();
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**

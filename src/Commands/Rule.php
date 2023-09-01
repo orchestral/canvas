@@ -3,28 +3,15 @@
 namespace Orchestra\Canvas\Commands;
 
 use Orchestra\Canvas\Processors\GeneratesRuleCode;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
  */
-#[\Symfony\Component\Console\Attribute\AsCommand(name: 'make:rule')]
+#[AsCommand(name: 'make:rule', description: 'Create a new validation rule')]
 class Rule extends Generator
 {
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:rule';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new validation rule';
-
     /**
      * The type of class being generated.
      *
@@ -35,9 +22,9 @@ class Rule extends Generator
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesRuleCode::class;
+    protected string $processor = GeneratesRuleCode::class;
 
     /**
      * Get the stub file for the generator.
@@ -45,14 +32,6 @@ class Rule extends Generator
     public function getPublishedStubFileName(): ?string
     {
         return $this->getStubFileName();
-    }
-
-    /**
-     * Get the stub file for the generator.
-     */
-    public function getStubFile(): string
-    {
-        return $this->getStubFileFromPresetStorage($this->preset, $this->getStubFileName());
     }
 
     /**
@@ -82,7 +61,6 @@ class Rule extends Generator
     {
         return [
             'implicit' => $this->option('implicit') ?? false,
-            'invokable' => $this->option('invokable') ?? false,
             'force' => $this->option('force'),
         ];
     }
@@ -97,7 +75,6 @@ class Rule extends Generator
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the rule already exists'],
             ['implicit', 'i', InputOption::VALUE_NONE, 'Generate an implicit rule.'],
-            ['invokable', null, InputOption::VALUE_NONE, 'Generate a single method, invokable rule class.'],
         ];
     }
 }
