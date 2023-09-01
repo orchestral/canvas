@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Commands\Database;
 
 use Orchestra\Canvas\Commands\Generator;
-use Orchestra\Canvas\Processors\GeneratesObserverCode;
+use Orchestra\Canvas\Core\GeneratesCodeWithEloquent;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -25,7 +25,7 @@ class Observer extends Generator
      *
      * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected string $processor = GeneratesObserverCode::class;
+    protected string $processor = GeneratesCodeWithEloquent::class;
 
     /**
      * Get the stub file name for the generator.

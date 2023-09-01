@@ -13,10 +13,12 @@ use Orchestra\Canvas\Core\GeneratesCode;
 class GeneratesListenerCode extends GeneratesCode
 {
     /**
-     * Build the class with the given name.
+     * Replace the namespace for the given stub.
      */
-    protected function buildClass(string $name): string
+    protected function replaceNamespace(string $stub, string $name): string
     {
+        $stub = parent::replaceNamespace($stub, $name);
+
         $event = $this->options['event'];
 
         if (\is_null($event) || ! Str::startsWith($event, [
@@ -30,7 +32,7 @@ class GeneratesListenerCode extends GeneratesCode
         $stub = str_replace(
             ['DummyEvent', '{{ event }}', '{{event}}'],
             class_basename($event),
-            parent::buildClass($name)
+            $stub
         );
 
         return str_replace(
