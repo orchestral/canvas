@@ -19,5 +19,4 @@ class GeneratesViewCode extends GeneratesCode
             $this->options['extension'],
         );
     }
-
 }
