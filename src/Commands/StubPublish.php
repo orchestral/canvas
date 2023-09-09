@@ -91,7 +91,7 @@ class StubPublish extends Command
             }
         }
 
-        $this->info('Stubs published successfully.');
+        $this->components->info('Stubs published successfully.');
 
         return 0;
     }
