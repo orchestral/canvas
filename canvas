@@ -23,37 +23,35 @@ $app = new Symfony\Component\Console\Application('Canvas for Laravel');
 
 $app->setVersion(Composer\InstalledVersions::getPrettyVersion('orchestra/canvas'));
 
-if (! file_exists("{$workingPath}/canvas.yaml")) {
-    $app->add(new Orchestra\Canvas\Commands\Preset($preset));
-}
-
-$app->add(new Orchestra\Canvas\Commands\Channel($preset));
-$app->add(new Orchestra\Canvas\Commands\Component($preset));
-$app->add(new Orchestra\Canvas\Commands\Console($preset));
-$app->add(new Orchestra\Canvas\Commands\Event($preset));
-$app->add(new Orchestra\Canvas\Commands\Exception($preset));
-$app->add(new Orchestra\Canvas\Commands\Database\Cast($preset));
-$app->add(new Orchestra\Canvas\Commands\Database\Eloquent($preset));
-$app->add(new Orchestra\Canvas\Commands\Database\Factory($preset));
-$app->add(new Orchestra\Canvas\Commands\Database\Migration($preset));
-$app->add(new Orchestra\Canvas\Commands\Database\Observer($preset));
-$app->add(new Orchestra\Canvas\Commands\Job($preset));
-$app->add(new Orchestra\Canvas\Commands\Listener($preset));
-$app->add(new Orchestra\Canvas\Commands\Mail($preset));
-$app->add(new Orchestra\Canvas\Commands\Notification($preset));
-$app->add(new Orchestra\Canvas\Commands\Policy($preset));
-$app->add(new Orchestra\Canvas\Commands\Provider($preset));
-$app->add(new Orchestra\Canvas\Commands\Request($preset));
-$app->add(new Orchestra\Canvas\Commands\Resource($preset));
-$app->add(new Orchestra\Canvas\Commands\Routing\Controller($preset));
-$app->add(new Orchestra\Canvas\Commands\Routing\Middleware($preset));
-$app->add(new Orchestra\Canvas\Commands\Rule($preset));
-$app->add(new Orchestra\Canvas\Commands\Testing($preset));
-$app->add(new Orchestra\Canvas\Commands\StubPublish($preset));
-
-if ($preset->is('laravel')) {
-    $app->add(new Orchestra\Canvas\Commands\Database\Seeder($preset));
-}
+Illuminate\Support\Collection::make([
+    Orchestra\Canvas\Commands\Preset::class => ! file_exists("{$workingPath}/canvas.yaml"),
+    Orchestra\Canvas\Commands\Channel::class => true,
+    Orchestra\Canvas\Commands\Component::class => true,
+    Orchestra\Canvas\Commands\Console::class => true,
+    Orchestra\Canvas\Commands\Event::class => true,
+    Orchestra\Canvas\Commands\Exception::class => true,
+    Orchestra\Canvas\Commands\Database\Cast::class => true,
+    Orchestra\Canvas\Commands\Database\Eloquent::class => true,
+    Orchestra\Canvas\Commands\Database\Factory::class => true,
+    Orchestra\Canvas\Commands\Database\Migration::class => true,
+    Orchestra\Canvas\Commands\Database\Observer::class => true,
+    Orchestra\Canvas\Commands\Job::class => true,
+    Orchestra\Canvas\Commands\Listener::class => true,
+    Orchestra\Canvas\Commands\Mail::class => true,
+    Orchestra\Canvas\Commands\Notification::class => true,
+    Orchestra\Canvas\Commands\Policy::class => true,
+    Orchestra\Canvas\Commands\Provider::class => true,
+    Orchestra\Canvas\Commands\Request::class => true,
+    Orchestra\Canvas\Commands\Resource::class => true,
+    Orchestra\Canvas\Commands\Routing\Controller::class => true,
+    Orchestra\Canvas\Commands\Routing\Middleware::class => true,
+    Orchestra\Canvas\Commands\Rule::class => true,
+    Orchestra\Canvas\Commands\Testing::class => true,
+    Orchestra\Canvas\Commands\StubPublish::class => true,
+    Orchestra\Canvas\Commands\Database\Seeder::class => $preset->is('laravel'),
+])->filter(fn ($value) => $value === true)
+->keys()
+->each(fn ($command) => $app->add(new $command($preset)));
 
 $preset->addAdditionalCommands($app);
 
