@@ -24,22 +24,23 @@ $app = new Symfony\Component\Console\Application('Canvas for Laravel');
 $app->setVersion(Composer\InstalledVersions::getPrettyVersion('orchestra/canvas'));
 
 Illuminate\Support\Collection::make([
-    Orchestra\Canvas\Commands\Preset::class => ! file_exists("{$workingPath}/canvas.yaml"),
     Orchestra\Canvas\Commands\Channel::class => true,
     Orchestra\Canvas\Commands\Component::class => true,
     Orchestra\Canvas\Commands\Console::class => true,
-    Orchestra\Canvas\Commands\Event::class => true,
-    Orchestra\Canvas\Commands\Exception::class => true,
     Orchestra\Canvas\Commands\Database\Cast::class => true,
     Orchestra\Canvas\Commands\Database\Eloquent::class => true,
     Orchestra\Canvas\Commands\Database\Factory::class => true,
     Orchestra\Canvas\Commands\Database\Migration::class => true,
     Orchestra\Canvas\Commands\Database\Observer::class => true,
+    Orchestra\Canvas\Commands\Database\Seeder::class => $preset->is('laravel'),
+    Orchestra\Canvas\Commands\Event::class => true,
+    Orchestra\Canvas\Commands\Exception::class => true,
     Orchestra\Canvas\Commands\Job::class => true,
     Orchestra\Canvas\Commands\Listener::class => true,
     Orchestra\Canvas\Commands\Mail::class => true,
     Orchestra\Canvas\Commands\Notification::class => true,
     Orchestra\Canvas\Commands\Policy::class => true,
+    Orchestra\Canvas\Commands\Preset::class => ! file_exists("{$workingPath}/canvas.yaml"),
     Orchestra\Canvas\Commands\Provider::class => true,
     Orchestra\Canvas\Commands\Request::class => true,
     Orchestra\Canvas\Commands\Resource::class => true,
@@ -48,7 +49,6 @@ Illuminate\Support\Collection::make([
     Orchestra\Canvas\Commands\Rule::class => true,
     Orchestra\Canvas\Commands\Testing::class => true,
     Orchestra\Canvas\Commands\StubPublish::class => true,
-    Orchestra\Canvas\Commands\Database\Seeder::class => $preset->is('laravel'),
 ])->filter(fn ($value) => $value === true)
 ->keys()
 ->each(fn ($command) => $app->add(new $command($preset)));

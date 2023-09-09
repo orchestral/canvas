@@ -75,14 +75,14 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
                     $artisan->add(new Commands\Channel($preset));
                     $artisan->add(new Commands\Component($preset));
                     $artisan->add(new Commands\Console($preset));
-                    $artisan->add(new Commands\Event($preset));
-                    $artisan->add(new Commands\Exception($preset));
                     $artisan->add(new Commands\Database\Cast($preset));
                     $artisan->add(new Commands\Database\Eloquent($preset));
                     $artisan->add(new Commands\Database\Factory($preset));
                     $artisan->add(new Commands\Database\Migration($preset));
                     $artisan->add(new Commands\Database\Observer($preset));
                     $artisan->add(new Commands\Database\Seeder($preset));
+                    $artisan->add(new Commands\Event($preset));
+                    $artisan->add(new Commands\Exception($preset));
                     $artisan->add(new Commands\Job($preset));
                     $artisan->add(new Commands\Listener($preset));
                     $artisan->add(new Commands\Mail($preset));
