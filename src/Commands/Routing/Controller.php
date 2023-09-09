@@ -143,7 +143,7 @@ class Controller extends Generator
         ]);
 
         if ($type !== 'empty') {
-            $input->setOption($type, true);
+            $input->setOption($type, true); // @phpstan-ignore-line
         }
 
         if (\in_array($type, ['api', 'resource', 'singleton'])) {
