@@ -71,7 +71,7 @@ class Observer extends Generator
      */
     protected function afterPromptingForMissingArguments(InputInterface $input, OutputInterface $output)
     {
-        if ($this->isReservedName($this->getNameInput()) || $this->didReceiveOptions($input)) {
+        if ($this->isReservedName($this->generatorName()) || $this->didReceiveOptions($input)) {
             return;
         }
 
