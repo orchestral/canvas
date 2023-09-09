@@ -93,7 +93,6 @@ class Listener extends Generator
         }
     }
 
-
     /**
      * Get the console command options.
      *

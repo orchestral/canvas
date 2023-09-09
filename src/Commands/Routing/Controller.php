@@ -6,7 +6,13 @@ use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Commands\Generator;
 use Orchestra\Canvas\Processors\GeneratesControllerCode;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\suggest;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
@@ -100,7 +106,7 @@ class Controller extends Generator
      */
     public function createModel(string $className): void
     {
-        if ($this->confirm("A {$className} model does not exist. Do you want to generate it?", true)) {
+        if (confirm("A {$className} model does not exist. Do you want to generate it?", default: true)) {
             $this->call('make:model', ['name' => $className]);
         }
     }
@@ -110,8 +116,45 @@ class Controller extends Generator
      */
     public function createRequest(string $className): void
     {
-        if ($this->confirm("A {$className} request does not exist. Do you want to generate it?", true)) {
+        if (confirm("A {$className} request does not exist. Do you want to generate it?", default: true)) {
             $this->call('make:request', ['name' => $className]);
+        }
+    }
+
+    /**
+     * Interact further with the user if they were prompted for missing arguments.
+     *
+     * @param  \Symfony\Component\Console\Input\InputInterface  $input
+     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @return void
+     */
+    protected function afterPromptingForMissingArguments(InputInterface $input, OutputInterface $output)
+    {
+        if ($this->didReceiveOptions($input)) {
+            return;
+        }
+
+        $type = select('Which type of controller would you like?', [
+            'empty' => 'Empty',
+            'resource' => 'Resource',
+            'singleton' => 'Singleton',
+            'api' => 'API',
+            'invokable' => 'Invokable',
+        ]);
+
+        if ($type !== 'empty') {
+            $input->setOption($type, true);
+        }
+
+        if (\in_array($type, ['api', 'resource', 'singleton'])) {
+            $model = suggest(
+                "What model should this $type controller be for? (Optional)",
+                $this->possibleModels()
+            );
+
+            if ($model) {
+                $input->setOption('model', $model);
+            }
         }
     }
 
