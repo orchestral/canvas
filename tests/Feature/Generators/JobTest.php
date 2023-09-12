@@ -6,6 +6,7 @@ class JobTest extends TestCase
 {
     protected $files = [
         'app/Jobs/FooCreated.php',
+        'tests/Feature/Jobs/FooCreatedTest.php',
     ];
 
     /** @test */
@@ -42,5 +43,15 @@ class JobTest extends TestCase
             'use Illuminate\Queue\InteractsWithQueue;',
             'use Illuminate\Queue\SerializesModels;',
         ], 'app/Jobs/FooCreated.php');
+    }
+
+    /** @test */
+    public function it_can_generate_job_file_with_tests()
+    {
+        $this->artisan('make:job', ['name' => 'FooCreated', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFilenameExists('app/Jobs/FooCreated.php');
+        $this->assertFilenameExists('tests/Feature/Jobs/FooCreatedTest.php');
     }
 }
