@@ -7,6 +7,7 @@ class NotificationTest extends TestCase
     protected $files = [
         'app/Notifications/FooNotification.php',
         'resources/views/foo-notification.blade.php',
+        'tests/Feature/Notifications/FooNotificationTest.php',
     ];
 
     /** @test */
@@ -21,6 +22,9 @@ class NotificationTest extends TestCase
             'class FooNotification extends Notification',
             'return (new MailMessage)',
         ], 'app/Notifications/FooNotification.php');
+
+        $this->assertFilenameNotExists('resources/views/foo-notification.blade.php');
+        $this->assertFilenameNotExists('tests/Feature/Notifications/FooNotificationTest.php');
     }
 
     /** @test */
@@ -38,5 +42,16 @@ class NotificationTest extends TestCase
         $this->assertFileContains([
             '<x-mail::message>',
         ], 'resources/views/foo-notification.blade.php');
+    }
+
+    /** @test */
+    public function it_can_generate_notification_file_with_tests()
+    {
+        $this->artisan('make:notification', ['name' => 'FooNotification', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFilenameExists('app/Notifications/FooNotification.php');
+        $this->assertFilenameNotExists('resources/views/foo-notification.blade.php');
+        $this->assertFilenameExists('tests/Feature/Notifications/FooNotificationTest.php');
     }
 }

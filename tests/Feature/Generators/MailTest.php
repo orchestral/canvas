@@ -7,6 +7,7 @@ class MailTest extends TestCase
     protected $files = [
         'app/Mail/FooMail.php',
         'resources/views/foo-mail.blade.php',
+        'tests/Feature/Mail/FooMailTest.php',
     ];
 
     /** @test */
@@ -20,6 +21,9 @@ class MailTest extends TestCase
             'use Illuminate\Mail\Mailable;',
             'class FooMail extends Mailable',
         ], 'app/Mail/FooMail.php');
+
+        $this->assertFilenameNotExists('resources/views/foo-mail.blade.php');
+        $this->assertFilenameNotExists('tests/Feature/Mail/FooMailTest.php');
     }
 
     /** @test */
@@ -42,5 +46,16 @@ class MailTest extends TestCase
             '</x-mail::button>',
             '</x-mail::message>',
         ], 'resources/views/foo-mail.blade.php');
+    }
+
+    /** @test */
+    public function it_can_generate_mail_file_with_tests()
+    {
+        $this->artisan('make:mail', ['name' => 'FooMail', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFilenameExists('app/Mail/FooMail.php');
+        $this->assertFilenameNotExists('resources/views/foo-mail.blade.php');
+        $this->assertFilenameExists('tests/Feature/Mail/FooMailTest.php');
     }
 }

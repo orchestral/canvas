@@ -24,6 +24,8 @@ class JobTest extends TestCase
             'use Illuminate\Queue\SerializesModels;',
             'class FooCreated implements ShouldQueue',
         ], 'app/Jobs/FooCreated.php');
+
+        $this->assertFilenameNotExists('tests/Feature/Jobs/FooCreatedTest.php');
     }
 
     /** @test */

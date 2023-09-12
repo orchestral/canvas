@@ -24,6 +24,7 @@ class ComponentTest extends TestCase
         ], 'app/View/Components/Foo.php');
 
         $this->assertFilenameExists('resources/views/components/foo.blade.php');
+        $this->assertFilenameNotExists('tests/Feature/View/Components/FooTest.php');
     }
 
     /** @test */
