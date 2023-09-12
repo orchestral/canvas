@@ -9,6 +9,7 @@ class ControllerTest extends TestCase
 {
     protected $files = [
         'app/Http/Controllers/FooController.php',
+        'tests/Feature/Http/Controllers/FooControllerTest.php',
     ];
 
     /** @test */
@@ -26,6 +27,8 @@ class ControllerTest extends TestCase
         $this->assertFileNotContains([
             'public function __invoke(Request $request)',
         ], 'app/Http/Controllers/FooController.php');
+
+        $this->assertFilenameNotExists('tests/Feature/Http/Controllers/FooControllerTest.php');
     }
 
     /** @test */
@@ -207,5 +210,15 @@ class ControllerTest extends TestCase
             'public function create()',
             'public function edit(Foo $foo)',
         ], 'app/Http/Controllers/FooController.php');
+    }
+
+    /** @test */
+    public function it_can_generate_controller_file_with_tests()
+    {
+        $this->artisan('make:controller', ['name' => 'FooController', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFilenameExists('app/Http/Controllers/FooController.php');
+        $this->assertFilenameExists('tests/Feature/Http/Controllers/FooControllerTest.php');
     }
 }
