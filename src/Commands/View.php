@@ -68,11 +68,29 @@ class View extends Generator
     }
 
     /**
+     * Get the destination test case path.
+     *
+     * @return string
+     */
+    protected function getTestPath()
+    {
+        return sprintf(
+            '%s/%s',
+            $this->preset->basePath(),
+            Str::of($this->testClassFullyQualifiedName())
+                ->replace('\\', '/')
+                ->replaceFirst('Tests/Feature', 'tests/Feature')
+                ->append('Test.php')
+                ->value()
+        );
+    }
+
+    /**
      * Create the matching test case if requested.
      *
      * @param  string  $path
      */
-    protected function handleTestCreationUsingCanvas($path): bool
+    protected function handleTestCreationUsingCanvas(string $path): bool
     {
         if (! $this->option('test') && ! $this->option('pest')) {
             return false;
@@ -160,13 +178,11 @@ class View extends Generator
      *
      * @return string
      */
-    protected function getTestStub()
+    protected function getTestStub(): string
     {
-        $stubName = 'view.'.($this->option('pest') ? 'pest' : 'test').'.stub';
-
-        return file_exists($customPath = $this->laravel->basePath("stubs/$stubName"))
-            ? $customPath
-            : __DIR__.'/stubs/'.$stubName;
+        return $this->getStubFileFromPresetStorage(
+            $this->preset, 'view.'.($this->option('pest') ? 'pest' : 'test').'.stub'
+        );
     }
 
     /**
@@ -174,9 +190,9 @@ class View extends Generator
      *
      * @return string
      */
-    protected function testViewName()
+    protected function testViewName(): string
     {
-        return Str::of($this->getNameInput())
+        return Str::of($this->generatorName())
             ->replace('/', '.')
             ->lower()
             ->value();
