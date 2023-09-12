@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Processors;
 
-use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\GeneratesCode;
 
 class GeneratesViewCode extends GeneratesCode

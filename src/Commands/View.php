@@ -5,7 +5,6 @@ namespace Orchestra\Canvas\Commands;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesViewCode;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
