@@ -19,7 +19,6 @@ class ViewTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/View/FooTest.php');
     }
 
-
     /** @test */
     public function it_can_generate_feature_view_file_with_tests()
     {
