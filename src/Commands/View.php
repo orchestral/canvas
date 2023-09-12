@@ -117,7 +117,7 @@ class View extends Generator
 
         $this->files->ensureDirectoryExists(\dirname($this->getTestPath()), 0755, true);
 
-        return $this->files->put($this->getTestPath(), $contents);
+        return $this->files->put($this->getTestPath(), $contents) !== false;
     }
 
     /**
@@ -125,7 +125,7 @@ class View extends Generator
      *
      * @return string
      */
-    protected function testNamespace()
+    protected function testNamespace(): string
     {
         return Str::of($this->testClassFullyQualifiedName())
             ->beforeLast('\\')
@@ -137,7 +137,7 @@ class View extends Generator
      *
      * @return string
      */
-    protected function testClassName()
+    protected function testClassName(): string
     {
         return Str::of($this->testClassFullyQualifiedName())
             ->afterLast('\\')
@@ -150,9 +150,12 @@ class View extends Generator
      *
      * @return string
      */
-    protected function testClassFullyQualifiedName()
+    protected function testClassFullyQualifiedName(): string
     {
-        $name = Str::of(Str::lower($this->generatorName()))->replace('.'.$this->option('extension'), '');
+        /** @var string $extension */
+        $extension = $this->option('extension');
+
+        $name = Str::of(Str::lower($this->generatorName()))->replace('.'.$extension, '');
 
         $namespacedName = Str::of(
             Str::of($name)
