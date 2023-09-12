@@ -49,6 +49,7 @@ Illuminate\Support\Collection::make([
     Orchestra\Canvas\Commands\Rule::class => true,
     Orchestra\Canvas\Commands\Testing::class => true,
     Orchestra\Canvas\Commands\StubPublish::class => true,
+    Orchestra\Canvas\Commands\View::class => true,
 ])->filter(fn ($value) => $value === true)
 ->keys()
 ->each(fn ($command) => $app->add(new $command($preset)));
