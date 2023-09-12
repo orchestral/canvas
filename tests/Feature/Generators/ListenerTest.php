@@ -6,6 +6,7 @@ class ListenerTest extends TestCase
 {
     protected $files = [
         'app/Listeners/HelloWorld.php',
+        'tests/Feature/Listeners/HelloWorldTest.php',
     ];
 
     /** @test */
@@ -98,5 +99,15 @@ class ListenerTest extends TestCase
             'class HelloWorld implements ShouldQueue',
             'public function handle(Login $event)',
         ], 'app/Listeners/HelloWorld.php');
+    }
+
+    /** @test */
+    public function it_can_generate_listener_file_with_tests()
+    {
+        $this->artisan('make:listener', ['name' => 'HelloWorld', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFilenameExists('app/Listeners/HelloWorld.php');
+        $this->assertFilenameExists('tests/Feature/Listeners/HelloWorldTest.php');
     }
 }

@@ -8,6 +8,7 @@ class MiddlewareTest extends TestCase
 {
     protected $files = [
         'app/Http/Middleware/Foo.php',
+        'tests/Feature/Http/Middleware/FooTest.php',
     ];
 
     /** @test */
@@ -24,5 +25,17 @@ class MiddlewareTest extends TestCase
             'public function handle(Request $request, Closure $next)',
             'return $next($request);',
         ], 'app/Http/Middleware/Foo.php');
+
+        $this->assertFilenameNotExists('tests/Feature/Http/Middleware/FooTest.php');
+    }
+
+    /** @test */
+    public function it_can_generate_middleware_file_with_tests()
+    {
+        $this->artisan('make:middleware', ['name' => 'Foo', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFilenameExists('app/Http/Middleware/Foo.php');
+        $this->assertFilenameExists('tests/Feature/Http/Middleware/FooTest.php');
     }
 }
