@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Commands;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Orchestra\Canvas\Processors\GeneratesViewCode;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
@@ -64,6 +65,121 @@ class View extends Generator
             'extension' => $this->option('extension'),
             'force' => $this->option('force'),
         ]);
+    }
+
+    /**
+     * Create the matching test case if requested.
+     *
+     * @param  string  $path
+     */
+    protected function handleTestCreationUsingCanvas($path): bool
+    {
+        if (! $this->option('test') && ! $this->option('pest')) {
+            return false;
+        }
+
+        $namespaceTestCase = $testCase = $this->preset->config(
+            'testing.extends.feature',
+            $this->preset->is('laravel') ? 'Tests\TestCase' : 'Orchestra\Testbench\TestCase'
+        );
+
+        $stub = $this->files->get($this->getTestStub());
+
+        if (Str::startsWith($testCase, '\\')) {
+            $stub = str_replace('NamespacedDummyTestCase', trim($testCase, '\\'), $stub);
+        } else {
+            $stub = str_replace('NamespacedDummyTestCase', $namespaceTestCase, $stub);
+        }
+
+        $contents = str_replace(
+            ['{{ namespace }}', '{{ class }}', '{{ name }}', 'DummyTestCase'],
+            [$this->testNamespace(), $this->testClassName(), $this->testViewName(), class_basename(trim($testCase, '\\'))],
+            $stub,
+        );
+
+        $this->files->ensureDirectoryExists(\dirname($this->getTestPath()), 0755, true);
+
+        return $this->files->put($this->getTestPath(), $contents);
+    }
+
+    /**
+     * Get the namespace for the test.
+     *
+     * @return string
+     */
+    protected function testNamespace()
+    {
+        return Str::of($this->testClassFullyQualifiedName())
+            ->beforeLast('\\')
+            ->value();
+    }
+
+    /**
+     * Get the class name for the test.
+     *
+     * @return string
+     */
+    protected function testClassName()
+    {
+        return Str::of($this->testClassFullyQualifiedName())
+            ->afterLast('\\')
+            ->append('Test')
+            ->value();
+    }
+
+    /**
+     * Get the class fully qualified name for the test.
+     *
+     * @return string
+     */
+    protected function testClassFullyQualifiedName()
+    {
+        $name = Str::of(Str::lower($this->generatorName()))->replace('.'.$this->option('extension'), '');
+
+        $namespacedName = Str::of(
+            Str::of($name)
+                ->replace('/', ' ')
+                ->explode(' ')
+                ->map(fn ($part) => Str::of($part)->ucfirst())
+                ->implode('\\')
+        )
+            ->replace(['-', '_'], ' ')
+            ->explode(' ')
+            ->map(fn ($part) => Str::of($part)->ucfirst())
+            ->implode('');
+
+        return sprintf(
+            '%s\\Feature\\View\\%s',
+            $this->preset->config('testing.namespace', 'Tests'),
+            $namespacedName
+        );
+    }
+
+    /**
+     * Get the test stub file for the generator.
+     *
+     * @return string
+     */
+    protected function getTestStub()
+    {
+        $stubName = 'view.'.($this->option('pest') ? 'pest' : 'test').'.stub';
+
+        return file_exists($customPath = $this->laravel->basePath("stubs/$stubName"))
+            ? $customPath
+            : __DIR__.'/stubs/'.$stubName;
+    }
+
+    /**
+     * Get the view name for the test.
+     *
+     * @return string
+     */
+    protected function testViewName()
+    {
+        return Str::of($this->getNameInput())
+            ->replace('/', '.')
+            ->lower()
+            ->value();
     }
 
     /**

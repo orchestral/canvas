@@ -2,9 +2,9 @@
 
 namespace {{ namespace }};
 
-use Tests\TestCase;
+use NamespacedDummyTestCase;
 
-class {{ class }} extends TestCase
+class {{ class }} extends DummyTestCase
 {
     /**
      * A basic view test example.

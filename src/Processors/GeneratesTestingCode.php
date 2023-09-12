@@ -24,7 +24,7 @@ class GeneratesTestingCode extends GeneratesCode
             ? $this->preset->config('testing.extends.unit', 'PHPUnit\Framework\TestCase')
             : $this->preset->config(
                 'testing.extends.feature',
-                $this->preset instanceof Laravel ? 'Tests\TestCase' : 'Orchestra\Testbench\TestCase'
+                $this->preset->is('laravel') ? 'Tests\TestCase' : 'Orchestra\Testbench\TestCase'
             );
 
         return $this->replaceTestCase($stub, $testCase);
