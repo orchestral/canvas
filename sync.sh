@@ -17,3 +17,5 @@ awk '{sub(/use PHPUnit\\Framework\\TestCase/,"use NamespacedDummyTestCase")}1' s
 awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' storage/laravel/test.unit.stub > storage/laravel/temp.stub && mv storage/laravel/temp.stub storage/laravel/test.unit.stub
 awk '{sub(/use Tests\\TestCase/,"use NamespacedDummyTestCase")}1' storage/laravel/test.stub > storage/laravel/temp.stub && mv storage/laravel/temp.stub storage/laravel/test.stub
 awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' storage/laravel/test.stub > storage/laravel/temp.stub && mv storage/laravel/temp.stub storage/laravel/test.stub
+awk '{sub(/use Tests\\TestCase/,"use NamespacedDummyTestCase")}1' storage/laravel/view.test.stub > storage/laravel/temp.stub && mv storage/laravel/temp.stub storage/laravel/view.test.stub
+awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' storage/laravel/view.test.stub > storage/laravel/temp.stub && mv storage/laravel/temp.stub storage/laravel/view.test.stub

@@ -69,7 +69,7 @@
         ],
         "test": "@php vendor/bin/phpunit -c ./ --color",
         "ci": [
-            "@composer run audit",
+            "@composer audit",
             "@prepare",
             "@lint",
             "@test"

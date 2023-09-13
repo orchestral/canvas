@@ -13,6 +13,7 @@ class EloquentTest extends TestCase
         'app/Http/Controllers/BarController.php',
         'database/factories/FooFactory.php',
         'database/seeders/FooSeeder.php',
+        'tests/Feature/Models/FooTest.php',
     ];
 
     /** @test */
@@ -26,6 +27,11 @@ class EloquentTest extends TestCase
             'use Illuminate\Database\Eloquent\Model;',
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
+
+        $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
+        $this->assertFilenameNotExists('database/factories/FooFactory.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
+        $this->assertFilenameNotExists('tests/Feature/Models/FooTest.php');
     }
 
     /** @test */
@@ -277,5 +283,23 @@ class EloquentTest extends TestCase
         $this->assertFilenameExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameExists('database/factories/FooFactory.php');
         $this->assertFilenameExists('database/seeders/FooSeeder.php');
+    }
+
+    /** @test */
+    public function it_can_generate_eloquent_file_with_tests()
+    {
+        $this->artisan('make:model', ['name' => 'Foo', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Models;',
+            'use Illuminate\Database\Eloquent\Model;',
+            'class Foo extends Model',
+        ], 'app/Models/Foo.php');
+
+        $this->assertFilenameNotExists('app/Http/Controllers/FooController.php');
+        $this->assertFilenameNotExists('database/factories/FooFactory.php');
+        $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
+        $this->assertFilenameExists('tests/Feature/Models/FooTest.php');
     }
 }
