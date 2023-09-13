@@ -71,6 +71,6 @@ class GeneratesTestingCode extends GeneratesCode
      */
     protected function rootNamespace(): string
     {
-        return $this->preset->config('testing.namespace', 'Tests');
+        return $this->preset->testingNamespace();
     }
 }
