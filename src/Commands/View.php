@@ -171,7 +171,7 @@ class View extends Generator
 
         return sprintf(
             '%s\\Feature\\View\\%s',
-            $this->preset->config('testing.namespace', 'Tests'),
+            $this->preset->testingNamespace(),
             $namespacedName
         );
     }
