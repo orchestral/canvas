@@ -19,4 +19,3 @@ testing:
 
 generators:
   - Orchestra\Canvas\Commands\Code
-  - Orchestra\Canvas\Commands\ConsoleGenerator
