@@ -27,6 +27,7 @@ Illuminate\Support\Collection::make([
     Orchestra\Canvas\Commands\Channel::class => true,
     Orchestra\Canvas\Commands\Component::class => true,
     Orchestra\Canvas\Commands\Console::class => true,
+    Orchestra\Canvas\Commands\ConsoleGenerator::class => true,
     Orchestra\Canvas\Commands\Database\Cast::class => true,
     Orchestra\Canvas\Commands\Database\Eloquent::class => true,
     Orchestra\Canvas\Commands\Database\Factory::class => true,
