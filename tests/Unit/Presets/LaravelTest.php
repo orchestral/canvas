@@ -43,7 +43,6 @@ class LaravelTest extends TestCase
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
         $this->assertSame("{$directory}/database/seeders", $preset->seederPath());
 
-        $this->assertTrue($preset->hasCustomStubPath());
         $this->assertSame("{$directory}/stubs", $preset->getCustomStubPath());
     }
 

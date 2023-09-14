@@ -9,23 +9,6 @@ use Symfony\Component\Console\Application;
 class Package extends Preset
 {
     /**
-     * List of global generators.
-     *
-     * @var array<int, class-string<\Symfony\Component\Console\Command\Command>>
-     */
-    protected static $generators = [];
-
-    /**
-     * Add global command.
-     *
-     * @param  array<int, class-string<\Symfony\Component\Console\Command\Command>>  $generators
-     */
-    public static function commands(array $generators): void
-    {
-        static::$generators = array_merge(static::$generators, $generators);
-    }
-
-    /**
      * Preset name.
      */
     public function name(): string
@@ -99,18 +82,5 @@ class Package extends Preset
     public function getCustomStubPath(): ?string
     {
         return null;
-    }
-
-    /**
-     * Sync commands to preset.
-     */
-    public function addAdditionalCommands(Application $app): void
-    {
-        parent::addAdditionalCommands($app);
-
-        foreach (Arr::wrap(static::$generators) as $generator) {
-            /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
-            $app->add(new $generator($this));
-        }
     }
 }

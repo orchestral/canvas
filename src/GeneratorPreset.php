@@ -8,16 +8,6 @@ use Illuminate\Contracts\Foundation\Application;
 class GeneratorPreset extends Preset
 {
     /**
-     * Construct a new preset.
-     *
-     * @return void
-     */
-    public function __construct(protected Application $app)
-    {
-        parent::__construct('', $app->make('config'));
-    }
-
-    /**
      * Preset name.
      *
      * @return string
@@ -25,16 +15,6 @@ class GeneratorPreset extends Preset
     public function name()
     {
         return 'canvas';
-    }
-
-    /**
-     * Preset has custom stub path.
-     *
-     * @return bool
-     */
-    public function hasCustomStubPath()
-    {
-        return false;
     }
 
     /**
@@ -85,6 +65,16 @@ class GeneratorPreset extends Preset
     public function resourcePath()
     {
         return $this->canvas()->resourcePath();
+    }
+
+    /**
+     * Get the path to the view directory.
+     *
+     * @return string
+     */
+    public function viewPath()
+    {
+        return implode('/', [$this->resourcePath(), 'views']);
     }
 
     /**
@@ -185,6 +175,16 @@ class GeneratorPreset extends Preset
     public function testingNamespace()
     {
         return $this->canvas()->testingNamespace().'\\';
+    }
+
+    /**
+     * Preset has custom stub path.
+     *
+     * @return bool
+     */
+    public function hasCustomStubPath()
+    {
+        return ! is_null($this->canvas()->getCustomStubPath());
     }
 
     /**

@@ -35,7 +35,6 @@ class PackageTest extends TestCase
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
         $this->assertSame("{$directory}/database/seeders", $preset->seederPath());
 
-        $this->assertFalse($preset->hasCustomStubPath());
         $this->assertNull($preset->getCustomStubPath());
     }
 

@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas\Presets;
 
 use Illuminate\Support\Arr;
-use Symfony\Component\Console\Application;
 
 abstract class Preset
 {
@@ -127,27 +126,6 @@ abstract class Preset
     public function seederNamespace(): string
     {
         return $this->config('seeder.path', 'Database\Seeders');
-    }
-
-    /**
-     * Sync commands to preset.
-     */
-    public function addAdditionalCommands(Application $app): void
-    {
-        tap($this->config('generators') ?? [], function ($generators) use ($app) {
-            foreach (Arr::wrap($generators) as $generator) {
-                /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
-                $app->add(new $generator($this));
-            }
-        });
-    }
-
-    /**
-     * Preset has custom stub path.
-     */
-    public function hasCustomStubPath(): bool
-    {
-        return ! \is_null($this->getCustomStubPath());
     }
 
     /**
