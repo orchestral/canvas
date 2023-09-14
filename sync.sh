@@ -13,7 +13,7 @@ rm -rf storage/laravel/routes.stub
 cp -rf vendor/laravel/framework/src/Illuminate/Routing/Console/stubs/*.stub storage/laravel/
 
 # Testing
-cp -rf vendor/laravel/framework/tests/Integration/Generators/*Test.php tests/Feature
+cp -rf vendor/laravel/framework/tests/Integration/Generators/*.php workbench/tests/
 
 ## Fixes namespace.
 awk '{sub(/use PHPUnit\\Framework\\TestCase/,"use NamespacedDummyTestCase")}1' storage/laravel/test.unit.stub > storage/laravel/temp.stub && mv storage/laravel/temp.stub storage/laravel/test.unit.stub

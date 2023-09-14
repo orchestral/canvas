@@ -17,7 +17,7 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         if (class_exists(PresetManager::class)) {
             $this->callAfterResolving(PresetManager::class, function ($manager, $app) {
@@ -53,20 +53,14 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
 
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        // Artisan::starting(static function ($artisan) {
-        //     $artisan->getLaravel()->booted(static function ($app) use ($artisan) {
-        //         /**
-        //          * @var \Illuminate\Contracts\Foundation\Application $app
-        //          * @var \Illuminate\Console\Application $artisan
-        //          */
-        //         $app->make('orchestra.canvas')->addAdditionalCommands($artisan);
-        //     });
-        // });
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\GeneratorMakeCommand::class,
+            ]);
+        }
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature;
+namespace Illuminate\Tests\Integration\Generators;
 
 class ViewMakeCommandTest extends TestCase
 {
