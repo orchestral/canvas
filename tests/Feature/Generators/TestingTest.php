@@ -2,8 +2,9 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Core\Presets\Package;
+use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class TestingTest extends TestCase
 {
@@ -12,7 +13,7 @@ class TestingTest extends TestCase
         'tests/Unit/FooTest.php',
     ];
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_feature_test_file()
     {
         $this->artisan('make:test', ['name' => 'FooTest'])
@@ -27,7 +28,7 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_unit_test_file()
     {
         $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true])
@@ -40,7 +41,7 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_unit_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -57,7 +58,7 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_feature_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -75,7 +76,7 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_feature_test_file_on_package_preset()
     {
         $this->instance('orchestra.canvas', new Package(
@@ -93,7 +94,7 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_unit_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(
@@ -110,7 +111,7 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_feature_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(
@@ -140,7 +141,7 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_pest_unit_test_file()
     {
         $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true])
@@ -151,7 +152,7 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_pest_unit_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -167,7 +168,7 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_pest_feature_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -184,7 +185,7 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_pest_feature_test_file_on_package_preset()
     {
         $this->instance('orchestra.canvas', new Package(
@@ -201,7 +202,7 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_pest_unit_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(
@@ -217,7 +218,7 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_pest_feature_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(

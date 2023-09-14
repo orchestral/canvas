@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
 use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class ConsoleGeneratorTest extends TestCase
 {

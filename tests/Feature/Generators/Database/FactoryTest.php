@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
 
 use Orchestra\Canvas\Presets\Laravel;
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class FactoryTest extends TestCase
 {
@@ -11,7 +11,7 @@ class FactoryTest extends TestCase
         'database/factories/FooFactory.php',
     ];
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_factory_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory'])
@@ -27,7 +27,7 @@ class FactoryTest extends TestCase
         ], 'database/factories/FooFactory.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_factory_with_model_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory', '--model' => 'Foo'])
@@ -43,7 +43,7 @@ class FactoryTest extends TestCase
         ], 'database/factories/FooFactory.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_factory_file_with_custom_preset()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -63,7 +63,7 @@ class FactoryTest extends TestCase
         ], 'database/factories/FooFactory.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_factory_with_model_file_with_custom_preset()
     {
         $this->instance('orchestra.canvas', new Laravel(
