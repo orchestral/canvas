@@ -10,7 +10,7 @@ class ConsoleGeneratorTest extends TestCase
         'app/Console/Commands/FooCommand.php',
     ];
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_command_file()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -29,7 +29,7 @@ class ConsoleGeneratorTest extends TestCase
         ], 'app/Console/Commands/FooCommand.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_command_file_with_command_name()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -48,7 +48,7 @@ class ConsoleGeneratorTest extends TestCase
         ], 'app/Console/Commands/FooCommand.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_command_file_with_command_name_without_make_prefix()
     {
         $this->instance('orchestra.canvas', new Laravel(

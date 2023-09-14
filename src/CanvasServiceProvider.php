@@ -30,7 +30,8 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
         }
 
         $this->app->singleton('orchestra.canvas', function (Application $app) {
-            $workingPath = \defined('CANVAS_WORKING_PATH') ? CANVAS_WORKING_PATH : getcwd();
+            $workingPath = \defined('CANVAS_WORKING_PATH') ? CANVAS_WORKING_PATH : $this->app->basePath();
+
             $filesystem = $app->make('files');
 
             $config = ['preset' => 'laravel'];

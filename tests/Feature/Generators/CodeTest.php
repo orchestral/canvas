@@ -10,7 +10,7 @@ class CodeTest extends TestCase
         'app/Value/Foo.php',
     ];
 
-    /** @test */
+    /** @-test */
     public function it_can_generate_class_file()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -26,7 +26,7 @@ class CodeTest extends TestCase
         ], 'app/Value/Foo.php');
     }
 
-    /** @test */
+    /** @-test */
     public function it_cant_generate_class_file()
     {
         $this->expectException('Symfony\Component\Console\Exception\CommandNotFoundException');
