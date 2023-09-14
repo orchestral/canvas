@@ -176,7 +176,7 @@ class GeneratorPreset extends Preset
     /**
      * Testing namespace.
      *
-     * @throws \BadMethodCallException
+     * @return string
      */
     public function testingNamespace()
     {
