@@ -13,7 +13,7 @@ class FactoryMakeCommandTest extends TestCase
     /** @test */
     public function it_can_generate_factory_file()
     {
-        $this->artisan('make:factory', ['name' => 'FooFactory'])
+        $this->artisan('make:factory', ['name' => 'FooFactory', '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
