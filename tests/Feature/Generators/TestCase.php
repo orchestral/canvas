@@ -2,18 +2,9 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-class TestCase extends \Orchestra\Canvas\Core\Testing\TestCase
+use Orchestra\Testbench\Concerns\WithWorkbench;
+
+class TestCase extends \Orchestra\Testbench\TestCase
 {
-    /**
-     * Get package providers.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return array
-     */
-    protected function getPackageProviders($app)
-    {
-        return [
-            \Orchestra\Canvas\LaravelServiceProvider::class,
-        ];
-    }
+    use WithWorkbench;
 }

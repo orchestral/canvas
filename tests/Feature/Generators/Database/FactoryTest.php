@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
+use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class FactoryTest extends TestCase
@@ -47,7 +47,7 @@ class FactoryTest extends TestCase
     public function it_can_generate_factory_file_with_custom_preset()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'Acme', 'factory' => ['namespace' => 'Acme\Database\Factory']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'Acme', 'factory' => ['namespace' => 'Acme\Database\Factory']], $this->app->basePath()
         ));
 
         $this->artisan('make:factory', ['name' => 'FooFactory'])
@@ -67,7 +67,7 @@ class FactoryTest extends TestCase
     public function it_can_generate_factory_with_model_file_with_custom_preset()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'Acme', 'factory' => ['namespace' => 'Acme\Database\Factory']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'Acme', 'factory' => ['namespace' => 'Acme\Database\Factory']], $this->app->basePath()
         ));
 
         $this->artisan('make:factory', ['name' => 'FooFactory', '--model' => 'Foo'])

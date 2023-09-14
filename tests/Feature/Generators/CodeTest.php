@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
+use Orchestra\Canvas\Presets\Laravel;
 
 class CodeTest extends TestCase
 {
@@ -14,7 +14,7 @@ class CodeTest extends TestCase
     public function it_can_generate_class_file()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\Code']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\Code']], $this->app->basePath()
         ));
 
         $this->artisan('make:class', ['name' => 'Value/Foo'])

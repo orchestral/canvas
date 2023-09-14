@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators\Routing;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
+use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
 
 class ControllerTest extends TestCase
@@ -103,7 +103,7 @@ class ControllerTest extends TestCase
     public function it_can_generate_controller_with_model_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
         ));
 
         $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true])
@@ -127,7 +127,7 @@ class ControllerTest extends TestCase
     public function it_can_generate_controller_with_model_with_parent_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
         ));
 
         $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true])

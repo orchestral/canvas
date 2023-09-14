@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
+use Orchestra\Canvas\Presets\Laravel;
 
 class ConsoleGeneratorTest extends TestCase
 {
@@ -14,7 +14,7 @@ class ConsoleGeneratorTest extends TestCase
     public function it_can_generate_command_file()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\ConsoleGenerator']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\ConsoleGenerator']], $this->app->basePath()
         ));
 
         $this->artisan('make:generator', ['name' => 'FooCommand'])
@@ -33,7 +33,7 @@ class ConsoleGeneratorTest extends TestCase
     public function it_can_generate_command_file_with_command_name()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\ConsoleGenerator']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\ConsoleGenerator']], $this->app->basePath()
         ));
 
         $this->artisan('make:generator', ['name' => 'FooCommand', '--command' => 'make:foobar'])
@@ -52,7 +52,7 @@ class ConsoleGeneratorTest extends TestCase
     public function it_can_generate_command_file_with_command_name_without_make_prefix()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\ConsoleGenerator']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'generators' => ['Orchestra\Canvas\Commands\ConsoleGenerator']], $this->app->basePath()
         ));
 
         $this->artisan('make:generator', ['name' => 'FooCommand', '--command' => 'foobar'])

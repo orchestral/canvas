@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas;
 
 use BadMethodCallException;
-use Illuminate\Console\Generators\Presets\Laravel;
+use Illuminate\Console\Generators\Presets\Preset;
 use Illuminate\Contracts\Foundation\Application;
 
 class GeneratorPreset extends Preset
