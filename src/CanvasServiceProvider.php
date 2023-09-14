@@ -58,6 +58,7 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                Console\FactoryMakeCommand::class,
                 Console\GeneratorMakeCommand::class,
             ]);
         }
