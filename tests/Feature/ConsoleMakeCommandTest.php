@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class ConsoleTest extends TestCase
+class ConsoleMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Console/Commands/FooCommand.php',

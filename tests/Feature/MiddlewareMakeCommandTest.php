@@ -1,18 +1,15 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Routing;
+namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
-
-class MiddlewareTest extends TestCase
+class MiddlewareMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Middleware/Foo.php',
         'tests/Feature/Http/Middleware/FooTest.php',
     ];
 
-    /** @test */
-    public function it_can_generate_middleware_file()
+    public function testItCanGenerateMiddlewareFile()
     {
         $this->artisan('make:middleware', ['name' => 'Foo'])
             ->assertExitCode(0);
@@ -29,8 +26,7 @@ class MiddlewareTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Http/Middleware/FooTest.php');
     }
 
-    /** @test */
-    public function it_can_generate_middleware_file_with_tests()
+    public function testItCanGenerateMiddlewareFile_with_tests()
     {
         $this->artisan('make:middleware', ['name' => 'Foo', '--test' => true])
             ->assertExitCode(0);

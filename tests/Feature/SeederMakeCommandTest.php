@@ -1,17 +1,14 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
+namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
-
-class SeederTest extends TestCase
+class SeederMakeCommandTest extends TestCase
 {
     protected $files = [
         'database/seeders/FooSeeder.php',
     ];
 
-    /** @test */
-    public function it_can_generate_seeder_file()
+    public function testItCanGenerateSeederFile()
     {
         $this->artisan('make:seeder', ['name' => 'FooSeeder'])
             ->assertExitCode(0);

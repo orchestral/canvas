@@ -55,7 +55,7 @@ class Laravel extends Preset
      */
     public function commandNamespace(): string
     {
-        return $this->config('console.namespace', $this->rootNamespace().'\Console\Command');
+        return $this->config('console.namespace', $this->rootNamespace().'\Console\Commands');
     }
 
     /**

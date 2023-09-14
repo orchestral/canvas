@@ -1,16 +1,15 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class JobTest extends TestCase
+class JobMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Jobs/FooCreated.php',
         'tests/Feature/Jobs/FooCreatedTest.php',
     ];
 
-    /** @test */
-    public function it_can_generate_job_file()
+    public function testItCanGenerateJobFile()
     {
         $this->artisan('make:job', ['name' => 'FooCreated'])
             ->assertExitCode(0);
@@ -28,8 +27,7 @@ class JobTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Jobs/FooCreatedTest.php');
     }
 
-    /** @test */
-    public function it_can_generate_synced_job_file()
+    public function testItCanGenerateSyncJobFile()
     {
         $this->artisan('make:job', ['name' => 'FooCreated', '--sync' => true])
             ->assertExitCode(0);
@@ -47,8 +45,7 @@ class JobTest extends TestCase
         ], 'app/Jobs/FooCreated.php');
     }
 
-    /** @test */
-    public function it_can_generate_job_file_with_tests()
+    public function testItCanGenerateJobFileWithTest()
     {
         $this->artisan('make:job', ['name' => 'FooCreated', '--test' => true])
             ->assertExitCode(0);

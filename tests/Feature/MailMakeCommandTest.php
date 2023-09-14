@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class MailTest extends TestCase
+class MailMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Mail/FooMail.php',
@@ -10,8 +10,7 @@ class MailTest extends TestCase
         'tests/Feature/Mail/FooMailTest.php',
     ];
 
-    /** @test */
-    public function it_can_generate_mail_file()
+    public function testItCanGenerateMailFile()
     {
         $this->artisan('make:mail', ['name' => 'FooMail'])
             ->assertExitCode(0);
@@ -26,8 +25,7 @@ class MailTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Mail/FooMailTest.php');
     }
 
-    /** @test */
-    public function it_can_generate_mail_with_markdown_options_file()
+    public function testItCanGenerateMailFileWithMarkdownOption()
     {
         $this->artisan('make:mail', ['name' => 'FooMail', '--markdown' => 'foo-mail'])
             ->assertExitCode(0);
@@ -48,8 +46,7 @@ class MailTest extends TestCase
         ], 'resources/views/foo-mail.blade.php');
     }
 
-    /** @test */
-    public function it_can_generate_mail_file_with_tests()
+    public function testItCanGenerateMailFileWithTest()
     {
         $this->artisan('make:mail', ['name' => 'FooMail', '--test' => true])
             ->assertExitCode(0);

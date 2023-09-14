@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class ResourceTest extends TestCase
+class ResourceMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Resources/FooResource.php',

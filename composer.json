@@ -42,6 +42,10 @@
         "spatie/laravel-ray": "^1.32.4"
     },
     "config": {
+        "preferred-install": {
+            "laravel/framework": "source",
+            "*": "auto"
+        },
         "sort-packages": true
     },
     "extra": {

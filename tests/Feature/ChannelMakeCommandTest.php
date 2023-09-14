@@ -1,15 +1,14 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class ChannelTest extends TestCase
+class ChannelMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Broadcasting/FooChannel.php',
     ];
 
-    /** @test */
-    public function it_can_generate_broadcasting_channel_file()
+    public function testItCanGenerateChannelFile()
     {
         $this->artisan('make:channel', ['name' => 'FooChannel'])
             ->assertExitCode(0);

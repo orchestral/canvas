@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class NotificationTest extends TestCase
+class NotificationMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Notifications/FooNotification.php',
@@ -10,8 +10,7 @@ class NotificationTest extends TestCase
         'tests/Feature/Notifications/FooNotificationTest.php',
     ];
 
-    /** @test */
-    public function it_can_generate_notification_file()
+    public function testItCanGenerateNotificationFile()
     {
         $this->artisan('make:notification', ['name' => 'FooNotification'])
             ->assertExitCode(0);
@@ -27,8 +26,7 @@ class NotificationTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Notifications/FooNotificationTest.php');
     }
 
-    /** @test */
-    public function it_can_generate_notification_with_markdown_options_file()
+    public function testItCanGenerateNotificationFileWithMarkdownOption()
     {
         $this->artisan('make:notification', ['name' => 'FooNotification', '--markdown' => 'foo-notification'])
             ->assertExitCode(0);
@@ -44,8 +42,7 @@ class NotificationTest extends TestCase
         ], 'resources/views/foo-notification.blade.php');
     }
 
-    /** @test */
-    public function it_can_generate_notification_file_with_tests()
+    public function testItCanGenerateNotificationFileWithTest()
     {
         $this->artisan('make:notification', ['name' => 'FooNotification', '--test' => true])
             ->assertExitCode(0);

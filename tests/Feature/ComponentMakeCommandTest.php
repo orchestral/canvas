@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class ComponentTest extends TestCase
+class ComponentMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/View/Components/Foo.php',
@@ -10,8 +10,7 @@ class ComponentTest extends TestCase
         'tests/Feature/View/Components/FooTest.php',
     ];
 
-    /** @test */
-    public function it_can_generate_component_file()
+    public function testItCanGenerateComponentFile()
     {
         $this->artisan('make:component', ['name' => 'Foo'])
             ->assertExitCode(0);
@@ -27,8 +26,7 @@ class ComponentTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/View/Components/FooTest.php');
     }
 
-    /** @test */
-    public function it_can_generate_inline_component_file()
+    public function testItCanGenerateInlineComponentFile()
     {
         $this->artisan('make:component', ['name' => 'Foo', '--inline' => true])
             ->assertExitCode(0);
@@ -43,8 +41,7 @@ class ComponentTest extends TestCase
         $this->assertFilenameNotExists('resources/views/components/foo.blade.php');
     }
 
-    /** @test */
-    public function it_can_generate_component_file_with_tests()
+    public function testItCanGenerateComponentFileWithTest()
     {
         $this->artisan('make:component', ['name' => 'Foo', '--test' => true])
             ->assertExitCode(0);

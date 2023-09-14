@@ -1,15 +1,14 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class ExceptionTest extends TestCase
+class ExceptionMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Exceptions/FooException.php',
     ];
 
-    /** @test */
-    public function it_can_generate_exception_file()
+    public function testItCanGenerateExceptionFile()
     {
         $this->artisan('make:exception', ['name' => 'FooException'])
             ->assertExitCode(0);
@@ -26,8 +25,7 @@ class ExceptionTest extends TestCase
         ], 'app/Exceptions/FooException.php');
     }
 
-    /** @test */
-    public function it_can_generate_exception_file_with_only_report_options()
+    public function testItCanGenerateExceptionFileWithReportOption()
     {
         $this->artisan('make:exception', ['name' => 'FooException', '--report' => true])
             ->assertExitCode(0);
@@ -44,8 +42,7 @@ class ExceptionTest extends TestCase
         ], 'app/Exceptions/FooException.php');
     }
 
-    /** @test */
-    public function it_can_generate_exception_file_with_only_render_options()
+    public function testItCanGenerateExceptionFileWithRenderOption()
     {
         $this->artisan('make:exception', ['name' => 'FooException', '--render' => true])
             ->assertExitCode(0);
@@ -62,8 +59,7 @@ class ExceptionTest extends TestCase
         ], 'app/Exceptions/FooException.php');
     }
 
-    /** @test */
-    public function it_can_generate_exception_file_with_report_and_render_options()
+    public function testItCanGenerateExceptionFileWithReportAndRenderOption()
     {
         $this->artisan('make:exception', ['name' => 'FooException', '--report' => true, '--render' => true])
             ->assertExitCode(0);

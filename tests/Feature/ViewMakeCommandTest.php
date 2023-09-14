@@ -1,16 +1,15 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class ViewTest extends TestCase
+class ViewMakeCommandTest extends TestCase
 {
     protected $files = [
         'resources/views/foo.blade.php',
         'tests/Feature/View/FooTest.php',
     ];
 
-    /** @test */
-    public function it_can_generate_feature_view_file()
+    public function testItCanGenerateViewFile()
     {
         $this->artisan('make:view', ['name' => 'foo'])
             ->assertExitCode(0);
@@ -19,8 +18,7 @@ class ViewTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/View/FooTest.php');
     }
 
-    /** @test */
-    public function it_can_generate_feature_view_file_with_tests()
+    public function testItCanGenerateViewFileWithTest()
     {
         $this->artisan('make:view', ['name' => 'foo', '--test' => true])
             ->assertExitCode(0);

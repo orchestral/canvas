@@ -1,17 +1,17 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Presets\Laravel;
+use Illuminate\Console\Generators\PresetManager;
+use Illuminate\Console\Generators\Presets\Laravel;
 
-class PolicyTest extends TestCase
+class PolicyMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Policies/FooPolicy.php',
     ];
 
-    /** @test */
-    public function it_can_generate_policy_file()
+    public function testItCanGeneratePolicyFile()
     {
         $this->artisan('make:policy', ['name' => 'FooPolicy'])
             ->assertExitCode(0);
@@ -23,8 +23,7 @@ class PolicyTest extends TestCase
         ], 'app/Policies/FooPolicy.php');
     }
 
-    /** @test */
-    public function it_can_generate_policy_with_model_options_file()
+    public function testItCanGeneratePolicyFileWithModelOption()
     {
         $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post'])
             ->assertExitCode(0);
@@ -44,20 +43,25 @@ class PolicyTest extends TestCase
         ], 'app/Policies/FooPolicy.php');
     }
 
-    /** @test */
-    public function it_can_generate_policy_with_model_options_file_with_custom_model_namespace()
+    public function testItCanGeneratePolicyFileWithModelOptionWithCustomNamespace()
     {
-        $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model'], 'user-auth-provider' => 'App\Models\User'], $this->app->basePath()
-        ));
+        $manager = $this->app->make(PresetManager::class);
 
-        $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post'])
+        $manager->extend('acme', fn () => new class('App', $this->app->basePath(), $this->app->make('config')) extends Laravel
+        {
+            public function modelNamespace()
+            {
+                return 'Acme\Model\\';
+            }
+        });
+
+        $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post', '--preset' => 'acme'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Policies;',
-            'use App\Model\Post;',
-            'use App\Models\User;',
+            'use Acme\Model\Post;',
+            'use Illuminate\Foundation\Auth\User;',
             'class FooPolicy',
             'public function viewAny(User $user)',
             'public function view(User $user, Post $post)',

@@ -1,18 +1,17 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
+namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Presets\Laravel;
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
+use Illuminate\Console\Generators\PresetManager;
+use Illuminate\Console\Generators\Presets\Laravel;
 
-class ObserverTest extends TestCase
+class ObserverMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Observers/FooObserver.php',
     ];
 
-    /** @test */
-    public function it_can_generate_observer_file()
+    public function testItCanGenerateObserverFile()
     {
         $this->artisan('make:observer', ['name' => 'FooObserver'])
             ->assertExitCode(0);
@@ -23,8 +22,7 @@ class ObserverTest extends TestCase
         ], 'app/Observers/FooObserver.php');
     }
 
-    /** @test */
-    public function it_can_generate_observer_with_model_file()
+    public function testItCanGenerateObserverFileWithModel()
     {
         $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo'])
             ->assertExitCode(0);
@@ -41,19 +39,24 @@ class ObserverTest extends TestCase
         ], 'app/Observers/FooObserver.php');
     }
 
-    /** @test */
-    public function it_can_generate_observer_with_model_file_with_custom_model_namespace()
+    public function testItCanGenerateObserverFileWithCustomNamespacedModel()
     {
-        $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
-        ));
+        $manager = $this->app->make(PresetManager::class);
 
-        $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo'])
+        $manager->extend('acme', fn () => new class('App', $this->app->basePath(), $this->app->make('config')) extends Laravel
+        {
+            public function modelNamespace()
+            {
+                return 'Acme\Model\\';
+            }
+        });
+
+        $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo', '--preset' => 'acme'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Observers;',
-            'use App\Model\Foo;',
+            'use Acme\Model\Foo;',
             'class FooObserver',
             'public function created(Foo $foo)',
             'public function updated(Foo $foo)',

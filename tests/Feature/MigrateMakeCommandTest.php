@@ -1,13 +1,17 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
+namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
+use Illuminate\Console\Generators\PresetManager;
+use Illuminate\Console\Generators\Presets\Laravel;
 
-class MigrationTest extends TestCase
+class MigrateMakeCommandTest extends TestCase
 {
-    /** @test */
-    public function it_can_generate_migration_file()
+    protected $files = [
+        'database/acme-migrations/*.php',
+    ];
+
+    public function testItCanGenerateMigrationFile()
     {
         $this->artisan('make:migration', ['name' => 'AddBarToFoosTable'])
             ->assertExitCode(0);
@@ -19,8 +23,7 @@ class MigrationTest extends TestCase
         ], 'add_bar_to_foos_table.php');
     }
 
-    /** @test */
-    public function it_can_generate_migration_with_table_options_file()
+    public function testItCanGenerateMigrationFileWIthTableOption()
     {
         $this->artisan('make:migration', ['name' => 'AddBarToFoosTable', '--table' => 'foobar'])
             ->assertExitCode(0);
@@ -32,8 +35,7 @@ class MigrationTest extends TestCase
         ], 'add_bar_to_foos_table.php');
     }
 
-    /** @test */
-    public function it_can_generate_migration_for_create_using_keyword_file()
+    public function testItCanGenerateMigrationFileUsingCreateKeyword()
     {
         $this->artisan('make:migration', ['name' => 'CreateFoosTable'])
             ->assertExitCode(0);
@@ -46,8 +48,7 @@ class MigrationTest extends TestCase
         ], 'create_foos_table.php');
     }
 
-    /** @test */
-    public function it_can_generate_migration_with_create_options_file()
+    public function testItCanGenerateMigrationFileUsingCreateOption()
     {
         $this->artisan('make:migration', ['name' => 'FoosTable', '--create' => 'foobar'])
             ->assertExitCode(0);
@@ -60,12 +61,31 @@ class MigrationTest extends TestCase
         ], 'foos_table.php');
     }
 
-    /** @test */
-    public function it_cant_generate_migration_with_invalid_path_options_file()
+    public function testItCanGenerateMigrationFileWithCustomMigrationPath()
     {
-        $this->expectException('InvalidArgumentException');
+        $manager = $this->app->make(PresetManager::class);
 
-        $this->artisan('make:migration', ['name' => 'CreateFoosTable', '--path' => 'app/migrations'])
-            ->assertExitCode(1);
+        $manager->extend('acme', fn () => $preset = new class('App', $this->app->basePath(), $this->app->make('config')) extends Laravel
+        {
+            public function name()
+            {
+                return 'acme';
+            }
+
+            public function migrationPath()
+            {
+                return implode('/', [$this->basePath(), 'database', 'acme-migrations']);
+            }
+        });
+
+        $this->artisan('make:migration', ['name' => 'AcmeFoosTable', '--create' => 'foobar', '--preset' => 'acme'])
+            ->assertExitCode(0);
+
+        $this->assertMigrationFileContains([
+            'use Illuminate\Database\Migrations\Migration;',
+            'return new class extends Migration',
+            'Schema::create(\'foobar\', function (Blueprint $table) {',
+            'Schema::dropIfExists(\'foobar\');',
+        ], 'acme_foos_table.php', directory: 'database/acme-migrations');
     }
 }

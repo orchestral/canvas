@@ -1,52 +1,49 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-class RuleTest extends TestCase
+class RuleMakeCommandTest extends TestCase
 {
     protected $files = [
-        'app/Rules/FooBar.php',
+        'app/Rules/Foo.php',
     ];
 
-    /** @test */
-    public function it_can_generate_rule_file()
+    public function testItCanGenerateRuleFile()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar'])
+        $this->artisan('make:rule', ['name' => 'Foo'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class FooBar implements ValidationRule',
-        ], 'app/Rules/FooBar.php');
+            'class Foo implements ValidationRule',
+        ], 'app/Rules/Foo.php');
     }
 
-    /** @test */
-    public function it_can_generate_invokable_rule_file()
+    public function testItCanGenerateInvokableRuleFile()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar'])
+        $this->artisan('make:rule', ['name' => 'Foo'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class FooBar implements ValidationRule',
+            'class Foo implements ValidationRule',
             'public function validate(string $attribute, mixed $value, Closure $fail): void',
-        ], 'app/Rules/FooBar.php');
+        ], 'app/Rules/Foo.php');
     }
 
-    /** @test */
-    public function it_can_generate_invokable_implicit_rule_file()
+    public function testItCanGenerateImplicitRuleFile()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar', '--implicit' => true])
+        $this->artisan('make:rule', ['name' => 'Foo', '--implicit' => true])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class FooBar implements ValidationRule',
+            'class Foo implements ValidationRule',
             'public $implicit = true;',
             'public function validate(string $attribute, mixed $value, Closure $fail): void',
-        ], 'app/Rules/FooBar.php');
+        ], 'app/Rules/Foo.php');
     }
 }
