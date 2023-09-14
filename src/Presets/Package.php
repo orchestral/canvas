@@ -2,9 +2,7 @@
 
 namespace Orchestra\Canvas\Presets;
 
-use Illuminate\Support\Arr;
 use InvalidArgumentException;
-use Symfony\Component\Console\Application;
 
 class Package extends Preset
 {

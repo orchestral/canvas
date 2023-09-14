@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas;
 
 use Illuminate\Console\Generators\Presets\Preset;
-use Illuminate\Contracts\Foundation\Application;
 
 class GeneratorPreset extends Preset
 {
@@ -184,7 +183,7 @@ class GeneratorPreset extends Preset
      */
     public function hasCustomStubPath()
     {
-        return ! is_null($this->canvas()->getCustomStubPath());
+        return ! \is_null($this->canvas()->getCustomStubPath());
     }
 
     /**
@@ -195,7 +194,7 @@ class GeneratorPreset extends Preset
      */
     public function userProviderModel($guard = null)
     {
-        if (\is_null($guard) || $guard === $this->config->get('auth.defaults.guard')) {
+        if (\is_null($guard) || $guard === $this->app->make('config')->get('auth.defaults.guard')) {
             return $this->canvas()->config('user-auth-model')
                 ?? $this->canvas()->config('user-auth-provider')
                 ?? parent::userProviderModel($guard);

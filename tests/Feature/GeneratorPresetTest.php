@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Tests;
 
-use BadMethodCallException;
 use Illuminate\Console\Generators\PresetManager;
 use Illuminate\Console\Generators\Presets\Preset;
 use Orchestra\Canvas\Presets\Package;
@@ -41,7 +40,6 @@ class GeneratorPresetTest extends TestCase
         $this->assertTrue($preset->hasCustomStubPath());
         $this->assertSame('Illuminate\Foundation\Auth\User', $preset->userProviderModel());
     }
-
 
     /** @test */
     public function it_can_be_resolved_and_has_correct_signature_as_package_preset()
