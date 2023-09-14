@@ -125,7 +125,7 @@ abstract class Preset
      */
     public function seederNamespace(): string
     {
-        return $this->config('seeder.path', 'Database\Seeders');
+        return $this->config('seeder.namespace', 'Database\Seeders');
     }
 
     /**
