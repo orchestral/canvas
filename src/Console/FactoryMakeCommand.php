@@ -2,6 +2,9 @@
 
 namespace Orchestra\Canvas\Console;
 
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'make:factory', description: 'Create a new model factory')]
 class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryMakeCommand
 {
     /**

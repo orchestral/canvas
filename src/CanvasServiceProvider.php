@@ -61,6 +61,8 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
                 Console\CodeMakeCommand::class,
                 Console\FactoryMakeCommand::class,
                 Console\GeneratorMakeCommand::class,
+                Console\TestMakeCommand::class,
+                Console\ViewMakeCommand::class,
             ]);
         }
     }

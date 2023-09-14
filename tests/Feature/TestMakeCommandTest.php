@@ -1,54 +1,25 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Core\Presets\Package;
+use Orchestra\Canvas\Presets\Package;
 use Orchestra\Canvas\Presets\Laravel;
-use Orchestra\Canvas\Tests\Feature\TestCase;
 
-class TestingTest extends TestCase
+class TestMakeCommandTest extends TestCase
 {
     protected $files = [
         'tests/Feature/FooTest.php',
         'tests/Unit/FooTest.php',
     ];
 
-    /** @-test */
-    public function it_can_generate_feature_test_file()
-    {
-        $this->artisan('make:test', ['name' => 'FooTest'])
-            ->assertExitCode(0);
-
-        $this->assertFileContains([
-            'namespace Tests\Feature;',
-            'use Illuminate\Foundation\Testing\RefreshDatabase;',
-            'use Illuminate\Foundation\Testing\WithFaker;',
-            'use Tests\TestCase;',
-            'class FooTest extends TestCase',
-        ], 'tests/Feature/FooTest.php');
-    }
-
-    /** @-test */
-    public function it_can_generate_unit_test_file()
-    {
-        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true])
-            ->assertExitCode(0);
-
-        $this->assertFileContains([
-            'namespace Tests\Unit;',
-            'use PHPUnit\Framework\TestCase;',
-            'class FooTest extends TestCase',
-        ], 'tests/Unit/FooTest.php');
-    }
-
-    /** @-test */
+    /** @test */
     public function it_can_generate_unit_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
             ['namespace' => 'App', 'testing' => ['namespace' => 'Tests', 'extends' => ['unit' => 'Tests\UnitTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -58,14 +29,14 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_feature_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
             ['namespace' => 'App', 'testing' => ['namespace' => 'Tests', 'extends' => ['feature' => 'Tests\FeatureTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest'])
+        $this->artisan('make:test', ['name' => 'FooTest', '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -76,14 +47,14 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_feature_test_file_on_package_preset()
     {
         $this->instance('orchestra.canvas', new Package(
             ['namespace' => 'Foo', 'testing' => ['namespace' => 'Foo\Tests']], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest'])
+        $this->artisan('make:test', ['name' => 'FooTest', '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -94,14 +65,14 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_unit_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(
             ['namespace' => 'Foo', 'testing' => ['namespace' => 'Foo\Tests', 'extends' => ['unit' => 'Foo\Tests\UnitTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -111,14 +82,14 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_feature_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(
             ['namespace' => 'Foo', 'testing' => ['namespace' => 'Foo\Tests', 'extends' => ['feature' => 'Foo\Tests\FeatureTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest'])
+        $this->artisan('make:test', ['name' => 'FooTest', '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -131,7 +102,7 @@ class TestingTest extends TestCase
 
     public function it_can_generate_pest_feature_test_file()
     {
-        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -141,10 +112,10 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_pest_unit_test_file()
     {
-        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
         $this->assertFileContains([
             'test(\'example\', function () {',
@@ -152,14 +123,14 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_pest_unit_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
             ['namespace' => 'App', 'testing' => ['namespace' => 'Tests', 'extends' => ['unit' => 'Tests\UnitTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -168,14 +139,14 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_pest_feature_test_file_on_laravel_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Laravel(
             ['namespace' => 'App', 'testing' => ['namespace' => 'Tests', 'extends' => ['feature' => 'Tests\FeatureTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -185,14 +156,14 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_pest_feature_test_file_on_package_preset()
     {
         $this->instance('orchestra.canvas', new Package(
             ['namespace' => 'Foo', 'testing' => ['namespace' => 'Foo\Tests']], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -202,14 +173,14 @@ class TestingTest extends TestCase
         ], 'tests/Feature/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_pest_unit_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(
             ['namespace' => 'Foo', 'testing' => ['namespace' => 'Foo\Tests', 'extends' => ['unit' => 'Foo\Tests\UnitTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -218,14 +189,14 @@ class TestingTest extends TestCase
         ], 'tests/Unit/FooTest.php');
     }
 
-    /** @-test */
+    /** @test */
     public function it_can_generate_pest_feature_test_file_on_package_preset_with_different_testcase()
     {
         $this->instance('orchestra.canvas', new Package(
             ['namespace' => 'Foo', 'testing' => ['namespace' => 'Foo\Tests', 'extends' => ['feature' => 'Foo\Tests\FeatureTestCase']]], $this->app->basePath()
         ));
 
-        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true])
+        $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
             ->assertExitCode(0);
 
         $this->assertFileContains([

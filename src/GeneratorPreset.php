@@ -205,7 +205,7 @@ class GeneratorPreset extends Preset
      *
      * @return \Orchestra\Canvas\Presets\Preset
      */
-    protected function canvas(): Presets\Preset
+    public function canvas(): Presets\Preset
     {
         return $this->app['orchestra.canvas'];
     }
