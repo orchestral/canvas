@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas;
 
-use Illuminate\Console\Application as Artisan;
 use Illuminate\Console\Generators\PresetManager;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;

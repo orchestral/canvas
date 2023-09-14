@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Unable to resolve the template type TMakeKey in call to method static method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:make\\(\\)$#"
+			count: 1
+			path: src/Console/Commander.php
+
+		-
+			message: "#^Unable to resolve the template type TMakeValue in call to method static method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:make\\(\\)$#"
+			count: 1
+			path: src/Console/Commander.php

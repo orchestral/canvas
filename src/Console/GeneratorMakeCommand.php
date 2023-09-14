@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Console;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -20,6 +21,7 @@ class GeneratorMakeCommand extends GeneratorCommand
     {
         $stub = parent::replaceClass($stub, $name);
 
+        /** @var string $command */
         $command = $this->option('command') ?: 'make:'.Str::of($name)->classBasename()->kebab()->value();
 
         return str_replace(['dummy:command', '{{ command }}'], $command, $stub);

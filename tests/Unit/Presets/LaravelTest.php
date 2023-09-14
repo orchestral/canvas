@@ -2,11 +2,9 @@
 
 namespace Orchestra\Canvas\Tests\Unit\Presets;
 
-use Illuminate\Filesystem\Filesystem;
 use Mockery as m;
 use Orchestra\Canvas\Presets\Laravel;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Application;
 
 class LaravelTest extends TestCase
 {

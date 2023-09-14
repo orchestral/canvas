@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas\Tests\Feature;
 
 use Orchestra\Canvas\Presets\Laravel;
-use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class GeneratorMakeCommandTest extends TestCase
 {

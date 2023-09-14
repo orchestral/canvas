@@ -3,10 +3,8 @@
 namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
-use Mockery as m;
 use Orchestra\Canvas\Presets\Package;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Application;
 
 class PackageTest extends TestCase
 {

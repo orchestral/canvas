@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Presets;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Symfony\Component\Console\Application;
 
@@ -33,7 +32,7 @@ abstract class Preset
      *
      * @param  mixed|null  $default
      */
-    public function config(?string $key = null, $default = null)
+    public function config(?string $key = null, $default = null): mixed
     {
         if (\is_null($key)) {
             return $this->config;

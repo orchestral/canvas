@@ -2,8 +2,8 @@
 
 namespace Orchestra\Canvas\Tests\Feature;
 
-use Orchestra\Canvas\Presets\Package;
 use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Presets\Package;
 
 class TestMakeCommandTest extends TestCase
 {

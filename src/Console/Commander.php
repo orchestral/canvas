@@ -4,9 +4,11 @@ namespace Orchestra\Canvas\Console;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
+use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\CanvasServiceProvider;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class Commander extends \Orchestra\Testbench\Console\Commander
 {
@@ -29,7 +31,6 @@ class Commander extends \Orchestra\Testbench\Console\Commander
         };
     }
 
-
     /**
      * Create Laravel application.
      *
@@ -38,14 +39,14 @@ class Commander extends \Orchestra\Testbench\Console\Commander
     public function laravel()
     {
         if (! $this->app instanceof LaravelApplication) {
-            parent::laravel();
+            $app = parent::laravel();
 
-            $kernel = $this->app->make(ConsoleKernel::class);
+            $kernel = $app->make(ConsoleKernel::class);
 
             Collection::make($kernel->all())
-                ->reject(function ($command, $name) {
+                ->reject(function (SymfonyCommand $command, string $name) {
                     return Str::startsWith('make:', $name) || $command instanceof GeneratorCommand;
-                })->each(function ($command) {
+                })->each(function (SymfonyCommand $command) {
                     $command->setHidden(true);
                 });
         }

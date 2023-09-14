@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas;
 
-use BadMethodCallException;
 use Illuminate\Console\Generators\Presets\Preset;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -90,6 +89,8 @@ class GeneratorPreset extends Preset
 
     /**
      * Get the path to the factory directory.
+     *
+     * @return string
      */
     public function factoryPath()
     {
@@ -98,6 +99,8 @@ class GeneratorPreset extends Preset
 
     /**
      * Get the path to the migration directory.
+     *
+     * @return string
      */
     public function migrationPath()
     {
@@ -123,6 +126,7 @@ class GeneratorPreset extends Preset
     {
         return $this->canvas()->rootNamespace().'\\';
     }
+
     /**
      * Command namespace.
      *
@@ -191,7 +195,7 @@ class GeneratorPreset extends Preset
      */
     public function userProviderModel($guard = null)
     {
-        if (is_null($guard) || $guard === $this->config->get('auth.defaults.guard')) {
+        if (\is_null($guard) || $guard === $this->config->get('auth.defaults.guard')) {
             return $this->canvas()->config('user-auth-model')
                 ?? $this->canvas()->config('user-auth-provider')
                 ?? parent::userProviderModel($guard);
@@ -207,6 +211,6 @@ class GeneratorPreset extends Preset
      */
     public function canvas(): Presets\Preset
     {
-        return $this->app['orchestra.canvas'];
+        return $this->app->make('orchestra.canvas');
     }
 }
