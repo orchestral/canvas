@@ -30,16 +30,13 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "illuminate/database": "^10.17",
-        "illuminate/support": "^10.17",
-        "orchestra/canvas-core": "dev-generator-presets as 8.x-dev",
+        "laravel/framework": "dev-generator-presets as 10.x-dev",
+        "orchestra/testbench-core": "^8.10.2",
         "symfony/yaml": "^6.2"
     },
     "require-dev": {
-        "laravel/framework": "^10.17",
         "laravel/pint": "^1.6",
         "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^8.9.1",
         "phpstan/phpstan": "^1.10.5",
         "phpunit/phpunit": "^10.1",
         "spatie/laravel-ray": "^1.32.4"
@@ -50,11 +47,6 @@
     "extra": {
         "branch-alias": {
             "dev-master": "9.0-dev"
-        },
-        "laravel": {
-            "providers": [
-                "Orchestra\\Canvas\\LaravelServiceProvider"
-            ]
         }
     },
     "scripts": {

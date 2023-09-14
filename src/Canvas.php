@@ -2,9 +2,9 @@
 
 namespace Orchestra\Canvas;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Orchestra\Canvas\Core\Presets\Preset;
 
 class Canvas
 {
@@ -37,9 +37,9 @@ class Canvas
      * Make Preset from configuration.
      *
      * @param  array<string, mixed>  $config
-     * @return \Orchestra\Canvas\Core\Presets\Preset
+     * @return \Orchestra\Canvas\Presets\Preset
      */
-    public static function preset(array $config, string $basePath, Filesystem $files): Core\Presets\Preset
+    public static function preset(array $config, string $basePath): Presets\Preset
     {
         /** @var array<string, mixed> $configuration */
         $configuration = Arr::except($config, 'preset');
@@ -48,20 +48,20 @@ class Canvas
 
         switch ($preset) {
             case 'package':
-                return new Core\Presets\Package($configuration, $basePath, $files);
+                return new Presets\Package($configuration, $basePath);
             case 'laravel':
-                return new Core\Presets\Laravel($configuration, $basePath, $files);
+                return new Presets\Laravel($configuration, $basePath);
             default:
                 if (class_exists($preset)) {
                     /**
-                     * @var class-string<\Orchestra\Canvas\Core\Presets\Preset> $preset
+                     * @var class-string<\Orchestra\Canvas\Presets\Preset> $preset
                      *
-                     * @return \Orchestra\Canvas\Core\Presets\Preset
+                     * @return \Orchestra\Canvas\Presets\Preset
                      */
-                    return new $preset($configuration, $basePath, $files);
+                    return new $preset($configuration, $basePath);
                 }
 
-                return new Core\Presets\Laravel($configuration, $basePath, $files);
+                return new Presets\Laravel($configuration, $basePath);
         }
     }
 }

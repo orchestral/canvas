@@ -88,7 +88,7 @@ Which will output the following as `canvas.yaml`:
 preset: package
 
 namespace: PackageName
-user-auth-provider: App\User
+user-auth-model: App\User
 
 paths:
   src: src
