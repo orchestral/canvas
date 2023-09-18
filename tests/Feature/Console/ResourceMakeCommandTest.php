@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
 
@@ -8,6 +8,7 @@ class ResourceMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Resources/FooResource.php',
+        'app/Http/Resources/FooResourceCollection.php',
     ];
 
     /** @test */
@@ -20,21 +21,19 @@ class ResourceMakeCommandTest extends TestCase
             'namespace App\Http\Resources;',
             'use Illuminate\Http\Resources\Json\JsonResource;',
             'class FooResource extends JsonResource',
-            'public function toArray($request)',
         ], 'app/Http/Resources/FooResource.php');
     }
 
     /** @test */
     public function it_can_generate_resource_collection_file()
     {
-        $this->artisan('make:resource', ['name' => 'FooResource', '--collection' => true, '--preset' => 'canvas'])
+        $this->artisan('make:resource', ['name' => 'FooResourceCollection', '--collection' => true, '--preset' => 'canvas'])
             ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Resources;',
             'use Illuminate\Http\Resources\Json\ResourceCollection;',
-            'class FooResource extends ResourceCollection',
-            'public function toArray($request)',
-        ], 'app/Http/Resources/FooResource.php');
+            'class FooResourceCollection extends ResourceCollection',
+        ], 'app/Http/Resources/FooResourceCollection.php');
     }
 }
