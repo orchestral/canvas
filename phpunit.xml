@@ -9,11 +9,6 @@
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false">
     <coverage includeUncoveredFiles="false" />
-    <source>
-        <include>
-            <directory suffix=".php">src/</directory>
-        </include>
-    </source>
     <testsuites>
         <testsuite name="Canvas Test Suite">
             <directory suffix="Test.php">tests/Feature/</directory>
@@ -25,4 +20,12 @@
         <ini name="memory_limit" value="256M"/>
         <env name="CANVAS_FOR_LARAVEL" value="(true)"/>
     </php>
+    <source>
+        <include>
+            <directory suffix=".php">src/</directory>
+        </include>
+        <exclude>
+            <file>src/Console/PresetMakeCommand.php</file>
+        </exclude>
+    </source>
 </phpunit>

@@ -23,6 +23,7 @@ use Illuminate\Foundation\Console\ProviderMakeCommand;
 use Illuminate\Foundation\Console\RequestMakeCommand;
 use Illuminate\Foundation\Console\ResourceMakeCommand;
 use Illuminate\Foundation\Console\RuleMakeCommand;
+use Illuminate\Foundation\Console\ScopeMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Foundation\Console\ViewMakeCommand;
 use Illuminate\Routing\Console\ControllerMakeCommand;
@@ -37,12 +38,10 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      * @var array
      */
     protected $devCommands = [
-        // 'ControllerMake' => ControllerMakeCommand::class,
         // 'NotificationTable' => NotificationTableCommand::class,
         // 'QueueFailedTable' => FailedTableCommand::class,
         // 'QueueTable' => TableCommand::class,
         // 'QueueBatchesTable' => BatchesTableCommand::class,
-        // 'ScopeMake' => ScopeMakeCommand::class,
         // 'SessionTable' => SessionTableCommand::class,
     ];
 
@@ -74,6 +73,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerRequestMakeCommand();
         $this->registerResourceMakeCommand();
         $this->registerRuleMakeCommand();
+        $this->registerScopeMakeCommand();
         $this->registerSeederMakeCommand();
         $this->registerTestMakeCommand();
         $this->registerViewMakeCommand();
@@ -100,6 +100,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\RequestMakeCommand::class,
             Console\ResourceMakeCommand::class,
             Console\RuleMakeCommand::class,
+            Console\ScopeMakeCommand::class,
             Console\SeederMakeCommand::class,
             Console\TestMakeCommand::class,
             Console\ViewMakeCommand::class,
@@ -370,6 +371,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerScopeMakeCommand()
+    {
+        $this->app->singleton(ScopeMakeCommand::class, function ($app) {
+            return new Console\ScopeMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerSeederMakeCommand()
     {
         $this->app->singleton(SeederMakeCommand::class, function ($app) {
@@ -451,6 +464,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ResourceMakeCommand::class,
             RuleMakeCommand::class,
             Console\RuleMakeCommand::class,
+            ScopeMakeCommand::class,
+            Console\ScopeMakeCommand::class,
             SeederMakeCommand::class,
             Console\SeederMakeCommand::class,
             TestMakeCommand::class,

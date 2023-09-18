@@ -10,7 +10,7 @@ class ResourceMakeCommandTest extends TestCase
     ];
 
     /** @test */
-    public function it_can_generate_resource_file()
+    public function testItCanGenerateResourceFile()
     {
         $this->artisan('make:resource', ['name' => 'FooResource'])
             ->assertExitCode(0);
@@ -23,7 +23,7 @@ class ResourceMakeCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_can_generate_resource_collection_file()
+    public function testItCanGenerateResourceCollectionFile()
     {
         $this->artisan('make:resource', ['name' => 'FooResourceCollection', '--collection' => true])
             ->assertExitCode(0);
