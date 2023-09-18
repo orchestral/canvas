@@ -18,15 +18,13 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
      */
     public function register(): void
     {
-        if (class_exists(PresetManager::class)) {
-            $this->callAfterResolving(PresetManager::class, function ($manager, $app) {
-                $manager->extend('canvas', function ($app) {
-                    return new GeneratorPreset($app);
-                });
-
-                $manager->setDefaultDriver('canvas');
+        $this->callAfterResolving(PresetManager::class, function ($manager, $app) {
+            $manager->extend('canvas', function ($app) {
+                return new GeneratorPreset($app);
             });
-        }
+
+            $manager->setDefaultDriver('canvas');
+        });
 
         $this->app->singleton('orchestra.canvas', function (Application $app) {
             $workingPath = \defined('CANVAS_WORKING_PATH') ? CANVAS_WORKING_PATH : $this->app->basePath();
@@ -58,7 +56,6 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\CodeMakeCommand::class,
-                Console\FactoryMakeCommand::class,
                 // Console\GeneratorMakeCommand::class,
                 // Console\TestMakeCommand::class,
                 // Console\ViewMakeCommand::class,
@@ -73,6 +70,8 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
      */
     public function provides()
     {
-        return ['orchestra.canvas'];
+        return [
+            'orchestra.canvas',
+        ];
     }
 }

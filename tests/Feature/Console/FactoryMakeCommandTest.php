@@ -15,7 +15,7 @@ class FactoryMakeCommandTest extends TestCase
     public function it_can_generate_factory_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Database\Factories;',
@@ -31,7 +31,7 @@ class FactoryMakeCommandTest extends TestCase
     public function it_can_generate_factory_with_model_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory', '--model' => 'Foo', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Database\Factories;',
@@ -51,7 +51,7 @@ class FactoryMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:factory', ['name' => 'FooFactory', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Acme\Database\Factory;',
@@ -71,7 +71,7 @@ class FactoryMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:factory', ['name' => 'FooFactory', '--model' => 'Foo', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Acme\Database\Factory;',

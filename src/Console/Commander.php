@@ -8,6 +8,7 @@ use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\CanvasServiceProvider;
+use Orchestra\Canvas\LaravelServiceProvider;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class Commander extends \Orchestra\Testbench\Console\Commander
@@ -42,6 +43,8 @@ class Commander extends \Orchestra\Testbench\Console\Commander
             $app = parent::laravel();
 
             $kernel = $app->make(ConsoleKernel::class);
+
+            $app->register(LaravelServiceProvider::class);
 
             Collection::make($kernel->all())
                 ->reject(function (SymfonyCommand $command, string $name) {

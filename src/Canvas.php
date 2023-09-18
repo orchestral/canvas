@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 

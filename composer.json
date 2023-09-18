@@ -49,6 +49,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "8.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Orchestra\\Canvas\\LaravelServiceProvider"
+            ]
         }
     },
     "scripts": {
