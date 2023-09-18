@@ -15,8 +15,8 @@ use Symfony\Component\Console\Attribute\AsCommand;
 class JobMakeCommand extends \Illuminate\Foundation\Console\JobMakeCommand
 {
     use CodeGenerator;
-    use UsesGeneratorOverrides;
     use TestGenerator;
+    use UsesGeneratorOverrides;
 
     /**
      * Create a new controller creator command instance.
