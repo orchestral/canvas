@@ -79,19 +79,9 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
      */
     protected function userProviderModel(): ?string
     {
-        return $this->generatorPreset()->userProviderModel(
-            $this->option('guard')
-        );
-    }
+        /** @var string|null $guard */
+        $guard = $this->option('guard');
 
-    /**
-     * Get the first view directory path from the application configuration.
-     *
-     * @param  string  $path
-     * @return string
-     */
-    protected function viewPath($path = '')
-    {
-        return $this->viewPathUsingCanvas($path);
+        return $this->generatorPreset()->userProviderModel($guard);
     }
 }
