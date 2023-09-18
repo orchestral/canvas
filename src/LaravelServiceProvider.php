@@ -11,6 +11,7 @@ use Illuminate\Foundation\Console\ConsoleMakeCommand;
 use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\ExceptionMakeCommand;
 use Illuminate\Foundation\Console\JobMakeCommand;
+use Illuminate\Foundation\Console\ListenerMakeCommand;
 use Illuminate\Foundation\Console\PolicyMakeCommand;
 use Illuminate\Foundation\Console\ProviderMakeCommand;
 use Illuminate\Foundation\Console\RequestMakeCommand;
@@ -58,6 +59,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerExceptionMakeCommand();
         $this->registerFactoryMakeCommand();
         $this->registerJobMakeCommand();
+        $this->registerListenerMakeCommand();
         $this->registerMiddlewareMakeCommand();
         $this->registerPolicyMakeCommand();
         $this->registerProviderMakeCommand();
@@ -75,6 +77,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ExceptionMakeCommand::class,
             Console\FactoryMakeCommand::class,
             Console\JobMakeCommand::class,
+            Console\ListenerMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
             Console\PolicyMakeCommand::class,
             Console\ProviderMakeCommand::class,
@@ -186,6 +189,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerListenerMakeCommand()
+    {
+        $this->app->singleton(ListenerMakeCommand::class, function ($app) {
+            return new Console\ListenerMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerMiddlewareMakeCommand()
     {
         $this->app->singleton(MiddlewareMakeCommand::class, function ($app) {
@@ -289,6 +304,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\FactoryMakeCommand::class,
             JobMakeCommand::class,
             Console\JobMakeCommand::class,
+            ListenerMakeCommand::class,
+            Console\ListenerMakeCommand::class,
             MiddlewareMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
             PolicyMakeCommand::class,
