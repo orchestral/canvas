@@ -2,7 +2,9 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-class RequestTest extends TestCase
+use Orchestra\Canvas\Tests\Feature\TestCase;
+
+class RequestMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Requests/FooRequest.php',
@@ -11,8 +13,8 @@ class RequestTest extends TestCase
     /** @test */
     public function it_can_generate_request_file()
     {
-        $this->artisan('make:request', ['name' => 'FooRequest'])
-            ->assertExitCode(0);
+        $this->artisan('make:request', ['name' => 'FooRequest', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Requests;',

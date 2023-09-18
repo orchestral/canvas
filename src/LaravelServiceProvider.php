@@ -8,6 +8,7 @@ use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\ChannelMakeCommand;
 use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\JobMakeCommand;
+use Illuminate\Foundation\Console\RequestMakeCommand;
 use Illuminate\Foundation\Console\ResourceMakeCommand;
 use Illuminate\Foundation\Console\RuleMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
@@ -62,6 +63,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerFactoryMakeCommand();
         $this->registerJobMakeCommand();
         $this->registerMiddlewareMakeCommand();
+        $this->registerRequestMakeCommand();
         $this->registerResourceMakeCommand();
         $this->registerRuleMakeCommand();
         $this->registerTestMakeCommand();
@@ -73,6 +75,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\FactoryMakeCommand::class,
             Console\JobMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
+            Console\RequestMakeCommand::class,
             Console\ResourceMakeCommand::class,
             Console\RuleMakeCommand::class,
             Console\TestMakeCommand::class,
@@ -156,6 +159,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerRequestMakeCommand()
+    {
+        $this->app->singleton(RequestMakeCommand::class, function ($app) {
+            return new Console\RequestMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerResourceMakeCommand()
     {
         $this->app->singleton(ResourceMakeCommand::class, function ($app) {
@@ -205,6 +220,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\JobMakeCommand::class,
             MiddlewareMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
+            RequestMakeCommand::class,
+            Console\RequestMakeCommand::class,
             ResourceMakeCommand::class,
             Console\ResourceMakeCommand::class,
             RuleMakeCommand::class,
