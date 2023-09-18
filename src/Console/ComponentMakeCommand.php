@@ -15,8 +15,8 @@ use Symfony\Component\Console\Attribute\AsCommand;
 class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeCommand
 {
     use CodeGenerator;
-    use UsesGeneratorOverrides;
     use TestGenerator;
+    use UsesGeneratorOverrides;
 
     /**
      * Create a new controller creator command instance.

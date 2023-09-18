@@ -24,6 +24,7 @@ use Illuminate\Foundation\Console\RequestMakeCommand;
 use Illuminate\Foundation\Console\ResourceMakeCommand;
 use Illuminate\Foundation\Console\RuleMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
+use Illuminate\Foundation\Console\ViewMakeCommand;
 use Illuminate\Routing\Console\ControllerMakeCommand;
 use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Support\ServiceProvider;

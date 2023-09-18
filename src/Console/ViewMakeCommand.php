@@ -15,7 +15,9 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;
-    use TestGenerator;
+    use TestGenerator {
+        handleTestCreationUsingCanvas as protected handleTestCreationUsingCanvasFromTrait;
+    }
 
     /**
      * Create a new controller creator command instance.
@@ -79,8 +81,11 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      */
     protected function getPath($name)
     {
+        /** @var string $extension */
+        $extension = transform($this->option('extension'), fn (string $extension) => trim($extension));
+
         return $this->viewPath(
-            $this->getNameInput().'.'.$this->option('extension'),
+            $this->getNameInput().'.'.$extension,
         );
     }
 
@@ -91,11 +96,9 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      */
     protected function getNameInput()
     {
-        $name = trim($this->argument('name'));
-
-        $name = str_replace(['\\', '.'], '/', $this->argument('name'));
-
-        return $name;
+        return transform($this->argument('name'), function (string $name) {
+            return str_replace(['\\', '.'], '/', trim($name));
+        });
     }
 
     /**
@@ -112,7 +115,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
         $preset = $this->generatorPreset();
 
         if (! $preset instanceof GeneratorPreset) {
-            return parent::handleTestCreationUsingCanvas($path);
+            return $this->handleTestCreationUsingCanvasFromTrait($path);
         }
 
         $namespaceTestCase = $testCase = $preset->canvas()->config(
@@ -159,10 +162,10 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
         $preset = $this->generatorPreset();
 
         $testPath = Str::of($this->testClassFullyQualifiedName())
-                ->replace('\\', '/')
-                ->replaceFirst('Tests/Feature', str_replace($preset->basePath(), '', $preset->testingPath()).'/Feature')
-                ->append('Test.php')
-                ->value();
+            ->replace('\\', '/')
+            ->replaceFirst('Tests/Feature', str_replace($preset->basePath(), '', $preset->testingPath()).'/Feature')
+            ->append('Test.php')
+            ->value();
 
         return $preset->basePath().$testPath;
     }
