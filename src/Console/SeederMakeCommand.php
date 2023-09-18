@@ -15,6 +15,7 @@ class SeederMakeCommand extends \Illuminate\Database\Console\Seeds\SeederMakeCom
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;
+
     /**
      * Create a new controller creator command instance.
      *
@@ -37,17 +38,6 @@ class SeederMakeCommand extends \Illuminate\Database\Console\Seeds\SeederMakeCom
     public function handle()
     {
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
-    }
-
-    /**
-     * Get the full namespace for a given class, without the class name.
-     *
-     * @param  string  $name
-     * @return string
-     */
-    protected function getNamespace($name)
-    {
-        return rtrim($this->generatorPreset()->seederNamespace(), '\\');
     }
 
     /**
@@ -76,6 +66,6 @@ class SeederMakeCommand extends \Illuminate\Database\Console\Seeds\SeederMakeCom
      */
     protected function rootNamespace()
     {
-        return $this->rootNamespaceUsingCanvas();
+        return $this->generatorPreset()->seederNamespace();
     }
 }

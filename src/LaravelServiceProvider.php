@@ -343,7 +343,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerSeederMakeCommand()
     {
         $this->app->singleton(SeederMakeCommand::class, function ($app) {
-            return new Console\SeederMakeCommand($app['files'], $app['composer']);
+            return new Console\SeederMakeCommand($app['files']);
         });
     }
 
