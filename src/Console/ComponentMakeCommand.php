@@ -46,9 +46,11 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
      */
     public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        $this->writeView(function () {
-            $this->components->info(sprintf('View for %s created successfully.', $this->type));
-        });
+        if ($this->option('view') || ! $this->option('inline')) {
+            $this->writeView(function () {
+                $this->components->info(sprintf('View for %s created successfully.', $this->type));
+            });
+        }
     }
 
     /**

@@ -24,7 +24,7 @@ class ComponentMakeCommandTest extends TestCase
             "return view('components.foo');",
         ], 'app/View/Components/Foo.php');
 
-        $this->assertFilenameNotExists('resources/views/components/foo.blade.php');
+        $this->assertFilenameExists('resources/views/components/foo.blade.php');
     }
 
     /** @test */
