@@ -1,8 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Console;
-
-use Orchestra\Canvas\Tests\Feature\TestCase;
+namespace Illuminate\Tests\Integration\Generators;
 
 class ScopeMakeCommandTest extends TestCase
 {
@@ -10,10 +8,9 @@ class ScopeMakeCommandTest extends TestCase
         'app/Models/Scopes/FooScope.php',
     ];
 
-    /** @test */
-    public function it_can_generate_scope_file()
+    public function testItCanGenerateScopeFile()
     {
-        $this->artisan('make:scope', ['name' => 'FooScope', '--preset' => 'canvas'])
+        $this->artisan('make:scope', ['name' => 'FooScope'])
             ->assertSuccessful();
 
         $this->assertFileContains([
