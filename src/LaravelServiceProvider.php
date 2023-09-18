@@ -24,7 +24,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         // 'EventGenerate' => EventGenerateCommand::class,
         // 'EventMake' => EventMakeCommand::class,
         // 'ExceptionMake' => ExceptionMakeCommand::class,
-        'FactoryMake' => FactoryMakeCommand::class,
         // 'JobMake' => JobMakeCommand::class,
         // 'ListenerMake' => ListenerMakeCommand::class,
         // 'MailMake' => MailMakeCommand::class,
@@ -40,11 +39,9 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         // 'QueueBatchesTable' => BatchesTableCommand::class,
         // 'RequestMake' => RequestMakeCommand::class,
         // 'ResourceMake' => ResourceMakeCommand::class,
-        // 'RuleMake' => RuleMakeCommand::class,
         // 'ScopeMake' => ScopeMakeCommand::class,
         // 'SeederMake' => SeederMakeCommand::class,
         // 'SessionTable' => SessionTableCommand::class,
-        'TestMake' => TestMakeCommand::class,
     ];
 
     /**
