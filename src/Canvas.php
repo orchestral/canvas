@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 
 class Canvas
 {
