@@ -3,20 +3,17 @@
 namespace Orchestra\Canvas\Console;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
-use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/PolicyMakeCommand.php
  */
-#[AsCommand(name: 'make:factory', description: 'Create a new model factory aa')]
-class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryMakeCommand
+#[AsCommand(name: 'make:policy', description: 'Create a new policy class')]
+class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
 {
     use CodeGenerator;
-    use ResolvesPresetStubs;
     use UsesGeneratorOverrides;
 
     /**
@@ -44,48 +41,14 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
     }
 
     /**
-     * Resolve the default fully-qualified path to the stub.
+     * Qualify the given model class base name.
      *
-     * @param  string  $stub
+     * @param  string  $model
      * @return string
      */
-    protected function resolveDefaultStubPath($stub)
+    protected function qualifyModel(string $model)
     {
-        return __DIR__.$stub;
-    }
-
-    /**
-     * Get the full namespace for a given class, without the class name.
-     *
-     * @param  string  $name
-     * @return string
-     */
-    protected function getNamespace($name)
-    {
-        return rtrim($this->generatorPreset()->factoryNamespace(), '\\');
-    }
-
-    /**
-     * Get the generator preset source path.
-     */
-    protected function getGeneratorSourcePath(): string
-    {
-        return $this->generatorPreset()->factoryPath();
-    }
-
-    /**
-     * Guess the model name from the Factory name or return a default model name.
-     *
-     * @param  string  $name
-     * @return string
-     */
-    protected function guessModelName($name)
-    {
-        if (str_ends_with($name, 'Factory')) {
-            $name = substr($name, 0, -7);
-        }
-
-        return $this->qualifyModelUsingCanvas($name);
+        return $this->qualifyModelUsingCanvas($model);
     }
 
     /**
@@ -116,6 +79,19 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
      */
     protected function userProviderModel(): ?string
     {
-        return $this->userProviderModelUsingCanvas();
+        return $this->generatorPreset()->userProviderModel(
+            $this->option('guard')
+        );
+    }
+
+    /**
+     * Get the first view directory path from the application configuration.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    protected function viewPath($path = '')
+    {
+        return $this->viewPathUsingCanvas($path);
     }
 }

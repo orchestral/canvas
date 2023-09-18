@@ -60,25 +60,4 @@ class ExceptionMakeCommand extends \Illuminate\Foundation\Console\ExceptionMakeC
     {
         return $this->rootNamespaceUsingCanvas();
     }
-
-    /**
-     * Get the model for the default guard's user provider.
-     *
-     * @return string|null
-     */
-    protected function userProviderModel(): ?string
-    {
-        return $this->userProviderModelUsingCanvas();
-    }
-
-    /**
-     * Get the first view directory path from the application configuration.
-     *
-     * @param  string  $path
-     * @return string
-     */
-    protected function viewPath($path = '')
-    {
-        return $this->viewPathUsingCanvas($path);
-    }
 }

@@ -74,16 +74,6 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
     }
 
     /**
-     * Get the model for the default guard's user provider.
-     *
-     * @return string|null
-     */
-    protected function userProviderModel(): ?string
-    {
-        return $this->userProviderModelUsingCanvas();
-    }
-
-    /**
      * Get the first view directory path from the application configuration.
      *
      * @param  string  $path

@@ -1,10 +1,11 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
+use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
-class PolicyTest extends TestCase
+class PolicyMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Policies/FooPolicy.php',
@@ -13,8 +14,8 @@ class PolicyTest extends TestCase
     /** @test */
     public function it_can_generate_policy_file()
     {
-        $this->artisan('make:policy', ['name' => 'FooPolicy'])
-            ->assertExitCode(0);
+        $this->artisan('make:policy', ['name' => 'FooPolicy', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Policies;',
@@ -26,8 +27,8 @@ class PolicyTest extends TestCase
     /** @test */
     public function it_can_generate_policy_with_model_options_file()
     {
-        $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post'])
-            ->assertExitCode(0);
+        $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Policies;',
@@ -48,11 +49,11 @@ class PolicyTest extends TestCase
     public function it_can_generate_policy_with_model_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model'], 'user-auth-provider' => 'App\Models\User'], $this->app->basePath()
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model'], 'user-auth-model' => 'App\Models\User'], $this->app->basePath()
         ));
 
-        $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post'])
-            ->assertExitCode(0);
+        $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Policies;',

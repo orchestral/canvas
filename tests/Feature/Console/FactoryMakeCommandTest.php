@@ -19,10 +19,10 @@ class FactoryMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace Database\Factories;',
-            'use App\Models\Model;',
+            'use App\Foo;',
             'use Illuminate\Database\Eloquent\Factories\Factory;',
             'class FooFactory extends Factory',
-            'protected $model = Model::class;',
+            'protected $model = Foo::class;',
             'public function definition()',
         ], 'database/factories/FooFactory.php');
     }
@@ -55,10 +55,10 @@ class FactoryMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace Acme\Database\Factory;',
-            'use Acme\Models\Model;',
+            'use Acme\Foo;',
             'use Illuminate\Database\Eloquent\Factories\Factory;',
             'class FooFactory extends Factory',
-            'protected $model = Model::class;',
+            'protected $model = Foo::class;',
             'public function definition()',
         ], 'database/factories/FooFactory.php');
     }
