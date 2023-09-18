@@ -3,9 +3,12 @@
 namespace {{ namespace }};
 
 use NamespacedDummyTestCase;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 
 class {{ class }} extends DummyTestCase
 {
+    use InteractsWithViews;
+
     /**
      * A basic view test example.
      */

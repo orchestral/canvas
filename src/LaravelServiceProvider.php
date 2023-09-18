@@ -75,6 +75,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerRuleMakeCommand();
         $this->registerSeederMakeCommand();
         $this->registerTestMakeCommand();
+        $this->registerViewMakeCommand();
 
         $this->commands([
             Console\CastMakeCommand::class,
@@ -100,6 +101,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\RuleMakeCommand::class,
             Console\SeederMakeCommand::class,
             Console\TestMakeCommand::class,
+            Console\ViewMakeCommand::class,
         ]);
     }
 
@@ -387,6 +389,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     }
 
     /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerViewMakeCommand()
+    {
+        $this->app->singleton(ViewMakeCommand::class, function ($app) {
+            return new Console\ViewMakeCommand($app['files']);
+        });
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array
@@ -440,6 +454,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\SeederMakeCommand::class,
             TestMakeCommand::class,
             Console\TestMakeCommand::class,
+            ViewMakeCommand::class,
+            Console\ViewMakeCommand::class,
         ];
     }
 }
