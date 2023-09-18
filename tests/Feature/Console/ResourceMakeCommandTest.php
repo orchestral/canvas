@@ -24,7 +24,6 @@ class ResourceMakeCommandTest extends TestCase
         ], 'app/Http/Resources/FooResource.php');
     }
 
-
     /** @test */
     public function it_can_generate_resource_collection_file()
     {
