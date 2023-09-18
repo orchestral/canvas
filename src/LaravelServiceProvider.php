@@ -24,7 +24,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      * @var array
      */
     protected $devCommands = [
-        // 'ConsoleMake' => ConsoleMakeCommand::class,
         // 'ControllerMake' => ControllerMakeCommand::class,
         // 'EventGenerate' => EventGenerateCommand::class,
         // 'EventMake' => EventMakeCommand::class,
@@ -56,6 +55,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerCastMakeCommand();
         $this->registerChannelMakeCommand();
         $this->registerComponentMakeCommand();
+        $this->registerConsoleMakeCommand();
         $this->registerEventMakeCommand();
         $this->registerFactoryMakeCommand();
         $this->registerJobMakeCommand();
@@ -69,6 +69,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\CastMakeCommand::class,
             Console\ChannelMakeCommand::class,
             Console\ComponentMakeCommand::class,
+            Console\ConsoleMakeCommand::class,
             Console\EventMakeCommand::class,
             Console\FactoryMakeCommand::class,
             Console\JobMakeCommand::class,
@@ -113,6 +114,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $this->app->singleton(ComponentMakeCommand::class, function ($app) {
             return new Console\ComponentMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerConsoleMakeCommand()
+    {
+        $this->app->singleton(ConsoleMakeCommand::class, function ($app) {
+            return new Console\ConsoleMakeCommand($app['files']);
         });
     }
 
@@ -226,6 +239,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ChannelMakeCommand::class,
             ComponentMakeCommand::class,
             Console\ComponentMakeCommand::class,
+            ConsoleMakeCommand::class,
+            Console\ConsoleMakeCommand::class,
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
             JobMakeCommand::class,
