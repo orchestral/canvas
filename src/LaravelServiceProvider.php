@@ -4,6 +4,7 @@ namespace Orchestra\Canvas;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
+use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
@@ -14,13 +15,11 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      * @var array
      */
     protected $devCommands = [
-        // 'CacheTable' => CacheTableCommand::class,
         // 'CastMake' => CastMakeCommand::class,
         // 'ChannelMake' => ChannelMakeCommand::class,
         // 'ComponentMake' => ComponentMakeCommand::class,
         // 'ConsoleMake' => ConsoleMakeCommand::class,
         // 'ControllerMake' => ControllerMakeCommand::class,
-        // 'Docs' => DocsCommand::class,
         // 'EventGenerate' => EventGenerateCommand::class,
         // 'EventMake' => EventMakeCommand::class,
         // 'ExceptionMake' => ExceptionMakeCommand::class,
@@ -44,10 +43,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         // 'ScopeMake' => ScopeMakeCommand::class,
         // 'SeederMake' => SeederMakeCommand::class,
         // 'SessionTable' => SessionTableCommand::class,
-        // 'Serve' => ServeCommand::class,
-        // 'StubPublish' => StubPublishCommand::class,
-        // 'TestMake' => TestMakeCommand::class,
-        // 'VendorPublish' => VendorPublishCommand::class,
+        'TestMake' => TestMakeCommand::class,
     ];
 
     /**
@@ -58,6 +54,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     public function register()
     {
         $this->registerFactoryMakeCommand();
+        $this->registerTestMakeCommand();
     }
 
     /**
@@ -77,6 +74,22 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     }
 
     /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerTestMakeCommand()
+    {
+        $this->app->singleton(TestMakeCommand::class, function ($app) {
+            return new Console\TestMakeCommand($app['files']);
+        });
+
+        $this->commands([
+            Console\TestMakeCommand::class,
+        ]);
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array
@@ -86,6 +99,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         return [
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
+            TestMakeCommand::class,
+            Console\TestMakeCommand::class,
         ];
     }
 }
