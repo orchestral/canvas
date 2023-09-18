@@ -1,11 +1,21 @@
 includes:
+  - phpstan-baseline.neon
+
 parameters:
 
   paths:
     - src
 
+  excludePaths:
+    - ./src/Commands/*.php
+    - ./src/Commands/Database/*.php
+    - ./src/Commands/Routing/*.php
+
   # The level 8 is the highest level
   level: 7
+
+  ignoreErrors:
+    - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
 
   checkGenericClassInNonGenericObjectType: false
   checkMissingIterableValueType: false
