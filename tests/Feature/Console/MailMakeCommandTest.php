@@ -1,8 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-class MailTest extends TestCase
+use Orchestra\Canvas\Tests\Feature\TestCase;
+
+class MailMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Mail/FooMail.php',
@@ -13,8 +15,8 @@ class MailTest extends TestCase
     /** @test */
     public function it_can_generate_mail_file()
     {
-        $this->artisan('make:mail', ['name' => 'FooMail'])
-            ->assertExitCode(0);
+        $this->artisan('make:mail', ['name' => 'FooMail', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Mail;',
@@ -29,8 +31,8 @@ class MailTest extends TestCase
     /** @test */
     public function it_can_generate_mail_with_markdown_options_file()
     {
-        $this->artisan('make:mail', ['name' => 'FooMail', '--markdown' => 'foo-mail'])
-            ->assertExitCode(0);
+        $this->artisan('make:mail', ['name' => 'FooMail', '--markdown' => 'foo-mail', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Mail;',
@@ -51,8 +53,8 @@ class MailTest extends TestCase
     /** @test */
     public function it_can_generate_mail_file_with_tests()
     {
-        $this->artisan('make:mail', ['name' => 'FooMail', '--test' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:mail', ['name' => 'FooMail', '--test' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFilenameExists('app/Mail/FooMail.php');
         $this->assertFilenameNotExists('resources/views/foo-mail.blade.php');

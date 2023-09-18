@@ -12,6 +12,7 @@ use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\ExceptionMakeCommand;
 use Illuminate\Foundation\Console\JobMakeCommand;
 use Illuminate\Foundation\Console\ListenerMakeCommand;
+use Illuminate\Foundation\Console\MailMakeCommand;
 use Illuminate\Foundation\Console\NotificationMakeCommand;
 use Illuminate\Foundation\Console\PolicyMakeCommand;
 use Illuminate\Foundation\Console\ProviderMakeCommand;
@@ -59,6 +60,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerFactoryMakeCommand();
         $this->registerJobMakeCommand();
         $this->registerListenerMakeCommand();
+        $this->registerMailMakeCommand();
         $this->registerMiddlewareMakeCommand();
         $this->registerNotificationMakeCommand();
         $this->registerPolicyMakeCommand();
@@ -78,6 +80,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\FactoryMakeCommand::class,
             Console\JobMakeCommand::class,
             Console\ListenerMakeCommand::class,
+            Console\MailMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
             Console\NotificationMakeCommand::class,
             Console\PolicyMakeCommand::class,
@@ -194,6 +197,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $this->app->singleton(ListenerMakeCommand::class, function ($app) {
             return new Console\ListenerMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerMailMakeCommand()
+    {
+        $this->app->singleton(MailMakeCommand::class, function ($app) {
+            return new Console\MailMakeCommand($app['files']);
         });
     }
 
@@ -319,6 +334,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\JobMakeCommand::class,
             ListenerMakeCommand::class,
             Console\ListenerMakeCommand::class,
+            MailMakeCommand::class,
+            Console\MailMakeCommand::class,
             MiddlewareMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
             NotificationMakeCommand::class,
