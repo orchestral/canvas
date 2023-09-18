@@ -1,6 +1,8 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
+
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class ChannelTest extends TestCase
 {
@@ -11,8 +13,8 @@ class ChannelTest extends TestCase
     /** @test */
     public function it_can_generate_broadcasting_channel_file()
     {
-        $this->artisan('make:channel', ['name' => 'FooChannel'])
-            ->assertExitCode(0);
+        $this->artisan('make:channel', ['name' => 'FooChannel', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Broadcasting;',

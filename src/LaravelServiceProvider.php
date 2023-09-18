@@ -8,6 +8,7 @@ use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\ResourceMakeCommand;
 use Illuminate\Foundation\Console\RuleMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
+use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
@@ -53,14 +54,20 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     public function register()
     {
         $this->registerCastMakeCommand();
+        $this->registerChannelMakeCommand();
         $this->registerFactoryMakeCommand();
+        $this->registerJobMakeCommand();
+        $this->registerMiddlewareMakeCommand();
         $this->registerResourceMakeCommand();
         $this->registerRuleMakeCommand();
         $this->registerTestMakeCommand();
 
         $this->commands([
             Console\CastMakeCommand::class,
+            Console\ChannelMakeCommand::class,
             Console\FactoryMakeCommand::class,
+            Console\JobMakeCommand::class,
+            Console\MiddlewareMakeCommand::class,
             Console\ResourceMakeCommand::class,
             Console\RuleMakeCommand::class,
             Console\TestMakeCommand::class,
@@ -84,10 +91,46 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerChannelMakeCommand()
+    {
+        $this->app->singleton(ChannelMakeCommand::class, function ($app) {
+            return new Console\ChannelMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerFactoryMakeCommand()
     {
         $this->app->singleton(FactoryMakeCommand::class, function ($app) {
             return new Console\FactoryMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerJobMakeCommand()
+    {
+        $this->app->singleton(JobMakeCommand::class, function ($app) {
+            return new Console\JobMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerMiddlewareMakeCommand()
+    {
+        $this->app->singleton(MiddlewareMakeCommand::class, function ($app) {
+            return new Console\MiddlewareMakeCommand($app['files']);
         });
     }
 
@@ -137,8 +180,14 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         return [
             CastMakeCommand::class,
             Console\CastMakeCommand::class,
+            ChannelMakeCommand::class,
+            Console\ChannelMakeCommand::class,
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
+            JobMakeCommand::class,
+            Console\JobMakeCommand::class,
+            MiddlewareMakeCommand::class,
+            Console\MiddlewareMakeCommand::class,
             ResourceMakeCommand::class,
             Console\ResourceMakeCommand::class,
             RuleMakeCommand::class,
