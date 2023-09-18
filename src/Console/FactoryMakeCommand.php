@@ -9,6 +9,9 @@ use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+/**
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
+ */
 #[AsCommand(name: 'make:factory', description: 'Create a new model factory aa')]
 class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryMakeCommand
 {

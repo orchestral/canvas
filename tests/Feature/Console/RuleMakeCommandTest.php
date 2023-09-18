@@ -1,8 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-class RuleTest extends TestCase
+use Orchestra\Canvas\Tests\Feature\TestCase;
+
+class RuleMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Rules/FooBar.php',
@@ -11,8 +13,8 @@ class RuleTest extends TestCase
     /** @test */
     public function it_can_generate_rule_file()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar'])
-            ->assertExitCode(0);
+        $this->artisan('make:rule', ['name' => 'FooBar', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Rules;',
@@ -24,8 +26,8 @@ class RuleTest extends TestCase
     /** @test */
     public function it_can_generate_invokable_rule_file()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar', '--invokable' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:rule', ['name' => 'FooBar', '--invokable' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Rules;',
@@ -38,8 +40,8 @@ class RuleTest extends TestCase
     /** @test */
     public function it_can_generate_invokable_implicit_rule_file()
     {
-        $this->artisan('make:rule', ['name' => 'FooBar', '--invokable' => true, '--implicit' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:rule', ['name' => 'FooBar', '--invokable' => true, '--implicit' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Rules;',
