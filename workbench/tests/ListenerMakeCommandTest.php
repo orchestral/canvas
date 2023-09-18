@@ -11,13 +11,13 @@ class ListenerMakeCommandTest extends TestCase
 
     public function testItCanGenerateListenerFile()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener'])
+        $this->artisan('make:listener', ['name' => 'FooListener', '--event' => ''])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Listeners;',
             'class FooListener',
-            'public function handle(object $event)',
+            'public function handle($event)',
         ], 'app/Listeners/FooListener.php');
 
         $this->assertFileNotContains([
@@ -53,7 +53,7 @@ class ListenerMakeCommandTest extends TestCase
 
     public function testItCanGenerateQueuedListenerFile()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener', '--queued' => true])
+        $this->artisan('make:listener', ['name' => 'FooListener', '--queued' => true, '--event' => ''])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -61,7 +61,7 @@ class ListenerMakeCommandTest extends TestCase
             'use Illuminate\Contracts\Queue\ShouldQueue;',
             'use Illuminate\Queue\InteractsWithQueue;',
             'class FooListener implements ShouldQueue',
-            'public function handle(object $event)',
+            'public function handle($event)',
         ], 'app/Listeners/FooListener.php');
     }
 
@@ -97,7 +97,7 @@ class ListenerMakeCommandTest extends TestCase
 
     public function testItCanGenerateQueuedListenerFileWithTest()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener', '--test' => true])
+        $this->artisan('make:listener', ['name' => 'FooListener', '--event' => '', '--test' => true])
             ->assertExitCode(0);
 
         $this->assertFilenameExists('app/Listeners/FooListener.php');

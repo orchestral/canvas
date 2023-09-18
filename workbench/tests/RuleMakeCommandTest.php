@@ -15,8 +15,8 @@ class RuleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class Foo implements ValidationRule',
+            'use Illuminate\Contracts\Validation\Rule;',
+            'class Foo implements Rule',
         ], 'app/Rules/Foo.php');
     }
 
@@ -27,9 +27,8 @@ class RuleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class Foo implements ValidationRule',
-            'public function validate(string $attribute, mixed $value, Closure $fail): void',
+            'use Illuminate\Contracts\Validation\Rule;',
+            'class Foo implements Rule',
         ], 'app/Rules/Foo.php');
     }
 
@@ -40,10 +39,9 @@ class RuleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class Foo implements ValidationRule',
-            'public $implicit = true;',
-            'public function validate(string $attribute, mixed $value, Closure $fail): void',
+            'use Illuminate\Contracts\Validation\ImplicitRule;',
+            'class Foo implements ImplicitRule',
+            'public function passes($attribute, $value)',
         ], 'app/Rules/Foo.php');
     }
 }

@@ -60,32 +60,4 @@ class MigrateMakeCommandTest extends TestCase
             'Schema::dropIfExists(\'foobar\');',
         ], 'foos_table.php');
     }
-
-    public function testItCanGenerateMigrationFileWithCustomMigrationPath()
-    {
-        $manager = $this->app->make(PresetManager::class);
-
-        $manager->extend('acme', fn () => $preset = new class($this->app) extends Laravel
-        {
-            public function name()
-            {
-                return 'acme';
-            }
-
-            public function migrationPath()
-            {
-                return implode('/', [$this->basePath(), 'database', 'acme-migrations']);
-            }
-        });
-
-        $this->artisan('make:migration', ['name' => 'AcmeFoosTable', '--create' => 'foobar', '--preset' => 'acme'])
-            ->assertExitCode(0);
-
-        $this->assertMigrationFileContains([
-            'use Illuminate\Database\Migrations\Migration;',
-            'return new class extends Migration',
-            'Schema::create(\'foobar\', function (Blueprint $table) {',
-            'Schema::dropIfExists(\'foobar\');',
-        ], 'acme_foos_table.php', directory: 'database/acme-migrations');
-    }
 }

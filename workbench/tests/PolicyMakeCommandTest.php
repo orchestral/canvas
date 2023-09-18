@@ -42,34 +42,4 @@ class PolicyMakeCommandTest extends TestCase
             'public function forceDelete(User $user, Post $post)',
         ], 'app/Policies/FooPolicy.php');
     }
-
-    public function testItCanGeneratePolicyFileWithModelOptionWithCustomNamespace()
-    {
-        $manager = $this->app->make(PresetManager::class);
-
-        $manager->extend('acme', fn () => new class($this->app) extends Laravel
-        {
-            public function modelNamespace()
-            {
-                return 'Acme\Model\\';
-            }
-        });
-
-        $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post', '--preset' => 'acme'])
-            ->assertExitCode(0);
-
-        $this->assertFileContains([
-            'namespace App\Policies;',
-            'use Acme\Model\Post;',
-            'use Illuminate\Foundation\Auth\User;',
-            'class FooPolicy',
-            'public function viewAny(User $user)',
-            'public function view(User $user, Post $post)',
-            'public function create(User $user)',
-            'public function update(User $user, Post $post)',
-            'public function delete(User $user, Post $post)',
-            'public function restore(User $user, Post $post)',
-            'public function forceDelete(User $user, Post $post)',
-        ], 'app/Policies/FooPolicy.php');
-    }
 }

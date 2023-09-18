@@ -98,35 +98,6 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    public function testItCanGenerateControllerFileWithModelOptionWithCustomNamespace()
-    {
-        $manager = $this->app->make(PresetManager::class);
-
-        $manager->extend('acme', fn () => new class($this->app) extends Laravel
-        {
-            public function modelNamespace()
-            {
-                return 'Acme\Model\\';
-            }
-        });
-
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--preset' => 'acme'])
-            ->expectsQuestion('A Acme\Model\Foo model does not exist. Do you want to generate it?', false)
-            ->assertExitCode(0);
-
-        $this->assertFileContains([
-            'namespace App\Http\Controllers;',
-            'use Acme\Model\Foo;',
-            'public function index()',
-            'public function create()',
-            'public function store(Request $request)',
-            'public function show(Foo $foo)',
-            'public function edit(Foo $foo)',
-            'public function update(Request $request, Foo $foo)',
-            'public function destroy(Foo $foo)',
-        ], 'app/Http/Controllers/FooController.php');
-    }
-
     public function testItCanGenerateControllerFileWithApiOption()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--api' => true])
@@ -138,8 +109,8 @@ class ControllerMakeCommandTest extends TestCase
             'class FooController extends Controller',
             'public function index()',
             'public function store(Request $request)',
-            'public function update(Request $request, string $id)',
-            'public function destroy(string $id)',
+            'public function update(Request $request, $id)',
+            'public function destroy($id)',
         ], 'app/Http/Controllers/FooController.php');
 
         $this->assertFileNotContains([

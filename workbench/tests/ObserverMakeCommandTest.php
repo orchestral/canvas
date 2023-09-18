@@ -38,31 +38,4 @@ class ObserverMakeCommandTest extends TestCase
             'public function forceDeleted(Foo $foo)',
         ], 'app/Observers/FooObserver.php');
     }
-
-    public function testItCanGenerateObserverFileWithCustomNamespacedModel()
-    {
-        $manager = $this->app->make(PresetManager::class);
-
-        $manager->extend('acme', fn () => new class($this->app) extends Laravel
-        {
-            public function modelNamespace()
-            {
-                return 'Acme\Model\\';
-            }
-        });
-
-        $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo', '--preset' => 'acme'])
-            ->assertExitCode(0);
-
-        $this->assertFileContains([
-            'namespace App\Observers;',
-            'use Acme\Model\Foo;',
-            'class FooObserver',
-            'public function created(Foo $foo)',
-            'public function updated(Foo $foo)',
-            'public function deleted(Foo $foo)',
-            'public function restored(Foo $foo)',
-            'public function forceDeleted(Foo $foo)',
-        ], 'app/Observers/FooObserver.php');
-    }
 }

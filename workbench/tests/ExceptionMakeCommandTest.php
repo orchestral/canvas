@@ -51,7 +51,7 @@ class ExceptionMakeCommandTest extends TestCase
             'namespace App\Exceptions;',
             'use Exception;',
             'class FooException extends Exception',
-            'public function render(Request $request): Response',
+            'public function render($request)',
         ], 'app/Exceptions/FooException.php');
 
         $this->assertFileNotContains([
@@ -68,7 +68,7 @@ class ExceptionMakeCommandTest extends TestCase
             'namespace App\Exceptions;',
             'use Exception;',
             'class FooException extends Exception',
-            'public function render(Request $request): Response',
+            'public function render($request)',
             'public function report()',
         ], 'app/Exceptions/FooException.php');
     }

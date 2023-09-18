@@ -17,8 +17,8 @@ class CastMakeCommandTest extends TestCase
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsAttributes;',
             'class Foo implements CastsAttributes',
-            'public function get(Model $model, string $key, mixed $value, array $attributes): mixed',
-            'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
+            'public function get($model, string $key, $value, array $attributes)',
+            'public function set($model, string $key, $value, array $attributes)',
         ], 'app/Casts/Foo.php');
     }
 
@@ -31,7 +31,7 @@ class CastMakeCommandTest extends TestCase
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;',
             'class Foo implements CastsInboundAttributes',
-            'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
+            'public function set($model, string $key, $value, array $attributes)',
         ], 'app/Casts/Foo.php');
     }
 }
