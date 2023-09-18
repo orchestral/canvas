@@ -129,4 +129,14 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     {
         return $this->rootNamespaceUsingCanvas();
     }
+
+    /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleModels()
+    {
+        return $this->possibleModelsUsingCanvas();
+    }
 }

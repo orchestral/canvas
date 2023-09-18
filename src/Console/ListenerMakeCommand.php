@@ -62,4 +62,14 @@ class ListenerMakeCommand extends \Illuminate\Foundation\Console\ListenerMakeCom
     {
         return $this->rootNamespaceUsingCanvas();
     }
+
+    /**
+     * Get a list of possible event names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleEvents()
+    {
+        return $this->possibleEventsUsingCanvas();
+    }
 }
