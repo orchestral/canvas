@@ -9,3 +9,8 @@ parameters:
 			message: "#^Unable to resolve the template type TMakeValue in call to method static method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:make\\(\\)$#"
 			count: 1
 			path: src/Console/Commander.php
+
+		-
+			message: "#^Parameter \\#1 \\$model of method Illuminate\\\\Routing\\\\Console\\\\ControllerMakeCommand\\:\\:parseModel\\(\\) expects string, array\\|bool\\|string\\|null given\\.$#"
+			count: 2
+			path: src/Console/ControllerMakeCommand.php

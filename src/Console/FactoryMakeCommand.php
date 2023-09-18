@@ -113,7 +113,7 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
      *
      * @return string|null
      */
-    protected function userProviderModel(): ?string
+    protected function userProviderModel()
     {
         return $this->userProviderModelUsingCanvas();
     }

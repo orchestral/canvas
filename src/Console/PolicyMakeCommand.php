@@ -77,7 +77,7 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
      *
      * @return string|null
      */
-    protected function userProviderModel(): ?string
+    protected function userProviderModel()
     {
         /** @var string|null $guard */
         $guard = $this->option('guard');

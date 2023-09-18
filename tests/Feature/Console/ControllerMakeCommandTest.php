@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Routing;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
+use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
-class ControllerTest extends TestCase
+class ControllerMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Controllers/FooController.php',
@@ -15,8 +15,8 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController'])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -34,8 +34,8 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_file_with_specific_type()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--type' => 'invokable'])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--type' => 'invokable', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -48,8 +48,8 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_invokable_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--invokable' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--invokable' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -62,8 +62,9 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_model_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+            ->expectsQuestion('A App\Models\Foo model does not exist. Do you want to generate it?', false)
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -81,12 +82,13 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_model_with_parent_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+            ->expectsQuestion('A App\Models\Foo model does not exist. Do you want to generate it?', false)
+            ->expectsQuestion('A App\Models\Bar model does not exist. Do you want to generate it?', false)
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Http\Controllers\Controller;',
             'use App\Models\Bar;',
             'use App\Models\Foo;',
             'public function index(Foo $foo)',
@@ -106,12 +108,12 @@ class ControllerTest extends TestCase
             ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
         ));
 
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+            ->expectsQuestion('A App\Model\Foo model does not exist. Do you want to generate it?', false)
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use App\Http\Controllers\Controller;',
             'use App\Model\Foo;',
             'public function index()',
             'public function create()',
@@ -130,8 +132,10 @@ class ControllerTest extends TestCase
             ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
         ));
 
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+            ->expectsQuestion('A App\Model\Foo model does not exist. Do you want to generate it?', false)
+            ->expectsQuestion('A App\Model\Bar model does not exist. Do you want to generate it?', false)
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -150,8 +154,8 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_api_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--api' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--api' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -172,8 +176,8 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_file_can_handle_invokable_options_ignores_api()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--api' => true, '--invokable' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--api' => true, '--invokable' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -193,8 +197,9 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_model_and_api_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--api' => true, '--no-interaction' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--api' => true, '--no-interaction' => true, '--preset' => 'canvas'])
+            ->expectsQuestion('A App\Models\Foo model does not exist. Do you want to generate it?', false)
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
@@ -215,8 +220,8 @@ class ControllerTest extends TestCase
     /** @test */
     public function it_can_generate_controller_file_with_tests()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--test' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:controller', ['name' => 'FooController', '--test' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFilenameExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameExists('tests/Feature/Http/Controllers/FooControllerTest.php');
