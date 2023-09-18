@@ -1,8 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-class ResourceTest extends TestCase
+use Orchestra\Canvas\Tests\Feature\TestCase;
+
+class ResourceMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Resources/FooResource.php',
@@ -12,8 +14,8 @@ class ResourceTest extends TestCase
     /** @test */
     public function it_can_generate_resource_file()
     {
-        $this->artisan('make:resource', ['name' => 'FooResource'])
-            ->assertExitCode(0);
+        $this->artisan('make:resource', ['name' => 'FooResource', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Resources;',
@@ -25,8 +27,8 @@ class ResourceTest extends TestCase
     /** @test */
     public function it_can_generate_resource_collection_file()
     {
-        $this->artisan('make:resource', ['name' => 'FooResourceCollection', '--collection' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:resource', ['name' => 'FooResourceCollection', '--collection' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Http\Resources;',

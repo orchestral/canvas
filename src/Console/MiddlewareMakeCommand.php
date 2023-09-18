@@ -1,17 +1,16 @@
 <?php
 
-namespace Orchestra\Canvas\Console;
+namespace Orchestra\Canvas\Commands\Routing;
 
-use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
  */
-#[AsCommand(name: 'make:rule', description: 'Create a new validation rule')]
-class RuleMakeCommand extends \Illuminate\Foundation\Console\RuleMakeCommand
+#[AsCommand(name: 'make:middleware', description: 'Create a new middleware class')]
+class MiddlewareMakeCommand extends \Illuminate\Routing\Console\MiddlewareMakeCommand
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

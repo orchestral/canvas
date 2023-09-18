@@ -5,6 +5,7 @@ namespace Orchestra\Canvas;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 use Illuminate\Foundation\Console\CastMakeCommand;
+use Illuminate\Foundation\Console\ResourceMakeCommand;
 use Illuminate\Foundation\Console\RuleMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Support\ServiceProvider;
@@ -39,7 +40,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         // 'QueueTable' => TableCommand::class,
         // 'QueueBatchesTable' => BatchesTableCommand::class,
         // 'RequestMake' => RequestMakeCommand::class,
-        // 'ResourceMake' => ResourceMakeCommand::class,
         // 'ScopeMake' => ScopeMakeCommand::class,
         // 'SeederMake' => SeederMakeCommand::class,
         // 'SessionTable' => SessionTableCommand::class,
@@ -54,8 +54,17 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $this->registerCastMakeCommand();
         $this->registerFactoryMakeCommand();
+        $this->registerResourceMakeCommand();
         $this->registerRuleMakeCommand();
         $this->registerTestMakeCommand();
+
+        $this->commands([
+            Console\CastMakeCommand::class,
+            Console\FactoryMakeCommand::class,
+            Console\ResourceMakeCommand::class,
+            Console\RuleMakeCommand::class,
+            Console\TestMakeCommand::class,
+        ]);
     }
 
     /**
@@ -80,10 +89,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->app->singleton(FactoryMakeCommand::class, function ($app) {
             return new Console\FactoryMakeCommand($app['files']);
         });
+    }
 
-        $this->commands([
-            Console\FactoryMakeCommand::class,
-        ]);
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerResourceMakeCommand()
+    {
+        $this->app->singleton(ResourceMakeCommand::class, function ($app) {
+            return new Console\ResourceMakeCommand($app['files']);
+        });
     }
 
     /**
@@ -96,10 +113,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->app->singleton(RuleMakeCommand::class, function ($app) {
             return new Console\RuleMakeCommand($app['files']);
         });
-
-        $this->commands([
-            Console\RuleMakeCommand::class,
-        ]);
     }
 
     /**
@@ -112,10 +125,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->app->singleton(TestMakeCommand::class, function ($app) {
             return new Console\TestMakeCommand($app['files']);
         });
-
-        $this->commands([
-            Console\TestMakeCommand::class,
-        ]);
     }
 
     /**
@@ -128,13 +137,12 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         return [
             CastMakeCommand::class,
             Console\CastMakeCommand::class,
-
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
-
+            ResourceMakeCommand::class,
+            Console\ResourceMakeCommand::class,
             RuleMakeCommand::class,
             Console\RuleMakeCommand::class,
-
             TestMakeCommand::class,
             Console\TestMakeCommand::class,
         ];

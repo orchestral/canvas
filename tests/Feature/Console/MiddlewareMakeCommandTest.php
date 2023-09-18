@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Routing;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
-class MiddlewareTest extends TestCase
+class MiddlewareMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Middleware/Foo.php',
