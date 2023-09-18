@@ -17,8 +17,6 @@ use function Orchestra\Testbench\package_path;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    use Core\CommandsProvider;
-
     /**
      * Register services.
      *
