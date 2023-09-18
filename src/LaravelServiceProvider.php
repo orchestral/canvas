@@ -9,6 +9,7 @@ use Illuminate\Foundation\Console\ChannelMakeCommand;
 use Illuminate\Foundation\Console\ComponentMakeCommand;
 use Illuminate\Foundation\Console\ConsoleMakeCommand;
 use Illuminate\Foundation\Console\EventMakeCommand;
+use Illuminate\Foundation\Console\ExceptionMakeCommand;
 use Illuminate\Foundation\Console\JobMakeCommand;
 use Illuminate\Foundation\Console\RequestMakeCommand;
 use Illuminate\Foundation\Console\ResourceMakeCommand;
@@ -26,9 +27,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     protected $devCommands = [
         // 'ControllerMake' => ControllerMakeCommand::class,
-        // 'EventGenerate' => EventGenerateCommand::class,
-        // 'EventMake' => EventMakeCommand::class,
-        // 'ExceptionMake' => ExceptionMakeCommand::class,
         // 'ListenerMake' => ListenerMakeCommand::class,
         // 'MailMake' => MailMakeCommand::class,
         // 'MiddlewareMake' => MiddlewareMakeCommand::class,
@@ -58,6 +56,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerComponentMakeCommand();
         $this->registerConsoleMakeCommand();
         $this->registerEventMakeCommand();
+        $this->registerExceptionMakeCommand();
         $this->registerFactoryMakeCommand();
         $this->registerJobMakeCommand();
         $this->registerMiddlewareMakeCommand();
@@ -72,6 +71,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ComponentMakeCommand::class,
             Console\ConsoleMakeCommand::class,
             Console\EventMakeCommand::class,
+            Console\ExceptionMakeCommand::class,
             Console\FactoryMakeCommand::class,
             Console\JobMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
@@ -141,6 +141,19 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             return new Console\EventMakeCommand($app['files']);
         });
     }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerExceptionMakeCommand()
+    {
+        $this->app->singleton(ExceptionMakeCommand::class, function ($app) {
+            return new Console\ExceptionMakeCommand($app['files']);
+        });
+    }
+
 
     /**
      * Register the command.
@@ -242,6 +255,10 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ComponentMakeCommand::class,
             ConsoleMakeCommand::class,
             Console\ConsoleMakeCommand::class,
+            EventMakeCommand::class,
+            Console\EventMakeCommand::class,
+            ExceptionMakeCommand::class,
+            Console\ExceptionMakeCommand::class,
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
             JobMakeCommand::class,

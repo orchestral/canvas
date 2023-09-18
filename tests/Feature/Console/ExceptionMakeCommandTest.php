@@ -1,8 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-class ExceptionTest extends TestCase
+use Orchestra\Canvas\Tests\Feature\TestCase;
+
+class ExceptionMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Exceptions/FooException.php',
@@ -11,8 +13,8 @@ class ExceptionTest extends TestCase
     /** @test */
     public function it_can_generate_exception_file()
     {
-        $this->artisan('make:exception', ['name' => 'FooException'])
-            ->assertExitCode(0);
+        $this->artisan('make:exception', ['name' => 'FooException', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Exceptions;',
@@ -29,8 +31,8 @@ class ExceptionTest extends TestCase
     /** @test */
     public function it_can_generate_exception_file_with_only_report_options()
     {
-        $this->artisan('make:exception', ['name' => 'FooException', '--report' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:exception', ['name' => 'FooException', '--report' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Exceptions;',
@@ -47,8 +49,8 @@ class ExceptionTest extends TestCase
     /** @test */
     public function it_can_generate_exception_file_with_only_render_options()
     {
-        $this->artisan('make:exception', ['name' => 'FooException', '--render' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:exception', ['name' => 'FooException', '--render' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Exceptions;',
@@ -65,8 +67,8 @@ class ExceptionTest extends TestCase
     /** @test */
     public function it_can_generate_exception_file_with_report_and_render_options()
     {
-        $this->artisan('make:exception', ['name' => 'FooException', '--report' => true, '--render' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:exception', ['name' => 'FooException', '--report' => true, '--render' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Exceptions;',
