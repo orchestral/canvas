@@ -113,7 +113,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         });
     }
 
-
     /**
      * Register the command.
      *
