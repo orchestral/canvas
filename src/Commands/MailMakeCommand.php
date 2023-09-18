@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Commands;
+namespace Orchestra\Canvas\Console;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputOption;
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/MailMakeCommand.php
  */
 #[AsCommand(name: 'make:mail', description: 'Create a new email class')]
-class Mail extends Generator
+class MailMakeCommand extends Generator
 {
     use CreatesMatchingTest;
 

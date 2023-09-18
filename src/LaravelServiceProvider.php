@@ -12,6 +12,7 @@ use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\ExceptionMakeCommand;
 use Illuminate\Foundation\Console\JobMakeCommand;
 use Illuminate\Foundation\Console\ListenerMakeCommand;
+use Illuminate\Foundation\Console\NotificationMakeCommand;
 use Illuminate\Foundation\Console\PolicyMakeCommand;
 use Illuminate\Foundation\Console\ProviderMakeCommand;
 use Illuminate\Foundation\Console\RequestMakeCommand;
@@ -30,10 +31,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     protected $devCommands = [
         // 'ControllerMake' => ControllerMakeCommand::class,
-        // 'ListenerMake' => ListenerMakeCommand::class,
         // 'MailMake' => MailMakeCommand::class,
         // 'ModelMake' => ModelMakeCommand::class,
-        // 'NotificationMake' => NotificationMakeCommand::class,
         // 'NotificationTable' => NotificationTableCommand::class,
         // 'ObserverMake' => ObserverMakeCommand::class,
         // 'QueueFailedTable' => FailedTableCommand::class,
@@ -61,6 +60,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerJobMakeCommand();
         $this->registerListenerMakeCommand();
         $this->registerMiddlewareMakeCommand();
+        $this->registerNotificationMakeCommand();
         $this->registerPolicyMakeCommand();
         $this->registerProviderMakeCommand();
         $this->registerRequestMakeCommand();
@@ -79,6 +79,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\JobMakeCommand::class,
             Console\ListenerMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
+            Console\NotificationMakeCommand::class,
             Console\PolicyMakeCommand::class,
             Console\ProviderMakeCommand::class,
             Console\RequestMakeCommand::class,
@@ -213,6 +214,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerNotificationMakeCommand()
+    {
+        $this->app->singleton(NotificationMakeCommand::class, function ($app) {
+            return new Console\NotificationMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerPolicyMakeCommand()
     {
         $this->app->singleton(PolicyMakeCommand::class, function ($app) {
@@ -308,6 +321,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ListenerMakeCommand::class,
             MiddlewareMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
+            NotificationMakeCommand::class,
+            Console\NotificationMakeCommand::class,
             PolicyMakeCommand::class,
             Console\PolicyMakeCommand::class,
             ProviderMakeCommand::class,
