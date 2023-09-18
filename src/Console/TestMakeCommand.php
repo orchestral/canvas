@@ -5,7 +5,6 @@ namespace Orchestra\Canvas\Console;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
-use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Orchestra\Canvas\GeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
