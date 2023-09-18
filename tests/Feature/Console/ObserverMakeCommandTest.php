@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-use Orchestra\Canvas\Core\Presets\Laravel;
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
+use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
-class ObserverTest extends TestCase
+class ObserverMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Observers/FooObserver.php',
@@ -14,8 +14,8 @@ class ObserverTest extends TestCase
     /** @test */
     public function it_can_generate_observer_file()
     {
-        $this->artisan('make:observer', ['name' => 'FooObserver'])
-            ->assertExitCode(0);
+        $this->artisan('make:observer', ['name' => 'FooObserver', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Observers;',
@@ -26,8 +26,8 @@ class ObserverTest extends TestCase
     /** @test */
     public function it_can_generate_observer_with_model_file()
     {
-        $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo'])
-            ->assertExitCode(0);
+        $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Observers;',
@@ -48,8 +48,8 @@ class ObserverTest extends TestCase
             ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
         ));
 
-        $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo'])
-            ->assertExitCode(0);
+        $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Observers;',

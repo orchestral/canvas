@@ -82,6 +82,6 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
         /** @var string|null $guard */
         $guard = $this->option('guard');
 
-        return $this->generatorPreset()->userProviderModel($guard);
+        return $this->userProviderModelUsingCanvas($guard);
     }
 }

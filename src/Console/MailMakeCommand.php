@@ -2,15 +2,11 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\TestGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
-use Orchestra\Canvas\Core\GeneratesCodeWithMarkdown;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/MailMakeCommand.php
@@ -19,8 +15,8 @@ use Symfony\Component\Console\Input\InputOption;
 class MailMakeCommand extends \Illuminate\Foundation\Console\MailMakeCommand
 {
     use CodeGenerator;
-    use UsesGeneratorOverrides;
     use TestGenerator;
+    use UsesGeneratorOverrides;
 
     /**
      * Create a new controller creator command instance.

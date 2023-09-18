@@ -4,18 +4,16 @@ namespace Orchestra\Canvas\Console;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
-use Orchestra\Canvas\Core\Concerns\TestGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/NotificationMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
-#[AsCommand(name: 'make:notification', description: 'Create a new notification class')]
-class NotificationMakeCommand extends \Illuminate\Foundation\Console\NotificationMakeCommand
+#[AsCommand(name: 'make:observer', description: 'Create a new observer class')]
+class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCommand
 {
     use CodeGenerator;
-    use TestGenerator;
     use UsesGeneratorOverrides;
 
     /**
@@ -43,13 +41,14 @@ class NotificationMakeCommand extends \Illuminate\Foundation\Console\Notificatio
     }
 
     /**
-     * Run after code successfully generated.
+     * Qualify the given model class base name.
+     *
+     * @param  string  $model
+     * @return string
      */
-    public function afterCodeHasBeenGenerated(string $className, string $path): void
+    protected function qualifyModel(string $model)
     {
-        if ($this->option('markdown')) {
-            $this->writeMarkdownTemplate();
-        }
+        return $this->qualifyModelUsingCanvas($model);
     }
 
     /**
