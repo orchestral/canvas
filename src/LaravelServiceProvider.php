@@ -5,6 +5,7 @@ namespace Orchestra\Canvas;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
+use Illuminate\Database\Console\Seeds\SeederMakeCommand;
 use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\ChannelMakeCommand;
 use Illuminate\Foundation\Console\ComponentMakeCommand;
@@ -71,6 +72,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerRequestMakeCommand();
         $this->registerResourceMakeCommand();
         $this->registerRuleMakeCommand();
+        $this->registerSeederMakeCommand();
         $this->registerTestMakeCommand();
 
         $this->commands([
@@ -93,6 +95,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\RequestMakeCommand::class,
             Console\ResourceMakeCommand::class,
             Console\RuleMakeCommand::class,
+            Console\SeederMakeCommand::class,
             Console\TestMakeCommand::class,
         ]);
     }
@@ -337,6 +340,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerSeederMakeCommand()
+    {
+        $this->app->singleton(SeederMakeCommand::class, function ($app) {
+            return new Console\SeederMakeCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerTestMakeCommand()
     {
         $this->app->singleton(TestMakeCommand::class, function ($app) {
@@ -390,6 +405,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ResourceMakeCommand::class,
             RuleMakeCommand::class,
             Console\RuleMakeCommand::class,
+            SeederMakeCommand::class,
+            Console\SeederMakeCommand::class,
             TestMakeCommand::class,
             Console\TestMakeCommand::class,
         ];
