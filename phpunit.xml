@@ -21,7 +21,6 @@
         <testsuite name="Canvas Test Suite">
             <directory suffix="Test.php">tests/Feature/</directory>
             <directory suffix="Test.php">tests/Unit/</directory>
-            <directory suffix="Test.php">workbench/tests/</directory>
         </testsuite>
     </testsuites>
     <php>

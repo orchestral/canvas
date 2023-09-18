@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
@@ -19,7 +19,7 @@ class CodeMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:class', ['name' => 'Value/Foo'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Value;',
