@@ -23,7 +23,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Orchestra\\Canvas\\Tests\\": "tests/"
+            "Orchestra\\Canvas\\Tests\\": "tests/",
+            "Illuminate\\Tests\\Integration\\Generators\\": "workbench/tests/"
         }
     },
     "require": {
