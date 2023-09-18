@@ -2,133 +2,444 @@
 
 namespace Orchestra\Canvas;
 
-use Illuminate\Console\Application as Artisan;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Env;
+use Illuminate\Database\Console\Factories\FactoryMakeCommand;
+use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
+use Illuminate\Database\Console\Seeds\SeederMakeCommand;
+use Illuminate\Foundation\Console\CastMakeCommand;
+use Illuminate\Foundation\Console\ChannelMakeCommand;
+use Illuminate\Foundation\Console\ComponentMakeCommand;
+use Illuminate\Foundation\Console\ConsoleMakeCommand;
+use Illuminate\Foundation\Console\EventMakeCommand;
+use Illuminate\Foundation\Console\ExceptionMakeCommand;
+use Illuminate\Foundation\Console\JobMakeCommand;
+use Illuminate\Foundation\Console\ListenerMakeCommand;
+use Illuminate\Foundation\Console\MailMakeCommand;
+use Illuminate\Foundation\Console\ModelMakeCommand;
+use Illuminate\Foundation\Console\NotificationMakeCommand;
+use Illuminate\Foundation\Console\ObserverMakeCommand;
+use Illuminate\Foundation\Console\PolicyMakeCommand;
+use Illuminate\Foundation\Console\ProviderMakeCommand;
+use Illuminate\Foundation\Console\RequestMakeCommand;
+use Illuminate\Foundation\Console\ResourceMakeCommand;
+use Illuminate\Foundation\Console\RuleMakeCommand;
+use Illuminate\Foundation\Console\TestMakeCommand;
+use Illuminate\Routing\Console\ControllerMakeCommand;
+use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Support\ServiceProvider;
-use Orchestra\Canvas\Core\Presets\Preset;
-use Orchestra\Workbench\Workbench;
-use Symfony\Component\Yaml\Yaml;
-
-use function Orchestra\Testbench\package_path;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    use Core\CommandsProvider;
+    /**
+     * The commands to be registered.
+     *
+     * @var array
+     */
+    protected $devCommands = [
+        // 'ControllerMake' => ControllerMakeCommand::class,
+        // 'NotificationTable' => NotificationTableCommand::class,
+        // 'QueueFailedTable' => FailedTableCommand::class,
+        // 'QueueTable' => TableCommand::class,
+        // 'QueueBatchesTable' => BatchesTableCommand::class,
+        // 'ScopeMake' => ScopeMakeCommand::class,
+        // 'SessionTable' => SessionTableCommand::class,
+    ];
 
     /**
-     * Register services.
+     * Register the service provider.
      *
      * @return void
      */
     public function register()
     {
-        $this->app->singleton('orchestra.canvas', function (Application $app) {
-            $filesystem = $app->make('files');
+        $this->registerCastMakeCommand();
+        $this->registerChannelMakeCommand();
+        $this->registerComponentMakeCommand();
+        $this->registerConsoleMakeCommand();
+        $this->registerControllerMakeCommand();
+        $this->registerEventMakeCommand();
+        $this->registerExceptionMakeCommand();
+        $this->registerFactoryMakeCommand();
+        $this->registerJobMakeCommand();
+        $this->registerListenerMakeCommand();
+        $this->registerMailMakeCommand();
+        $this->registerMiddlewareMakeCommand();
+        $this->registerMigrateMakeCommand();
+        $this->registerModelMakeCommand();
+        $this->registerNotificationMakeCommand();
+        $this->registerObserverMakeCommand();
+        $this->registerPolicyMakeCommand();
+        $this->registerProviderMakeCommand();
+        $this->registerRequestMakeCommand();
+        $this->registerResourceMakeCommand();
+        $this->registerRuleMakeCommand();
+        $this->registerSeederMakeCommand();
+        $this->registerTestMakeCommand();
 
-            if (\defined('TESTBENCH_WORKING_PATH') && class_exists(Workbench::class)) {
-                return $this->registerCanvasForWorkbench($filesystem);
-            }
-
-            $config = ['preset' => 'laravel'];
-
-            if ($filesystem->exists($app->basePath('canvas.yaml'))) {
-                $config = Yaml::parseFile($app->basePath('canvas.yaml'));
-            } else {
-                Arr::set($config, 'testing.extends', [
-                    'unit' => 'PHPUnit\Framework\TestCase',
-                    'feature' => 'Tests\TestCase',
-                ]);
-
-                $config['namespace'] = rescue(fn () => trim($this->app->getNamespace(), '\\'), null, false);
-            }
-
-            $config['user-auth-provider'] = $this->userProviderModel();
-
-            return Canvas::preset($config, $app->basePath(), $filesystem);
-        });
+        $this->commands([
+            Console\CastMakeCommand::class,
+            Console\ChannelMakeCommand::class,
+            Console\ComponentMakeCommand::class,
+            Console\ConsoleMakeCommand::class,
+            Console\ControllerMakeCommand::class,
+            Console\EventMakeCommand::class,
+            Console\ExceptionMakeCommand::class,
+            Console\FactoryMakeCommand::class,
+            Console\JobMakeCommand::class,
+            Console\ListenerMakeCommand::class,
+            Console\MailMakeCommand::class,
+            Console\MiddlewareMakeCommand::class,
+            Console\MigrateMakeCommand::class,
+            Console\ModelMakeCommand::class,
+            Console\NotificationMakeCommand::class,
+            Console\ObserverMakeCommand::class,
+            Console\PolicyMakeCommand::class,
+            Console\ProviderMakeCommand::class,
+            Console\RequestMakeCommand::class,
+            Console\ResourceMakeCommand::class,
+            Console\RuleMakeCommand::class,
+            Console\SeederMakeCommand::class,
+            Console\TestMakeCommand::class,
+        ]);
     }
 
     /**
-     * Bootstrap services.
+     * Register the command.
      *
      * @return void
      */
-    public function boot()
+    protected function registerCastMakeCommand()
     {
-        Artisan::starting(static function ($artisan) {
-            $artisan->getLaravel()->booted(static function ($app) use ($artisan) {
-                /**
-                 * @var \Illuminate\Contracts\Foundation\Application $app
-                 * @var \Illuminate\Console\Application $artisan
-                 */
-                $preset = $app->make('orchestra.canvas');
-
-                if (
-                    \defined('TESTBENCH_WORKING_PATH')
-                    || Env::get('CANVAS_FOR_LARAVEL') === true
-                    || file_exists($app->basePath('canvas.yaml'))
-                ) {
-                    $artisan->add(new Commands\Channel($preset));
-                    $artisan->add(new Commands\Component($preset));
-                    $artisan->add(new Commands\Console($preset));
-                    $artisan->add(new Commands\Database\Cast($preset));
-                    $artisan->add(new Commands\Database\Eloquent($preset));
-                    $artisan->add(new Commands\Database\Factory($preset));
-                    $artisan->add(new Commands\Database\Migration($preset));
-                    $artisan->add(new Commands\Database\Observer($preset));
-                    $artisan->add(new Commands\Database\Seeder($preset));
-                    $artisan->add(new Commands\Event($preset));
-                    $artisan->add(new Commands\Exception($preset));
-                    $artisan->add(new Commands\Job($preset));
-                    $artisan->add(new Commands\Listener($preset));
-                    $artisan->add(new Commands\Mail($preset));
-                    $artisan->add(new Commands\Notification($preset));
-                    $artisan->add(new Commands\Policy($preset));
-                    $artisan->add(new Commands\Provider($preset));
-                    $artisan->add(new Commands\Request($preset));
-                    $artisan->add(new Commands\Resource($preset));
-                    $artisan->add(new Commands\Routing\Controller($preset));
-                    $artisan->add(new Commands\Routing\Middleware($preset));
-                    $artisan->add(new Commands\Rule($preset));
-                    $artisan->add(new Commands\StubPublish($preset));
-                    $artisan->add(new Commands\Testing($preset));
-                    $artisan->add(new Commands\View($preset));
-                }
-
-                $preset->addAdditionalCommands($artisan);
-            });
+        $this->app->singleton(CastMakeCommand::class, function ($app) {
+            return new Console\CastMakeCommand($app['files']);
         });
     }
 
     /**
-     * Regiseter canvas for workbench.
+     * Register the command.
+     *
+     * @return void
      */
-    protected function registerCanvasForWorkbench(Filesystem $filesystem): Preset
+    protected function registerChannelMakeCommand()
     {
-        $config = ['preset' => Presets\PackageWorkbench::class];
+        $this->app->singleton(ChannelMakeCommand::class, function ($app) {
+            return new Console\ChannelMakeCommand($app['files']);
+        });
+    }
 
-        if ($filesystem->exists(package_path('canvas.yaml'))) {
-            $yaml = Yaml::parseFile(package_path('canvas.yaml'));
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerComponentMakeCommand()
+    {
+        $this->app->singleton(ComponentMakeCommand::class, function ($app) {
+            return new Console\ComponentMakeCommand($app['files']);
+        });
+    }
 
-            $config['generators'] = $yaml['generators'] ?? [];
-        }
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerConsoleMakeCommand()
+    {
+        $this->app->singleton(ConsoleMakeCommand::class, function ($app) {
+            return new Console\ConsoleMakeCommand($app['files']);
+        });
+    }
 
-        return Canvas::preset(
-            $config, rtrim(package_path(), DIRECTORY_SEPARATOR), $filesystem
-        );
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerControllerMakeCommand()
+    {
+        $this->app->singleton(ControllerMakeCommand::class, function ($app) {
+            return new Console\ControllerMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerEventMakeCommand()
+    {
+        $this->app->singleton(EventMakeCommand::class, function ($app) {
+            return new Console\EventMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerExceptionMakeCommand()
+    {
+        $this->app->singleton(ExceptionMakeCommand::class, function ($app) {
+            return new Console\ExceptionMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerFactoryMakeCommand()
+    {
+        $this->app->singleton(FactoryMakeCommand::class, function ($app) {
+            return new Console\FactoryMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerJobMakeCommand()
+    {
+        $this->app->singleton(JobMakeCommand::class, function ($app) {
+            return new Console\JobMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerListenerMakeCommand()
+    {
+        $this->app->singleton(ListenerMakeCommand::class, function ($app) {
+            return new Console\ListenerMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerMailMakeCommand()
+    {
+        $this->app->singleton(MailMakeCommand::class, function ($app) {
+            return new Console\MailMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerMiddlewareMakeCommand()
+    {
+        $this->app->singleton(MiddlewareMakeCommand::class, function ($app) {
+            return new Console\MiddlewareMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerMigrateMakeCommand()
+    {
+        $this->app->singleton(MigrateMakeCommand::class, function ($app) {
+            // Once we have the migration creator registered, we will create the command
+            // and inject the creator. The creator is responsible for the actual file
+            // creation of the migrations, and may be extended by these developers.
+            $creator = $app['migration.creator'];
+
+            $composer = $app['composer'];
+
+            return new Console\MigrateMakeCommand($creator, $composer);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerModelMakeCommand()
+    {
+        $this->app->singleton(ModelMakeCommand::class, function ($app) {
+            return new Console\ModelMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerNotificationMakeCommand()
+    {
+        $this->app->singleton(NotificationMakeCommand::class, function ($app) {
+            return new Console\NotificationMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerObserverMakeCommand()
+    {
+        $this->app->singleton(ObserverMakeCommand::class, function ($app) {
+            return new Console\ObserverMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerPolicyMakeCommand()
+    {
+        $this->app->singleton(PolicyMakeCommand::class, function ($app) {
+            return new Console\PolicyMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerProviderMakeCommand()
+    {
+        $this->app->singleton(ProviderMakeCommand::class, function ($app) {
+            return new Console\ProviderMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerRequestMakeCommand()
+    {
+        $this->app->singleton(RequestMakeCommand::class, function ($app) {
+            return new Console\RequestMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerResourceMakeCommand()
+    {
+        $this->app->singleton(ResourceMakeCommand::class, function ($app) {
+            return new Console\ResourceMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerRuleMakeCommand()
+    {
+        $this->app->singleton(RuleMakeCommand::class, function ($app) {
+            return new Console\RuleMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerSeederMakeCommand()
+    {
+        $this->app->singleton(SeederMakeCommand::class, function ($app) {
+            return new Console\SeederMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerTestMakeCommand()
+    {
+        $this->app->singleton(TestMakeCommand::class, function ($app) {
+            return new Console\TestMakeCommand($app['files']);
+        });
     }
 
     /**
      * Get the services provided by the provider.
      *
-     * @return array<int, string>
+     * @return array
      */
     public function provides()
     {
-        return ['orchestra.canvas'];
+        return [
+            CastMakeCommand::class,
+            Console\CastMakeCommand::class,
+            ChannelMakeCommand::class,
+            Console\ChannelMakeCommand::class,
+            ComponentMakeCommand::class,
+            Console\ComponentMakeCommand::class,
+            ConsoleMakeCommand::class,
+            Console\ConsoleMakeCommand::class,
+            ControllerMakeCommand::class,
+            Console\ControllerMakeCommand::class,
+            EventMakeCommand::class,
+            Console\EventMakeCommand::class,
+            ExceptionMakeCommand::class,
+            Console\ExceptionMakeCommand::class,
+            FactoryMakeCommand::class,
+            Console\FactoryMakeCommand::class,
+            JobMakeCommand::class,
+            Console\JobMakeCommand::class,
+            ListenerMakeCommand::class,
+            Console\ListenerMakeCommand::class,
+            MailMakeCommand::class,
+            Console\MailMakeCommand::class,
+            MiddlewareMakeCommand::class,
+            Console\MiddlewareMakeCommand::class,
+            MigrateMakeCommand::class,
+            Console\MigrateMakeCommand::class,
+            ModelMakeCommand::class,
+            Console\ModelMakeCommand::class,
+            NotificationMakeCommand::class,
+            Console\NotificationMakeCommand::class,
+            ObserverMakeCommand::class,
+            Console\ObserverMakeCommand::class,
+            PolicyMakeCommand::class,
+            Console\PolicyMakeCommand::class,
+            ProviderMakeCommand::class,
+            Console\ProviderMakeCommand::class,
+            RequestMakeCommand::class,
+            Console\RequestMakeCommand::class,
+            ResourceMakeCommand::class,
+            Console\ResourceMakeCommand::class,
+            RuleMakeCommand::class,
+            Console\RuleMakeCommand::class,
+            SeederMakeCommand::class,
+            Console\SeederMakeCommand::class,
+            TestMakeCommand::class,
+            Console\TestMakeCommand::class,
+        ];
     }
 }
