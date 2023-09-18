@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators\Database;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-use Orchestra\Canvas\Tests\Feature\Generators\TestCase;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
-class CastTest extends TestCase
+class CastMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Casts/FooBar.php',
@@ -13,8 +13,8 @@ class CastTest extends TestCase
     /** @test */
     public function it_can_generate_cast_file()
     {
-        $this->artisan('make:cast', ['name' => 'FooBar'])
-            ->assertExitCode(0);
+        $this->artisan('make:cast', ['name' => 'FooBar', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Casts;',
@@ -28,8 +28,8 @@ class CastTest extends TestCase
     /** @test */
     public function it_can_generate_inbound_cast_file()
     {
-        $this->artisan('make:cast', ['name' => 'FooBar', '--inbound' => true])
-            ->assertExitCode(0);
+        $this->artisan('make:cast', ['name' => 'FooBar', '--inbound' => true, '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Casts;',

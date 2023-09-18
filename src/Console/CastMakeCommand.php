@@ -6,15 +6,13 @@ use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
-use Orchestra\Canvas\Processors\GeneratesRuleCode;
-use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/RuleMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
  */
-#[AsCommand(name: 'make:rule', description: 'Create a new validation rule')]
-class RuleMakeCommand extends \Illuminate\Foundation\Console\RuleMakeCommand
+#[AsCommand(name: 'make:cast', description: 'Create a new custom Eloquent cast class')]
+class CastMakeCommand extends \Illuminate\Foundation\Console\CastMakeCommand
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;

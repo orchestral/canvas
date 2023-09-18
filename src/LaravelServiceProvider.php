@@ -4,6 +4,7 @@ namespace Orchestra\Canvas;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
+use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\RuleMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Support\ServiceProvider;
@@ -51,9 +52,22 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     public function register()
     {
+        $this->registerCastMakeCommand();
         $this->registerFactoryMakeCommand();
         $this->registerRuleMakeCommand();
         $this->registerTestMakeCommand();
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerCastMakeCommand()
+    {
+        $this->app->singleton(CastMakeCommand::class, function ($app) {
+            return new Console\CastMakeCommand($app['files']);
+        });
     }
 
     /**
@@ -112,6 +126,9 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     public function provides()
     {
         return [
+            CastMakeCommand::class,
+            Console\CastMakeCommand::class,
+
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
 
