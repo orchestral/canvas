@@ -14,10 +14,10 @@ use Symfony\Component\Console\Attribute\AsCommand;
 class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
 {
     use CodeGenerator;
-    use UsesGeneratorOverrides;
     use TestGenerator {
         handleTestCreationUsingCanvas as protected handleTestCreationUsingCanvasFromTrait;
     }
+    use UsesGeneratorOverrides;
 
     /**
      * Create a new controller creator command instance.
