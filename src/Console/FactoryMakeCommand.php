@@ -128,7 +128,7 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
     /**
      * Get the first view directory path from the application configuration.
      *
-     * @param  string  $name
+     * @param  string  $path
      * @return string
      */
     protected function viewPath($path = '')

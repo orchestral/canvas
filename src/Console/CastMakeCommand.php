@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Console;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
@@ -73,7 +74,7 @@ class CastMakeCommand extends \Illuminate\Foundation\Console\CastMakeCommand
     /**
      * Get the first view directory path from the application configuration.
      *
-     * @param  string  $name
+     * @param  string  $path
      * @return string
      */
     protected function viewPath($path = '')

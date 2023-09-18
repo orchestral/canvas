@@ -17,7 +17,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
 {
     use CodeGenerator;
-    use ResolvesPresetStubs;
     use UsesGeneratorOverrides;
 
     /**
@@ -55,6 +54,10 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
     {
         $preset = $this->generatorPreset();
 
+        if (! $preset instanceof GeneratorPreset) {
+            return $stub;
+        }
+
         $testCase = $this->option('unit')
             ? $preset->canvas()->config('testing.extends.unit', 'PHPUnit\Framework\TestCase')
             : $preset->canvas()->config(
@@ -88,6 +91,25 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
     }
 
     /**
+     * Resolve the fully-qualified path to the stub.
+     *
+     * @param  string  $stub
+     * @return string
+     */
+    protected function resolveStubPath($stub)
+    {
+        $preset = $this->generatorPreset();
+
+        if (! $preset instanceof GeneratorPreset) {
+            return parent::resolveStubPath($stub);
+        }
+
+        return $preset->hasCustomStubPath() && file_exists($customPath = implode('/', [$preset->basePath(), trim($stub, '/')]))
+            ? $customPath
+            : $this->resolveDefaultStubPath($stub);
+    }
+
+    /**
      * Resolve the default fully-qualified path to the stub.
      *
      * @param  string  $stub
@@ -95,13 +117,7 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
      */
     protected function resolveDefaultStubPath($stub)
     {
-        $preset = $this->generatorPreset();
-
-        if ($preset instanceof GeneratorPreset) {
-            return __DIR__.$stub;
-        }
-
-        return parent::resolveDefaultStubPath($stub);
+        return __DIR__.$stub;
     }
 
     /**
@@ -146,7 +162,7 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
     /**
      * Get the first view directory path from the application configuration.
      *
-     * @param  string  $name
+     * @param  string  $path
      * @return string
      */
     protected function viewPath($path = '')

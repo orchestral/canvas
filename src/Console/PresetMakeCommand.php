@@ -52,13 +52,15 @@ class PresetMakeCommand extends GeneratorCommand
      */
     protected function rootNamespace(): string
     {
-        $namespace = trim($this->option('namespace')) ?? '';
+        $namespace = transform($this->option('namespace'), function (string $namespace) {
+            return trim($namespace);
+        });
 
         if (! empty($namespace)) {
             return $namespace;
         }
 
-        switch ($this->options('name')) {
+        switch ($this->option('name')) {
             case 'package':
                 return 'PackageName';
             case 'laravel':

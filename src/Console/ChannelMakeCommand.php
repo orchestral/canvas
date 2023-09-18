@@ -76,7 +76,7 @@ class ChannelMakeCommand extends \Illuminate\Foundation\Console\ChannelMakeComma
     /**
      * Get the first view directory path from the application configuration.
      *
-     * @param  string  $name
+     * @param  string  $path
      * @return string
      */
     protected function viewPath($path = '')
