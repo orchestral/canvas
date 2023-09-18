@@ -2,18 +2,12 @@
 
 # Database
 cp -rf vendor/laravel/framework/src/Illuminate/Database/Console/Factories/stubs/*.stub src/Console/stubs/
-# cp -rf vendor/laravel/framework/src/Illuminate/Database/Migrations/stubs/*.stub storage/laravel
-# cp -rf vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/stubs/*.stub storage/laravel
 
 # Foundation
 cp -rf vendor/laravel/framework/src/Illuminate/Foundation/Console/stubs/pest.stub src/Console/stubs/
 cp -rf vendor/laravel/framework/src/Illuminate/Foundation/Console/stubs/pest.unit.stub src/Console/stubs/
 cp -rf vendor/laravel/framework/src/Illuminate/Foundation/Console/stubs/test.stub src/Console/stubs/
 cp -rf vendor/laravel/framework/src/Illuminate/Foundation/Console/stubs/test.unit.stub src/Console/stubs/
-# rm -rf storage/laravel/routes.stub
-
-# Routing
-# cp -rf vendor/laravel/framework/src/Illuminate/Routing/Console/stubs/*.stub storage/laravel/
 
 ## Fixes namespace.
 awk '{sub(/use PHPUnit\\Framework\\TestCase/,"use NamespacedDummyTestCase")}1' src/Console/stubs/test.unit.stub > src/Console/stubs/temp.stub && mv src/Console/stubs/temp.stub src/Console/stubs/test.unit.stub
