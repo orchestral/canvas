@@ -4,6 +4,7 @@ namespace Orchestra\Canvas;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
+use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\ChannelMakeCommand;
 use Illuminate\Foundation\Console\ComponentMakeCommand;
@@ -33,7 +34,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     protected $devCommands = [
         // 'ControllerMake' => ControllerMakeCommand::class,
-        // 'MailMake' => MailMakeCommand::class,
         // 'ModelMake' => ModelMakeCommand::class,
         // 'NotificationTable' => NotificationTableCommand::class,
         // 'ObserverMake' => ObserverMakeCommand::class,
@@ -63,6 +63,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerListenerMakeCommand();
         $this->registerMailMakeCommand();
         $this->registerMiddlewareMakeCommand();
+        $this->registerMigrateMakeCommand();
         $this->registerNotificationMakeCommand();
         $this->registerObserverMakeCommand();
         $this->registerPolicyMakeCommand();
@@ -84,6 +85,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ListenerMakeCommand::class,
             Console\MailMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
+            Console\MigrateMakeCommand::class,
             Console\NotificationMakeCommand::class,
             Console\ObserverMakeCommand::class,
             Console\PolicyMakeCommand::class,
@@ -232,6 +234,25 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerMigrateMakeCommand()
+    {
+        $this->app->singleton(MigrateMakeCommand::class, function ($app) {
+            // Once we have the migration creator registered, we will create the command
+            // and inject the creator. The creator is responsible for the actual file
+            // creation of the migrations, and may be extended by these developers.
+            $creator = $app['migration.creator'];
+
+            $composer = $app['composer'];
+
+            return new Console\MigrateMakeCommand($creator, $composer);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerNotificationMakeCommand()
     {
         $this->app->singleton(NotificationMakeCommand::class, function ($app) {
@@ -353,6 +374,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\MailMakeCommand::class,
             MiddlewareMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
+            MigrateMakeCommand::class,
+            Console\MigrateMakeCommand::class,
             NotificationMakeCommand::class,
             Console\NotificationMakeCommand::class,
             ObserverMakeCommand::class,
