@@ -2,8 +2,12 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
-class TestCase extends \Orchestra\Canvas\Core\Testing\TestCase
+use Orchestra\Testbench\Concerns\InteractsWithPublishedFiles;
+
+class TestCase extends \Orchestra\Testbench\TestCase
 {
+    use InteractsWithPublishedFiles;
+
     /**
      * Get package providers.
      *
@@ -13,7 +17,7 @@ class TestCase extends \Orchestra\Canvas\Core\Testing\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Orchestra\Canvas\LaravelServiceProvider::class,
+            \Orchestra\Canvas\Core\LaravelServiceProvider::class,
         ];
     }
 }
