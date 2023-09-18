@@ -1,8 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-class JobTest extends TestCase
+use Orchestra\Canvas\Tests\Feature\TestCase;
+
+class JobMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Jobs/FooCreated.php',

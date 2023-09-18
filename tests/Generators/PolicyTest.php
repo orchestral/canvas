@@ -48,7 +48,8 @@ class PolicyTest extends TestCase
     public function it_can_generate_policy_with_model_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model'], 'user-auth-provider' => 'App\Models\User'], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model'], 'user-auth-provider' => 'App\Models\User'], $this->app->basePath()
+namespace Orchestra\Canvas\Tests\Feature;
         ));
 
         $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post'])

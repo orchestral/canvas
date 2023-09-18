@@ -45,7 +45,8 @@ class ObserverTest extends TestCase
     public function it_can_generate_observer_with_model_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
-            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath(), $this->filesystem
+            ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
+namespace Orchestra\Canvas\Tests\Feature;
         ));
 
         $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo'])

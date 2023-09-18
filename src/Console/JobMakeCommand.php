@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Commands\Routing;
+namespace Orchestra\Canvas\Commands;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
@@ -8,10 +8,10 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/JobMakeCommand.php
  */
-#[AsCommand(name: 'make:middleware', description: 'Create a new middleware class')]
-class MiddlewareMakeCommand extends \Illuminate\Routing\Console\MiddlewareMakeCommand
+#[AsCommand(name: 'make:job', description: 'Create a new job class')]
+class JobMakeCommand extends \Illuminate\Foundation\Console\JobMakeCommand
 {
     use CodeGenerator;
     use UsesGeneratorOverrides;
