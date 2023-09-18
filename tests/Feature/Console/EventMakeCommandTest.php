@@ -1,8 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
-class EventTest extends TestCase
+use Orchestra\Canvas\Tests\Feature\TestCase;
+
+class EventMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Events/FooCreated.php',
@@ -11,8 +13,8 @@ class EventTest extends TestCase
     /** @test */
     public function it_can_generate_event_file()
     {
-        $this->artisan('make:event', ['name' => 'FooCreated'])
-            ->assertExitCode(0);
+        $this->artisan('make:event', ['name' => 'FooCreated', '--preset' => 'canvas'])
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace App\Events;',
