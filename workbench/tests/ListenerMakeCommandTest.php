@@ -11,7 +11,7 @@ class ListenerMakeCommandTest extends TestCase
 
     public function testItCanGenerateListenerFile()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener', '--event' => ''])
+        $this->artisan('make:listener', ['name' => 'FooListener'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -53,7 +53,7 @@ class ListenerMakeCommandTest extends TestCase
 
     public function testItCanGenerateQueuedListenerFile()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener', '--queued' => true, '--event' => ''])
+        $this->artisan('make:listener', ['name' => 'FooListener', '--queued' => true])
             ->assertExitCode(0);
 
         $this->assertFileContains([
@@ -97,7 +97,7 @@ class ListenerMakeCommandTest extends TestCase
 
     public function testItCanGenerateQueuedListenerFileWithTest()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener', '--event' => '', '--test' => true])
+        $this->artisan('make:listener', ['name' => 'FooListener', '--test' => true])
             ->assertExitCode(0);
 
         $this->assertFilenameExists('app/Listeners/FooListener.php');

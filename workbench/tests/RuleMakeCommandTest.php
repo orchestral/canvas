@@ -29,6 +29,7 @@ class RuleMakeCommandTest extends TestCase
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
             'class Foo implements ValidationRule',
+            'public function validate(string $attribute, mixed $value, Closure $fail): void',
         ], 'app/Rules/Foo.php');
     }
 
@@ -41,6 +42,7 @@ class RuleMakeCommandTest extends TestCase
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
             'class Foo implements ValidationRule',
+            'public $implicit = true;',
             'public function validate(string $attribute, mixed $value, Closure $fail): void',
         ], 'app/Rules/Foo.php');
     }

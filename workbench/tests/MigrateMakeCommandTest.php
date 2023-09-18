@@ -4,10 +4,6 @@ namespace Illuminate\Tests\Integration\Generators;
 
 class MigrateMakeCommandTest extends TestCase
 {
-    protected $files = [
-        'database/acme-migrations/*.php',
-    ];
-
     public function testItCanGenerateMigrationFile()
     {
         $this->artisan('make:migration', ['name' => 'AddBarToFoosTable'])

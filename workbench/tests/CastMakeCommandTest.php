@@ -16,7 +16,6 @@ class CastMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsAttributes;',
-            'use Illuminate\Database\Eloquent\Model;',
             'class Foo implements CastsAttributes',
             'public function get(Model $model, string $key, mixed $value, array $attributes): mixed',
             'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
@@ -31,7 +30,6 @@ class CastMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;',
-            'use Illuminate\Database\Eloquent\Model;',
             'class Foo implements CastsInboundAttributes',
             'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
         ], 'app/Casts/Foo.php');
