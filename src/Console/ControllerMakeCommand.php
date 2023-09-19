@@ -19,7 +19,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */

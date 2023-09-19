@@ -19,7 +19,7 @@ class MailMakeCommand extends \Illuminate\Foundation\Console\MailMakeCommand
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */
