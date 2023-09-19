@@ -2,10 +2,15 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
+use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class MigrateMakeCommandTest extends TestCase
 {
+    protected $files = [
+        'database/acme-migrations/*.php',
+    ];
+
     /** @test */
     public function it_can_generate_migration_file()
     {
@@ -58,5 +63,22 @@ class MigrateMakeCommandTest extends TestCase
             'Schema::create(\'foobar\', function (Blueprint $table) {',
             'Schema::dropIfExists(\'foobar\');',
         ], 'foos_table.php');
+    }
+
+    public function testItCanGenerateMigrationFileWithCustomMigrationPath()
+    {
+        $this->instance('orchestra.canvas', new Laravel(
+            ['namespace' => 'Acme', 'migration' => ['path' => 'database'.DIRECTORY_SEPARATOR.'acme-migrations']], $this->app->basePath()
+        ));
+
+        $this->artisan('make:migration', ['name' => 'AcmeFoosTable', '--create' => 'foobar', '--preset' => 'canvas'])
+            ->assertExitCode(0);
+
+        $this->assertMigrationFileContains([
+            'use Illuminate\Database\Migrations\Migration;',
+            'return new class extends Migration',
+            'Schema::create(\'foobar\', function (Blueprint $table) {',
+            'Schema::dropIfExists(\'foobar\');',
+        ], 'acme_foos_table.php', directory: 'database/acme-migrations');
     }
 }
