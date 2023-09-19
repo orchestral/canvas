@@ -25,6 +25,7 @@ use Illuminate\Foundation\Console\ResourceMakeCommand;
 use Illuminate\Foundation\Console\RuleMakeCommand;
 use Illuminate\Foundation\Console\ScopeMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
+use Illuminate\Notifications\Console\NotificationTableCommand;
 use Illuminate\Routing\Console\ControllerMakeCommand;
 use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Support\ServiceProvider;
@@ -66,6 +67,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerMigrateMakeCommand();
         $this->registerModelMakeCommand();
         $this->registerNotificationMakeCommand();
+        $this->registerNotificationTableCommand();
         $this->registerObserverMakeCommand();
         $this->registerPolicyMakeCommand();
         $this->registerProviderMakeCommand();
@@ -92,6 +94,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\MigrateMakeCommand::class,
             Console\ModelMakeCommand::class,
             Console\NotificationMakeCommand::class,
+            Console\NotificationTableCommand::class,
             Console\ObserverMakeCommand::class,
             Console\PolicyMakeCommand::class,
             Console\ProviderMakeCommand::class,
@@ -296,6 +299,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerNotificationTableCommand()
+    {
+        $this->app->singleton(NotificationTableCommand::class, function ($app) {
+            return new Console\NotificationTableCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerObserverMakeCommand()
     {
         $this->app->singleton(ObserverMakeCommand::class, function ($app) {
@@ -437,6 +452,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ModelMakeCommand::class,
             NotificationMakeCommand::class,
             Console\NotificationMakeCommand::class,
+            NotificationTableCommand::class,
+            Console\NotificationTableCommand::class,
             ObserverMakeCommand::class,
             Console\ObserverMakeCommand::class,
             PolicyMakeCommand::class,
