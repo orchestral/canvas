@@ -17,7 +17,7 @@ class ResourceMakeCommand extends \Illuminate\Foundation\Console\ResourceMakeCom
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */
