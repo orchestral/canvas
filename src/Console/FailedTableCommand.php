@@ -8,10 +8,10 @@ use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Notifications/Console/NotificationTableCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Queue/Console/BatchesTableCommand.php
  */
-#[AsCommand(name: 'notifications:table', description: 'Create a migration for the notifications table')]
-class NotificationTableCommand extends \Illuminate\Notifications\Console\NotificationTableCommand
+#[AsCommand(name: 'queue:failed-table', description: 'Create a migration for the failed queue jobs database table')]
+class FailedTableCommand extends \Illuminate\Queue\Console\FailedTableCommand
 {
     use MigrationGenerator;
 
@@ -30,12 +30,13 @@ class NotificationTableCommand extends \Illuminate\Notifications\Console\Notific
     }
 
     /**
-     * Create a base migration file for the notifications.
+     * Create a base migration file for the table.
      *
+     * @param  string  $table
      * @return string
      */
-    protected function createBaseMigration()
+    protected function createBaseMigration($table = 'failed_jobs')
     {
-        return $this->createBaseMigrationUsingCanvas('notifications');
+        return $this->createBaseMigrationUsingCanvas($table);
     }
 }

@@ -26,25 +26,16 @@ use Illuminate\Foundation\Console\RuleMakeCommand;
 use Illuminate\Foundation\Console\ScopeMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Notifications\Console\NotificationTableCommand;
+use Illuminate\Queue\Console\BatchesTableCommand;
+use Illuminate\Queue\Console\FailedTableCommand;
+use Illuminate\Queue\Console\TableCommand as QueueTableCommand;
 use Illuminate\Routing\Console\ControllerMakeCommand;
 use Illuminate\Routing\Console\MiddlewareMakeCommand;
+use Illuminate\Session\Console\SessionTableCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /**
-     * The commands to be registered.
-     *
-     * @var array
-     */
-    protected $devCommands = [
-        // 'NotificationTable' => NotificationTableCommand::class,
-        // 'QueueFailedTable' => FailedTableCommand::class,
-        // 'QueueTable' => TableCommand::class,
-        // 'QueueBatchesTable' => BatchesTableCommand::class,
-        // 'SessionTable' => SessionTableCommand::class,
-    ];
-
     /**
      * Register the service provider.
      *
@@ -67,7 +58,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerMigrateMakeCommand();
         $this->registerModelMakeCommand();
         $this->registerNotificationMakeCommand();
-        $this->registerNotificationTableCommand();
         $this->registerObserverMakeCommand();
         $this->registerPolicyMakeCommand();
         $this->registerProviderMakeCommand();
@@ -77,6 +67,12 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerScopeMakeCommand();
         $this->registerSeederMakeCommand();
         $this->registerTestMakeCommand();
+
+        $this->registerNotificationTableCommand();
+        $this->registerQueueBatchesTableCommand();
+        $this->registerQueueFailedTableCommand();
+        $this->registerQueueTableCommand();
+        $this->registerSessionTableCommand();
 
         $this->commands([
             Console\CastMakeCommand::class,
@@ -94,7 +90,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\MigrateMakeCommand::class,
             Console\ModelMakeCommand::class,
             Console\NotificationMakeCommand::class,
-            Console\NotificationTableCommand::class,
             Console\ObserverMakeCommand::class,
             Console\PolicyMakeCommand::class,
             Console\ProviderMakeCommand::class,
@@ -104,6 +99,12 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ScopeMakeCommand::class,
             Console\SeederMakeCommand::class,
             Console\TestMakeCommand::class,
+
+            Console\BatchesTableCommand::class,
+            Console\FailedTableCommand::class,
+            Console\NotificationTableCommand::class,
+            Console\QueueTableCommand::class,
+            Console\SessionTableCommand::class,
         ]);
     }
 
@@ -299,18 +300,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
-    protected function registerNotificationTableCommand()
-    {
-        $this->app->singleton(NotificationTableCommand::class, function ($app) {
-            return new Console\NotificationTableCommand($app['files'], $app['composer']);
-        });
-    }
-
-    /**
-     * Register the command.
-     *
-     * @return void
-     */
     protected function registerObserverMakeCommand()
     {
         $this->app->singleton(ObserverMakeCommand::class, function ($app) {
@@ -415,6 +404,66 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     }
 
     /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerNotificationTableCommand()
+    {
+        $this->app->singleton(NotificationTableCommand::class, function ($app) {
+            return new Console\NotificationTableCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerQueueBatchesTableCommand()
+    {
+        $this->app->singleton(BatchesTableCommand::class, function ($app) {
+            return new Console\BatchesTableCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerQueueFailedTableCommand()
+    {
+        $this->app->singleton(FailedTableCommand::class, function ($app) {
+            return new Console\FailedTableCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerQueueTableCommand()
+    {
+        $this->app->singleton(QueueTableCommand::class, function ($app) {
+            return new Console\QueueTableCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerSessionTableCommand()
+    {
+        $this->app->singleton(SessionTableCommand::class, function ($app) {
+            return new Console\SessionTableCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array
@@ -452,8 +501,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ModelMakeCommand::class,
             NotificationMakeCommand::class,
             Console\NotificationMakeCommand::class,
-            NotificationTableCommand::class,
-            Console\NotificationTableCommand::class,
             ObserverMakeCommand::class,
             Console\ObserverMakeCommand::class,
             PolicyMakeCommand::class,
@@ -472,6 +519,17 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\SeederMakeCommand::class,
             TestMakeCommand::class,
             Console\TestMakeCommand::class,
+
+            BatchesTableCommand::class,
+            Console\BatchesTableCommand::class,
+            FailedTableCommand::class,
+            Console\FailedTableCommand::class,
+            NotificationTableCommand::class,
+            Console\NotificationTableCommand::class,
+            QueueTableCommand::class,
+            Console\QueueTableCommand::class,
+            SessionTableCommand::class,
+            Console\SessionTableCommand::class,
         ];
     }
 }
