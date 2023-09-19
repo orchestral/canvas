@@ -62,4 +62,15 @@ class ConsoleMakeCommand extends \Illuminate\Foundation\Console\ConsoleMakeComma
     {
         return $this->rootNamespaceUsingCanvas();
     }
+
+    /**
+     * Get the default namespace for the class.
+     *
+     * @param  string  $rootNamespace
+     * @return string
+     */
+    protected function getDefaultNamespace($rootNamespace)
+    {
+        return rtrim($this->generatorPreset()->commandNamespace(), '\\');
+    }
 }
