@@ -60,3 +60,33 @@ if ($files->isDirectory("{$workingPath}/vendor/laravel/framework/tests")) {
         $files->copy($file, "{$workingPath}/workbench/tests/".basename($file));
     });
 }
+
+$files->deleteDirectory("{$workingPath}/skeleton");
+
+Symfony\Component\Process\Process::fromShellCommandline(
+    'composer create-project "laravel/laravel:10.x-dev" skeleton --no-install --no-scripts --no-plugins --quiet', $workingPath
+)->mustRun();
+
+$files->copy("{$workingPath}/skeleton/app/Models/User.php", "{$workingPath}/src/Console/stubs/user-model.stub");
+transform([
+    'namespace App\Models;' => 'namespace {{ namespace }};',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/user-model.stub"));
+
+$files->copy("{$workingPath}/skeleton/database/factories/UserFactory.php", "{$workingPath}/src/Console/stubs/user-factory.stub");
+transform([
+    'namespace Database\Factories;' => 'namespace {{ factoryNamespace }};',
+    'use Illuminate\Support\Str;'.PHP_EOL => 'use Illuminate\Support\Str;'.PHP_EOL.'use {{ namespacedModel }};'.PHP_EOL,
+    '\Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>' => '\Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>',
+    '    /**
+     * Define the model\'s default state.' => '    /**
+     * The name of the factory\'s corresponding model.
+     *
+     * @var string
+     */
+    protected $model = {{ model }}::class;
+
+    /**
+     * Define the model\'s default state.'
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/user-factory.stub"));
+
+$files->deleteDirectory("{$workingPath}/skeleton");

@@ -76,6 +76,9 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerQueueTableCommand();
         $this->registerSessionTableCommand();
 
+        $this->registerUserFactoryMakeCommand();
+        $this->registerUserModelMakeCommand();
+
         $this->commands([
             Console\CastMakeCommand::class,
             Console\ChannelMakeCommand::class,
@@ -108,6 +111,9 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\NotificationTableCommand::class,
             Console\QueueTableCommand::class,
             Console\SessionTableCommand::class,
+
+            Console\UserFactoryMakeCommand::class,
+            Console\UserModelMakeCommand::class,
         ]);
     }
 
@@ -479,6 +485,30 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     }
 
     /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerUserFactoryMakeCommand()
+    {
+        $this->app->singleton(Console\UserFactoryMakeCommand::class, function ($app) {
+            return new Console\UserFactoryMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerUserModelMakeCommand()
+    {
+        $this->app->singleton(Console\UserModelMakeCommand::class, function ($app) {
+            return new Console\UserModelMakeCommand($app['files']);
+        });
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array
@@ -547,6 +577,9 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\QueueTableCommand::class,
             SessionTableCommand::class,
             Console\SessionTableCommand::class,
+
+            Console\UserFactoryMakeCommand::class,
+            Console\UserModelMakeCommand::class,
         ];
     }
 }
