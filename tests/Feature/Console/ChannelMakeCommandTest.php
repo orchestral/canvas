@@ -4,7 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
 
-class ChannelTest extends TestCase
+class ChannelMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Broadcasting/FooChannel.php',
