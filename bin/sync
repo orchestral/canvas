@@ -1,0 +1,52 @@
+#!/usr/bin/env php
+<?php
+
+$workingPath = getcwd();
+
+require __DIR__.'/../vendor/autoload.php';
+
+$files = new Illuminate\Filesystem\Filesystem();
+
+Illuminate\Support\Collection::make([
+    'factory.stub' => 'Database/Console/Factories/stubs/factory.stub',
+    'pest.stub' => 'Foundation/Console/stubs/pest.stub',
+    'pest.unit.stub' => 'Foundation/Console/stubs/pest.unit.stub',
+    'test.stub' => 'Foundation/Console/stubs/test.stub',
+    'test.unit.stub' => 'Foundation/Console/stubs/test.unit.stub',
+])->transform(fn ($file) => "{$workingPath}/vendor/laravel/framework/src/Illuminate/{$file}")
+->each(function ($file, $name) use ($files, $workingPath) {
+    $files->copy($file, "{$workingPath}/src/Console/stubs/{$name}");
+});
+
+transform([
+    'use Illuminate\Database\Eloquent\Factories\Factory;' =>
+    'use Illuminate\Database\Eloquent\Factories\Factory;'.PHP_EOL.'use {{ namespacedModel }};',
+    '    /**
+     * Define the model\'s default state.'.PHP_EOL => '    /**
+     * The name of the factory\'s corresponding model.
+     *
+     * @var string
+     */
+    protected $model = {{ model }}::class;
+
+    /**
+     * Define the model\'s default state.'.PHP_EOL,
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/factory.stub"));
+
+transform([
+    'use Tests\TestCase;' => 'use NamespacedDummyTestCase;',
+    'class {{ class }} extends TestCase' => 'class {{ class }} extends DummyTestCase',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/test.stub"));
+
+transform([
+    'use PHPUnit\Framework\TestCase;' => 'use NamespacedDummyTestCase;',
+    'class {{ class }} extends TestCase' => 'class {{ class }} extends DummyTestCase',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/test.unit.stub"));
+
+/**
+## Fixes namespace.
+awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' src/Console/stubs/test.unit.stub > src/Console/stubs/temp.stub && mv src/Console/stubs/temp.stub src/Console/stubs/test.unit.stub
+awk '{sub(/use Tests\\TestCase/,"use NamespacedDummyTestCase")}1' src/Console/stubs/test.stub > src/Console/stubs/temp.stub && mv src/Console/stubs/temp.stub src/Console/stubs/test.stub
+awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' src/Console/stubs/test.stub > src/Console/stubs/temp.stub && mv src/Console/stubs/temp.stub src/Console/stubs/test.stub
+
+ */
