@@ -42,11 +42,3 @@ transform([
     'use PHPUnit\Framework\TestCase;' => 'use NamespacedDummyTestCase;',
     'class {{ class }} extends TestCase' => 'class {{ class }} extends DummyTestCase',
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/test.unit.stub"));
-
-/**
-## Fixes namespace.
-awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' src/Console/stubs/test.unit.stub > src/Console/stubs/temp.stub && mv src/Console/stubs/temp.stub src/Console/stubs/test.unit.stub
-awk '{sub(/use Tests\\TestCase/,"use NamespacedDummyTestCase")}1' src/Console/stubs/test.stub > src/Console/stubs/temp.stub && mv src/Console/stubs/temp.stub src/Console/stubs/test.stub
-awk '{sub(/class {{ class }} extends TestCase/,"class {{ class }} extends DummyTestCase")}1' src/Console/stubs/test.stub > src/Console/stubs/temp.stub && mv src/Console/stubs/temp.stub src/Console/stubs/test.stub
-
- */
