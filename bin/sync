@@ -1,0 +1,60 @@
+#!/usr/bin/env php
+<?php
+
+$workingPath = getcwd();
+
+require __DIR__.'/../vendor/autoload.php';
+
+$files = new Illuminate\Filesystem\Filesystem();
+
+Illuminate\Support\Collection::make([
+    'factory.stub' => 'Database/Console/Factories/stubs/factory.stub',
+    'pest.stub' => 'Foundation/Console/stubs/pest.stub',
+    'pest.unit.stub' => 'Foundation/Console/stubs/pest.unit.stub',
+    'test.stub' => 'Foundation/Console/stubs/test.stub',
+    'test.unit.stub' => 'Foundation/Console/stubs/test.unit.stub',
+    'view.stub' => 'Foundation/Console/stubs/view.stub',
+    'view.test.stub' => 'Foundation/Console/stubs/view.test.stub',
+])->transform(fn ($file) => "{$workingPath}/vendor/laravel/framework/src/Illuminate/{$file}")
+->each(function ($file, $name) use ($files, $workingPath) {
+    $files->copy($file, "{$workingPath}/src/Console/stubs/{$name}");
+});
+
+transform([
+    'use Illuminate\Database\Eloquent\Factories\Factory;' =>
+    'use Illuminate\Database\Eloquent\Factories\Factory;'.PHP_EOL.'use {{ namespacedModel }};',
+    '    /**
+     * Define the model\'s default state.'.PHP_EOL => '    /**
+     * The name of the factory\'s corresponding model.
+     *
+     * @var string
+     */
+    protected $model = {{ model }}::class;
+
+    /**
+     * Define the model\'s default state.'.PHP_EOL,
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/factory.stub"));
+
+transform([
+    'use Tests\TestCase;' => 'use NamespacedDummyTestCase;',
+    'class {{ class }} extends TestCase' => 'class {{ class }} extends DummyTestCase',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/test.stub"));
+
+transform([
+    'use PHPUnit\Framework\TestCase;' => 'use NamespacedDummyTestCase;',
+    'class {{ class }} extends TestCase' => 'class {{ class }} extends DummyTestCase',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/test.unit.stub"));
+
+transform([
+    'use Tests\TestCase;' => 'use NamespacedDummyTestCase;'.PHP_EOL.'use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;',
+    'class {{ class }} extends TestCase'.PHP_EOL.'{' => 'class {{ class }} extends DummyTestCase'.PHP_EOL.'{'.PHP_EOL.'    use InteractsWithViews;'.PHP_EOL,
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/view.test.stub"));
+
+if ($files->isDirectory("{$workingPath}/vendor/laravel/framework/tests")) {
+    Illuminate\Support\Collection::make([
+        ...$files->glob("{$workingPath}/vendor/laravel/framework/tests/Integration/Generators/*.php")
+    ])->flatten()
+    ->each(function ($file) use ($files, $workingPath) {
+        $files->copy($file, "{$workingPath}/workbench/tests/".basename($file));
+    });
+}
