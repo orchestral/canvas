@@ -5,10 +5,6 @@ $workingPath = getcwd();
 
 require __DIR__.'/../vendor/autoload.php';
 
-use function Laravel\Prompts\{spin};
-
-spin(function () use ($workingPath)  {
-
 $files = new Illuminate\Filesystem\Filesystem();
 
 Illuminate\Support\Collection::make([
@@ -94,5 +90,3 @@ transform([
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/user-factory.stub"));
 
 $files->deleteDirectory("{$workingPath}/skeleton");
-
-}, 'Sync project');
