@@ -18,7 +18,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      *
      * @var string
      */
-    protected $environmentFile = '.env';
+    protected string $environmentFile = '.env';
 
     /**
      * Resolve application implementation.
