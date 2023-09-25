@@ -60,4 +60,15 @@ class ProviderMakeCommand extends \Illuminate\Foundation\Console\ProviderMakeCom
     {
         return $this->rootNamespaceUsingCanvas();
     }
+
+    /**
+     * Get the default namespace for the class.
+     *
+     * @param  string  $rootNamespace
+     * @return string
+     */
+    protected function getDefaultNamespace($rootNamespace)
+    {
+        return rtrim($this->generatorPreset()->providerNamespace(), '\\');
+    }
 }
