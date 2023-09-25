@@ -62,7 +62,7 @@ class ControllerMakeCommandTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_model_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--preset' => 'canvas'])
             ->expectsQuestion('A App\Models\Foo model does not exist. Do you want to generate it?', false)
             ->assertSuccessful();
 
@@ -82,7 +82,7 @@ class ControllerMakeCommandTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_model_with_parent_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--preset' => 'canvas'])
             ->expectsQuestion('A App\Models\Foo model does not exist. Do you want to generate it?', false)
             ->expectsQuestion('A App\Models\Bar model does not exist. Do you want to generate it?', false)
             ->assertSuccessful();
@@ -108,7 +108,7 @@ class ControllerMakeCommandTest extends TestCase
             ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
         ));
 
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--preset' => 'canvas'])
             ->expectsQuestion('A App\Model\Foo model does not exist. Do you want to generate it?', false)
             ->assertSuccessful();
 
@@ -132,7 +132,7 @@ class ControllerMakeCommandTest extends TestCase
             ['namespace' => 'App', 'model' => ['namespace' => 'App\Model']], $this->app->basePath()
         ));
 
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--no-interaction' => true, '--preset' => 'canvas'])
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--preset' => 'canvas'])
             ->expectsQuestion('A App\Model\Foo model does not exist. Do you want to generate it?', false)
             ->expectsQuestion('A App\Model\Bar model does not exist. Do you want to generate it?', false)
             ->assertSuccessful();
@@ -197,7 +197,7 @@ class ControllerMakeCommandTest extends TestCase
     /** @test */
     public function it_can_generate_controller_with_model_and_api_options_file()
     {
-        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--api' => true, '--no-interaction' => true, '--preset' => 'canvas'])
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--api' => true, '--preset' => 'canvas'])
             ->expectsQuestion('A App\Models\Foo model does not exist. Do you want to generate it?', false)
             ->assertSuccessful();
 
