@@ -5,7 +5,10 @@ $workingPath = getcwd();
 
 require __DIR__.'/../vendor/autoload.php';
 
+$input = new Symfony\Component\Console\Input\ArgvInput();
 $files = new Illuminate\Filesystem\Filesystem();
+
+$version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '10.x-dev' : '^10.0';
 
 Illuminate\Support\Collection::make([
     'factory.stub' => 'Database/Console/Factories/stubs/factory.stub',
@@ -64,7 +67,7 @@ if ($files->isDirectory("{$workingPath}/vendor/laravel/framework/tests")) {
 $files->deleteDirectory("{$workingPath}/skeleton");
 
 Symfony\Component\Process\Process::fromShellCommandline(
-    'composer create-project "laravel/laravel:10.x-dev" skeleton --no-install --no-scripts --no-plugins --quiet', $workingPath
+    'composer create-project "laravel/laravel:'.$version.'" skeleton --no-install --no-scripts --no-plugins --quiet', $workingPath
 )->mustRun();
 
 $files->copy("{$workingPath}/skeleton/app/Models/User.php", "{$workingPath}/src/Console/stubs/user-model.stub");
