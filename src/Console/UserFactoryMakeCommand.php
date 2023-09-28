@@ -4,12 +4,14 @@ namespace Orchestra\Canvas\Console;
 
 use Illuminate\Console\Generators\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Commands\GeneratorCommand;
+use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 #[AsCommand(name: 'make:user-factory', description: 'Create the User factory class')]
 class UserFactoryMakeCommand extends GeneratorCommand
 {
+    use CodeGenerator;
     use ResolvesPresetStubs;
 
     /**

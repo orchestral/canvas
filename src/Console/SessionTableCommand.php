@@ -16,6 +16,13 @@ class SessionTableCommand extends \Illuminate\Session\Console\SessionTableComman
     use MigrationGenerator;
 
     /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Migration';
+
+    /**
      * Create a new session table command instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files

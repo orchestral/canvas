@@ -17,6 +17,13 @@ class QueueTableCommand extends TableCommand
     use MigrationGenerator;
 
     /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Migration';
+
+    /**
      * Create a new notifications table command instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files

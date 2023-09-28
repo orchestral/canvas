@@ -7,7 +7,7 @@ use Orchestra\Canvas\Tests\Feature\TestCase;
 class RuleMakeCommandTest extends TestCase
 {
     protected $files = [
-        'app/Rules/Foo.php',
+        'app/Rules/FooBar.php',
     ];
 
     public function testItCanGenerateRuleFile()
@@ -18,8 +18,8 @@ class RuleMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class Foo implements ValidationRule',
-        ], 'app/Rules/Foo.php');
+            'class FooBar implements ValidationRule',
+        ], 'app/Rules/FooBar.php');
     }
 
     public function testItCanGenerateInvokableRuleFile()
@@ -30,9 +30,9 @@ class RuleMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class Foo implements ValidationRule',
+            'class FooBar implements ValidationRule',
             'public function validate(string $attribute, mixed $value, Closure $fail): void',
-        ], 'app/Rules/Foo.php');
+        ], 'app/Rules/FooBar.php');
     }
 
     public function testItCanGenerateImplicitRuleFile()
@@ -43,9 +43,9 @@ class RuleMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Rules;',
             'use Illuminate\Contracts\Validation\ValidationRule;',
-            'class Foo implements ValidationRule',
+            'class FooBar implements ValidationRule',
             'public $implicit = true;',
             'public function validate(string $attribute, mixed $value, Closure $fail): void',
-        ], 'app/Rules/Foo.php');
+        ], 'app/Rules/FooBar.php');
     }
 }

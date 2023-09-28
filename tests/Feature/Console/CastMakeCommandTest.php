@@ -7,7 +7,7 @@ use Orchestra\Canvas\Tests\Feature\TestCase;
 class CastMakeCommandTest extends TestCase
 {
     protected $files = [
-        'app/Casts/Foo.php',
+        'app/Casts/FooBar.php',
     ];
 
     public function testItCanGenerateCastFile()
@@ -18,10 +18,10 @@ class CastMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsAttributes;',
-            'class Foo implements CastsAttributes',
+            'class FooBar implements CastsAttributes',
             'public function get(Model $model, string $key, mixed $value, array $attributes): mixed',
             'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
-        ], 'app/Casts/Foo.php');
+        ], 'app/Casts/FooBar.php');
     }
 
     public function testItCanGenerateInboundCastFile()
@@ -32,8 +32,8 @@ class CastMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Casts;',
             'use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;',
-            'class Foo implements CastsInboundAttributes',
+            'class FooBar implements CastsInboundAttributes',
             'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
-        ], 'app/Casts/Foo.php');
+        ], 'app/Casts/FooBar.php');
     }
 }

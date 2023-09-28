@@ -2,10 +2,10 @@
 
 namespace Orchestra\Canvas\Console;
 
+use Illuminate\Console\Concerns\CreatesUsingGeneratorPreset;
 use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Support\Composer;
 use Orchestra\Canvas\Core\Commands\Command;
-use Orchestra\Canvas\Core\Concerns\CreatesUsingGeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
