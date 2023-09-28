@@ -50,7 +50,7 @@ class ObserverMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Observers;',
-            'use Acme\Model\Foo;',
+            'use App\Model\Foo;',
             'class FooObserver',
             'public function created(Foo $foo)',
             'public function updated(Foo $foo)',

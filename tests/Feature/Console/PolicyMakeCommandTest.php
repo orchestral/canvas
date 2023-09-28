@@ -28,6 +28,8 @@ class PolicyMakeCommandTest extends TestCase
         $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post', '--preset' => 'canvas'])
             ->assertSuccessful();
 
+        $this->app['files']->ensureDirectoryExists($this->app->basePath('Models'));
+
         $this->assertFileContains([
             'namespace App\Policies;',
             'use App\Models\Post;',
@@ -54,8 +56,8 @@ class PolicyMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Policies;',
-            'use Acme\Model\Post;',
-            'use Illuminate\Foundation\Auth\User;',
+            'use App\Model\Post;',
+            'use App\Models\User;',
             'class FooPolicy',
             'public function viewAny(User $user)',
             'public function view(User $user, Post $post)',

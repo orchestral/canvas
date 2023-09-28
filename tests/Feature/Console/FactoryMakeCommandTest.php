@@ -19,7 +19,7 @@ class FactoryMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace Database\Factories;',
-            'use App\Models\Foo;',
+            'use App\Foo;',
             'use Illuminate\Database\Eloquent\Factories\Factory;',
             'class FooFactory extends Factory',
             'protected $model = Foo::class;',
@@ -55,7 +55,7 @@ class FactoryMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace Acme\Database\Factory;',
-            'use Acme\Models\Foo;',
+            'use Acme\Foo;',
             'use Illuminate\Database\Eloquent\Factories\Factory;',
             'class FooFactory extends Factory',
             'protected $model = Foo::class;',
