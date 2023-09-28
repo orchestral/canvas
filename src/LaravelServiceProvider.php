@@ -120,7 +120,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             return new Console\NotificationTableCommand($app['files'], $app['composer']);
         });
     }
-    
+
     /**
      * Register the command.
      *
