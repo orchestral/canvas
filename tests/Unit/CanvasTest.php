@@ -4,6 +4,8 @@ namespace Orchestra\Canvas\Tests\Unit;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Canvas;
+use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Presets\Package;
 use PHPUnit\Framework\TestCase;
 
 class CanvasTest extends TestCase
@@ -21,7 +23,7 @@ class CanvasTest extends TestCase
             ],
         ], __DIR__, $files);
 
-        $this->assertInstanceOf('Orchestra\Canvas\Presets\Laravel', $preset);
+        $this->assertInstanceOf(Laravel::class, $preset);
         $this->assertSame([
             'namespace' => 'App',
             'paths' => [
@@ -44,7 +46,7 @@ class CanvasTest extends TestCase
             ],
         ], __DIR__, $files);
 
-        $this->assertInstanceOf('Orchestra\Canvas\Presets\Package', $preset);
+        $this->assertInstanceOf(Package::class, $preset);
         $this->assertSame([
             'namespace' => 'Orchestra\Foundation',
             'paths' => [

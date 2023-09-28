@@ -1,2 +1,3 @@
 providers:
   - Orchestra\Canvas\CanvasServiceProvider
+  - Orchestra\Canvas\LaravelServiceProvider

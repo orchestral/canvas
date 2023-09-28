@@ -47,16 +47,6 @@ class GeneratorPreset extends Preset
     }
 
     /**
-     * Get the path to the vendor directory.
-     *
-     * @return string
-     */
-    public function vendorPath()
-    {
-        return $this->canvas()->vendorPath();
-    }
-
-    /**
      * Get the path to the resource directory.
      *
      * @return string

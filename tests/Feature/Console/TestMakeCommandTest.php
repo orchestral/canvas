@@ -1,9 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Presets\Package;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class TestMakeCommandTest extends TestCase
 {
@@ -20,7 +21,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Tests\Unit;',
@@ -37,7 +38,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Tests\Feature;',
@@ -55,7 +56,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Foo\Tests\Feature;',
@@ -73,7 +74,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Foo\Tests\Unit;',
@@ -90,7 +91,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Foo\Tests\Feature;',
@@ -103,7 +104,7 @@ class TestMakeCommandTest extends TestCase
     public function it_can_generate_pest_feature_test_file()
     {
         $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'test(\'example\', function () {',
@@ -116,7 +117,7 @@ class TestMakeCommandTest extends TestCase
     public function it_can_generate_pest_unit_test_file()
     {
         $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
         $this->assertFileContains([
             'test(\'example\', function () {',
             'expect(true)->toBeTrue();',
@@ -131,7 +132,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'test(\'example\', function () {',
@@ -147,7 +148,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'test(\'example\', function () {',
@@ -164,7 +165,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'test(\'example\', function () {',
@@ -181,7 +182,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--unit' => true, '--pest' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'test(\'example\', function () {',
@@ -197,7 +198,7 @@ class TestMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:test', ['name' => 'FooTest', '--pest' => true, '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'test(\'example\', function () {',

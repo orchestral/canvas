@@ -1,0 +1,21 @@
+preset: package
+
+namespace: Orchestra\Canvas
+
+paths:
+  src: src
+
+console:
+  namespace: Orchestra\Canvas\Console
+
+provider:
+  namespace: Orchestra\Canvas
+
+testing:
+  namespace: Orchestra\Canvas\Tests
+  extends:
+    unit: PHPUnit\Framework\TestCase
+    feature: Orchestra\Testbench\TestCase
+
+generators:
+  - Orchestra\Canvas\Commands\Code

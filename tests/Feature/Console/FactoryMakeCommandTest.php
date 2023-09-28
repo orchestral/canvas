@@ -1,8 +1,9 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class FactoryMakeCommandTest extends TestCase
 {
@@ -14,14 +15,14 @@ class FactoryMakeCommandTest extends TestCase
     public function it_can_generate_factory_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Database\Factories;',
-            'use App\Models\Model;',
+            'use App\Models\Foo;',
             'use Illuminate\Database\Eloquent\Factories\Factory;',
             'class FooFactory extends Factory',
-            'protected $model = Model::class;',
+            'protected $model = Foo::class;',
             'public function definition()',
         ], 'database/factories/FooFactory.php');
     }
@@ -30,7 +31,7 @@ class FactoryMakeCommandTest extends TestCase
     public function it_can_generate_factory_with_model_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory', '--model' => 'Foo', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Database\Factories;',
@@ -50,14 +51,14 @@ class FactoryMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:factory', ['name' => 'FooFactory', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Acme\Database\Factory;',
-            'use Acme\Models\Model;',
+            'use Acme\Models\Foo;',
             'use Illuminate\Database\Eloquent\Factories\Factory;',
             'class FooFactory extends Factory',
-            'protected $model = Model::class;',
+            'protected $model = Foo::class;',
             'public function definition()',
         ], 'database/factories/FooFactory.php');
     }
@@ -70,7 +71,7 @@ class FactoryMakeCommandTest extends TestCase
         ));
 
         $this->artisan('make:factory', ['name' => 'FooFactory', '--model' => 'Foo', '--preset' => 'canvas'])
-            ->assertExitCode(0);
+            ->assertSuccessful();
 
         $this->assertFileContains([
             'namespace Acme\Database\Factory;',

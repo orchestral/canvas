@@ -29,7 +29,6 @@ class PackageTest extends TestCase
         $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/src", $preset->sourcePath());
-        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
         $this->assertSame("{$directory}/resources", $preset->resourcePath());
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());

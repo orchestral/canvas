@@ -2,8 +2,8 @@
 
 namespace {{ namespace }};
 
-use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use NamespacedDummyTestCase;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 
 class {{ class }} extends DummyTestCase
 {

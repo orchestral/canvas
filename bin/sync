@@ -1,0 +1,95 @@
+#!/usr/bin/env php
+<?php
+
+$workingPath = getcwd();
+
+require __DIR__.'/../vendor/autoload.php';
+
+$input = new Symfony\Component\Console\Input\ArgvInput();
+$files = new Illuminate\Filesystem\Filesystem();
+
+$version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '10.x-dev' : '^10.0';
+
+Illuminate\Support\Collection::make([
+    'factory.stub' => 'Database/Console/Factories/stubs/factory.stub',
+    'pest.stub' => 'Foundation/Console/stubs/pest.stub',
+    'pest.unit.stub' => 'Foundation/Console/stubs/pest.unit.stub',
+    'test.stub' => 'Foundation/Console/stubs/test.stub',
+    'test.unit.stub' => 'Foundation/Console/stubs/test.unit.stub',
+    'view.stub' => 'Foundation/Console/stubs/view.stub',
+    'view.test.stub' => 'Foundation/Console/stubs/view.test.stub',
+])->transform(fn ($file) => "{$workingPath}/vendor/laravel/framework/src/Illuminate/{$file}")
+->each(function ($file, $name) use ($files, $workingPath) {
+    $files->copy($file, "{$workingPath}/src/Console/stubs/{$name}");
+});
+
+transform([
+    'use Illuminate\Database\Eloquent\Factories\Factory;' => 'use Illuminate\Database\Eloquent\Factories\Factory;'.PHP_EOL.'use {{ namespacedModel }};',
+    ' * @extends \Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>' => ' * @template TModel of \{{ namespacedModel }}
+ *
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>',
+    '    /**
+     * Define the model\'s default state.'.PHP_EOL => '    /**
+     * The name of the factory\'s corresponding model.
+     *
+     * @var class-string<TModel>
+     */
+    protected $model = {{ model }}::class;
+
+    /**
+     * Define the model\'s default state.'.PHP_EOL,
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/factory.stub"));
+
+transform([
+    'use Tests\TestCase;' => 'use NamespacedDummyTestCase;',
+    'class {{ class }} extends TestCase' => 'class {{ class }} extends DummyTestCase',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/test.stub"));
+
+transform([
+    'use PHPUnit\Framework\TestCase;' => 'use NamespacedDummyTestCase;',
+    'class {{ class }} extends TestCase' => 'class {{ class }} extends DummyTestCase',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/test.unit.stub"));
+
+transform([
+    'use Tests\TestCase;' => 'use NamespacedDummyTestCase;'.PHP_EOL.'use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;',
+    'class {{ class }} extends TestCase'.PHP_EOL.'{' => 'class {{ class }} extends DummyTestCase'.PHP_EOL.'{'.PHP_EOL.'    use InteractsWithViews;'.PHP_EOL,
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/view.test.stub"));
+
+if ($files->isDirectory("{$workingPath}/vendor/laravel/framework/tests")) {
+    Illuminate\Support\Collection::make([
+        ...$files->glob("{$workingPath}/vendor/laravel/framework/tests/Integration/Generators/*.php")
+    ])->flatten()
+    ->each(function ($file) use ($files, $workingPath) {
+        $files->copy($file, "{$workingPath}/workbench/tests/".basename($file));
+    });
+}
+
+$files->deleteDirectory("{$workingPath}/skeleton");
+
+Symfony\Component\Process\Process::fromShellCommandline(
+    'composer create-project "laravel/laravel:'.$version.'" skeleton --no-install --no-scripts --no-plugins --quiet', $workingPath
+)->mustRun();
+
+$files->copy("{$workingPath}/skeleton/app/Models/User.php", "{$workingPath}/src/Console/stubs/user-model.stub");
+transform([
+    'namespace App\Models;' => 'namespace {{ namespace }};',
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/user-model.stub"));
+
+$files->copy("{$workingPath}/skeleton/database/factories/UserFactory.php", "{$workingPath}/src/Console/stubs/user-factory.stub");
+transform([
+    'namespace Database\Factories;' => 'namespace {{ factoryNamespace }};',
+    'use Illuminate\Support\Str;'.PHP_EOL => 'use Illuminate\Support\Str;'.PHP_EOL.'use {{ namespacedModel }};'.PHP_EOL,
+    '\Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>' => '\Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>',
+    '    /**
+     * Define the model\'s default state.' => '    /**
+     * The name of the factory\'s corresponding model.
+     *
+     * @var string
+     */
+    protected $model = {{ model }}::class;
+
+    /**
+     * Define the model\'s default state.'
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/user-factory.stub"));
+
+$files->deleteDirectory("{$workingPath}/skeleton");

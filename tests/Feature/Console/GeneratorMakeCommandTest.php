@@ -1,8 +1,9 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
+use Orchestra\Canvas\Tests\Feature\TestCase;
 
 class GeneratorMakeCommandTest extends TestCase
 {
@@ -22,7 +23,7 @@ class GeneratorMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Commands\Generator;',
+            'use Orchestra\Canvas\Core\Commands\GeneratorCommand;',
             'use Symfony\Component\Console\Attribute\AsCommand;',
             '#[AsCommand(name: \'make:name\', description: \'Create a new class\')]',
             'class FooCommand extends Generator',
@@ -41,7 +42,7 @@ class GeneratorMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Commands\Generator;',
+            'use Orchestra\Canvas\Core\Commands\GeneratorCommand;',
             'use Symfony\Component\Console\Attribute\AsCommand;',
             '#[AsCommand(name: \'make:foobar\', description: \'Create a new class\')]',
             'class FooCommand extends Generator',
@@ -60,7 +61,7 @@ class GeneratorMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use Orchestra\Canvas\Commands\Generator;',
+            'use Orchestra\Canvas\Core\Commands\GeneratorCommand;',
             'use Symfony\Component\Console\Attribute\AsCommand;',
             '#[AsCommand(name: \'foobar\', description: \'Create a new class\')]',
             'class FooCommand extends Generator',

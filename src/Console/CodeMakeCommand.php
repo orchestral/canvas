@@ -3,12 +3,15 @@
 namespace Orchestra\Canvas\Console;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Console\Generators\Concerns\ResolvesPresetStubs;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 #[AsCommand(name: 'make:class', description: 'Create a new class')]
 class CodeMakeCommand extends GeneratorCommand
 {
+    use ResolvesPresetStubs;
+
     /**
      * The type of class being generated.
      */

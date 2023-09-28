@@ -57,14 +57,6 @@ abstract class Preset
     }
 
     /**
-     * Get the path to the vendor directory.
-     */
-    public function vendorPath(): string
-    {
-        return "{$this->basePath}/vendor";
-    }
-
-    /**
      * Get the path to the resource directory.
      */
     public function resourcePath(): string

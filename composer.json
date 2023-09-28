@@ -32,6 +32,7 @@
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
         "laravel/framework": "dev-generator-presets as 10.x-dev",
+        "orchestra/canvas-core": "dev-generator-presets as 8.x-dev",
         "orchestra/testbench-core": "^8.10.2",
         "symfony/yaml": "^6.2"
     },
@@ -73,5 +74,6 @@
             "@test"
         ]
     },
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }

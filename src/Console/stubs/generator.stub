@@ -2,9 +2,8 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Console\GeneratorCommand;
-use Orchestra\Canvas\Commands\Generator;
-use Orchestra\Canvas\Core\GeneratesCode;
+use Illuminate\Console\Generators\Concerns\ResolvesPresetStubs;
+use Orchestra\Canvas\Core\Commands\GeneratorCommand;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'dummy:command', description: 'Create a new class')]
@@ -24,7 +23,7 @@ class DummyClass extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/generator.stub');
+        // ...
     }
 
     /**
