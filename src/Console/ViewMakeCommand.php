@@ -2,12 +2,15 @@
 
 namespace Orchestra\Canvas\Console;
 
+use Orchestra\Canvas\Core\Concerns\TestGenerator;
 use Orchestra\Canvas\GeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'make:view', description: 'Create a new view')]
 class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
 {
+    use TestGenerator;
+
     /**
      * Resolve the default fully-qualified path to the stub.
      *
@@ -23,5 +26,15 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
         }
 
         return parent::resolveDefaultStubPath($stub);
+    }
+
+    /**
+     * Create the matching test case if requested.
+     *
+     * @param  string  $path
+     */
+    protected function handleTestCreation($path): bool
+    {
+        return $this->handleTestCreationUsingCanvas($path);
     }
 }
