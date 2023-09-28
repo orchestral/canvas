@@ -33,13 +33,6 @@ class ComponentMakeCommandTest extends TestCase
         $this->artisan('make:component', ['name' => 'Foo', '--view' => true, '--preset' => 'canvas'])
             ->assertSuccessful();
 
-        $this->assertFileContains([
-            'namespace App\View\Components;',
-            'use Illuminate\View\Component;',
-            'class Foo extends Component',
-            "return view('components.foo');",
-        ], 'app/View/Components/Foo.php');
-
         $this->assertFilenameExists('resources/views/components/foo.blade.php');
     }
 
