@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas;
 
+use Illuminate\Cache\Console\CacheTableCommand;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
@@ -70,6 +71,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerTestMakeCommand();
         $this->registerViewMakeCommand();
 
+        $this->registerCacheTableCommand();
         $this->registerNotificationTableCommand();
         $this->registerQueueBatchesTableCommand();
         $this->registerQueueFailedTableCommand();
@@ -107,6 +109,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ViewMakeCommand::class,
 
             Console\BatchesTableCommand::class,
+            Console\CacheTableCommand::class,
             Console\FailedTableCommand::class,
             Console\NotificationTableCommand::class,
             Console\QueueTableCommand::class,
@@ -429,6 +432,18 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
+    protected function registerCacheTableCommand()
+    {
+        $this->app->singleton(CacheTableCommand::class, static function ($app) {
+            return new Console\CacheTableCommand($app['files'], $app['composer']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
     protected function registerNotificationTableCommand()
     {
         $this->app->singleton(NotificationTableCommand::class, static function ($app) {
@@ -569,6 +584,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
             BatchesTableCommand::class,
             Console\BatchesTableCommand::class,
+            CacheTableCommand::class,
+            Console\CacheTableCommand::class,
             FailedTableCommand::class,
             Console\FailedTableCommand::class,
             NotificationTableCommand::class,

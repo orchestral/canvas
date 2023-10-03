@@ -8,15 +8,15 @@ use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Notifications/Console/NotificationTableCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Cache/Console/CacheTableCommand.php
  */
-#[AsCommand(name: 'notifications:table', description: 'Create a migration for the notifications table')]
-class NotificationTableCommand extends \Illuminate\Notifications\Console\NotificationTableCommand
+#[AsCommand(name: 'cache:table', description: 'Create a migration for the cache database table')]
+class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
 {
     use MigrationGenerator;
 
     /**
-     * Create a new notifications table command instance.
+     * Create a new session table command instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  \Illuminate\Support\Composer  $composer
@@ -30,7 +30,7 @@ class NotificationTableCommand extends \Illuminate\Notifications\Console\Notific
     }
 
     /**
-     * Create a base migration file for the notifications.
+     * Create a base migration file for the session.
      *
      * @param  string  $table
      * @return string

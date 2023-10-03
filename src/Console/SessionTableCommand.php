@@ -32,10 +32,11 @@ class SessionTableCommand extends \Illuminate\Session\Console\SessionTableComman
     /**
      * Create a base migration file for the session.
      *
+     * @param  string  $table
      * @return string
      */
-    protected function createBaseMigration()
+    protected function createBaseMigration($table)
     {
-        return $this->createBaseMigrationUsingCanvas('sessions');
+        return $this->createBaseMigrationUsingCanvas($table);
     }
 }
