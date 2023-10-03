@@ -36,8 +36,19 @@ class QueueTableCommand extends TableCommand
      * @param  string  $table
      * @return string
      */
-    protected function createBaseMigration($table = 'jobs')
+    protected function createBaseMigration($table)
     {
         return $this->createBaseMigrationUsingCanvas($table);
+    }
+
+    /**
+     * Determine whether a migration for the table already exists.
+     *
+     * @param  string  $table
+     * @return bool
+     */
+    protected function migrationExists($table)
+    {
+        return $this->migrationExistsUsingCanvas($table);
     }
 }

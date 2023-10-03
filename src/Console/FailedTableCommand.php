@@ -35,8 +35,19 @@ class FailedTableCommand extends \Illuminate\Queue\Console\FailedTableCommand
      * @param  string  $table
      * @return string
      */
-    protected function createBaseMigration($table = 'failed_jobs')
+    protected function createBaseMigration($table)
     {
         return $this->createBaseMigrationUsingCanvas($table);
+    }
+
+    /**
+     * Determine whether a migration for the table already exists.
+     *
+     * @param  string  $table
+     * @return bool
+     */
+    protected function migrationExists($table)
+    {
+        return $this->migrationExistsUsingCanvas($table);
     }
 }

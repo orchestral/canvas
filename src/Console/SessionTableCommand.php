@@ -30,7 +30,7 @@ class SessionTableCommand extends \Illuminate\Session\Console\SessionTableComman
     }
 
     /**
-     * Create a base migration file for the session.
+     * Create a base migration file for the table.
      *
      * @param  string  $table
      * @return string
@@ -38,5 +38,16 @@ class SessionTableCommand extends \Illuminate\Session\Console\SessionTableComman
     protected function createBaseMigration($table)
     {
         return $this->createBaseMigrationUsingCanvas($table);
+    }
+
+    /**
+     * Determine whether a migration for the table already exists.
+     *
+     * @param  string  $table
+     * @return bool
+     */
+    protected function migrationExists($table)
+    {
+        return $this->migrationExistsUsingCanvas($table);
     }
 }

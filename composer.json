@@ -34,7 +34,7 @@
         "illuminate/console": "^10.26",
         "illuminate/database": "^10.26",
         "illuminate/support": "^10.26",
-        "orchestra/canvas-core": "^8.8",
+        "orchestra/canvas-core": "^8.9",
         "orchestra/testbench-core": "^8.11",
         "symfony/yaml": "^6.2"
     },
