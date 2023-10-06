@@ -4,7 +4,7 @@ Code Generators for Laravel Applications and Packages
 **Canvas** replicates all of the `make` artisan commands available in your basic Laravel application. It allows everyone to use it: 
 
 * outside of Laravel installation such as when building Laravel packages.
-* with Laravel by allowing few customization to the stub resolved class and namespace.
+* with Laravel by allowing a few customizations to the stub resolved class and namespace.
 
 [![tests](https://github.com/orchestral/canvas/workflows/tests/badge.svg?branch=8.x)](https://github.com/orchestral/canvas/actions?query=workflow%3Atests+branch%3A8.x)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/canvas/v/stable)](https://packagist.org/packages/orchestra/canvas)
@@ -15,7 +15,7 @@ Code Generators for Laravel Applications and Packages
 
 ## Installation
 
-To install through composer, run the following command from terminal:
+To install through composer, run the following command from the terminal:
 
     composer require --dev "orchestra/canvas"
 
@@ -47,13 +47,13 @@ As a Laravel developer, you should be familiar with the following commands:
 | `make:seeder`       | Create a new seeder class           |
 | `make:test`         | Create a new test class             |
 
-Which can be execute via:
+Which can be executed via:
 
     php artisan make:migration CreatePostsTable --create
 
 With **Canvas**, you can run the equivalent command via:
 
-    composer exec canvas make:migration CreatePostsTable -- --create
+    vendor/bin/canvas make:migration CreatePostsTable --create
 
 ### `canvas.yaml` Preset file
 
@@ -63,7 +63,7 @@ To get started you can first create `canvas.yaml` in the root directory of your 
 
 You can run the following command to create the file:
 
-    composer exec canvas preset laravel
+    vendor/bin/canvas preset laravel
 
 Which will output the following as `canvas.yaml`:
 
@@ -80,7 +80,7 @@ model:
 
 You can run the following command to create the file:
 
-    composer exec canvas preset package
+    vendor/bin/canvas preset package
 
 Which will output the following as `canvas.yaml`:
 
@@ -119,7 +119,7 @@ testing:
 
 Alternatively, you can set `--namespace` option to ensure the namespace is used in the file:
 
-    ./vendor/bin/canvas preset package --namespace="Foo\Bar"
+    vendor/bin/canvas preset package --namespace="Foo\Bar"
 
 ```yaml
 preset: package
@@ -153,4 +153,4 @@ testing:
 
 ### Integration with Laravel
 
-By default, you can always use `composer exec canvas` for Laravel and Packages environment. However, with the Package Discovery `Orchestra\Canvas\LaravelServiceProvider` will be installed automatically and override all default `make` command available via artisan so you can use it without changing anything.
+By default, you can always use `composer exec canvas` for Laravel and Packages environment. However, with the Package Discovery `Orchestra\Canvas\LaravelServiceProvider` will be installed automatically and override all default `make` commands available via artisan so you can use it without changing anything.
