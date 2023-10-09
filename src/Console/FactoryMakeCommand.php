@@ -11,7 +11,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
  */
-#[AsCommand(name: 'make:factory', description: 'Create a new model factory aa')]
+#[AsCommand(name: 'make:factory', description: 'Create a new model factory')]
 class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryMakeCommand
 {
     use CodeGenerator;
@@ -19,7 +19,7 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */

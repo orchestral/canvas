@@ -40,4 +40,14 @@ class ComponentMakeCommandTest extends TestCase
 
         $this->assertFilenameNotExists('resources/views/components/foo.blade.php');
     }
+
+    public function testItCanGenerateComponentFileWithTest()
+    {
+        $this->artisan('make:component', ['name' => 'Foo', '--test' => true])
+            ->assertExitCode(0);
+
+        $this->assertFilenameExists('app/View/Components/Foo.php');
+        $this->assertFilenameExists('resources/views/components/foo.blade.php');
+        $this->assertFilenameExists('tests/Feature/View/Components/FooTest.php');
+    }
 }

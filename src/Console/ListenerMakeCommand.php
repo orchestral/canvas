@@ -19,7 +19,7 @@ class ListenerMakeCommand extends \Illuminate\Foundation\Console\ListenerMakeCom
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */
@@ -61,5 +61,15 @@ class ListenerMakeCommand extends \Illuminate\Foundation\Console\ListenerMakeCom
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
+    }
+
+    /**
+     * Get a list of possible event names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleEvents()
+    {
+        return $this->possibleEventsUsingCanvas();
     }
 }

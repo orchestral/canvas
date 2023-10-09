@@ -17,7 +17,7 @@ class ExceptionMakeCommand extends \Illuminate\Foundation\Console\ExceptionMakeC
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */

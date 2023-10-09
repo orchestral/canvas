@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use {{ namespacedModel }};
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>
+ * @template TModel of \{{ namespacedModel }}
+ *
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>
  */
 class {{ factory }}Factory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string
+     * @var class-string<TModel>
      */
     protected $model = {{ model }}::class;
 

@@ -17,7 +17,7 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */
@@ -83,5 +83,15 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
         $guard = $this->option('guard');
 
         return $this->userProviderModelUsingCanvas($guard);
+    }
+
+    /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleModels()
+    {
+        return $this->possibleModelsUsingCanvas();
     }
 }

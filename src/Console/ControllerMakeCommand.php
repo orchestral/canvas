@@ -19,7 +19,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */
@@ -128,5 +128,15 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
+    }
+
+    /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleModels()
+    {
+        return $this->possibleModelsUsingCanvas();
     }
 }

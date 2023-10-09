@@ -17,7 +17,7 @@ class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCom
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */
@@ -70,5 +70,15 @@ class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCom
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
+    }
+
+    /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleModels()
+    {
+        return $this->possibleModelsUsingCanvas();
     }
 }

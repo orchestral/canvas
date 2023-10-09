@@ -17,7 +17,7 @@ class ProviderMakeCommand extends \Illuminate\Foundation\Console\ProviderMakeCom
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */
@@ -59,5 +59,16 @@ class ProviderMakeCommand extends \Illuminate\Foundation\Console\ProviderMakeCom
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
+    }
+
+    /**
+     * Get the default namespace for the class.
+     *
+     * @param  string  $rootNamespace
+     * @return string
+     */
+    protected function getDefaultNamespace($rootNamespace)
+    {
+        return rtrim($this->generatorPreset()->providerNamespace(), '\\');
     }
 }

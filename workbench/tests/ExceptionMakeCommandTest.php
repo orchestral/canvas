@@ -50,8 +50,6 @@ class ExceptionMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Exceptions;',
             'use Exception;',
-            'use Illuminate\Http\Request;',
-            'use Illuminate\Http\Response;',
             'class FooException extends Exception',
             'public function render(Request $request): Response',
         ], 'app/Exceptions/FooException.php');
@@ -69,8 +67,6 @@ class ExceptionMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Exceptions;',
             'use Exception;',
-            'use Illuminate\Http\Request;',
-            'use Illuminate\Http\Response;',
             'class FooException extends Exception',
             'public function render(Request $request): Response',
             'public function report()',

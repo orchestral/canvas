@@ -19,7 +19,7 @@ class ChannelMakeCommand extends \Illuminate\Foundation\Console\ChannelMakeComma
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */

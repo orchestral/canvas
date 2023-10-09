@@ -17,7 +17,7 @@ class CastMakeCommand extends \Illuminate\Foundation\Console\CastMakeCommand
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */

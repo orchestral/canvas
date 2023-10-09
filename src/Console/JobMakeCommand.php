@@ -19,7 +19,7 @@ class JobMakeCommand extends \Illuminate\Foundation\Console\JobMakeCommand
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */

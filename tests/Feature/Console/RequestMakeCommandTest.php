@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature\Generators;
+namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
 

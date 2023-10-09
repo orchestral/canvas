@@ -17,7 +17,7 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new controller creator command instance.
+     * Create a new creator command instance.
      *
      * @return void
      */

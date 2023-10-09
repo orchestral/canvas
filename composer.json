@@ -45,6 +45,10 @@
         "phpunit/phpunit": "^10.1"
     },
     "config": {
+        "preferred-install": {
+            "laravel/framework": "source",
+            "*": "auto"
+        },
         "sort-packages": true
     },
     "extra": {
@@ -76,5 +80,6 @@
             "@test"
         ]
     },
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }
