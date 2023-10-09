@@ -435,7 +435,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerCacheTableCommand()
     {
         $this->app->singleton(CacheTableCommand::class, static function ($app) {
-            return new Console\CacheTableCommand($app['files'], $app['composer']);
+            return new Console\CacheTableCommand($app['files']);
         });
     }
 
@@ -447,7 +447,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerNotificationTableCommand()
     {
         $this->app->singleton(NotificationTableCommand::class, static function ($app) {
-            return new Console\NotificationTableCommand($app['files'], $app['composer']);
+            return new Console\NotificationTableCommand($app['files']);
         });
     }
 
@@ -459,7 +459,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerQueueBatchesTableCommand()
     {
         $this->app->singleton(BatchesTableCommand::class, static function ($app) {
-            return new Console\BatchesTableCommand($app['files'], $app['composer']);
+            return new Console\BatchesTableCommand($app['files']);
         });
     }
 
@@ -471,7 +471,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerQueueFailedTableCommand()
     {
         $this->app->singleton(FailedTableCommand::class, static function ($app) {
-            return new Console\FailedTableCommand($app['files'], $app['composer']);
+            return new Console\FailedTableCommand($app['files']);
         });
     }
 
@@ -483,7 +483,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerQueueTableCommand()
     {
         $this->app->singleton(QueueTableCommand::class, static function ($app) {
-            return new Console\QueueTableCommand($app['files'], $app['composer']);
+            return new Console\QueueTableCommand($app['files']);
         });
     }
 
@@ -495,7 +495,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerSessionTableCommand()
     {
         $this->app->singleton(SessionTableCommand::class, static function ($app) {
-            return new Console\SessionTableCommand($app['files'], $app['composer']);
+            return new Console\SessionTableCommand($app['files']);
         });
     }
 
