@@ -60,7 +60,7 @@ class PresetMakeCommand extends GeneratorCommand
             return $namespace;
         }
 
-        switch ($this->option('name')) {
+        switch ($this->argument('name')) {
             case 'package':
                 return 'PackageName';
             case 'laravel':
