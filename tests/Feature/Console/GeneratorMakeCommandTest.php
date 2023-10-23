@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class GeneratorMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class GeneratorMakeCommandTest extends TestCase
         'app/Console/Commands/FooCommand.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_command_file()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -30,7 +31,7 @@ class GeneratorMakeCommandTest extends TestCase
         ], 'app/Console/Commands/FooCommand.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_command_file_with_command_name()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -49,7 +50,7 @@ class GeneratorMakeCommandTest extends TestCase
         ], 'app/Console/Commands/FooCommand.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_command_file_with_command_name_without_make_prefix()
     {
         $this->instance('orchestra.canvas', new Laravel(

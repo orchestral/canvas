@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MailMakeCommandTest extends TestCase
 {
@@ -12,7 +13,7 @@ class MailMakeCommandTest extends TestCase
         'tests/Feature/Mail/FooMailTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_mail_file()
     {
         $this->artisan('make:mail', ['name' => 'FooMail', '--preset' => 'canvas'])
@@ -28,7 +29,7 @@ class MailMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Mail/FooMailTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_mail_with_markdown_options_file()
     {
         $this->artisan('make:mail', ['name' => 'FooMail', '--markdown' => 'foo-mail', '--preset' => 'canvas'])
@@ -50,7 +51,7 @@ class MailMakeCommandTest extends TestCase
         ], 'resources/views/foo-mail.blade.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_mail_file_with_tests()
     {
         $this->artisan('make:mail', ['name' => 'FooMail', '--test' => true, '--preset' => 'canvas'])

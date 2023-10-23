@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ListenerMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class ListenerMakeCommandTest extends TestCase
         'tests/Feature/Listeners/HelloWorldTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_listener_file()
     {
         $this->artisan('make:listener', ['name' => 'HelloWorld', '--event' => '', '--preset' => 'canvas'])
@@ -28,7 +29,7 @@ class ListenerMakeCommandTest extends TestCase
         ], 'app/Listeners/HelloWorld.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_listener_for_event_file()
     {
         $this->artisan('make:listener', ['name' => 'HelloWorld', '--event' => 'FooCreated', '--preset' => 'canvas'])
@@ -42,7 +43,7 @@ class ListenerMakeCommandTest extends TestCase
         ], 'app/Listeners/HelloWorld.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_listener_for_laravel_event_file()
     {
         $this->artisan('make:listener', ['name' => 'HelloWorld', '--event' => 'Illuminate\Auth\Events\Login', '--preset' => 'canvas'])
@@ -56,7 +57,7 @@ class ListenerMakeCommandTest extends TestCase
         ], 'app/Listeners/HelloWorld.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_queued_listener_file()
     {
         $this->artisan('make:listener', ['name' => 'HelloWorld', '--event' => '', '--queued' => true, '--preset' => 'canvas'])
@@ -71,7 +72,7 @@ class ListenerMakeCommandTest extends TestCase
         ], 'app/Listeners/HelloWorld.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_queued_listener_with_event_file()
     {
         $this->artisan('make:listener', ['name' => 'HelloWorld', '--queued' => true, '--event' => 'FooCreated', '--preset' => 'canvas'])
@@ -87,7 +88,7 @@ class ListenerMakeCommandTest extends TestCase
         ], 'app/Listeners/HelloWorld.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_queued_listener_with_laravel_event_file()
     {
         $this->artisan('make:listener', ['name' => 'HelloWorld', '--queued' => true, '--event' => 'Illuminate\Auth\Events\Login', '--preset' => 'canvas'])
@@ -103,7 +104,7 @@ class ListenerMakeCommandTest extends TestCase
         ], 'app/Listeners/HelloWorld.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_listener_file_with_tests()
     {
         $this->artisan('make:listener', ['name' => 'HelloWorld', '--event' => '', '--test' => true, '--preset' => 'canvas'])

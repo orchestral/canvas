@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ControllerMakeCommandTest extends TestCase
 {
@@ -12,7 +13,7 @@ class ControllerMakeCommandTest extends TestCase
         'tests/Feature/Http/Controllers/FooControllerTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_file()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--preset' => 'canvas'])
@@ -31,7 +32,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Http/Controllers/FooControllerTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_file_with_specific_type()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--type' => 'invokable', '--preset' => 'canvas'])
@@ -45,7 +46,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_invokable_options_file()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--invokable' => true, '--preset' => 'canvas'])
@@ -59,7 +60,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_model_options_file()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--preset' => 'canvas'])
@@ -79,7 +80,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_model_with_parent_options_file()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Bar', '--parent' => 'Foo', '--preset' => 'canvas'])
@@ -101,7 +102,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_model_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -125,7 +126,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_model_with_parent_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -151,7 +152,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_api_options_file()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--api' => true, '--preset' => 'canvas'])
@@ -173,7 +174,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_file_can_handle_invokable_options_ignores_api()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--api' => true, '--invokable' => true, '--preset' => 'canvas'])
@@ -194,7 +195,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_model_and_api_options_file()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--api' => true, '--preset' => 'canvas'])
@@ -217,7 +218,7 @@ class ControllerMakeCommandTest extends TestCase
         ], 'app/Http/Controllers/FooController.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_file_with_tests()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--test' => true, '--preset' => 'canvas'])

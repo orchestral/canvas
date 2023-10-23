@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Generators;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ResourceMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class ResourceMakeCommandTest extends TestCase
         'app/Http/Resources/FooResource.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_resource_file()
     {
         $this->artisan('make:resource', ['name' => 'FooResource', '--preset' => 'canvas'])
@@ -25,7 +26,7 @@ class ResourceMakeCommandTest extends TestCase
         ], 'app/Http/Resources/FooResource.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_resource_collection_file()
     {
         $this->artisan('make:resource', ['name' => 'FooResource', '--collection' => true, '--preset' => 'canvas'])

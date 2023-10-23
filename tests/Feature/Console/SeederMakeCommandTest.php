@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SeederMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class SeederMakeCommandTest extends TestCase
         'database/seeders/FooSeeder.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_seeder_file()
     {
         $this->artisan('make:seeder', ['name' => 'FooSeeder', '--preset' => 'canvas'])

@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ChannelMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class ChannelMakeCommandTest extends TestCase
         'app/Broadcasting/FooChannel.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_broadcasting_channel_file()
     {
         $this->artisan('make:channel', ['name' => 'FooChannel', '--preset' => 'canvas'])

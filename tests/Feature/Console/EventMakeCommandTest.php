@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class EventMakeCommandTest extends TestCase
         'app/Events/FooCreated.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_event_file()
     {
         $this->artisan('make:event', ['name' => 'FooCreated', '--preset' => 'canvas'])

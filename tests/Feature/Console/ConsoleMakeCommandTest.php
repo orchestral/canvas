@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ConsoleMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class ConsoleMakeCommandTest extends TestCase
         'app/Console/Commands/FooCommand.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_command_file()
     {
         $this->artisan('make:command', ['name' => 'FooCommand', '--preset' => 'canvas'])
@@ -24,7 +25,7 @@ class ConsoleMakeCommandTest extends TestCase
         ], 'app/Console/Commands/FooCommand.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_command_file_with_command_name()
     {
         $this->artisan('make:command', ['name' => 'FooCommand', '--command' => 'foo:bar', '--preset' => 'canvas'])

@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FactoryMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class FactoryMakeCommandTest extends TestCase
         'database/factories/FooFactory.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_factory_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory', '--preset' => 'canvas'])
@@ -27,7 +28,7 @@ class FactoryMakeCommandTest extends TestCase
         ], 'database/factories/FooFactory.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_factory_with_model_file()
     {
         $this->artisan('make:factory', ['name' => 'FooFactory', '--model' => 'Foo', '--preset' => 'canvas'])
@@ -43,7 +44,7 @@ class FactoryMakeCommandTest extends TestCase
         ], 'database/factories/FooFactory.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_factory_file_with_custom_preset()
     {
         $this->instance('orchestra.canvas', new Laravel(
@@ -63,7 +64,7 @@ class FactoryMakeCommandTest extends TestCase
         ], 'database/factories/FooFactory.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_factory_with_model_file_with_custom_preset()
     {
         $this->instance('orchestra.canvas', new Laravel(

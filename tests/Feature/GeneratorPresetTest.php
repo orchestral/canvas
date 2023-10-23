@@ -7,12 +7,13 @@ use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Canvas\Presets\Package;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class GeneratorPresetTest extends TestCase
 {
     use WithWorkbench;
 
-    /** @test */
+    #[Test]
     public function it_can_be_resolved_and_has_correct_signature_as_laravel_preset()
     {
         $workingPath = realpath(__DIR__.'/../../vendor/orchestra/testbench-core/laravel');
@@ -41,7 +42,7 @@ class GeneratorPresetTest extends TestCase
         $this->assertSame('Illuminate\Foundation\Auth\User', $preset->userProviderModel());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_resolved_and_has_correct_signature_as_package_preset()
     {
         $workingPath = \dirname(__DIR__, 2);

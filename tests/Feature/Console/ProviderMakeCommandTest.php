@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProviderMakeCommandTest extends TestCase
 {
@@ -12,7 +13,7 @@ class ProviderMakeCommandTest extends TestCase
         'app/FooServiceProvider.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_service_provider_file()
     {
         $this->artisan('make:provider', ['name' => 'FooServiceProvider', '--preset' => 'canvas'])
@@ -27,7 +28,7 @@ class ProviderMakeCommandTest extends TestCase
         ], 'app/Providers/FooServiceProvider.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_service_provider_file_with_custom_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(

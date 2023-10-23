@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class RuleMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class RuleMakeCommandTest extends TestCase
         'app/Rules/FooBar.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_rule_file()
     {
         $this->artisan('make:rule', ['name' => 'FooBar', '--preset' => 'canvas'])
@@ -23,7 +24,7 @@ class RuleMakeCommandTest extends TestCase
         ], 'app/Rules/FooBar.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_invokable_rule_file()
     {
         $this->artisan('make:rule', ['name' => 'FooBar', '--preset' => 'canvas'])
@@ -37,7 +38,7 @@ class RuleMakeCommandTest extends TestCase
         ], 'app/Rules/FooBar.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_invokable_implicit_rule_file()
     {
         $this->artisan('make:rule', ['name' => 'FooBar', '--implicit' => true, '--preset' => 'canvas'])

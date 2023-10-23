@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class RequestMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class RequestMakeCommandTest extends TestCase
         'app/Http/Requests/FooRequest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_request_file()
     {
         $this->artisan('make:request', ['name' => 'FooRequest', '--preset' => 'canvas'])

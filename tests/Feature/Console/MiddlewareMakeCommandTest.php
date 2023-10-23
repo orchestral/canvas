@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MiddlewareMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class MiddlewareMakeCommandTest extends TestCase
         'tests/Feature/Http/Middleware/FooTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_middleware_file()
     {
         $this->artisan('make:middleware', ['name' => 'Foo'])
@@ -29,7 +30,7 @@ class MiddlewareMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Http/Middleware/FooTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_middleware_file_with_tests()
     {
         $this->artisan('make:middleware', ['name' => 'Foo', '--test' => true])
