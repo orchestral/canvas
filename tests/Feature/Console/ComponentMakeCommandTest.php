@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ComponentMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class ComponentMakeCommandTest extends TestCase
         'resources/views/components/foo.blade.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_component_file()
     {
         $this->artisan('make:component', ['name' => 'Foo', '--preset' => 'canvas'])
@@ -27,7 +28,7 @@ class ComponentMakeCommandTest extends TestCase
         $this->assertFilenameExists('resources/views/components/foo.blade.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_component_file_with_view()
     {
         $this->artisan('make:component', ['name' => 'Foo', '--view' => true, '--preset' => 'canvas'])
@@ -43,7 +44,7 @@ class ComponentMakeCommandTest extends TestCase
         $this->assertFilenameExists('resources/views/components/foo.blade.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_inline_component_file()
     {
         $this->artisan('make:component', ['name' => 'Foo', '--inline' => true, '--preset' => 'canvas'])

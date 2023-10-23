@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ObserverMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class ObserverMakeCommandTest extends TestCase
         'app/Observers/FooObserver.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_observer_file()
     {
         $this->artisan('make:observer', ['name' => 'FooObserver', '--preset' => 'canvas'])
@@ -23,7 +24,7 @@ class ObserverMakeCommandTest extends TestCase
         ], 'app/Observers/FooObserver.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_observer_with_model_file()
     {
         $this->artisan('make:observer', ['name' => 'FooObserver', '--model' => 'Foo', '--preset' => 'canvas'])
@@ -41,7 +42,7 @@ class ObserverMakeCommandTest extends TestCase
         ], 'app/Observers/FooObserver.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_observer_with_model_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(

@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ScopeMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class ScopeMakeCommandTest extends TestCase
         'app/Models/Scopes/FooScope.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_scope_file()
     {
         $this->artisan('make:scope', ['name' => 'FooScope', '--preset' => 'canvas'])

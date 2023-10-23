@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CastMakeCommandTest extends TestCase
 {
@@ -10,7 +11,7 @@ class CastMakeCommandTest extends TestCase
         'app/Casts/FooBar.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_cast_file()
     {
         $this->artisan('make:cast', ['name' => 'FooBar', '--preset' => 'canvas'])
@@ -25,7 +26,7 @@ class CastMakeCommandTest extends TestCase
         ], 'app/Casts/FooBar.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_inbound_cast_file()
     {
         $this->artisan('make:cast', ['name' => 'FooBar', '--inbound' => true, '--preset' => 'canvas'])

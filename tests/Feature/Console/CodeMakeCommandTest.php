@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CodeMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class CodeMakeCommandTest extends TestCase
         'app/Value/Foo.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_class_file()
     {
         $this->instance('orchestra.canvas', new Laravel(

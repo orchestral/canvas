@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ModelMakeCommandTest extends TestCase
 {
@@ -16,7 +17,7 @@ class ModelMakeCommandTest extends TestCase
         'tests/Feature/Models/FooTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--preset' => 'canvas'])
@@ -34,7 +35,7 @@ class ModelMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Models/FooTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_with_pivot_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--pivot' => true, '--preset' => 'canvas'])
@@ -47,7 +48,7 @@ class ModelMakeCommandTest extends TestCase
         ], 'app/Models/Foo.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_with_morph_pivot_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--morph-pivot' => true, '--preset' => 'canvas'])
@@ -60,7 +61,7 @@ class ModelMakeCommandTest extends TestCase
         ], 'app/Models/Foo.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_with_controller_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--controller' => true, '--preset' => 'canvas'])
@@ -93,7 +94,7 @@ class ModelMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_with_factory_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--factory' => true, '--preset' => 'canvas'])
@@ -110,7 +111,7 @@ class ModelMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_with_migration_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--migration' => true, '--preset' => 'canvas'])
@@ -134,7 +135,7 @@ class ModelMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_with_seeder_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--seed' => true, '--preset' => 'canvas'])
@@ -151,7 +152,7 @@ class ModelMakeCommandTest extends TestCase
         $this->assertFilenameExists('database/seeders/FooSeeder.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_nested_eloquent_with_controller_options_file()
     {
         $this->artisan('make:model', ['name' => 'Foo/Bar', '--controller' => true, '--preset' => 'canvas'])
@@ -173,7 +174,7 @@ class ModelMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('database/seeders/FooSeeder.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_eloquent_file_with_tests()
     {
         $this->artisan('make:model', ['name' => 'Foo', '--test' => true, '--preset' => 'canvas'])

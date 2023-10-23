@@ -3,10 +3,11 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CacheTableCommandTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_generate_migration_file()
     {
         $this->artisan('cache:table', ['--preset' => 'canvas'])

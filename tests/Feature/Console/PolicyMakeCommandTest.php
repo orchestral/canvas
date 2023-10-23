@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PolicyMakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class PolicyMakeCommandTest extends TestCase
         'app/Policies/FooPolicy.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_policy_file()
     {
         $this->artisan('make:policy', ['name' => 'FooPolicy', '--preset' => 'canvas'])
@@ -24,7 +25,7 @@ class PolicyMakeCommandTest extends TestCase
         ], 'app/Policies/FooPolicy.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_policy_with_model_options_file()
     {
         $this->artisan('make:policy', ['name' => 'FooPolicy', '--model' => 'Post', '--preset' => 'canvas'])
@@ -45,7 +46,7 @@ class PolicyMakeCommandTest extends TestCase
         ], 'app/Policies/FooPolicy.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_policy_with_model_options_file_with_custom_model_namespace()
     {
         $this->instance('orchestra.canvas', new Laravel(

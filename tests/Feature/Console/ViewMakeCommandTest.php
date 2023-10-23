@@ -1,6 +1,9 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Feature;
+namespace Orchestra\Canvas\Tests\Feature\Console;
+
+use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ViewMakeCommandTest extends TestCase
 {
@@ -9,7 +12,7 @@ class ViewMakeCommandTest extends TestCase
         'tests/Feature/View/FooTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_feature_view_file()
     {
         $this->artisan('make:view', ['name' => 'foo', '--preset' => 'canvas'])
@@ -19,7 +22,7 @@ class ViewMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/View/FooTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_feature_view_file_with_tests()
     {
         $this->artisan('make:view', ['name' => 'foo', '--test' => true, '--preset' => 'canvas'])

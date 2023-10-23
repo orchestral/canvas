@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Orchestra\Canvas\Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class NotificationMakeCommandTest extends TestCase
 {
@@ -12,7 +13,7 @@ class NotificationMakeCommandTest extends TestCase
         'tests/Feature/Notifications/FooNotificationTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_notification_file()
     {
         $this->artisan('make:notification', ['name' => 'FooNotification', '--preset' => 'canvas'])
@@ -29,7 +30,7 @@ class NotificationMakeCommandTest extends TestCase
         $this->assertFilenameNotExists('tests/Feature/Notifications/FooNotificationTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_notification_with_markdown_options_file()
     {
         $this->artisan('make:notification', ['name' => 'FooNotification', '--markdown' => 'foo-notification', '--preset' => 'canvas'])
@@ -46,7 +47,7 @@ class NotificationMakeCommandTest extends TestCase
         ], 'resources/views/foo-notification.blade.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_notification_file_with_tests()
     {
         $this->artisan('make:notification', ['name' => 'FooNotification', '--test' => true, '--preset' => 'canvas'])
