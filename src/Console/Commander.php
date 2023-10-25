@@ -27,7 +27,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      */
     protected function resolveApplicationCallback()
     {
-        return function ($app) {
+        return static function ($app) {
             $app->register(CanvasServiceProvider::class);
         };
     }
