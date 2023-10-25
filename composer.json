@@ -34,13 +34,13 @@
         "illuminate/database": "^11.0",
         "illuminate/support": "^11.0",
         "orchestra/canvas-core": "^9.0",
+        "orchestra/testbench-core": "^9.0",
         "symfony/yaml": "^7.0"
     },
     "require-dev": {
         "laravel/framework": "^11.0",
         "laravel/pint": "^1.6",
         "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^9.0",
         "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.1"
     },
