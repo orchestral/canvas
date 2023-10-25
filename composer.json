@@ -31,6 +31,7 @@
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
+        "illuminate/console": "^11.0",
         "illuminate/database": "^11.0",
         "illuminate/support": "^11.0",
         "orchestra/canvas-core": "^9.0",
