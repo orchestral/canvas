@@ -47,9 +47,9 @@ class Commander extends \Orchestra\Testbench\Console\Commander
             $app->register(LaravelServiceProvider::class);
 
             Collection::make($kernel->all())
-                ->reject(function (SymfonyCommand $command, string $name) {
-                    return Str::startsWith('make:', $name) || $command instanceof GeneratorCommand;
-                })->each(function (SymfonyCommand $command) {
+                ->reject(static function (SymfonyCommand $command, string $name) {
+                    return str_starts_with('make:', $name) || $command instanceof GeneratorCommand;
+                })->each(static function (SymfonyCommand $command) {
                     $command->setHidden(true);
                 });
         }
