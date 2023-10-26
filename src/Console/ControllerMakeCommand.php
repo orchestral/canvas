@@ -96,6 +96,12 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
 
         $replace = $this->buildFormRequestReplacements($replace, $modelClass);
 
+        if ($this->option('requests')) {
+            $namespace = $this->rootNamespace();
+            $replace['{{ namespacedRequests }}'] = str_replace('App\\', $namespace, $replace['{{ namespacedRequests }}']);
+            $replace['{{namespacedRequests}}'] = str_replace('App\\', $namespace, $replace['{{namespacedRequests}}']);
+        }
+
         return array_merge($replace, [
             'DummyFullModelClass' => $modelClass,
             '{{ namespacedModel }}' => $modelClass,
