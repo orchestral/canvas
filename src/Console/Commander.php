@@ -24,6 +24,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      *
      * @return \Closure(\Illuminate\Foundation\Application):void
      */
+    #[\Override]
     protected function resolveApplicationCallback()
     {
         return static function ($app) {
@@ -36,6 +37,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      *
      * @return \Illuminate\Foundation\Application
      */
+    #[\Override]
     public function laravel()
     {
         if (! $this->app instanceof LaravelApplication) {
