@@ -69,7 +69,6 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
     /**
      * Get the generator preset source path.
      */
-    #[\Override]
     protected function getGeneratorSourcePath(): string
     {
         return $this->generatorPreset()->factoryPath();
