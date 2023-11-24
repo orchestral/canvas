@@ -109,7 +109,6 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      *
      * @param  string  $path
      */
-    #[\Override]
     protected function handleTestCreationUsingCanvas($path): bool
     {
         if (! $this->option('test') && ! $this->option('pest')) {
