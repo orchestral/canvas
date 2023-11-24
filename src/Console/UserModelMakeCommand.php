@@ -43,6 +43,7 @@ class UserModelMakeCommand extends GeneratorCommand
     /**
      * Get the default namespace for the class.
      */
+    #[\Override]
     public function getDefaultNamespace($rootNamespace)
     {
         return rtrim($this->generatorPreset()->modelNamespace(), '\\');
@@ -53,6 +54,7 @@ class UserModelMakeCommand extends GeneratorCommand
      *
      * @return string
      */
+    #[\Override]
     protected function getNameInput()
     {
         return 'User';
@@ -63,6 +65,7 @@ class UserModelMakeCommand extends GeneratorCommand
      *
      * @return array
      */
+    #[\Override]
     protected function getArguments()
     {
         return [];
@@ -73,6 +76,7 @@ class UserModelMakeCommand extends GeneratorCommand
      *
      * @return array<int, array>
      */
+    #[\Override]
     protected function getOptions()
     {
         return [

@@ -38,6 +38,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
+    #[\Override]
     public function handle()
     {
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
@@ -79,6 +80,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      * @param  string  $name
      * @return string
      */
+    #[\Override]
     protected function getPath($name)
     {
         /** @var string $extension */
@@ -94,6 +96,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      *
      * @return string
      */
+    #[\Override]
     protected function getNameInput()
     {
         return transform($this->argument('name'), function (string $name) {
@@ -106,6 +109,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      *
      * @param  string  $path
      */
+    #[\Override]
     protected function handleTestCreationUsingCanvas($path): bool
     {
         if (! $this->option('test') && ! $this->option('pest')) {
@@ -147,6 +151,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      *
      * @return string
      */
+    #[\Override]
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
@@ -157,6 +162,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      *
      * @return string
      */
+    #[\Override]
     protected function getTestPath()
     {
         $preset = $this->generatorPreset();
@@ -175,6 +181,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      *
      * @return string
      */
+    #[\Override]
     protected function getTestStub()
     {
         $stubName = 'view.'.($this->option('pest') ? 'pest' : 'test').'.stub';
