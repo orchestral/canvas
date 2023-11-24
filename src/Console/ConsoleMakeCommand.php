@@ -23,7 +23,6 @@ class ConsoleMakeCommand extends \Illuminate\Foundation\Console\ConsoleMakeComma
      *
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files)
     {
         parent::__construct($files);
