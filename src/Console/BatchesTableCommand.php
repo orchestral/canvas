@@ -22,6 +22,7 @@ class BatchesTableCommand extends \Illuminate\Queue\Console\BatchesTableCommand
      * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
+    #[\Override]
     public function __construct(Filesystem $files, Composer $composer)
     {
         parent::__construct($files, $composer);
@@ -35,6 +36,7 @@ class BatchesTableCommand extends \Illuminate\Queue\Console\BatchesTableCommand
      * @param  string  $table
      * @return string
      */
+    #[\Override]
     protected function createBaseMigration($table)
     {
         return $this->createBaseMigrationUsingCanvas($table);
@@ -46,6 +48,7 @@ class BatchesTableCommand extends \Illuminate\Queue\Console\BatchesTableCommand
      * @param  string  $table
      * @return bool
      */
+    #[\Override]
     protected function migrationExists($table)
     {
         return $this->migrationExistsUsingCanvas($table);
