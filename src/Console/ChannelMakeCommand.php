@@ -23,7 +23,6 @@ class ChannelMakeCommand extends \Illuminate\Foundation\Console\ChannelMakeComma
      *
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files)
     {
         parent::__construct($files);

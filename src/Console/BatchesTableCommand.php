@@ -22,7 +22,6 @@ class BatchesTableCommand extends \Illuminate\Queue\Console\BatchesTableCommand
      * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files, Composer $composer)
     {
         parent::__construct($files, $composer);

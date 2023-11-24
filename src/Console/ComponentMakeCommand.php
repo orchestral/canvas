@@ -23,7 +23,6 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
      *
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files)
     {
         parent::__construct($files);

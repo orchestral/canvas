@@ -21,7 +21,6 @@ class CastMakeCommand extends \Illuminate\Foundation\Console\CastMakeCommand
      *
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files)
     {
         parent::__construct($files);

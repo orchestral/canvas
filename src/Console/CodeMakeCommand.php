@@ -43,6 +43,7 @@ class CodeMakeCommand extends GeneratorCommand
      *
      * @return array<int, array>
      */
+    #[\Override]
     protected function getOptions()
     {
         return [

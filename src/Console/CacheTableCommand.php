@@ -22,7 +22,6 @@ class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
      * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files, Composer $composer)
     {
         parent::__construct($files, $composer);
@@ -36,6 +35,7 @@ class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
      * @param  string  $table
      * @return string
      */
+    #[\Override]
     protected function createBaseMigration($table)
     {
         return $this->createBaseMigrationUsingCanvas($table);
@@ -47,6 +47,7 @@ class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
      * @param  string  $table
      * @return bool
      */
+    #[\Override]
     protected function migrationExists($table)
     {
         return $this->migrationExistsUsingCanvas($table);
