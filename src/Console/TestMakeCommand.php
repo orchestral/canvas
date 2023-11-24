@@ -71,7 +71,6 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
     /**
      * Replace the model for the given stub.
      */
-    #[\Override]
     protected function replaceTestCase(string $stub, string $testCase): string
     {
         $namespaceTestCase = $testCase = str_replace('/', '\\', $testCase);
