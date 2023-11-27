@@ -33,6 +33,7 @@ class FailedTableCommand extends \Illuminate\Queue\Console\FailedTableCommand
      * @param  string  $table
      * @return string
      */
+    #[\Override]
     protected function createBaseMigration($table)
     {
         return $this->createBaseMigrationUsingCanvas($table);
@@ -44,6 +45,7 @@ class FailedTableCommand extends \Illuminate\Queue\Console\FailedTableCommand
      * @param  string  $table
      * @return bool
      */
+    #[\Override]
     protected function migrationExists($table)
     {
         return $this->migrationExistsUsingCanvas($table);

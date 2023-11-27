@@ -37,6 +37,7 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
+    #[\Override]
     public function handle()
     {
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
@@ -60,6 +61,7 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
      * @param  string  $name
      * @return string
      */
+    #[\Override]
     protected function getPath($name)
     {
         return $this->getPathUsingCanvas($name);
@@ -70,6 +72,7 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
      *
      * @return string
      */
+    #[\Override]
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
@@ -81,6 +84,7 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
      * @param  string  $path
      * @return string
      */
+    #[\Override]
     protected function viewPath($path = '')
     {
         return $this->viewPathUsingCanvas($path);

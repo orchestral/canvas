@@ -10,6 +10,8 @@ class ControllerMakeCommandTest extends TestCase
 {
     protected $files = [
         'app/Http/Controllers/FooController.php',
+        'app/Http/Requests/StoreFooRequest.php',
+        'app/Http/Requests/UpdateFooRequest.php',
         'tests/Feature/Http/Controllers/FooControllerTest.php',
     ];
 
@@ -226,5 +228,61 @@ class ControllerMakeCommandTest extends TestCase
 
         $this->assertFilenameExists('app/Http/Controllers/FooController.php');
         $this->assertFilenameExists('tests/Feature/Http/Controllers/FooControllerTest.php');
+    }
+
+    /** @test */
+    public function it_can_generate_controller_with_model_and_requests()
+    {
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--requests' => true, '--preset' => 'canvas'])
+            ->expectsQuestion('A App\Models\Foo model does not exist. Do you want to generate it?', false)
+            ->assertSuccessful();
+
+        $this->assertFileContains([
+            'namespace App\Http\Controllers;',
+            'use App\Models\Foo;',
+            'use App\Http\Requests\StoreFooRequest;',
+            'use App\Http\Requests\UpdateFooRequest;',
+            'public function index()',
+            'public function create()',
+            'public function store(StoreFooRequest $request)',
+            'public function show(Foo $foo)',
+            'public function edit(Foo $foo)',
+            'public function update(UpdateFooRequest $request, Foo $foo)',
+            'public function destroy(Foo $foo)',
+        ], 'app/Http/Controllers/FooController.php');
+
+        $this->assertFilenameExists('app/Http/Controllers/FooController.php');
+        $this->assertFilenameExists('app/Http/Requests/StoreFooRequest.php');
+        $this->assertFilenameExists('app/Http/Requests/UpdateFooRequest.php');
+    }
+
+    /** @test */
+    public function it_can_generate_controller_with_model_and_requests_with_custom_preset()
+    {
+        $this->instance('orchestra.canvas', new Laravel(
+            ['namespace' => 'Acme', 'model' => ['namespace' => 'Acme\Models']], $this->app->basePath()
+        ));
+
+        $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--requests' => true, '--preset' => 'canvas'])
+            ->expectsQuestion('A Acme\Models\Foo model does not exist. Do you want to generate it?', false)
+            ->assertSuccessful();
+
+        $this->assertFileContains([
+            'namespace Acme\Http\Controllers;',
+            'use Acme\Models\Foo;',
+            'use Acme\Http\Requests\StoreFooRequest;',
+            'use Acme\Http\Requests\UpdateFooRequest;',
+            'public function index()',
+            'public function create()',
+            'public function store(StoreFooRequest $request)',
+            'public function show(Foo $foo)',
+            'public function edit(Foo $foo)',
+            'public function update(UpdateFooRequest $request, Foo $foo)',
+            'public function destroy(Foo $foo)',
+        ], 'app/Http/Controllers/FooController.php');
+
+        $this->assertFilenameExists('app/Http/Controllers/FooController.php');
+        $this->assertFilenameExists('app/Http/Requests/StoreFooRequest.php');
+        $this->assertFilenameExists('app/Http/Requests/UpdateFooRequest.php');
     }
 }

@@ -37,6 +37,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
+    #[\Override]
     public function handle()
     {
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
@@ -48,6 +49,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      * @param  string  $model
      * @return string
      */
+    #[\Override]
     protected function qualifyModel(string $model)
     {
         return $this->qualifyModelUsingCanvas($model);
@@ -58,6 +60,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      *
      * @return array
      */
+    #[\Override]
     protected function buildParentReplacements()
     {
         $parentModelClass = $this->parseModel($this->option('parent'));
@@ -86,6 +89,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      * @param  array  $replace
      * @return array
      */
+    #[\Override]
     protected function buildModelReplacements(array $replace)
     {
         $modelClass = $this->parseModel($this->option('model'));
@@ -95,6 +99,12 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         }
 
         $replace = $this->buildFormRequestReplacements($replace, $modelClass);
+
+        if ($this->option('requests')) {
+            $namespace = $this->rootNamespace();
+            $replace['{{ namespacedRequests }}'] = str_replace('App\\', $namespace, $replace['{{ namespacedRequests }}']);
+            $replace['{{namespacedRequests}}'] = str_replace('App\\', $namespace, $replace['{{namespacedRequests}}']);
+        }
 
         return array_merge($replace, [
             'DummyFullModelClass' => $modelClass,
@@ -115,6 +125,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      * @param  string  $name
      * @return string
      */
+    #[\Override]
     protected function getPath($name)
     {
         return $this->getPathUsingCanvas($name);
@@ -125,6 +136,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      *
      * @return string
      */
+    #[\Override]
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
@@ -135,8 +147,37 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      *
      * @return array<int, string>
      */
+    #[\Override]
     protected function possibleModels()
     {
         return $this->possibleModelsUsingCanvas();
+    }
+
+    /**
+     * Generate the form requests for the given model and classes.
+     *
+     * @param  string  $modelClass
+     * @param  string  $storeRequestClass
+     * @param  string  $updateRequestClass
+     * @return array
+     */
+    #[\Override]
+    protected function generateFormRequests($modelClass, $storeRequestClass, $updateRequestClass)
+    {
+        $storeRequestClass = 'Store'.class_basename($modelClass).'Request';
+
+        $this->call('make:request', [
+            'name' => $storeRequestClass,
+            '--preset' => $this->option('preset'),
+        ]);
+
+        $updateRequestClass = 'Update'.class_basename($modelClass).'Request';
+
+        $this->call('make:request', [
+            'name' => $updateRequestClass,
+            '--preset' => $this->option('preset'),
+        ]);
+
+        return [$storeRequestClass, $updateRequestClass];
     }
 }

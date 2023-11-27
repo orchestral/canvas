@@ -6,7 +6,6 @@ use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Orchestra\Canvas\CanvasServiceProvider;
 use Orchestra\Canvas\LaravelServiceProvider;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
@@ -25,9 +24,10 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      *
      * @return \Closure(\Illuminate\Foundation\Application):void
      */
+    #[\Override]
     protected function resolveApplicationCallback()
     {
-        return function ($app) {
+        return static function ($app) {
             $app->register(CanvasServiceProvider::class);
         };
     }
@@ -37,6 +37,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      *
      * @return \Illuminate\Foundation\Application
      */
+    #[\Override]
     public function laravel()
     {
         if (! $this->app instanceof LaravelApplication) {
@@ -47,9 +48,9 @@ class Commander extends \Orchestra\Testbench\Console\Commander
             $app->register(LaravelServiceProvider::class);
 
             Collection::make($kernel->all())
-                ->reject(function (SymfonyCommand $command, string $name) {
-                    return Str::startsWith('make:', $name) || $command instanceof GeneratorCommand;
-                })->each(function (SymfonyCommand $command) {
+                ->reject(static function (SymfonyCommand $command, string $name) {
+                    return str_starts_with('make:', $name) || $command instanceof GeneratorCommand;
+                })->each(static function (SymfonyCommand $command) {
                     $command->setHidden(true);
                 });
         }
