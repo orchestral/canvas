@@ -9,7 +9,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Notifications/Console/NotificationTableCommand.php
  */
-#[AsCommand(name: 'notifications:table', description: 'Create a migration for the notifications table')]
+#[AsCommand(name: 'make:notifications-table', description: 'Create a migration for the notifications table')]
 class NotificationTableCommand extends \Illuminate\Notifications\Console\NotificationTableCommand
 {
     use MigrationGenerator;
