@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
+use Orchestra\Canvas\Console\CacheTableCommand;
 use Orchestra\Canvas\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -10,7 +11,7 @@ class CacheTableCommandTest extends TestCase
     #[Test]
     public function it_can_generate_migration_file()
     {
-        $this->artisan('cache:table', ['--preset' => 'canvas'])
+        $this->artisan(CacheTableCommand::class, ['--preset' => 'canvas'])
             ->assertSuccessful();
 
         $this->assertMigrationFileContains([

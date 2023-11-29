@@ -3,33 +3,29 @@
 namespace Orchestra\Canvas\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Queue\Console\TableCommand;
+use Illuminate\Support\Composer;
 use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Queue/Console/BatchesTableCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Queue/Console/TableCommand.php
  */
-#[AsCommand(name: 'make:queue-batches-table', description: 'Create a migration for the batches database table')]
-class BatchesTableCommand extends \Illuminate\Queue\Console\BatchesTableCommand
+#[AsCommand(name: 'make:queue-table', description: 'Create a migration for the queue jobs database table')]
+class QueueTableCommand extends TableCommand
 {
     use MigrationGenerator;
-
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:queue-batches-table';
 
     /**
      * Create a new notifications table command instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files
+     * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
-    public function __construct(Filesystem $files)
+    public function __construct(Filesystem $files, Composer $composer)
     {
-        parent::__construct($files);
+        parent::__construct($files, $composer);
 
         $this->addGeneratorPresetOptions();
     }

@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
+use Orchestra\Canvas\Console\SessionTableCommand;
 use Orchestra\Canvas\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -10,7 +11,7 @@ class SessionTableCommandTest extends TestCase
     #[Test]
     public function it_can_generate_migration_file()
     {
-        $this->artisan('session:table', ['--preset' => 'canvas'])
+        $this->artisan(SessionTableCommand::class, ['--preset' => 'canvas'])
             ->assertSuccessful();
 
         $this->assertMigrationFileContains([
