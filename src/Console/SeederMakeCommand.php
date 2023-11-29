@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php
  */
 #[AsCommand(name: 'make:seeder', description: 'Create a new seeder class')]
 class SeederMakeCommand extends \Illuminate\Database\Console\Seeds\SeederMakeCommand

@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
  */
 #[AsCommand(name: 'make:component', description: 'Create a new view component class')]
 class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeCommand

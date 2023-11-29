@@ -10,7 +10,7 @@ use Orchestra\Canvas\GeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/TestMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/TestMakeCommand.php
  */
 #[AsCommand(name: 'make:test', description: 'Create a new test class')]
 class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand

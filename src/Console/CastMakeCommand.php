@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/CastMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/CastMakeCommand.php
  */
 #[AsCommand(name: 'make:cast', description: 'Create a new custom Eloquent cast class')]
 class CastMakeCommand extends \Illuminate\Foundation\Console\CastMakeCommand

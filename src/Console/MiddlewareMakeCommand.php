@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Routing/Console/MiddlewareMakeCommand.php
  */
 #[AsCommand(name: 'make:middleware', description: 'Create a new middleware class')]
 class MiddlewareMakeCommand extends \Illuminate\Routing\Console\MiddlewareMakeCommand

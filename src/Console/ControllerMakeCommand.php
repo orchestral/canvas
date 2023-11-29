@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
 #[AsCommand(name: 'make:controller', description: 'Create a new controller class')]
 class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCommand

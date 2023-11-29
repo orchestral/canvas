@@ -10,7 +10,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ModelMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ModelMakeCommand.php
  */
 #[AsCommand(name: 'make:model', description: 'Create a new Eloquent model class')]
 class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand

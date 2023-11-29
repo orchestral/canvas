@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
  */
 #[AsCommand(name: 'make:factory', description: 'Create a new model factory')]
 class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryMakeCommand

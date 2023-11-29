@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\CreatesUsingGeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Database/Console/Migrations/MigrateMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Database/Console/Migrations/MigrateMakeCommand.php
  */
 #[AsCommand(name: 'make:migration', description: 'Create a new migration file')]
 class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\MigrateMakeCommand

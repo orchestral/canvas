@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ListenerMakeCommand.php
  */
 #[AsCommand(name: 'make:listener', description: 'Create a new event listener class')]
 class ListenerMakeCommand extends \Illuminate\Foundation\Console\ListenerMakeCommand
