@@ -11,7 +11,7 @@ class BatchesTableCommandTest extends TestCase
     #[Test]
     public function it_can_generate_migration_file()
     {
-        $this->artisan('make:queue-batches-table', ['--preset' => 'canvas'])
+        $this->artisan(BatchesTableCommand::class, ['--preset' => 'canvas'])
             ->assertSuccessful();
 
         $this->assertMigrationFileContains([
