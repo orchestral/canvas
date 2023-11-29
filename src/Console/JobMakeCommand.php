@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/JobMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/JobMakeCommand.php
  */
 #[AsCommand(name: 'make:job', description: 'Create a new job class')]
 class JobMakeCommand extends \Illuminate\Foundation\Console\JobMakeCommand

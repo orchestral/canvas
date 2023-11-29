@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ChannelMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ChannelMakeCommand.php
  */
 #[AsCommand(name: 'make:channel', description: 'Create a new channel class')]
 class ChannelMakeCommand extends \Illuminate\Foundation\Console\ChannelMakeCommand

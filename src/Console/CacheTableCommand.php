@@ -7,7 +7,7 @@ use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Cache/Console/CacheTableCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Cache/Console/CacheTableCommand.php
  */
 #[AsCommand(name: 'cache:table', description: 'Create a migration for the cache database table')]
 class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
