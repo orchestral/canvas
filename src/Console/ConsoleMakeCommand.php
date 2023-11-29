@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
  */
 #[AsCommand(name: 'make:command', description: 'Create a new Artisan command')]
 class ConsoleMakeCommand extends \Illuminate\Foundation\Console\ConsoleMakeCommand
