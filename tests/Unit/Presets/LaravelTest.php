@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Tests\Unit\Presets;
 
 use Mockery as m;
 use Orchestra\Canvas\Presets\Laravel;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 use function Illuminate\Filesystem\join_paths;
@@ -18,7 +19,7 @@ class LaravelTest extends TestCase
         m::close();
     }
 
-    /** @test */
+    #[Test]
     public function it_has_proper_signatures()
     {
         $directory = __DIR__;
@@ -47,7 +48,7 @@ class LaravelTest extends TestCase
         $this->assertSame(join_paths($directory, 'stubs'), $preset->getCustomStubPath());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_model_namespace()
     {
         $directory = __DIR__;
@@ -58,7 +59,7 @@ class LaravelTest extends TestCase
         $this->assertSame('App\Providers', $preset->providerNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_provider_namespace()
     {
         $directory = __DIR__;

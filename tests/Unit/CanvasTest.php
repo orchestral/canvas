@@ -6,11 +6,12 @@ use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Canvas;
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Presets\Package;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class CanvasTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_setup_laravel_preset()
     {
         $files = new Filesystem();
@@ -33,7 +34,7 @@ class CanvasTest extends TestCase
         ], $preset->config());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_setup_package_preset()
     {
         $files = new Filesystem();

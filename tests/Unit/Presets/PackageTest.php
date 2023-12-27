@@ -4,13 +4,14 @@ namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Presets\Package;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 use function Illuminate\Filesystem\join_paths;
 
 class PackageTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_proper_signatures()
     {
         $directory = __DIR__;
@@ -39,7 +40,7 @@ class PackageTest extends TestCase
         $this->assertNull($preset->getCustomStubPath());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_model_namespace()
     {
         $directory = __DIR__;
@@ -50,7 +51,7 @@ class PackageTest extends TestCase
         $this->assertSame('FooBar', $preset->providerNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_provider_namespace()
     {
         $directory = __DIR__;
@@ -61,7 +62,7 @@ class PackageTest extends TestCase
         $this->assertSame('FooBar\Providers', $preset->providerNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_requires_root_namespace_to_be_configured()
     {
         $this->expectException('InvalidArgumentException');
