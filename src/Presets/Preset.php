@@ -76,7 +76,7 @@ abstract class Preset
     {
         return join_paths(
             $this->basePath(),
-            $this->config('factory.path', 'database/factories')
+            $this->config('factory.path', join_paths('database', 'factories'))
         );
     }
 
@@ -87,7 +87,7 @@ abstract class Preset
     {
         return join_paths(
             $this->basePath(),
-            $this->config('migration.path', 'database/migrations')
+            $this->config('migration.path', join_paths('database', 'migrations'))
         );
     }
 
@@ -98,7 +98,7 @@ abstract class Preset
     {
         return join_paths(
             $this->basePath(),
-            $this->config('seeder.path', 'database/seeders')
+            $this->config('seeder.path', join_paths('database', 'seeders'))
         );
     }
 
