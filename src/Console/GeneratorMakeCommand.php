@@ -8,6 +8,8 @@ use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
+use function Illuminate\Filesystem\join_paths;
+
 #[AsCommand(name: 'make:generator', description: 'Create a new generator command')]
 class GeneratorMakeCommand extends GeneratorCommand
 {
@@ -46,7 +48,7 @@ class GeneratorMakeCommand extends GeneratorCommand
     #[\Override]
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/generator.stub');
+        return $this->resolveStubPath(join_paths('stubs', 'generator.stub'));
     }
 
     /**
@@ -57,7 +59,7 @@ class GeneratorMakeCommand extends GeneratorCommand
      */
     protected function resolveDefaultStubPath($stub)
     {
-        return __DIR__.$stub;
+        return join_paths(__DIR__, $stub);
     }
 
     /**

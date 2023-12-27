@@ -33,9 +33,10 @@
         "composer/semver": "^3.0",
         "illuminate/console": "^10.38.1",
         "illuminate/database": "^10.38.1",
+        "illuminate/filesystem": "^10.38.1",
         "illuminate/support": "^10.38.1",
         "orchestra/canvas-core": "^8.10.1",
-        "orchestra/testbench-core": "^8.18",
+        "orchestra/testbench-core": "^8.19",
         "symfony/polyfill-php83": "^1.28",
         "symfony/yaml": "^6.2"
     },

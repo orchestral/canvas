@@ -4,6 +4,8 @@ namespace Orchestra\Canvas\Presets;
 
 use InvalidArgumentException;
 
+use function Illuminate\Filesystem\join_paths;
+
 class Package extends Preset
 {
     /**
@@ -19,8 +21,7 @@ class Package extends Preset
      */
     public function sourcePath(): string
     {
-        return sprintf(
-            '%s/%s',
+        return join_paths(
             $this->basePath(),
             $this->config('paths.src', 'src')
         );
