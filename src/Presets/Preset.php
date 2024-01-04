@@ -4,6 +4,8 @@ namespace Orchestra\Canvas\Presets;
 
 use Illuminate\Support\Arr;
 
+use function Illuminate\Filesystem\join_paths;
+
 abstract class Preset
 {
     /**
@@ -53,7 +55,7 @@ abstract class Preset
      */
     public function testingPath(): string
     {
-        return "{$this->basePath}/tests";
+        return join_paths($this->basePath, 'tests');
     }
 
     /**
@@ -61,8 +63,7 @@ abstract class Preset
      */
     public function resourcePath(): string
     {
-        return sprintf(
-            '%s/%s',
+        return join_paths(
             $this->basePath(),
             $this->config('paths.resource', 'resources')
         );
@@ -73,10 +74,9 @@ abstract class Preset
      */
     public function factoryPath(): string
     {
-        return sprintf(
-            '%s/%s',
+        return join_paths(
             $this->basePath(),
-            $this->config('factory.path', 'database/factories')
+            $this->config('factory.path', join_paths('database', 'factories'))
         );
     }
 
@@ -85,10 +85,9 @@ abstract class Preset
      */
     public function migrationPath(): string
     {
-        return sprintf(
-            '%s/%s',
+        return join_paths(
             $this->basePath(),
-            $this->config('migration.path', 'database/migrations')
+            $this->config('migration.path', join_paths('database', 'migrations'))
         );
     }
 
@@ -97,10 +96,9 @@ abstract class Preset
      */
     public function seederPath(): string
     {
-        return sprintf(
-            '%s/%s',
+        return join_paths(
             $this->basePath(),
-            $this->config('seeder.path', 'database/seeders')
+            $this->config('seeder.path', join_paths('database', 'seeders'))
         );
     }
 

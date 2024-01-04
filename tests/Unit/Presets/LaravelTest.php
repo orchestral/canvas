@@ -4,7 +4,10 @@ namespace Orchestra\Canvas\Tests\Unit\Presets;
 
 use Mockery as m;
 use Orchestra\Canvas\Presets\Laravel;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+
+use function Illuminate\Filesystem\join_paths;
 
 class LaravelTest extends TestCase
 {
@@ -16,7 +19,7 @@ class LaravelTest extends TestCase
         m::close();
     }
 
-    /** @test */
+    #[Test]
     public function it_has_proper_signatures()
     {
         $directory = __DIR__;
@@ -36,16 +39,16 @@ class LaravelTest extends TestCase
         $this->assertSame('Database\Factories', $preset->factoryNamespace());
         $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
-        $this->assertSame("{$directory}/app", $preset->sourcePath());
-        $this->assertSame("{$directory}/resources", $preset->resourcePath());
-        $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
-        $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
-        $this->assertSame("{$directory}/database/seeders", $preset->seederPath());
+        $this->assertSame(join_paths($directory, 'app'), $preset->sourcePath());
+        $this->assertSame(join_paths($directory, 'resources'), $preset->resourcePath());
+        $this->assertSame(join_paths($directory, 'database', 'factories'), $preset->factoryPath());
+        $this->assertSame(join_paths($directory, 'database', 'migrations'), $preset->migrationPath());
+        $this->assertSame(join_paths($directory, 'database', 'seeders'), $preset->seederPath());
 
-        $this->assertSame("{$directory}/stubs", $preset->getCustomStubPath());
+        $this->assertSame(join_paths($directory, 'stubs'), $preset->getCustomStubPath());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_model_namespace()
     {
         $directory = __DIR__;
@@ -56,7 +59,7 @@ class LaravelTest extends TestCase
         $this->assertSame('App\Providers', $preset->providerNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_provider_namespace()
     {
         $directory = __DIR__;

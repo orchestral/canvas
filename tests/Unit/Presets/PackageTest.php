@@ -4,11 +4,14 @@ namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Presets\Package;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+
+use function Illuminate\Filesystem\join_paths;
 
 class PackageTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_proper_signatures()
     {
         $directory = __DIR__;
@@ -28,16 +31,16 @@ class PackageTest extends TestCase
         $this->assertSame('Database\Factories', $preset->factoryNamespace());
         $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
-        $this->assertSame("{$directory}/src", $preset->sourcePath());
-        $this->assertSame("{$directory}/resources", $preset->resourcePath());
-        $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
-        $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
-        $this->assertSame("{$directory}/database/seeders", $preset->seederPath());
+        $this->assertSame(join_paths($directory, 'src'), $preset->sourcePath());
+        $this->assertSame(join_paths($directory, 'resources'), $preset->resourcePath());
+        $this->assertSame(join_paths($directory, 'database', 'factories'), $preset->factoryPath());
+        $this->assertSame(join_paths($directory, 'database', 'migrations'), $preset->migrationPath());
+        $this->assertSame(join_paths($directory, 'database', 'seeders'), $preset->seederPath());
 
         $this->assertNull($preset->getCustomStubPath());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_model_namespace()
     {
         $directory = __DIR__;
@@ -48,7 +51,7 @@ class PackageTest extends TestCase
         $this->assertSame('FooBar', $preset->providerNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_configure_provider_namespace()
     {
         $directory = __DIR__;
@@ -59,7 +62,7 @@ class PackageTest extends TestCase
         $this->assertSame('FooBar\Providers', $preset->providerNamespace());
     }
 
-    /** @test */
+    #[Test]
     public function it_requires_root_namespace_to_be_configured()
     {
         $this->expectException('InvalidArgumentException');

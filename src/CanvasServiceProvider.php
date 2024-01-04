@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider;
 use Orchestra\Canvas\Core\PresetManager;
 use Symfony\Component\Yaml\Yaml;
 
+use function Illuminate\Filesystem\join_paths;
+
 class CanvasServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
@@ -33,8 +35,8 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
 
             $config = ['preset' => 'laravel'];
 
-            if (file_exists($workingPath.DIRECTORY_SEPARATOR.'canvas.yaml')) {
-                $config = Yaml::parseFile($workingPath.DIRECTORY_SEPARATOR.'canvas.yaml');
+            if (file_exists(join_paths($workingPath, 'canvas.yaml'))) {
+                $config = Yaml::parseFile(join_paths($workingPath, 'canvas.yaml'));
             } else {
                 Arr::set($config, 'testing.extends', [
                     'unit' => 'PHPUnit\Framework\TestCase',

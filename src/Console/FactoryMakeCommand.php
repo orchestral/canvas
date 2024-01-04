@@ -8,6 +8,8 @@ use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+use function Illuminate\Filesystem\join_paths;
+
 /**
  * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Database/Console/Factories/FactoryMakeCommand.php
  */
@@ -51,7 +53,7 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
      */
     protected function resolveDefaultStubPath($stub)
     {
-        return __DIR__.$stub;
+        return join_paths(__DIR__, $stub);
     }
 
     /**

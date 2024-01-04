@@ -4,6 +4,8 @@ namespace Orchestra\Canvas;
 
 use Orchestra\Canvas\Core\Presets\Preset;
 
+use function Illuminate\Filesystem\join_paths;
+
 class GeneratorPreset extends Preset
 {
     /**
@@ -63,7 +65,7 @@ class GeneratorPreset extends Preset
      */
     public function viewPath()
     {
-        return implode('/', [$this->resourcePath(), 'views']);
+        return join_paths($this->resourcePath(), 'views');
     }
 
     /**

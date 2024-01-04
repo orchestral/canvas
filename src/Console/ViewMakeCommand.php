@@ -10,6 +10,8 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Orchestra\Canvas\GeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+use function Illuminate\Filesystem\join_paths;
+
 #[AsCommand(name: 'make:view', description: 'Create a new view')]
 class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
 {
@@ -58,7 +60,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
             return parent::resolveStubPath($stub);
         }
 
-        return $preset->hasCustomStubPath() && file_exists($customPath = implode('/', [$preset->basePath(), trim($stub, '/')]))
+        return $preset->hasCustomStubPath() && file_exists($customPath = join_paths($preset->basePath(), $stub))
             ? $customPath
             : $this->resolveDefaultStubPath($stub);
     }
@@ -71,7 +73,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
      */
     protected function resolveDefaultStubPath($stub)
     {
-        return __DIR__.$stub;
+        return join_paths(__DIR__, $stub);
     }
 
     /**
@@ -185,6 +187,6 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
     {
         $stubName = 'view.'.($this->option('pest') ? 'pest' : 'test').'.stub';
 
-        return $this->resolveStubPath("/stubs/{$stubName}");
+        return $this->resolveStubPath(join_paths('stubs', $stubName));
     }
 }
