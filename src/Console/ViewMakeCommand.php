@@ -169,8 +169,8 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
         $preset = $this->generatorPreset();
 
         $testPath = Str::of($this->testClassFullyQualifiedName())
-            ->replace('\\', '/')
-            ->replaceFirst('Tests/Feature', str_replace($preset->basePath(), '', $preset->testingPath()).'/Feature')
+            ->replace('\\', DIRECTORY_SEPARATOR)
+            ->replaceFirst(join_paths('Tests', 'Feature'), join_paths(str_replace($preset->basePath(), '', $preset->testingPath()), 'Feature'))
             ->append('Test.php')
             ->value();
 
