@@ -20,17 +20,13 @@ class Commander extends \Orchestra\Testbench\Console\Commander
     protected string $environmentFile = '.env';
 
     /**
-     * Resolve application implementation.
+     * List of providers.
      *
-     * @return \Closure(\Illuminate\Foundation\Application):void
+     * @var array<int, class-string<\Illuminate\Support\ServiceProvider>>
      */
-    #[\Override]
-    protected function resolveApplicationCallback()
-    {
-        return static function ($app) {
-            $app->register(CanvasServiceProvider::class);
-        };
-    }
+    protected array $providers = [
+        CanvasServiceProvider::class,
+    ];
 
     /**
      * Create Laravel application.
