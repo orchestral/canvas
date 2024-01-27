@@ -43,6 +43,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
         if (! $this->app instanceof LaravelApplication) {
             $app = parent::laravel();
 
+            /** @var \Illuminate\Contracts\Console\Kernel $kernel */
             $kernel = $app->make(ConsoleKernel::class);
 
             $app->register(LaravelServiceProvider::class);
