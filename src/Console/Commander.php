@@ -26,6 +26,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      */
     protected array $providers = [
         CanvasServiceProvider::class,
+        LaravelServiceProvider::class,
     ];
 
     /**
@@ -41,8 +42,6 @@ class Commander extends \Orchestra\Testbench\Console\Commander
 
             /** @var \Illuminate\Contracts\Console\Kernel $kernel */
             $kernel = $app->make(ConsoleKernel::class);
-
-            $app->register(LaravelServiceProvider::class);
 
             Collection::make($kernel->all())
                 ->reject(static function (SymfonyCommand $command, string $name) {
