@@ -94,6 +94,18 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
     }
 
     /**
+     * Get the first view directory path from the application configuration.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    #[\Override]
+    protected function viewPath($path = '')
+    {
+        return $this->viewPathUsingCanvas($path);
+    }
+
+    /**
      * Get the desired view name from the input.
      *
      * @return string
