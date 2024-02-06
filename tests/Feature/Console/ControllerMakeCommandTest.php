@@ -24,7 +24,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
             'use Illuminate\Http\Request;',
-            'class FooController extends Controller',
+            'class FooController',
         ], 'app/Http/Controllers/FooController.php');
 
         $this->assertFileNotContains([
@@ -43,7 +43,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
             'use Illuminate\Http\Request;',
-            'class FooController extends Controller',
+            'class FooController',
             'public function __invoke(Request $request)',
         ], 'app/Http/Controllers/FooController.php');
     }
@@ -57,7 +57,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
             'use Illuminate\Http\Request;',
-            'class FooController extends Controller',
+            'class FooController',
             'public function __invoke(Request $request)',
         ], 'app/Http/Controllers/FooController.php');
     }
@@ -163,7 +163,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
             'use Illuminate\Http\Request;',
-            'class FooController extends Controller',
+            'class FooController',
             'public function index()',
             'public function store(Request $request)',
             'public function update(Request $request, string $id)',
@@ -185,7 +185,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
             'use Illuminate\Http\Request;',
-            'class FooController extends Controller',
+            'class FooController',
             'public function __invoke(Request $request)',
         ], 'app/Http/Controllers/FooController.php');
 
