@@ -9,10 +9,12 @@ use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Seeds\SeederMakeCommand;
 use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\ChannelMakeCommand;
+use Illuminate\Foundation\Console\ClassMakeCommand;
 use Illuminate\Foundation\Console\ComponentMakeCommand;
 use Illuminate\Foundation\Console\ConsoleMakeCommand;
 use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\ExceptionMakeCommand;
+use Illuminate\Foundation\Console\InterfaceMakeCommand;
 use Illuminate\Foundation\Console\JobMakeCommand;
 use Illuminate\Foundation\Console\ListenerMakeCommand;
 use Illuminate\Foundation\Console\MailMakeCommand;
@@ -37,7 +39,7 @@ use Illuminate\Session\Console\SessionTableCommand;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php
+ * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php
  */
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -50,6 +52,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $this->registerCastMakeCommand();
         $this->registerChannelMakeCommand();
+        $this->registerClassMakeCommand();
         $this->registerComponentMakeCommand();
         $this->registerConsoleMakeCommand();
         $this->registerControllerMakeCommand();
@@ -57,6 +60,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerExceptionMakeCommand();
         $this->registerFactoryMakeCommand();
         $this->registerJobMakeCommand();
+        $this->registerInterfaceMakeCommand();
         $this->registerListenerMakeCommand();
         $this->registerMailMakeCommand();
         $this->registerMiddlewareMakeCommand();
@@ -89,11 +93,13 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ChannelMakeCommand::class,
             Console\ComponentMakeCommand::class,
             Console\ConsoleMakeCommand::class,
+            Console\ClassMakeCommand::class,
             Console\ControllerMakeCommand::class,
             Console\EventMakeCommand::class,
             Console\ExceptionMakeCommand::class,
             Console\FactoryMakeCommand::class,
             Console\JobMakeCommand::class,
+            Console\InterfaceMakeCommand::class,
             Console\ListenerMakeCommand::class,
             Console\MailMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
@@ -141,6 +147,16 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerChannelMakeCommand()
     {
         $this->app->singleton(ChannelMakeCommand::class, static fn ($app) => new Console\ChannelMakeCommand($app['files']));
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerClassMakeCommand()
+    {
+        $this->app->singleton(ClassMakeCommand::class, static fn ($app) => new Console\ClassMakeCommand($app['files']));
     }
 
     /**
@@ -211,6 +227,16 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerJobMakeCommand()
     {
         $this->app->singleton(JobMakeCommand::class, static fn ($app) => new Console\JobMakeCommand($app['files']));
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerInterfaceMakeCommand()
+    {
+        $this->app->singleton(InterfaceMakeCommand::class, static fn ($app) => new Console\InterfaceMakeCommand($app['files']));
     }
 
     /**
@@ -474,6 +500,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\CastMakeCommand::class,
             ChannelMakeCommand::class,
             Console\ChannelMakeCommand::class,
+            ClassMakeCommand::class,
+            Console\ClassMakeCommand::class,
             ComponentMakeCommand::class,
             Console\ComponentMakeCommand::class,
             ConsoleMakeCommand::class,
@@ -486,6 +514,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ExceptionMakeCommand::class,
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
+            InterfaceMakeCommand::class,
+            Console\InterfaceMakeCommand::class,
             JobMakeCommand::class,
             Console\JobMakeCommand::class,
             ListenerMakeCommand::class,
