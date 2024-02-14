@@ -36,6 +36,9 @@ use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Session\Console\SessionTableCommand;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php
+ */
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
