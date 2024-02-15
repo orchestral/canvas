@@ -12,6 +12,7 @@ use Illuminate\Foundation\Console\ChannelMakeCommand;
 use Illuminate\Foundation\Console\ClassMakeCommand;
 use Illuminate\Foundation\Console\ComponentMakeCommand;
 use Illuminate\Foundation\Console\ConsoleMakeCommand;
+use Illuminate\Foundation\Console\EnumMakeCommand;
 use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\ExceptionMakeCommand;
 use Illuminate\Foundation\Console\InterfaceMakeCommand;
@@ -56,6 +57,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->registerComponentMakeCommand();
         $this->registerConsoleMakeCommand();
         $this->registerControllerMakeCommand();
+        $this->registerEnumMakeCommand();
         $this->registerEventMakeCommand();
         $this->registerExceptionMakeCommand();
         $this->registerFactoryMakeCommand();
@@ -95,6 +97,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ConsoleMakeCommand::class,
             Console\ClassMakeCommand::class,
             Console\ControllerMakeCommand::class,
+            Console\EnumMakeCommand::class,
             Console\EventMakeCommand::class,
             Console\ExceptionMakeCommand::class,
             Console\FactoryMakeCommand::class,
@@ -187,6 +190,16 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerControllerMakeCommand()
     {
         $this->app->singleton(ControllerMakeCommand::class, static fn ($app) => new Console\ControllerMakeCommand($app['files']));
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerEnumMakeCommand()
+    {
+        $this->app->singleton(EnumMakeCommand::class, fn ($app) => new Console\EnumMakeCommand($app['files']));
     }
 
     /**
@@ -508,6 +521,8 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ConsoleMakeCommand::class,
             ControllerMakeCommand::class,
             Console\ControllerMakeCommand::class,
+            EnumMakeCommand::class,
+            Console\EnumMakeCommand::class,
             EventMakeCommand::class,
             Console\EventMakeCommand::class,
             ExceptionMakeCommand::class,
