@@ -12,7 +12,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use function Illuminate\Filesystem\join_paths;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/TestMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/TestMakeCommand.php
  */
 #[AsCommand(name: 'make:test', description: 'Create a new test class')]
 class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand

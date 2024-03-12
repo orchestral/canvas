@@ -40,7 +40,7 @@ use Illuminate\Session\Console\SessionTableCommand;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php
  */
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {

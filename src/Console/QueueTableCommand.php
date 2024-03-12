@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Queue/Console/TableCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Queue/Console/TableCommand.php
  */
 #[AsCommand(name: 'make:queue-table', description: 'Create a migration for the queue jobs database table')]
 class QueueTableCommand extends TableCommand

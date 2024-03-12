@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/RequestMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/RequestMakeCommand.php
  */
 #[AsCommand(name: 'make:request', description: 'Create a new form request class')]
 class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeCommand

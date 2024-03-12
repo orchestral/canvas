@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
 #[AsCommand(name: 'make:observer', description: 'Create a new observer class')]
 class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCommand

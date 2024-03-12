@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Routing/Console/EnumMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Routing/Console/EnumMakeCommand.php
  */
 #[AsCommand(name: 'make:enum', description: 'Create a new enum')]
 class EnumMakeCommand extends \Illuminate\Foundation\Console\EnumMakeCommand

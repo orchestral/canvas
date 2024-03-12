@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ScopeMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/ScopeMakeCommand.php
  */
 #[AsCommand(name: 'make:scope', description: 'Create a new class')]
 class ScopeMakeCommand extends \Illuminate\Foundation\Console\ScopeMakeCommand

@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/PolicyMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/PolicyMakeCommand.php
  */
 #[AsCommand(name: 'make:policy', description: 'Create a new policy class')]
 class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand

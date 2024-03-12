@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/InterfaceMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/InterfaceMakeCommand.php
  */
 #[AsCommand(name: 'make:interface', description: 'Create a new interface')]
 class InterfaceMakeCommand extends \Illuminate\Foundation\Console\InterfaceMakeCommand

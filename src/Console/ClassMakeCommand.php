@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ClassMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/ClassMakeCommand.php
  */
 #[AsCommand(name: 'make:class', description: 'Create a new class')]
 class ClassMakeCommand extends \Illuminate\Foundation\Console\ClassMakeCommand
