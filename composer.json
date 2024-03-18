@@ -45,7 +45,7 @@
         "laravel/pint": "^1.6",
         "mockery/mockery": "^1.6",
         "phpstan/phpstan": "^1.10.6",
-        "phpunit/phpunit": "^10.5",
+        "phpunit/phpunit": "^11.0",
         "spatie/laravel-ray": "^1.35"
     },
     "config": {
