@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Queue\Console\TableCommand;
 use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -16,14 +15,14 @@ class QueueTableCommand extends TableCommand
     use MigrationGenerator;
 
     /**
-     * Create a new notifications table command instance.
+     * Configures the current command.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }

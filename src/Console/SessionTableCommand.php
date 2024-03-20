@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -15,14 +14,14 @@ class SessionTableCommand extends \Illuminate\Session\Console\SessionTableComman
     use MigrationGenerator;
 
     /**
-     * Create a new session table command instance.
+     * Configures the current command.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }

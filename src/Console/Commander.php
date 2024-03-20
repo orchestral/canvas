@@ -6,7 +6,6 @@ use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Collection;
-use Orchestra\Canvas\LaravelServiceProvider;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class Commander extends \Orchestra\Testbench\Console\Commander
@@ -24,8 +23,9 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      * @var array<int, class-string<\Illuminate\Support\ServiceProvider>>
      */
     protected array $providers = [
-        \Orchestra\Canvas\CanvasServiceProvider::class,
         \Orchestra\Canvas\Core\LaravelServiceProvider::class,
+        \Orchestra\Canvas\CanvasServiceProvider::class,
+        \Orchestra\Canvas\LaravelServiceProvider::class,
     ];
 
     /**
@@ -41,8 +41,6 @@ class Commander extends \Orchestra\Testbench\Console\Commander
 
             /** @var \Illuminate\Contracts\Console\Kernel $kernel */
             $kernel = $app->make(ConsoleKernel::class);
-
-            $app->register(LaravelServiceProvider::class);
 
             Collection::make($kernel->all())
                 ->reject(static function (SymfonyCommand $command, string $name) {

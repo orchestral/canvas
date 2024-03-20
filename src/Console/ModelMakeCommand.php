@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\TestGenerator;
@@ -20,13 +19,14 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new creator command instance.
+     * Configures the current command.
      *
      * @return void
      */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }

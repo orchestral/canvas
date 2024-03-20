@@ -538,7 +538,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\MailMakeCommand::class,
             MiddlewareMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
-            MigrateMakeCommand::class,
             Console\MigrateMakeCommand::class,
             ModelMakeCommand::class,
             Console\ModelMakeCommand::class,

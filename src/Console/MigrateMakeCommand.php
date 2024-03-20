@@ -2,8 +2,6 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Database\Migrations\MigrationCreator;
-use Illuminate\Support\Composer;
 use Orchestra\Canvas\Core\Commands\Command;
 use Orchestra\Canvas\Core\Concerns\CreatesUsingGeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -24,15 +22,14 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
     protected $type = 'Migration';
 
     /**
-     * Create a new migration install command instance.
+     * Configures the current command.
      *
-     * @param  \Illuminate\Database\Migrations\MigrationCreator  $creator
-     * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
-    public function __construct(MigrationCreator $creator, Composer $composer)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($creator, $composer);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }
