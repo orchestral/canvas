@@ -5,7 +5,6 @@ namespace Orchestra\Canvas;
 use Illuminate\Cache\Console\CacheTableCommand;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
-use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Seeds\SeederMakeCommand;
 use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\ChannelMakeCommand;
@@ -49,7 +48,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      *
      * @return void
      */
-    public function register()
+    public function boot()
     {
         $this->registerCastMakeCommand();
         $this->registerChannelMakeCommand();
@@ -289,7 +288,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     protected function registerMigrateMakeCommand()
     {
-        $this->app->singleton(MigrateMakeCommand::class, static function ($app) {
+        $this->app->singleton(Console\MigrateMakeCommand::class, static function ($app) {
             // Once we have the migration creator registered, we will create the command
             // and inject the creator. The creator is responsible for the actual file
             // creation of the migrations, and may be extended by these developers.

@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
+use Orchestra\Canvas\Console\MigrateMakeCommand;
 use Orchestra\Canvas\Presets\Laravel;
 use Orchestra\Canvas\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
