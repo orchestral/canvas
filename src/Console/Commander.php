@@ -50,7 +50,8 @@ class Commander extends \Orchestra\Testbench\Console\Commander
 
             Collection::make($kernel->all())
                 ->reject(static function (SymfonyCommand $command, string $name) {
-                    return str_starts_with('make:', $name) || $command instanceof GeneratorCommand;
+                    return $command instanceof GeneratorCommand
+                        || $command instanceof MigrateMakeCommand;
                 })->each(static function (SymfonyCommand $command) {
                     $command->setHidden(true);
                 });
