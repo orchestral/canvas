@@ -8,7 +8,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Queue/Console/FailedTableCommand.php
  */
-#[AsCommand(name: 'make:queue-failed-table', description: 'Create a migration for the failed queue jobs database table')]
+#[AsCommand(name: 'make:queue-failed-table', description: 'Create a migration for the failed queue jobs database table', aliases: ['queue:failed-table'])]
 class FailedTableCommand extends \Illuminate\Queue\Console\FailedTableCommand
 {
     use MigrationGenerator;

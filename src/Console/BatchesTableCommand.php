@@ -8,7 +8,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Queue/Console/BatchesTableCommand.php
  */
-#[AsCommand(name: 'make:queue-batches-table', description: 'Create a migration for the batches database table')]
+#[AsCommand(name: 'make:queue-batches-table', description: 'Create a migration for the batches database table', aliases: ['queue:batches-table'])]
 class BatchesTableCommand extends \Illuminate\Queue\Console\BatchesTableCommand
 {
     use MigrationGenerator;

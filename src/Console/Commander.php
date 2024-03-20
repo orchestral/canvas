@@ -45,7 +45,13 @@ class Commander extends \Orchestra\Testbench\Console\Commander
             Collection::make($kernel->all())
                 ->reject(static function (SymfonyCommand $command, string $name) {
                     return $command instanceof GeneratorCommand
-                        || $command instanceof MigrateMakeCommand;
+                        || $command instanceof MigrateMakeCommand
+                        || $command instanceof BatchesTableCommand
+                        || $command instanceof CacheTableCommand
+                        || $command instanceof FailedTableCommand
+                        || $command instanceof NotificationTableCommand
+                        || $command instanceof QueueTableCommand
+                        || $command instanceof SessionTableCommand;
                 })->each(static function (SymfonyCommand $command) {
                     $command->setHidden(true);
                 });

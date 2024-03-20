@@ -8,7 +8,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Cache/Console/CacheTableCommand.php
  */
-#[AsCommand(name: 'make:cache-table', description: 'Create a migration for the cache database table')]
+#[AsCommand(name: 'make:cache-table', description: 'Create a migration for the cache database table', aliases: ['cache:table'])]
 class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
 {
     use MigrationGenerator;
