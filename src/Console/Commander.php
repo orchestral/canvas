@@ -2,13 +2,10 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Collection;
 use Orchestra\Canvas\Core\Concerns\CreatesUsingGeneratorPreset;
-use Orchestra\Canvas\Core\Contracts\Generator;
-use Orchestra\Canvas\Core\Contracts\MigrationGenerator;
 use Orchestra\Canvas\LaravelServiceProvider;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
@@ -48,12 +45,12 @@ class Commander extends \Orchestra\Testbench\Console\Commander
             $app->register(LaravelServiceProvider::class);
 
             /**
-             * @param \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand> $commands
-             * @param \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand> $rejects
+             * @param  \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand>  $commands
+             * @param  \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand>  $rejects
              */
             [$commands, $rejects] = Collection::make($kernel->all())
                 ->partition(
-                    static fn (SymfonyCommand $command, string $name) => in_array(CreatesUsingGeneratorPreset::class, class_uses_recursive($command))
+                    static fn (SymfonyCommand $command, string $name) => \in_array(CreatesUsingGeneratorPreset::class, class_uses_recursive($command))
                 );
 
             $rejects->each(static function (SymfonyCommand $command) {
