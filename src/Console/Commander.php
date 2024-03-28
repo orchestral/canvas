@@ -44,22 +44,12 @@ class Commander extends \Orchestra\Testbench\Console\Commander
 
             $app->register(LaravelServiceProvider::class);
 
-            /**
-             * @param  \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand>  $commands
-             * @param  \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand>  $rejects
-             */
-            [$commands, $rejects] = Collection::make($kernel->all())
-                ->partition(
+            Collection::make($kernel->all())
+                ->reject(
                     static fn (SymfonyCommand $command, string $name) => \in_array(CreatesUsingGeneratorPreset::class, class_uses_recursive($command))
-                );
-
-            $rejects->each(static function (SymfonyCommand $command) {
-                $command->setHidden(true);
-            });
-
-            $commands->each(function ($command) {
-                var_dump($command::class);
-            });
+                )->each(static function (SymfonyCommand $command) {
+                    $command->setHidden(true);
+                });
         }
 
         return $this->app;
