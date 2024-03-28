@@ -6,6 +6,10 @@ use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Collection;
+use Orchestra\Canvas\Core\Concerns\CreatesUsingGeneratorPreset;
+use Orchestra\Canvas\Core\Contracts\Generator;
+use Orchestra\Canvas\Core\Contracts\MigrationGenerator;
+use Orchestra\Canvas\LaravelServiceProvider;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class Commander extends \Orchestra\Testbench\Console\Commander
@@ -25,7 +29,6 @@ class Commander extends \Orchestra\Testbench\Console\Commander
     protected array $providers = [
         \Orchestra\Canvas\Core\LaravelServiceProvider::class,
         \Orchestra\Canvas\CanvasServiceProvider::class,
-        \Orchestra\Canvas\LaravelServiceProvider::class,
     ];
 
     /**
@@ -42,19 +45,24 @@ class Commander extends \Orchestra\Testbench\Console\Commander
             /** @var \Illuminate\Contracts\Console\Kernel $kernel */
             $kernel = $app->make(ConsoleKernel::class);
 
-            Collection::make($kernel->all())
-                ->reject(static function (SymfonyCommand $command, string $name) {
-                    return $command instanceof GeneratorCommand
-                        || $command instanceof MigrateMakeCommand
-                        || $command instanceof BatchesTableCommand
-                        || $command instanceof CacheTableCommand
-                        || $command instanceof FailedTableCommand
-                        || $command instanceof NotificationTableCommand
-                        || $command instanceof QueueTableCommand
-                        || $command instanceof SessionTableCommand;
-                })->each(static function (SymfonyCommand $command) {
-                    $command->setHidden(true);
-                });
+            $app->register(LaravelServiceProvider::class);
+
+            /**
+             * @param \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand> $commands
+             * @param \Illuminate\Support\Collection<string, \Illuminate\Console\SymfonyCommand> $rejects
+             */
+            [$commands, $rejects] = Collection::make($kernel->all())
+                ->partition(
+                    static fn (SymfonyCommand $command, string $name) => in_array(CreatesUsingGeneratorPreset::class, class_uses_recursive($command))
+                );
+
+            $rejects->each(static function (SymfonyCommand $command) {
+                $command->setHidden(true);
+            });
+
+            $commands->each(function ($command) {
+                var_dump($command::class);
+            });
         }
 
         return $this->app;
