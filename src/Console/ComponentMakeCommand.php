@@ -40,6 +40,7 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

@@ -38,6 +38,7 @@ class InterfaceMakeCommand extends \Illuminate\Foundation\Console\InterfaceMakeC
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

@@ -38,6 +38,7 @@ class EnumMakeCommand extends \Illuminate\Foundation\Console\EnumMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

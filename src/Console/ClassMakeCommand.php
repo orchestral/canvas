@@ -38,6 +38,7 @@ class ClassMakeCommand extends \Illuminate\Foundation\Console\ClassMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

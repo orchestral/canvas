@@ -38,6 +38,7 @@ class ProviderMakeCommand extends \Illuminate\Foundation\Console\ProviderMakeCom
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

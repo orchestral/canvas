@@ -52,6 +52,7 @@ class Commander extends \Orchestra\Testbench\Console\Commander
                 });
         }
 
+        /** @phpstan-ignore return.type */
         return $this->app;
     }
 }

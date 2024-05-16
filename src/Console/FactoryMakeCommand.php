@@ -42,6 +42,7 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

@@ -38,6 +38,7 @@ class CastMakeCommand extends \Illuminate\Foundation\Console\CastMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

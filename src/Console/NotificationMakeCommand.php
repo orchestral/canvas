@@ -40,6 +40,7 @@ class NotificationMakeCommand extends \Illuminate\Foundation\Console\Notificatio
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

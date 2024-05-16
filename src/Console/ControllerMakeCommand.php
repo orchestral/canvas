@@ -40,6 +40,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 
@@ -63,6 +64,11 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     #[\Override]
     protected function buildParentReplacements()
     {
+        /**
+         * @phpstan-ignore argument.type
+         *
+         * @var class-string|string $parentModelClass
+         */
         $parentModelClass = $this->parseModel($this->option('parent'));
 
         if (! class_exists($parentModelClass) &&
@@ -92,6 +98,11 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     #[\Override]
     protected function buildModelReplacements(array $replace)
     {
+        /**
+         * @phpstan-ignore argument.type
+         *
+         * @var class-string|string $modelClass
+         */
         $modelClass = $this->parseModel($this->option('model'));
 
         if (! class_exists($modelClass) && $this->components->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
