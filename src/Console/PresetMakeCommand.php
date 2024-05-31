@@ -56,11 +56,8 @@ class PresetMakeCommand extends GeneratorCommand
     #[\Override]
     protected function rootNamespace(): string
     {
-        /**
-         * @phpstan-ignore argument.type
-         *
-         * @var string $namespace
-         */
+        /** @var string $namespace */
+        /** @phpstan-ignore argument.type */
         $namespace = transform($this->option('namespace'), function (string $namespace) {
             return trim($namespace);
         });

@@ -64,11 +64,8 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     #[\Override]
     protected function buildParentReplacements()
     {
-        /**
-         * @phpstan-ignore argument.type
-         *
-         * @var class-string|string $parentModelClass
-         */
+        /** @var class-string|string $parentModelClass */
+        /** @phpstan-ignore argument.type */
         $parentModelClass = $this->parseModel($this->option('parent'));
 
         if (! class_exists($parentModelClass) &&
@@ -98,11 +95,8 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     #[\Override]
     protected function buildModelReplacements(array $replace)
     {
-        /**
-         * @phpstan-ignore argument.type
-         *
-         * @var class-string|string $modelClass
-         */
+        /** @var class-string|string $modelClass */
+        /** @phpstan-ignore argument.type */
         $modelClass = $this->parseModel($this->option('model'));
 
         if (! class_exists($modelClass) && $this->components->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
