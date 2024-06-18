@@ -33,17 +33,17 @@ class UserModelMakeCommand extends GeneratorCommand
     #[\Override]
     protected function buildClass($name)
     {
-        return transform(parent::buildClass($name), function ($stub) {
-            if (! InstalledVersions::isInstalled('laravel/sanctum')) {
-                $stub = str_replace(
-                    '    use HasApiTokens, HasFactory, Notifiable;'.PHP_EOL,
-                    '    use HasFactory, Notifiable;'.PHP_EOL,
-                    $stub
-                );
-            }
+        $stub = parent::buildClass($name);
 
-            return $stub;
-        });
+        if (! InstalledVersions::isInstalled('laravel/sanctum')) {
+            $stub = str_replace(
+                '    use HasApiTokens, HasFactory, Notifiable;'.PHP_EOL,
+                '    use HasFactory, Notifiable;'.PHP_EOL,
+                $stub
+            );
+        }
+
+        return $stub;
     }
 
     /**
