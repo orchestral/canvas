@@ -73,7 +73,6 @@ Symfony\Component\Process\Process::fromShellCommandline(
 $files->copy("{$workingPath}/skeleton/app/Models/User.php", "{$workingPath}/src/Console/stubs/user-model.stub");
 transform([
     'namespace App\Models;' => 'namespace {{ namespace }};',
-    '    use HasApiTokens, HasFactory, Notifiable;'.PHP_EOL => '    use HasFactory, Notifiable;'.PHP_EOL
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/src/Console/stubs/user-model.stub"));
 
 $files->copy("{$workingPath}/skeleton/database/factories/UserFactory.php", "{$workingPath}/src/Console/stubs/user-factory.stub");

@@ -21,6 +21,7 @@ class UserModelMakeCommandTest extends TestCase
             'namespace App\Models;',
             'use Illuminate\Foundation\Auth\User as Authenticatable;',
             'class User extends Authenticatable',
+            'use HasFactory, Notifiable;',
         ], 'app/Models/User.php');
     }
 }
