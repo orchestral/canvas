@@ -40,6 +40,7 @@ class ListenerMakeCommand extends \Illuminate\Foundation\Console\ListenerMakeCom
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

@@ -41,6 +41,7 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

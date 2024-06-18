@@ -38,6 +38,7 @@ class RuleMakeCommand extends \Illuminate\Foundation\Console\RuleMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

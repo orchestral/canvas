@@ -42,6 +42,7 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

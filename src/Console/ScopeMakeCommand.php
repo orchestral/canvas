@@ -38,6 +38,7 @@ class ScopeMakeCommand extends \Illuminate\Foundation\Console\ScopeMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

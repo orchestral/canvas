@@ -40,6 +40,7 @@ class ChannelMakeCommand extends \Illuminate\Foundation\Console\ChannelMakeComma
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

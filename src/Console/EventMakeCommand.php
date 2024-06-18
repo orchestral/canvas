@@ -38,6 +38,7 @@ class EventMakeCommand extends \Illuminate\Foundation\Console\EventMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

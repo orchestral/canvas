@@ -38,6 +38,7 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

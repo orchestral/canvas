@@ -43,6 +43,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 
@@ -86,6 +87,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
     protected function getPath($name)
     {
         /** @var string $extension */
+        /** @phpstan-ignore argument.type */
         $extension = transform($this->option('extension'), fn (string $extension) => trim($extension));
 
         return $this->viewPath(
@@ -113,6 +115,7 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
     #[\Override]
     protected function getNameInput()
     {
+        /** @phpstan-ignore argument.type */
         return transform($this->argument('name'), function (string $name) {
             return str_replace(['\\', '.'], '/', trim($name));
         });

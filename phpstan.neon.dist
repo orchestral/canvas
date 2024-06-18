@@ -15,8 +15,6 @@ parameters:
   level: 7
 
   ignoreErrors:
-    - identifier: missingType.generics
-    - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
+    - identifier: missingType.iterableValue
 
-  checkMissingIterableValueType: false
   treatPhpDocTypesAsCertain: false
