@@ -21,7 +21,8 @@ class UserFactoryMakeCommandTest extends TestCase
             'namespace Database\Factories;',
             'use Illuminate\Database\Eloquent\Factories\Factory;',
             'use App\Models\User;',
-            '* @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>',
+            '* @template TModel of \App\Models\User',
+            '* @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>',
             'class UserFactory extends Factory',
             'protected $model = User::class;',
         ], 'database/factories/UserFactory.php');
