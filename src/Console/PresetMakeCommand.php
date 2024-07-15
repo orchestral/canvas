@@ -63,7 +63,7 @@ class PresetMakeCommand extends GeneratorCommand
                 } else {
                     $input->setOption('namespace', select(
                         label: 'The root namespace for your package?',
-                        options: $namespaces,
+                        options: $namespaces->all(),
                         required: true,
                     ));
                 }
