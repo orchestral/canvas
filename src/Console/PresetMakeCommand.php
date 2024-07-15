@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Console;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Commands\GeneratorCommand;
 use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
@@ -11,7 +12,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use function Illuminate\Filesystem\join_paths;
 use function Laravel\Prompts\select;
 use function Orchestra\Testbench\package_path;
@@ -53,9 +53,10 @@ class PresetMakeCommand extends GeneratorCommand
             $composer = $files->json(package_path('composer.json'), true);
 
             /** @var \Illuminate\Support\Collection<class-string, class-string> $namespaces */
-            $namespaces = collect(Arr::wrap(data_get($composer, 'autoload.psr-4')))->mapWithKeys(
-                fn ($path, $namespace) => [$namespace => $namespace]
-            );
+            $namespaces = Collection::make(Arr::wrap(data_get($composer, 'autoload.psr-4')))
+                ->values()
+                ->transform(fn ($namespace) => rtrim($namespace, '\\')
+                ->mapWithKeys(fn ($namespace) => [$namespace => $namespace]);
 
             if ($namespaces->isNotEmpty()) {
                 if ($namespaces->count() === 1) {
