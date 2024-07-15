@@ -2,13 +2,19 @@
 
 namespace Orchestra\Canvas\Console;
 
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Commands\GeneratorCommand;
 use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 use function Illuminate\Filesystem\join_paths;
+use function Laravel\Prompts\select;
+use function Orchestra\Testbench\package_path;
 
 #[AsCommand(name: 'preset', description: 'Create canvas.yaml for the project')]
 class PresetMakeCommand extends GeneratorCommand
@@ -21,6 +27,51 @@ class PresetMakeCommand extends GeneratorCommand
      * @var string
      */
     protected $type = 'Preset';
+
+    /**
+     * Interact with the user before validating the input.
+     *
+     * @param  \Symfony\Component\Console\Input\InputInterface  $input
+     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @return void
+     */
+    protected function interact(InputInterface $input, OutputInterface $output)
+    {
+        if (\is_null($input->getArgument('name'))) {
+            $input->setArgument('name', select(
+                label: 'The preset type?',
+                options: [
+                    'laravel' => 'Application',
+                    'package' => 'Package',
+                ],
+                required: true,
+            ));
+        }
+
+        if (\is_null($input->getOption('namespace'))) {
+            $files = new Filesystem();
+            $composer = $files->json(package_path('composer.json'), true);
+
+            /** @var \Illuminate\Support\Collection<class-string, class-string> $namespaces */
+            $namespaces = collect(Arr::wrap(data_get($composer, 'autoload.psr-4')))->mapWithKeys(
+                fn ($path, $namespace) => [$namespace => $namespace]
+            );
+
+            if ($namespaces->isNotEmpty()) {
+                if ($namespaces->count() === 1) {
+                    $input->setOption('namespace', $namespaces->first());
+                } else {
+                    $input->setOption('namespace', select(
+                        label: 'The root namespace for your package?',
+                        options: $namespaces,
+                        required: true,
+                    ));
+                }
+            }
+        }
+
+        parent::interact($input, $output);
+    }
 
     /**
      * Get the stub file for the generator.
@@ -66,13 +117,11 @@ class PresetMakeCommand extends GeneratorCommand
             return $namespace;
         }
 
-        switch ($this->argument('name')) {
-            case 'package':
-                return 'PackageName';
-            case 'laravel':
-            default:
-                return rtrim($this->laravel->getNamespace(), '\\');
-        }
+        return match ($this->argument('name')) {
+            'package' => 'PackageName',
+            /* 'laravel' */
+            default => rtrim($this->laravel->getNamespace(), '\\'),
+        };
     }
 
     /**
