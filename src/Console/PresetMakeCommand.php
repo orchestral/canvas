@@ -50,12 +50,11 @@ class PresetMakeCommand extends GeneratorCommand
 
         if (\is_null($input->getOption('namespace'))) {
             $files = new Filesystem();
-            $composer = $files->json(package_path('composer.json'), true);
+            $composer = $files->json(package_path('composer.json'));
 
-            /** @var \Illuminate\Support\Collection<class-string, class-string> $namespaces */
             $namespaces = Collection::make(Arr::wrap(data_get($composer, 'autoload.psr-4')))
                 ->values()
-                ->transform(fn ($namespace) => rtrim($namespace, '\\')
+                ->transform(fn ($namespace) => rtrim($namespace, '\\'))
                 ->mapWithKeys(fn ($namespace) => [$namespace => $namespace]);
 
             if ($namespaces->isNotEmpty()) {
