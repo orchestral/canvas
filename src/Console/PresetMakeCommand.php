@@ -35,6 +35,7 @@ class PresetMakeCommand extends GeneratorCommand
      * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @return void
      */
+    #[\Override]
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (\is_null($input->getArgument('name'))) {
@@ -53,7 +54,7 @@ class PresetMakeCommand extends GeneratorCommand
             $composer = $files->json(package_path('composer.json'));
 
             $namespaces = Collection::make(Arr::wrap(data_get($composer, 'autoload.psr-4')))
-                ->values()
+                ->keys()
                 ->transform(fn ($namespace) => rtrim($namespace, '\\'))
                 ->mapWithKeys(fn ($namespace) => [$namespace => $namespace]);
 
