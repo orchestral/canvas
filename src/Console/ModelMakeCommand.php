@@ -188,7 +188,6 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
     /**
      * Qualify the given model class base name.
      *
-     * @param  string  $model
      * @return string
      */
     #[\Override]

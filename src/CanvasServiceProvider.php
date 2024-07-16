@@ -15,8 +15,6 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
 {
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {

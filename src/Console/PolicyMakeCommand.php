@@ -45,7 +45,6 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
     /**
      * Qualify the given model class base name.
      *
-     * @param  string  $model
      * @return string
      */
     #[\Override]

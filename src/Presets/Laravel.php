@@ -32,8 +32,6 @@ class Laravel extends Preset
 
     /**
      * Command namespace.
-     *
-     * @return string
      */
     public function commandNamespace(): string
     {

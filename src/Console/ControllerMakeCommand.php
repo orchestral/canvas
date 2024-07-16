@@ -47,7 +47,6 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     /**
      * Qualify the given model class base name.
      *
-     * @param  string  $model
      * @return string
      */
     #[\Override]
@@ -89,7 +88,6 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     /**
      * Build the model replacement values.
      *
-     * @param  array  $replace
      * @return array
      */
     #[\Override]

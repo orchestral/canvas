@@ -45,7 +45,6 @@ class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCom
     /**
      * Qualify the given model class base name.
      *
-     * @param  string  $model
      * @return string
      */
     #[\Override]

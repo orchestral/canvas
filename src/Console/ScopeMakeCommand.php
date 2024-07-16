@@ -45,7 +45,6 @@ class ScopeMakeCommand extends \Illuminate\Foundation\Console\ScopeMakeCommand
     /**
      * Qualify the given model class base name.
      *
-     * @param  string  $model
      * @return string
      */
     #[\Override]

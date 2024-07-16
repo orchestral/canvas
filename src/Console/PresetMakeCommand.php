@@ -12,6 +12,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function Illuminate\Filesystem\join_paths;
 use function Laravel\Prompts\select;
 use function Orchestra\Testbench\package_path;
@@ -31,8 +32,6 @@ class PresetMakeCommand extends GeneratorCommand
     /**
      * Interact with the user before validating the input.
      *
-     * @param  \Symfony\Component\Console\Input\InputInterface  $input
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @return void
      */
     #[\Override]
@@ -55,8 +54,8 @@ class PresetMakeCommand extends GeneratorCommand
 
             $namespaces = Collection::make(Arr::wrap(data_get($composer, 'autoload.psr-4')))
                 ->keys()
-                ->transform(fn ($namespace) => rtrim($namespace, '\\'))
-                ->mapWithKeys(fn ($namespace) => [$namespace => $namespace]);
+                ->transform(static fn ($namespace) => rtrim($namespace, '\\'))
+                ->mapWithKeys(static fn ($namespace) => [$namespace => $namespace]);
 
             if ($namespaces->isNotEmpty()) {
                 if ($namespaces->count() === 1) {
@@ -110,9 +109,9 @@ class PresetMakeCommand extends GeneratorCommand
     {
         /** @var string $namespace */
         /** @phpstan-ignore argument.type */
-        $namespace = transform($this->option('namespace'), function (string $namespace) {
-            return trim($namespace);
-        });
+        $namespace = transform(
+            $this->option('namespace'), static fn (string $namespace) => trim($namespace)
+        );
 
         if (! empty($namespace)) {
             return $namespace;
