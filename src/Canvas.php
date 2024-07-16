@@ -19,22 +19,23 @@ class Canvas
 
         $preset = $config['preset'];
 
-        switch ($preset) {
-            case 'package':
-                return new Presets\Package($configuration, $basePath);
-            case 'laravel':
-                return new Presets\Laravel($configuration, $basePath);
-            default:
-                if (class_exists($preset)) {
-                    /**
-                     * @var class-string<\Orchestra\Canvas\Presets\Preset> $preset
-                     *
-                     * @return \Orchestra\Canvas\Presets\Preset
-                     */
-                    return new $preset($configuration, $basePath);
-                }
+        $resolveDefaultPreset = function ($configuration, $basePath) use ($preset) {
+            if (class_exists($preset)) {
+                /**
+                 * @var class-string<\Orchestra\Canvas\Presets\Preset> $preset
+                 *
+                 * @return \Orchestra\Canvas\Presets\Preset
+                 */
+                return new $preset($configuration, $basePath);
+            }
 
-                return new Presets\Laravel($configuration, $basePath);
-        }
+            return new Presets\Laravel($configuration, $basePath);
+        };
+
+        return match ($preset) {
+            'package' => new Presets\Package($configuration, $basePath),
+            'laravel' => new Presets\Laravel($configuration, $basePath),
+            default => $resolveDefaultPreset($configuration, $basePath),
+        };
     }
 }
