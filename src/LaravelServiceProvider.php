@@ -5,14 +5,16 @@ namespace Orchestra\Canvas;
 use Illuminate\Cache\Console\CacheTableCommand;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
-use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Seeds\SeederMakeCommand;
 use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Foundation\Console\ChannelMakeCommand;
+use Illuminate\Foundation\Console\ClassMakeCommand;
 use Illuminate\Foundation\Console\ComponentMakeCommand;
 use Illuminate\Foundation\Console\ConsoleMakeCommand;
+use Illuminate\Foundation\Console\EnumMakeCommand;
 use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\ExceptionMakeCommand;
+use Illuminate\Foundation\Console\InterfaceMakeCommand;
 use Illuminate\Foundation\Console\JobMakeCommand;
 use Illuminate\Foundation\Console\ListenerMakeCommand;
 use Illuminate\Foundation\Console\MailMakeCommand;
@@ -36,24 +38,28 @@ use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Session\Console\SessionTableCommand;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php
+ */
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function boot(): void
     {
         $this->registerCastMakeCommand();
         $this->registerChannelMakeCommand();
+        $this->registerClassMakeCommand();
         $this->registerComponentMakeCommand();
         $this->registerConsoleMakeCommand();
         $this->registerControllerMakeCommand();
+        $this->registerEnumMakeCommand();
         $this->registerEventMakeCommand();
         $this->registerExceptionMakeCommand();
         $this->registerFactoryMakeCommand();
         $this->registerJobMakeCommand();
+        $this->registerInterfaceMakeCommand();
         $this->registerListenerMakeCommand();
         $this->registerMailMakeCommand();
         $this->registerMiddlewareMakeCommand();
@@ -86,11 +92,14 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\ChannelMakeCommand::class,
             Console\ComponentMakeCommand::class,
             Console\ConsoleMakeCommand::class,
+            Console\ClassMakeCommand::class,
             Console\ControllerMakeCommand::class,
+            Console\EnumMakeCommand::class,
             Console\EventMakeCommand::class,
             Console\ExceptionMakeCommand::class,
             Console\FactoryMakeCommand::class,
             Console\JobMakeCommand::class,
+            Console\InterfaceMakeCommand::class,
             Console\ListenerMakeCommand::class,
             Console\MailMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
@@ -122,132 +131,160 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerCastMakeCommand()
+    protected function registerCastMakeCommand(): void
     {
-        $this->app->singleton(CastMakeCommand::class, static fn ($app) => new Console\CastMakeCommand($app['files']));
+        $this->app->singleton(
+            CastMakeCommand::class, static fn ($app) => new Console\CastMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerChannelMakeCommand()
+    protected function registerChannelMakeCommand(): void
     {
-        $this->app->singleton(ChannelMakeCommand::class, static fn ($app) => new Console\ChannelMakeCommand($app['files']));
+        $this->app->singleton(
+            ChannelMakeCommand::class, static fn ($app) => new Console\ChannelMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerComponentMakeCommand()
+    protected function registerClassMakeCommand(): void
     {
-        $this->app->singleton(ComponentMakeCommand::class, static fn ($app) => new Console\ComponentMakeCommand($app['files']));
+        $this->app->singleton(
+            ClassMakeCommand::class, static fn ($app) => new Console\ClassMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerConsoleMakeCommand()
+    protected function registerComponentMakeCommand(): void
     {
-        $this->app->singleton(ConsoleMakeCommand::class, static fn ($app) => new Console\ConsoleMakeCommand($app['files']));
+        $this->app->singleton(
+            ComponentMakeCommand::class, static fn ($app) => new Console\ComponentMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerControllerMakeCommand()
+    protected function registerConsoleMakeCommand(): void
     {
-        $this->app->singleton(ControllerMakeCommand::class, static fn ($app) => new Console\ControllerMakeCommand($app['files']));
+        $this->app->singleton(
+            ConsoleMakeCommand::class, static fn ($app) => new Console\ConsoleMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerEventMakeCommand()
+    protected function registerControllerMakeCommand(): void
     {
-        $this->app->singleton(EventMakeCommand::class, static fn ($app) => new Console\EventMakeCommand($app['files']));
+        $this->app->singleton(
+            ControllerMakeCommand::class, static fn ($app) => new Console\ControllerMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerExceptionMakeCommand()
+    protected function registerEnumMakeCommand(): void
     {
-        $this->app->singleton(ExceptionMakeCommand::class, static fn ($app) => new Console\ExceptionMakeCommand($app['files']));
+        $this->app->singleton(
+            EnumMakeCommand::class, fn ($app) => new Console\EnumMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerFactoryMakeCommand()
+    protected function registerEventMakeCommand(): void
     {
-        $this->app->singleton(FactoryMakeCommand::class, static fn ($app) => new Console\FactoryMakeCommand($app['files']));
+        $this->app->singleton(
+            EventMakeCommand::class, static fn ($app) => new Console\EventMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerJobMakeCommand()
+    protected function registerExceptionMakeCommand(): void
     {
-        $this->app->singleton(JobMakeCommand::class, static fn ($app) => new Console\JobMakeCommand($app['files']));
+        $this->app->singleton(
+            ExceptionMakeCommand::class, static fn ($app) => new Console\ExceptionMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerListenerMakeCommand()
+    protected function registerFactoryMakeCommand(): void
     {
-        $this->app->singleton(ListenerMakeCommand::class, static fn ($app) => new Console\ListenerMakeCommand($app['files']));
+        $this->app->singleton(
+            FactoryMakeCommand::class, static fn ($app) => new Console\FactoryMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerMailMakeCommand()
+    protected function registerJobMakeCommand(): void
     {
-        $this->app->singleton(MailMakeCommand::class, static fn ($app) => new Console\MailMakeCommand($app['files']));
+        $this->app->singleton(
+            JobMakeCommand::class, static fn ($app) => new Console\JobMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerMiddlewareMakeCommand()
+    protected function registerInterfaceMakeCommand(): void
     {
-        $this->app->singleton(MiddlewareMakeCommand::class, static fn ($app) => new Console\MiddlewareMakeCommand($app['files']));
+        $this->app->singleton(
+            InterfaceMakeCommand::class, static fn ($app) => new Console\InterfaceMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerMigrateMakeCommand()
+    protected function registerListenerMakeCommand(): void
     {
-        $this->app->singleton(MigrateMakeCommand::class, static function ($app) {
+        $this->app->singleton(
+            ListenerMakeCommand::class, static fn ($app) => new Console\ListenerMakeCommand($app['files'])
+        );
+    }
+
+    /**
+     * Register the command.
+     */
+    protected function registerMailMakeCommand(): void
+    {
+        $this->app->singleton(
+            MailMakeCommand::class, static fn ($app) => new Console\MailMakeCommand($app['files'])
+        );
+    }
+
+    /**
+     * Register the command.
+     */
+    protected function registerMiddlewareMakeCommand(): void
+    {
+        $this->app->singleton(
+            MiddlewareMakeCommand::class, static fn ($app) => new Console\MiddlewareMakeCommand($app['files'])
+        );
+    }
+
+    /**
+     * Register the command.
+     */
+    protected function registerMigrateMakeCommand(): void
+    {
+        $this->app->singleton(Console\MigrateMakeCommand::class, static function ($app) {
             // Once we have the migration creator registered, we will create the command
             // and inject the creator. The creator is responsible for the actual file
             // creation of the migrations, and may be extended by these developers.
@@ -261,208 +298,208 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerModelMakeCommand()
+    protected function registerModelMakeCommand(): void
     {
-        $this->app->singleton(ModelMakeCommand::class, static fn ($app) => new Console\ModelMakeCommand($app['files']));
+        $this->app->singleton(
+            ModelMakeCommand::class, static fn ($app) => new Console\ModelMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerNotificationMakeCommand()
+    protected function registerNotificationMakeCommand(): void
     {
-        $this->app->singleton(NotificationMakeCommand::class, static fn ($app) => new Console\NotificationMakeCommand($app['files']));
+        $this->app->singleton(
+            NotificationMakeCommand::class, static fn ($app) => new Console\NotificationMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerObserverMakeCommand()
+    protected function registerObserverMakeCommand(): void
     {
-        $this->app->singleton(ObserverMakeCommand::class, static fn ($app) => new Console\ObserverMakeCommand($app['files']));
+        $this->app->singleton(
+            ObserverMakeCommand::class, static fn ($app) => new Console\ObserverMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerPolicyMakeCommand()
+    protected function registerPolicyMakeCommand(): void
     {
-        $this->app->singleton(PolicyMakeCommand::class, static fn ($app) => new Console\PolicyMakeCommand($app['files']));
+        $this->app->singleton(
+            PolicyMakeCommand::class, static fn ($app) => new Console\PolicyMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerProviderMakeCommand()
+    protected function registerProviderMakeCommand(): void
     {
-        $this->app->singleton(ProviderMakeCommand::class, static fn ($app) => new Console\ProviderMakeCommand($app['files']));
+        $this->app->singleton(
+            ProviderMakeCommand::class, static fn ($app) => new Console\ProviderMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerRequestMakeCommand()
+    protected function registerRequestMakeCommand(): void
     {
-        $this->app->singleton(RequestMakeCommand::class, static fn ($app) => new Console\RequestMakeCommand($app['files']));
+        $this->app->singleton(
+            RequestMakeCommand::class, static fn ($app) => new Console\RequestMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerResourceMakeCommand()
+    protected function registerResourceMakeCommand(): void
     {
-        $this->app->singleton(ResourceMakeCommand::class, static fn ($app) => new Console\ResourceMakeCommand($app['files']));
+        $this->app->singleton(
+            ResourceMakeCommand::class, static fn ($app) => new Console\ResourceMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerRuleMakeCommand()
+    protected function registerRuleMakeCommand(): void
     {
-        $this->app->singleton(RuleMakeCommand::class, static fn ($app) => new Console\RuleMakeCommand($app['files']));
+        $this->app->singleton(
+            RuleMakeCommand::class, static fn ($app) => new Console\RuleMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerScopeMakeCommand()
+    protected function registerScopeMakeCommand(): void
     {
-        $this->app->singleton(ScopeMakeCommand::class, static fn ($app) => new Console\ScopeMakeCommand($app['files']));
+        $this->app->singleton(
+            ScopeMakeCommand::class, static fn ($app) => new Console\ScopeMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerSeederMakeCommand()
+    protected function registerSeederMakeCommand(): void
     {
-        $this->app->singleton(SeederMakeCommand::class, static fn ($app) => new Console\SeederMakeCommand($app['files']));
+        $this->app->singleton(
+            SeederMakeCommand::class, static fn ($app) => new Console\SeederMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerTestMakeCommand()
+    protected function registerTestMakeCommand(): void
     {
-        $this->app->singleton(TestMakeCommand::class, static fn ($app) => new Console\TestMakeCommand($app['files']));
+        $this->app->singleton(
+            TestMakeCommand::class, static fn ($app) => new Console\TestMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerViewMakeCommand()
+    protected function registerViewMakeCommand(): void
     {
-        $this->app->singleton(ViewMakeCommand::class, static fn ($app) => new Console\ViewMakeCommand($app['files']));
+        $this->app->singleton(
+            ViewMakeCommand::class, static fn ($app) => new Console\ViewMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerCacheTableCommand()
+    protected function registerCacheTableCommand(): void
     {
-        $this->app->singleton(CacheTableCommand::class, static fn ($app) => new Console\CacheTableCommand($app['files']));
+        $this->app->singleton(
+            CacheTableCommand::class, static fn ($app) => new Console\CacheTableCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerNotificationTableCommand()
+    protected function registerNotificationTableCommand(): void
     {
-        $this->app->singleton(NotificationTableCommand::class, static fn ($app) => new Console\NotificationTableCommand($app['files']));
+        $this->app->singleton(
+            NotificationTableCommand::class, static fn ($app) => new Console\NotificationTableCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerQueueBatchesTableCommand()
+    protected function registerQueueBatchesTableCommand(): void
     {
-        $this->app->singleton(BatchesTableCommand::class, static fn ($app) => new Console\BatchesTableCommand($app['files']));
+        $this->app->singleton(
+            BatchesTableCommand::class, static fn ($app) => new Console\BatchesTableCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerQueueFailedTableCommand()
+    protected function registerQueueFailedTableCommand(): void
     {
-        $this->app->singleton(FailedTableCommand::class, static fn ($app) => new Console\FailedTableCommand($app['files']));
+        $this->app->singleton(
+            FailedTableCommand::class, static fn ($app) => new Console\FailedTableCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerQueueTableCommand()
+    protected function registerQueueTableCommand(): void
     {
-        $this->app->singleton(QueueTableCommand::class, static fn ($app) => new Console\QueueTableCommand($app['files']));
+        $this->app->singleton(
+            QueueTableCommand::class, static fn ($app) => new Console\QueueTableCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerSessionTableCommand()
+    protected function registerSessionTableCommand(): void
     {
-        $this->app->singleton(SessionTableCommand::class, static fn ($app) => new Console\SessionTableCommand($app['files']));
+        $this->app->singleton(
+            SessionTableCommand::class, static fn ($app) => new Console\SessionTableCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerUserFactoryMakeCommand()
+    protected function registerUserFactoryMakeCommand(): void
     {
-        $this->app->singleton(Console\UserFactoryMakeCommand::class, static fn ($app) => new Console\UserFactoryMakeCommand($app['files']));
+        $this->app->singleton(
+            Console\UserFactoryMakeCommand::class, static fn ($app) => new Console\UserFactoryMakeCommand($app['files'])
+        );
     }
 
     /**
      * Register the command.
-     *
-     * @return void
      */
-    protected function registerUserModelMakeCommand()
+    protected function registerUserModelMakeCommand(): void
     {
-        $this->app->singleton(Console\UserModelMakeCommand::class, static fn ($app) => new Console\UserModelMakeCommand($app['files']));
+        $this->app->singleton(
+            Console\UserModelMakeCommand::class, static fn ($app) => new Console\UserModelMakeCommand($app['files'])
+        );
     }
 
     /**
      * Get the services provided by the provider.
      *
-     * @return array
+     * @return array<int, class-string>
      */
     public function provides()
     {
@@ -471,18 +508,24 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\CastMakeCommand::class,
             ChannelMakeCommand::class,
             Console\ChannelMakeCommand::class,
+            ClassMakeCommand::class,
+            Console\ClassMakeCommand::class,
             ComponentMakeCommand::class,
             Console\ComponentMakeCommand::class,
             ConsoleMakeCommand::class,
             Console\ConsoleMakeCommand::class,
             ControllerMakeCommand::class,
             Console\ControllerMakeCommand::class,
+            EnumMakeCommand::class,
+            Console\EnumMakeCommand::class,
             EventMakeCommand::class,
             Console\EventMakeCommand::class,
             ExceptionMakeCommand::class,
             Console\ExceptionMakeCommand::class,
             FactoryMakeCommand::class,
             Console\FactoryMakeCommand::class,
+            InterfaceMakeCommand::class,
+            Console\InterfaceMakeCommand::class,
             JobMakeCommand::class,
             Console\JobMakeCommand::class,
             ListenerMakeCommand::class,
@@ -491,7 +534,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\MailMakeCommand::class,
             MiddlewareMakeCommand::class,
             Console\MiddlewareMakeCommand::class,
-            MigrateMakeCommand::class,
             Console\MigrateMakeCommand::class,
             ModelMakeCommand::class,
             Console\ModelMakeCommand::class,

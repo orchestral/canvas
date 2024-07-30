@@ -230,7 +230,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFilenameExists('tests/Feature/Http/Controllers/FooControllerTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_model_and_requests()
     {
         $this->artisan('make:controller', ['name' => 'FooController', '--model' => 'Foo', '--requests' => true, '--preset' => 'canvas'])
@@ -256,7 +256,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->assertFilenameExists('app/Http/Requests/UpdateFooRequest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_controller_with_model_and_requests_with_custom_preset()
     {
         $this->instance('orchestra.canvas', new Laravel(

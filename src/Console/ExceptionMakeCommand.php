@@ -2,13 +2,12 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ExceptionMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/ExceptionMakeCommand.php
  */
 #[AsCommand(name: 'make:exception', description: 'Create a new custom exception class')]
 class ExceptionMakeCommand extends \Illuminate\Foundation\Console\ExceptionMakeCommand
@@ -17,13 +16,14 @@ class ExceptionMakeCommand extends \Illuminate\Foundation\Console\ExceptionMakeC
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new creator command instance.
+     * Configures the current command.
      *
      * @return void
      */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }
@@ -38,6 +38,7 @@ class ExceptionMakeCommand extends \Illuminate\Foundation\Console\ExceptionMakeC
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

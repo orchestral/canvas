@@ -2,13 +2,12 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/ResourceMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/ResourceMakeCommand.php
  */
 #[AsCommand(name: 'make:resource', description: 'Create a new resource')]
 class ResourceMakeCommand extends \Illuminate\Foundation\Console\ResourceMakeCommand
@@ -17,13 +16,14 @@ class ResourceMakeCommand extends \Illuminate\Foundation\Console\ResourceMakeCom
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new creator command instance.
+     * Configures the current command.
      *
      * @return void
      */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }
@@ -38,6 +38,7 @@ class ResourceMakeCommand extends \Illuminate\Foundation\Console\ResourceMakeCom
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

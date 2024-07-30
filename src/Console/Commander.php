@@ -2,11 +2,10 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Collection;
-use Orchestra\Canvas\CanvasServiceProvider;
+use Orchestra\Canvas\Core\Concerns\CreatesUsingGeneratorPreset;
 use Orchestra\Canvas\LaravelServiceProvider;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
@@ -14,8 +13,6 @@ class Commander extends \Orchestra\Testbench\Console\Commander
 {
     /**
      * The environment file name.
-     *
-     * @var string
      */
     protected string $environmentFile = '.env';
 
@@ -25,8 +22,8 @@ class Commander extends \Orchestra\Testbench\Console\Commander
      * @var array<int, class-string<\Illuminate\Support\ServiceProvider>>
      */
     protected array $providers = [
-        CanvasServiceProvider::class,
-        LaravelServiceProvider::class,
+        \Orchestra\Canvas\Core\LaravelServiceProvider::class,
+        \Orchestra\Canvas\CanvasServiceProvider::class,
     ];
 
     /**
@@ -43,14 +40,17 @@ class Commander extends \Orchestra\Testbench\Console\Commander
             /** @var \Illuminate\Contracts\Console\Kernel $kernel */
             $kernel = $app->make(ConsoleKernel::class);
 
+            $app->register(LaravelServiceProvider::class);
+
             Collection::make($kernel->all())
-                ->reject(static function (SymfonyCommand $command, string $name) {
-                    return str_starts_with('make:', $name) || $command instanceof GeneratorCommand;
-                })->each(static function (SymfonyCommand $command) {
+                ->reject(
+                    static fn (SymfonyCommand $command, string $name) => \in_array(CreatesUsingGeneratorPreset::class, class_uses_recursive($command))
+                )->each(static function (SymfonyCommand $command) {
                     $command->setHidden(true);
                 });
         }
 
+        /** @phpstan-ignore return.type */
         return $this->app;
     }
 }

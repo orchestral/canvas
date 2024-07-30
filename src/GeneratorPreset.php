@@ -197,8 +197,6 @@ class GeneratorPreset extends Preset
 
     /**
      * Get canvas preset.
-     *
-     * @return \Orchestra\Canvas\Presets\Preset
      */
     public function canvas(): Presets\Preset
     {

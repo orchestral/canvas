@@ -79,12 +79,14 @@ $files->copy("{$workingPath}/skeleton/database/factories/UserFactory.php", "{$wo
 transform([
     'namespace Database\Factories;' => 'namespace {{ factoryNamespace }};',
     'use Illuminate\Support\Str;'.PHP_EOL => 'use Illuminate\Support\Str;'.PHP_EOL.'use {{ namespacedModel }};'.PHP_EOL,
-    '\Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>' => '\Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>',
+    ' * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>' => ' * @template TModel of \{{ namespacedModel }}
+ *
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>',
     '    /**
      * Define the model\'s default state.' => '    /**
      * The name of the factory\'s corresponding model.
      *
-     * @var string
+     * @var class-string<TModel>
      */
     protected $model = {{ model }}::class;
 

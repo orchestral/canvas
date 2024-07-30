@@ -2,14 +2,13 @@
 
 namespace Orchestra\Canvas\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\CodeGenerator;
 use Orchestra\Canvas\Core\Concerns\TestGenerator;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 /**
- * @see https://github.com/laravel/framework/blob/master/src/Illuminate/Routing/Console/ControllerMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Routing/Console/ControllerMakeCommand.php
  */
 #[AsCommand(name: 'make:controller', description: 'Create a new controller class')]
 class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCommand
@@ -19,13 +18,14 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     use UsesGeneratorOverrides;
 
     /**
-     * Create a new creator command instance.
+     * Configures the current command.
      *
      * @return void
      */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }
@@ -40,13 +40,13 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 
     /**
      * Qualify the given model class base name.
      *
-     * @param  string  $model
      * @return string
      */
     #[\Override]
@@ -63,6 +63,8 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     #[\Override]
     protected function buildParentReplacements()
     {
+        /** @var class-string|string $parentModelClass */
+        /** @phpstan-ignore argument.type */
         $parentModelClass = $this->parseModel($this->option('parent'));
 
         if (! class_exists($parentModelClass) &&
@@ -86,12 +88,13 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     /**
      * Build the model replacement values.
      *
-     * @param  array  $replace
      * @return array
      */
     #[\Override]
     protected function buildModelReplacements(array $replace)
     {
+        /** @var class-string|string $modelClass */
+        /** @phpstan-ignore argument.type */
         $modelClass = $this->parseModel($this->option('model'));
 
         if (! class_exists($modelClass) && $this->components->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
