@@ -8,7 +8,6 @@ class MailMakeCommandTest extends TestCase
         'app/Mail/FooMail.php',
         'resources/views/foo-mail.blade.php',
         'resources/views/mail/foo-mail.blade.php',
-        'resources/views/mail/my-foo-mail.blade.php',
         'tests/Feature/Mail/FooMailTest.php',
     ];
 
@@ -99,7 +98,6 @@ class MailMakeCommandTest extends TestCase
     public function testItCanGenerateMailWithMarkdownViewWithNoInitialInput()
     {
         $this->artisan('make:mail')
-
             ->expectsQuestion('What should the mailable be named?', 'FooMail')
             ->expectsQuestion('Would you like to create a view?', 'markdown')
             ->assertExitCode(0);
