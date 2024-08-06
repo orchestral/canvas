@@ -49,7 +49,7 @@ class PresetMakeCommand extends GeneratorCommand
         }
 
         if (\is_null($input->getOption('namespace'))) {
-            $files = new Filesystem();
+            $files = new Filesystem;
             $composer = $files->json(package_path('composer.json'));
 
             $namespaces = Collection::make(Arr::wrap(data_get($composer, 'autoload.psr-4')))
