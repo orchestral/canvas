@@ -5,10 +5,10 @@ namespace Illuminate\Tests\Integration\Generators;
 class MailMakeCommandTest extends TestCase
 {
     protected $files = [
-        'app/Mail/FooMail.php',
+        'app/Mail/*.php',
         'resources/views/foo-mail.blade.php',
-        'resources/views/mail/foo-mail.blade.php',
-        'tests/Feature/Mail/FooMailTest.php',
+        'resources/views/mail/*.blade.php',
+        'tests/Feature/Mail/*.php',
     ];
 
     public function testItCanGenerateMailFile()
@@ -102,7 +102,7 @@ class MailMakeCommandTest extends TestCase
             ->expectsQuestion('Would you like to create a view?', 'markdown')
             ->assertExitCode(0);
 
-        $this->assertFilenameExists('app/Mail/MyFooMail.php');
-        $this->assertFilenameExists('resources/views/mail/my-foo-mail.blade.php');
+        $this->assertFilenameExists('app/Mail/FooMail.php');
+        $this->assertFilenameExists('resources/views/mail/foo-mail.blade.php');
     }
 }
