@@ -49,8 +49,12 @@ class MailMakeCommand extends \Illuminate\Foundation\Console\MailMakeCommand
      */
     public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        if ($this->option('markdown')) {
+        if ($this->option('markdown') !== false) {
             $this->writeMarkdownTemplate();
+        }
+
+        if ($this->option('view') !== false) {
+            $this->writeView();
         }
     }
 

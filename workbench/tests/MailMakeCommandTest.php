@@ -7,6 +7,8 @@ class MailMakeCommandTest extends TestCase
     protected $files = [
         'app/Mail/FooMail.php',
         'resources/views/foo-mail.blade.php',
+        'resources/views/mail/foo-mail.blade.php',
+        'resources/views/mail/my-foo-mail.blade.php',
         'tests/Feature/Mail/FooMailTest.php',
     ];
 
