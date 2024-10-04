@@ -37,15 +37,15 @@
         "illuminate/support": "^11.26",
         "orchestra/canvas-core": "^9.0",
         "orchestra/testbench-core": "^9.2",
-        "symfony/polyfill-php83": "^1.28",
+        "symfony/polyfill-php83": "^1.30",
         "symfony/yaml": "^7.0.3"
     },
     "require-dev": {
         "laravel/framework": "^11.26",
         "laravel/pint": "^1.17",
-        "mockery/mockery": "^1.6",
+        "mockery/mockery": "^1.6.10",
         "phpstan/phpstan": "^1.11",
-        "phpunit/phpunit": "^11.0",
+        "phpunit/phpunit": "^11.3.6",
         "spatie/laravel-ray": "^1.35"
     },
     "config": {
