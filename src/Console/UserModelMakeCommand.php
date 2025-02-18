@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 #[AsCommand(name: 'make:user-model', description: 'Create the User model class')]
 class UserModelMakeCommand extends GeneratorCommand

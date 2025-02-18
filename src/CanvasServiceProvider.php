@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Orchestra\Canvas\Core\PresetManager;
 use Symfony\Component\Yaml\Yaml;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 class CanvasServiceProvider extends ServiceProvider implements DeferrableProvider
 {
