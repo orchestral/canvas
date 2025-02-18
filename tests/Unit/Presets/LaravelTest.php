@@ -7,7 +7,7 @@ use Orchestra\Canvas\Presets\Laravel;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 class LaravelTest extends TestCase
 {

@@ -7,7 +7,7 @@ use Orchestra\Canvas\Presets\Package;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 class PackageTest extends TestCase
 {

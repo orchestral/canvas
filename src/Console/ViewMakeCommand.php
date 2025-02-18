@@ -9,7 +9,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Orchestra\Canvas\GeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 #[AsCommand(name: 'make:view', description: 'Create a new view')]
 class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand

@@ -4,7 +4,7 @@ namespace Orchestra\Canvas\Presets;
 
 use Illuminate\Support\Arr;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 abstract class Preset
 {

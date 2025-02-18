@@ -4,7 +4,7 @@ namespace Orchestra\Canvas;
 
 use Orchestra\Canvas\Core\Presets\Preset;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\join_paths;
 
 class GeneratorPreset extends Preset
 {
