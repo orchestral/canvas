@@ -38,7 +38,6 @@
         "orchestra/canvas-core": "^11.0.0",
         "orchestra/sidekick": "^1.0.3",
         "orchestra/testbench-core": "^11.0.0",
-        "symfony/polyfill-php83": "^1.31",
         "symfony/yaml": "^7.0.3"
     },
     "require-dev": {
