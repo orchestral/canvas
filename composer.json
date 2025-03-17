@@ -39,7 +39,7 @@
         "orchestra/sidekick": "^1.1.0",
         "orchestra/testbench-core": "^10.1.0",
         "symfony/polyfill-php83": "^1.31",
-        "symfony/yaml": "^7.0.3"
+        "symfony/yaml": "^7.2.0"
     },
     "require-dev": {
         "laravel/framework": "^12.3.0",
