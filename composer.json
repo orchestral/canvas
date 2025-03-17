@@ -36,7 +36,7 @@
         "illuminate/filesystem": "^12.3.0",
         "illuminate/support": "^12.3.0",
         "orchestra/canvas-core": "^10.0.1",
-        "orchestra/sidekick": "^1.0.5",
+        "orchestra/sidekick": "^1.1.0",
         "orchestra/testbench-core": "^10.1.0",
         "symfony/polyfill-php83": "^1.31",
         "symfony/yaml": "^7.0.3"
