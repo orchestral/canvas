@@ -44,10 +44,10 @@
     "require-dev": {
         "laravel/framework": "^12.3.0",
         "laravel/pint": "^1.21",
-        "mockery/mockery": "^1.6.10",
-        "phpstan/phpstan": "^2.1.7",
-        "phpunit/phpunit": "^11.5.12",
-        "spatie/laravel-ray": "^1.39.1"
+        "mockery/mockery": "^1.6.12",
+        "phpstan/phpstan": "^2.1.8",
+        "phpunit/phpunit": "^11.5.13",
+        "spatie/laravel-ray": "^1.40.1"
     },
     "config": {
         "preferred-install": {
