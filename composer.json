@@ -32,10 +32,10 @@
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "illuminate/console": "^12.11.1",
-        "illuminate/database": "^12.11.1",
-        "illuminate/filesystem": "^12.11.1",
-        "illuminate/support": "^12.11.1",
+        "illuminate/console": "^12.13.0",
+        "illuminate/database": "^12.13.0",
+        "illuminate/filesystem": "^12.13.0",
+        "illuminate/support": "^12.13.0",
         "orchestra/canvas-core": "^10.0.1",
         "orchestra/sidekick": "^1.2.0",
         "orchestra/testbench-core": "^10.2.1",
@@ -43,7 +43,7 @@
         "symfony/yaml": "^7.2.0"
     },
     "require-dev": {
-        "laravel/framework": "^12.11.1",
+        "laravel/framework": "^12.13.0",
         "laravel/pint": "^1.22",
         "mockery/mockery": "^1.6.12",
         "phpstan/phpstan": "^2.1.13",
