@@ -40,6 +40,7 @@
         "orchestra/sidekick": "^1.2.0",
         "orchestra/testbench-core": "^10.2.1",
         "symfony/polyfill-php83": "^1.32",
+        "symfony/symfony": "7.3.x-dev",
         "symfony/console": "7.3.x-dev",
         "symfony/yaml": "7.3.x-dev"
     },
