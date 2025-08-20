@@ -44,7 +44,7 @@
     },
     "require-dev": {
         "laravel/framework": "^12.14.0",
-        "laravel/pint": "^1.22",
+        "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6.12",
         "phpstan/phpstan": "^2.1.14",
         "phpunit/phpunit": "^11.5.18",
@@ -72,7 +72,7 @@
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "lint": [
-            "@php vendor/bin/pint --ansi",
+            "@php vendor/bin/pint --ansi --parallel",
             "@php vendor/bin/phpstan analyse --verbose"
         ],
         "test": [
