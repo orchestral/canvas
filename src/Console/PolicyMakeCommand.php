@@ -89,15 +89,4 @@ class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
 
         return $this->userProviderModelUsingCanvas($guard);
     }
-
-    /**
-     * Get a list of possible model names.
-     *
-     * @return array<int, string>
-     */
-    #[\Override]
-    protected function possibleModels()
-    {
-        return $this->possibleModelsUsingCanvas();
-    }
 }

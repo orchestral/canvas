@@ -75,15 +75,4 @@ class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCom
     {
         return $this->rootNamespaceUsingCanvas();
     }
-
-    /**
-     * Get a list of possible model names.
-     *
-     * @return array<int, string>
-     */
-    #[\Override]
-    protected function possibleModels()
-    {
-        return $this->possibleModelsUsingCanvas();
-    }
 }
