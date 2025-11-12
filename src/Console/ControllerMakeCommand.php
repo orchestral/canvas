@@ -146,6 +146,17 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     }
 
     /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    #[\Override]
+    protected function findAvailableModels()
+    {
+        return $this->findAvailableModelsUsingCanvas();
+    }
+
+    /**
      * Generate the form requests for the given model and classes.
      *
      * @param  string  $modelClass
