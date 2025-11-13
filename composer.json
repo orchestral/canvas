@@ -32,23 +32,26 @@
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "illuminate/console": "^12.14.0",
-        "illuminate/database": "^12.14.0",
-        "illuminate/filesystem": "^12.14.0",
-        "illuminate/support": "^12.14.0",
-        "orchestra/canvas-core": "^10.0.1",
+        "illuminate/console": "^12.38.0",
+        "illuminate/database": "^12.38.0",
+        "illuminate/filesystem": "^12.38.0",
+        "illuminate/support": "^12.38.0",
+        "orchestra/canvas-core": "^10.1.0",
         "orchestra/sidekick": "^1.2.0",
         "orchestra/testbench-core": "^10.2.1",
         "symfony/polyfill-php83": "^1.32",
         "symfony/yaml": "^7.2.0"
     },
     "require-dev": {
-        "laravel/framework": "^12.14.0",
+        "laravel/framework": "^12.38.0",
         "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6.12",
         "phpstan/phpstan": "^2.1.14",
         "phpunit/phpunit": "^11.5.18",
         "spatie/laravel-ray": "^1.40.2"
+    },
+    "conflict": {
+        "laravel/framework": "<12.38.0|>=13.0.0"
     },
     "config": {
         "preferred-install": {
