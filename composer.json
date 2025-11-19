@@ -32,10 +32,10 @@
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "illuminate/console": "^12.38.0",
-        "illuminate/database": "^12.38.0",
-        "illuminate/filesystem": "^12.38.0",
-        "illuminate/support": "^12.38.0",
+        "illuminate/console": "^12.38.1",
+        "illuminate/database": "^12.38.1",
+        "illuminate/filesystem": "^12.38.1",
+        "illuminate/support": "^12.38.1",
         "orchestra/canvas-core": "^10.1.1",
         "orchestra/sidekick": "^1.2.0",
         "orchestra/testbench-core": "^10.2.1",
@@ -43,7 +43,7 @@
         "symfony/yaml": "^7.2.0"
     },
     "require-dev": {
-        "laravel/framework": "^12.38.0",
+        "laravel/framework": "^12.38.1",
         "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6.12",
         "phpstan/phpstan": "^2.1.14",
@@ -51,7 +51,7 @@
         "spatie/laravel-ray": "^1.40.2"
     },
     "conflict": {
-        "laravel/framework": "<12.38.0|>=13.0.0"
+        "laravel/framework": "<12.38.1|>=13.0.0"
     },
     "config": {
         "audit": {
