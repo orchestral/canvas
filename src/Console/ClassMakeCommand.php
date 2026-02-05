@@ -21,7 +21,7 @@ class ClassMakeCommand extends \Illuminate\Foundation\Console\ClassMakeCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

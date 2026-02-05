@@ -19,7 +19,7 @@ class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

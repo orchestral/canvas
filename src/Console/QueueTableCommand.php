@@ -20,7 +20,7 @@ class QueueTableCommand extends TableCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

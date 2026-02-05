@@ -23,7 +23,7 @@ class ListenerMakeCommand extends \Illuminate\Foundation\Console\ListenerMakeCom
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

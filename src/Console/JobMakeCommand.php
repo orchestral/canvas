@@ -23,7 +23,7 @@ class JobMakeCommand extends \Illuminate\Foundation\Console\JobMakeCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

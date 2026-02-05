@@ -21,7 +21,7 @@ class ResourceMakeCommand extends \Illuminate\Foundation\Console\ResourceMakeCom
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

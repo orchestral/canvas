@@ -21,7 +21,7 @@ class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCom
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

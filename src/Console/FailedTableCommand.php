@@ -19,7 +19,7 @@ class FailedTableCommand extends \Illuminate\Queue\Console\FailedTableCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

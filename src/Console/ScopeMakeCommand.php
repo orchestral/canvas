@@ -21,7 +21,7 @@ class ScopeMakeCommand extends \Illuminate\Foundation\Console\ScopeMakeCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

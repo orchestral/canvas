@@ -21,7 +21,7 @@ class RuleMakeCommand extends \Illuminate\Foundation\Console\RuleMakeCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

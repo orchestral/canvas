@@ -21,7 +21,7 @@ class ProviderMakeCommand extends \Illuminate\Foundation\Console\ProviderMakeCom
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

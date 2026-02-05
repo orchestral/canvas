@@ -19,7 +19,7 @@ class CanvasServiceProvider extends ServiceProvider implements DeferrableProvide
     public function register(): void
     {
         $this->callAfterResolving(PresetManager::class, static function ($manager, $app) {
-            $manager->extend('canvas', static fn ($app) => new GeneratorPreset($app));
+            $manager->extend('canvas', fn ($app) => new GeneratorPreset($app));
 
             $manager->setDefaultDriver('canvas');
         });

@@ -24,7 +24,7 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

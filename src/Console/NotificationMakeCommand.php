@@ -23,7 +23,7 @@ class NotificationMakeCommand extends \Illuminate\Foundation\Console\Notificatio
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

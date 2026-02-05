@@ -27,7 +27,7 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

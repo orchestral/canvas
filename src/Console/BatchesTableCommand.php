@@ -26,7 +26,7 @@ class BatchesTableCommand extends \Illuminate\Queue\Console\BatchesTableCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

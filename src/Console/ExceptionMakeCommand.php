@@ -21,7 +21,7 @@ class ExceptionMakeCommand extends \Illuminate\Foundation\Console\ExceptionMakeC
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

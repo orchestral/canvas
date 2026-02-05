@@ -24,7 +24,7 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
      * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
