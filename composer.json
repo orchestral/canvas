@@ -54,9 +54,6 @@
         "laravel/framework": "<12.40.0|>=13.0.0"
     },
     "config": {
-        "audit": {
-            "block-insecure": false
-        },
         "preferred-install": {
             "laravel/framework": "source",
             "*": "auto"
