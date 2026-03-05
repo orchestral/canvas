@@ -34,6 +34,27 @@ class JobMakeCommandTest extends TestCase
     }
 
     #[Test]
+    public function it_can_generate_batched_job_file()
+    {
+        $this->artisan('make:job', ['name' => 'FooCreated', '--batched' => true])
+            ->assertExitCode(0);
+
+        $this->assertFileContains([
+            'namespace App\Jobs;',
+            'use Illuminate\Contracts\Queue\ShouldQueue;',
+            'use Illuminate\Foundation\Queue\Queueable;',
+            'class FooCreated implements ShouldQueue',
+            '    use Batchable, Queueable;',
+        ], 'app/Jobs/FooCreated.php');
+
+        $this->assertFileNotContains([
+            'use Illuminate\Bus\Queueable;',
+        ], 'app/Jobs/FooCreated.php');
+
+        $this->assertFilenameNotExists('tests/Feature/Jobs/FooCreatedTest.php');
+    }
+
+    #[Test]
     public function it_can_generate_synced_job_file()
     {
         $this->artisan('make:job', ['name' => 'FooCreated', '--sync' => true])

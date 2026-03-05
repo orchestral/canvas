@@ -37,16 +37,16 @@
         "illuminate/filesystem": "^13.0.0",
         "illuminate/support": "^13.0.0",
         "orchestra/canvas-core": "^11.0.0",
-        "orchestra/sidekick": "^1.1.0",
+        "orchestra/sidekick": "~1.1.23|~1.2.20",
         "orchestra/testbench-core": "^11.0.0",
-        "symfony/yaml": "^7.2.0"
+        "symfony/yaml": "^7.4.0|^8.0.0"
     },
     "require-dev": {
         "laravel/framework": "^13.0.0",
-        "laravel/pint": "^1.21",
+        "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6.10",
-        "phpstan/phpstan": "^2.1",
-        "phpunit/phpunit": "^11.5.7"
+        "phpstan/phpstan": "^2.1.14",
+        "phpunit/phpunit": "^11.5.50|^12.5.8|^13.0.0"
     },
     "config": {
         "preferred-install": {
@@ -70,13 +70,12 @@
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "lint": [
-            "@php vendor/bin/pint --ansi",
+            "@php vendor/bin/pint --ansi --parallel",
             "@php vendor/bin/phpstan analyse --verbose"
         ],
         "test": [
             "@composer dump-autoload",
-            "@php vendor/bin/phpunit --no-coverage --no-configuration --bootstrap vendor/autoload.php --color tests",
-            "@php vendor/bin/phpunit --no-coverage --no-configuration --bootstrap vendor/autoload.php --color workbench/tests"
+            "@php vendor/bin/phpunit --no-coverage --no-configuration --bootstrap vendor/autoload.php --color ./tests ./workbench/tests"
         ],
         "sync": "@php bin/sync",
         "ci": [

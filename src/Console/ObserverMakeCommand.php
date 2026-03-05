@@ -82,8 +82,8 @@ class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCom
      * @return array<int, string>
      */
     #[\Override]
-    protected function possibleModels()
+    protected function findAvailableModels()
     {
-        return $this->possibleModelsUsingCanvas();
+        return $this->findAvailableModelsUsingCanvas();
     }
 }

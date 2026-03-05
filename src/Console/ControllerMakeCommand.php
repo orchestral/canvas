@@ -151,9 +151,9 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
      * @return array<int, string>
      */
     #[\Override]
-    protected function possibleModels()
+    protected function findAvailableModels()
     {
-        return $this->possibleModelsUsingCanvas();
+        return $this->findAvailableModelsUsingCanvas();
     }
 
     /**

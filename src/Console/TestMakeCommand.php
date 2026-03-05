@@ -7,7 +7,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Orchestra\Canvas\GeneratorPreset;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 /**
  * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/TestMakeCommand.php
