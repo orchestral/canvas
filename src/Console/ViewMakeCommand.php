@@ -22,8 +22,6 @@ class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void

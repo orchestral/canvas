@@ -17,8 +17,6 @@ class InterfaceMakeCommand extends \Illuminate\Foundation\Console\InterfaceMakeC
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void

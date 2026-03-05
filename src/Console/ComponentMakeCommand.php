@@ -19,8 +19,6 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void

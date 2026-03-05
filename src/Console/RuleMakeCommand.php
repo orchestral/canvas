@@ -17,8 +17,6 @@ class RuleMakeCommand extends \Illuminate\Foundation\Console\RuleMakeCommand
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void

@@ -16,8 +16,8 @@ class ConsoleMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Console\Commands;',
             'use Illuminate\Console\Command;',
+            '#[Signature(\'app:foo-command\')]',
             'class FooCommand extends Command',
-            'protected $signature = \'app:foo-command\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 
@@ -29,8 +29,8 @@ class ConsoleMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Console\Commands;',
             'use Illuminate\Console\Command;',
+            '#[Signature(\'foo:bar\')]',
             'class FooCommand extends Command',
-            'protected $signature = \'foo:bar\';',
         ], 'app/Console/Commands/FooCommand.php');
     }
 }

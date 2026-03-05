@@ -15,8 +15,6 @@ class CacheTableCommand extends \Illuminate\Cache\Console\CacheTableCommand
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void

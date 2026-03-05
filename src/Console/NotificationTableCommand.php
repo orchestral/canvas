@@ -15,8 +15,6 @@ class NotificationTableCommand extends \Illuminate\Notifications\Console\Notific
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void

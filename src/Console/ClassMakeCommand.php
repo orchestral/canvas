@@ -17,8 +17,6 @@ class ClassMakeCommand extends \Illuminate\Foundation\Console\ClassMakeCommand
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void

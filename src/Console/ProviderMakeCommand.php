@@ -17,8 +17,6 @@ class ProviderMakeCommand extends \Illuminate\Foundation\Console\ProviderMakeCom
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
     protected function configure(): void
