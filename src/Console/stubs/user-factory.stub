@@ -2,15 +2,14 @@
 
 namespace {{ factoryNamespace }};
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use {{ namespacedModel }};
 
 /**
- * @template TModel of \{{ namespacedModel }}
- *
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>
+ * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
