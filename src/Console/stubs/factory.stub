@@ -2,13 +2,12 @@
 
 namespace {{ factoryNamespace }};
 
+use {{ namespacedModel }};
 use Illuminate\Database\Eloquent\Factories\Factory;
 use {{ namespacedModel }};
 
 /**
- * @template TModel of \{{ namespacedModel }}
- *
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>
+ * @extends Factory<{{ model }}>
  */
 class {{ factory }}Factory extends Factory
 {
