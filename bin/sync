@@ -26,14 +26,11 @@ Illuminate\Support\Collection::make([
 
 transform([
     'use Illuminate\Database\Eloquent\Factories\Factory;' => 'use Illuminate\Database\Eloquent\Factories\Factory;'.PHP_EOL.'use {{ namespacedModel }};',
-    ' * @extends \Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>' => ' * @template TModel of \{{ namespacedModel }}
- *
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>',
     '    /**
      * Define the model\'s default state.'.PHP_EOL => '    /**
      * The name of the factory\'s corresponding model.
      *
-     * @var class-string<TModel>
+     * @var class-string<{{ model }}>
      */
     protected $model = {{ model }}::class;
 
@@ -79,15 +76,13 @@ transform([
 $files->copy("{$workingPath}/skeleton/database/factories/UserFactory.php", "{$workingPath}/src/Console/stubs/user-factory.stub");
 transform([
     'namespace Database\Factories;' => 'namespace {{ factoryNamespace }};',
+    'use App\Models\User;'.PHP_EOL => '',
     'use Illuminate\Support\Str;'.PHP_EOL => 'use Illuminate\Support\Str;'.PHP_EOL.'use {{ namespacedModel }};'.PHP_EOL,
-    ' * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>' => ' * @template TModel of \{{ namespacedModel }}
- *
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>',
     '    /**
      * Define the model\'s default state.' => '    /**
      * The name of the factory\'s corresponding model.
      *
-     * @var class-string<TModel>
+     * @var class-string<{{ model }}>
      */
     protected $model = {{ model }}::class;
 
