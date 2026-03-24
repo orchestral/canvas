@@ -36,7 +36,7 @@
         "illuminate/database": "^12.40.0",
         "illuminate/filesystem": "^12.40.0",
         "illuminate/support": "^12.40.0",
-        "orchestra/canvas-core": "^10.1.2",
+        "orchestra/canvas-core": "^10.2.0",
         "orchestra/sidekick": "~1.1.23|~1.2.20",
         "orchestra/testbench-core": "^10.8.0",
         "symfony/polyfill-php83": "^1.33",
