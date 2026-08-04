@@ -8,7 +8,8 @@ require __DIR__.'/../vendor/autoload.php';
 $input = new Symfony\Component\Console\Input\ArgvInput();
 $files = new Illuminate\Filesystem\Filesystem();
 
-$version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '12.x-dev' : '^12.0';
+// $version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '13.x-dev' : '^13.0';
+$version = '13.x-dev';
 
 Illuminate\Support\Collection::make([
     'factory.stub' => 'Database/Console/Factories/stubs/factory.stub',

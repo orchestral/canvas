@@ -21,11 +21,9 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

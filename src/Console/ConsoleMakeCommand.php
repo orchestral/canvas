@@ -19,11 +19,9 @@ class ConsoleMakeCommand extends \Illuminate\Foundation\Console\ConsoleMakeComma
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

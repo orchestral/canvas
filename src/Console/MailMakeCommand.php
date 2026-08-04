@@ -19,11 +19,9 @@ class MailMakeCommand extends \Illuminate\Foundation\Console\MailMakeCommand
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

@@ -19,11 +19,9 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

@@ -17,11 +17,9 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

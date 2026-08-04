@@ -17,11 +17,9 @@ class InterfaceMakeCommand extends \Illuminate\Foundation\Console\InterfaceMakeC
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

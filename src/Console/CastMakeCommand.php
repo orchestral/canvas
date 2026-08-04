@@ -17,11 +17,9 @@ class CastMakeCommand extends \Illuminate\Foundation\Console\CastMakeCommand
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
