@@ -43,6 +43,7 @@
         "symfony/yaml": "^7.2.0"
     },
     "require-dev": {
+        "laravel/doctor": "^0.1.0",
         "laravel/framework": "^12.64.0",
         "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6.12",
