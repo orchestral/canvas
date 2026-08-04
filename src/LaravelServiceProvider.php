@@ -46,7 +46,6 @@ use Laravel\Doctor\Console\DiagnosticMakeCommand;
  */
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-
     /**
      * List of provided commands.
      *

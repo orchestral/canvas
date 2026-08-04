@@ -75,5 +75,4 @@ class DiagnosticMakeCommand extends \Laravel\Doctor\Console\DiagnosticMakeComman
     {
         return $rootNamespace.'\Diagnostics';
     }
-
 }

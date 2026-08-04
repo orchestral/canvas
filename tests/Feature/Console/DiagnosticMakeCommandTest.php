@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
 use Composer\InstalledVersions;
-use Orchestra\Canvas\Console\DiagnosticMakeCommand;
 use Orchestra\Canvas\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -39,7 +38,6 @@ class DiagnosticMakeCommandTest extends TestCase
             'class FooIsAvailable extends Diagnostic',
         ], 'app/Diagnostics/FooIsAvailable.php');
     }
-
 
     #[Test]
     public function it_can_generate_fixable_diagnostic_file()
