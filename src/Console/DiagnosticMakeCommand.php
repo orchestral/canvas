@@ -17,11 +17,9 @@ class DiagnosticMakeCommand extends \Laravel\Doctor\Console\DiagnosticMakeComman
 
     /**
      * Configures the current command.
-     *
-     * @return void
      */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

@@ -31,15 +31,6 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, bcmath, fileinfo
           coverage: none
 
-      - name: Require `laravel/doctor` on PHP 8.3 and above
-        uses: nick-fields/retry@v3
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer require laravel/doctor --no-interaction --no-update
-          shell: bash
-        if: matrix.php >= 8.3
-
       - name: Install dependencies
         uses: ramsey/composer-install@v4
         with:
