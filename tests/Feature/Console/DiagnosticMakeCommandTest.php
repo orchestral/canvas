@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Tests\Feature\Console;
 
+use Composer\InstalledVersions;
 use Orchestra\Canvas\Console\DiagnosticMakeCommand;
 use Orchestra\Canvas\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
@@ -11,6 +12,17 @@ class DiagnosticMakeCommandTest extends TestCase
     protected $files = [
         'app/Diagnostics/FooIsAvailable.php',
     ];
+
+    /**
+     * Setup the test environment.
+     */
+    #[\Override]
+    protected function setUp(): void
+    {
+        $this->markTestSkippedUnless(InstalledVersions::isInstalled('laravel/doctor'), 'Requires `laravel/doctor` package to be installed!');
+
+        parent::setUp();
+    }
 
     #[Test]
     public function it_can_generate_diagnostic_file()
