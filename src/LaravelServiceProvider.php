@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas;
 
+use Composer\InstalledVersions;
 use Illuminate\Cache\Console\CacheTableCommand;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
@@ -38,12 +39,94 @@ use Illuminate\Routing\Console\ControllerMakeCommand;
 use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Session\Console\SessionTableCommand;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Doctor\Console\DiagnosticMakeCommand;
 
 /**
  * @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php
  */
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    /**
+     * List of provided commands.
+     *
+     * array<int, class-string>
+     */
+    protected array $providedCommands = [
+        CastMakeCommand::class,
+        Console\CastMakeCommand::class,
+        ChannelMakeCommand::class,
+        Console\ChannelMakeCommand::class,
+        ClassMakeCommand::class,
+        Console\ClassMakeCommand::class,
+        ComponentMakeCommand::class,
+        Console\ComponentMakeCommand::class,
+        ConsoleMakeCommand::class,
+        Console\ConsoleMakeCommand::class,
+        ControllerMakeCommand::class,
+        Console\ControllerMakeCommand::class,
+        EnumMakeCommand::class,
+        Console\EnumMakeCommand::class,
+        EventMakeCommand::class,
+        Console\EventMakeCommand::class,
+        ExceptionMakeCommand::class,
+        Console\ExceptionMakeCommand::class,
+        FactoryMakeCommand::class,
+        Console\FactoryMakeCommand::class,
+        InterfaceMakeCommand::class,
+        Console\InterfaceMakeCommand::class,
+        JobMakeCommand::class,
+        Console\JobMakeCommand::class,
+        JobMiddlewareMakeCommand::class,
+        Console\JobMiddlewareMakeCommand::class,
+        ListenerMakeCommand::class,
+        Console\ListenerMakeCommand::class,
+        MailMakeCommand::class,
+        Console\MailMakeCommand::class,
+        MiddlewareMakeCommand::class,
+        Console\MiddlewareMakeCommand::class,
+        Console\MigrateMakeCommand::class,
+        ModelMakeCommand::class,
+        Console\ModelMakeCommand::class,
+        NotificationMakeCommand::class,
+        Console\NotificationMakeCommand::class,
+        ObserverMakeCommand::class,
+        Console\ObserverMakeCommand::class,
+        PolicyMakeCommand::class,
+        Console\PolicyMakeCommand::class,
+        ProviderMakeCommand::class,
+        Console\ProviderMakeCommand::class,
+        RequestMakeCommand::class,
+        Console\RequestMakeCommand::class,
+        ResourceMakeCommand::class,
+        Console\ResourceMakeCommand::class,
+        RuleMakeCommand::class,
+        Console\RuleMakeCommand::class,
+        ScopeMakeCommand::class,
+        Console\ScopeMakeCommand::class,
+        SeederMakeCommand::class,
+        Console\SeederMakeCommand::class,
+        TestMakeCommand::class,
+        Console\TestMakeCommand::class,
+        ViewMakeCommand::class,
+        Console\ViewMakeCommand::class,
+
+        BatchesTableCommand::class,
+        Console\BatchesTableCommand::class,
+        CacheTableCommand::class,
+        Console\CacheTableCommand::class,
+        FailedTableCommand::class,
+        Console\FailedTableCommand::class,
+        NotificationTableCommand::class,
+        Console\NotificationTableCommand::class,
+        QueueTableCommand::class,
+        Console\QueueTableCommand::class,
+        SessionTableCommand::class,
+        Console\SessionTableCommand::class,
+
+        Console\UserFactoryMakeCommand::class,
+        Console\UserModelMakeCommand::class,
+    ];
+
     /**
      * Register the service provider.
      */
@@ -129,6 +212,17 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
             Console\UserFactoryMakeCommand::class,
             Console\UserModelMakeCommand::class,
         ]);
+
+        if (InstalledVersions::isInstalled('laravel/doctor')) {
+            $this->registerDiagnosticMakeCommand();
+
+            $this->commands([
+                Console\DiagnosticMakeCommand::class,
+            ]);
+
+            $this->providedCommands[] = DiagnosticMakeCommand::class;
+            $this->providedCommands[] = Console\DiagnosticMakeCommand::class;
+        }
     }
 
     /**
@@ -511,86 +605,22 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
     }
 
     /**
+     * Register the command.
+     */
+    protected function registerDiagnosticMakeCommand(): void
+    {
+        $this->app->singleton(
+            DiagnosticMakeCommand::class, static fn ($app) => new Console\DiagnosticMakeCommand($app['files'])
+        );
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array<int, class-string>
      */
     public function provides()
     {
-        return [
-            CastMakeCommand::class,
-            Console\CastMakeCommand::class,
-            ChannelMakeCommand::class,
-            Console\ChannelMakeCommand::class,
-            ClassMakeCommand::class,
-            Console\ClassMakeCommand::class,
-            ComponentMakeCommand::class,
-            Console\ComponentMakeCommand::class,
-            ConsoleMakeCommand::class,
-            Console\ConsoleMakeCommand::class,
-            ControllerMakeCommand::class,
-            Console\ControllerMakeCommand::class,
-            EnumMakeCommand::class,
-            Console\EnumMakeCommand::class,
-            EventMakeCommand::class,
-            Console\EventMakeCommand::class,
-            ExceptionMakeCommand::class,
-            Console\ExceptionMakeCommand::class,
-            FactoryMakeCommand::class,
-            Console\FactoryMakeCommand::class,
-            InterfaceMakeCommand::class,
-            Console\InterfaceMakeCommand::class,
-            JobMakeCommand::class,
-            Console\JobMakeCommand::class,
-            JobMiddlewareMakeCommand::class,
-            Console\JobMiddlewareMakeCommand::class,
-            ListenerMakeCommand::class,
-            Console\ListenerMakeCommand::class,
-            MailMakeCommand::class,
-            Console\MailMakeCommand::class,
-            MiddlewareMakeCommand::class,
-            Console\MiddlewareMakeCommand::class,
-            Console\MigrateMakeCommand::class,
-            ModelMakeCommand::class,
-            Console\ModelMakeCommand::class,
-            NotificationMakeCommand::class,
-            Console\NotificationMakeCommand::class,
-            ObserverMakeCommand::class,
-            Console\ObserverMakeCommand::class,
-            PolicyMakeCommand::class,
-            Console\PolicyMakeCommand::class,
-            ProviderMakeCommand::class,
-            Console\ProviderMakeCommand::class,
-            RequestMakeCommand::class,
-            Console\RequestMakeCommand::class,
-            ResourceMakeCommand::class,
-            Console\ResourceMakeCommand::class,
-            RuleMakeCommand::class,
-            Console\RuleMakeCommand::class,
-            ScopeMakeCommand::class,
-            Console\ScopeMakeCommand::class,
-            SeederMakeCommand::class,
-            Console\SeederMakeCommand::class,
-            TestMakeCommand::class,
-            Console\TestMakeCommand::class,
-            ViewMakeCommand::class,
-            Console\ViewMakeCommand::class,
-
-            BatchesTableCommand::class,
-            Console\BatchesTableCommand::class,
-            CacheTableCommand::class,
-            Console\CacheTableCommand::class,
-            FailedTableCommand::class,
-            Console\FailedTableCommand::class,
-            NotificationTableCommand::class,
-            Console\NotificationTableCommand::class,
-            QueueTableCommand::class,
-            Console\QueueTableCommand::class,
-            SessionTableCommand::class,
-            Console\SessionTableCommand::class,
-
-            Console\UserFactoryMakeCommand::class,
-            Console\UserModelMakeCommand::class,
-        ];
+        return $this->providedCommands;
     }
 }
